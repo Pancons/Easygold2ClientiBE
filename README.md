@@ -24,7 +24,7 @@ EasyGold API è un backend per la gestione di utenti, clienti, moduli e file mul
         ClienteController.cs
         ModuloController.cs
         UtenteController.cs
-        FileController.cs
+        AllegatoController.cs
     
     /Services
         Interfaces/
@@ -32,13 +32,13 @@ EasyGold API è un backend per la gestione di utenti, clienti, moduli e file mul
             IClienteService.cs
             IModuloService.cs
             IUtenteService.cs
-            IFileService.cs
+            IAllegatoService.cs
         Implementations/
             AuthService.cs
             ClienteService.cs
             ModuloService.cs
             UtenteService.cs
-            FileService.cs
+            AllegatoService.cs
     
     /Repositories
         Interfaces/
@@ -50,7 +50,7 @@ EasyGold API è un backend per la gestione di utenti, clienti, moduli e file mul
             ClienteRepository.cs
             ModuloRepository.cs
             UtenteRepository.cs
-            FileRepository.cs
+            AllegatoRepository.cs
     
     /Models
         DTOs/
