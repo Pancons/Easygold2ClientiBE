@@ -1,0 +1,115 @@
+2025-02-19 13:36:30.423 +00:00 [INF] Executed DbCommand (538ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [EasyGoldDB];
+2025-02-19 13:36:30.669 +00:00 [INF] Executed DbCommand (193ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [EasyGoldDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-02-19 13:36:30.731 +00:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-02-19 13:36:30.736 +00:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-02-19 13:36:30.783 +00:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-02-19 13:36:30.890 +00:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-02-19 13:36:30.915 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-02-19 13:36:30.917 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-02-19 13:36:30.940 +00:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-02-19 13:36:30.963 +00:00 [INF] Applying migration '20250219133057_InitialCreate'.
+2025-02-19 13:36:30.981 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Clienti] (
+    [Id] int NOT NULL IDENTITY,
+    [Nome] nvarchar(max) NOT NULL,
+    [Cognome] nvarchar(max) NOT NULL,
+    [Email] nvarchar(max) NOT NULL,
+    [Telefono] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Clienti] PRIMARY KEY ([Id])
+);
+2025-02-19 13:36:30.984 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Utenti] (
+    [Id] int NOT NULL IDENTITY,
+    [Username] nvarchar(max) NOT NULL,
+    [PasswordHash] nvarchar(max) NOT NULL,
+    [Ruolo] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Utenti] PRIMARY KEY ([Id])
+);
+2025-02-19 13:36:30.997 +00:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250219133057_InitialCreate', N'9.0.2');
+2025-02-19 13:36:31.006 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-02-19 13:37:20.127 +00:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-02-19 13:37:20.194 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-02-19 13:37:20.272 +00:00 [INF] Now listening on: http://localhost:5217
+2025-02-19 13:37:20.277 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-19 13:37:20.278 +00:00 [INF] Hosting environment: Development
+2025-02-19 13:37:20.278 +00:00 [INF] Content root path: /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API
+2025-02-19 13:40:11.117 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/ - null null
+2025-02-19 13:40:11.137 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-02-19 13:40:11.172 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/ - 404 0 null 56.094ms
+2025-02-19 13:40:11.182 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/, Response status code: 404
+2025-02-19 13:40:14.533 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/ - null null
+2025-02-19 13:40:14.537 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/ - 404 0 null 4.0569ms
+2025-02-19 13:40:14.538 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/, Response status code: 404
+2025-02-19 13:42:17.808 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger - null null
+2025-02-19 13:42:17.812 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger - 404 0 null 3.5293ms
+2025-02-19 13:42:17.814 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/swagger, Response status code: 404
+2025-02-19 13:42:55.582 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/ - null null
+2025-02-19 13:42:55.583 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/ - 404 0 null 1.2081ms
+2025-02-19 13:42:55.585 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/, Response status code: 404
+2025-02-19 13:43:02.995 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger - null null
+2025-02-19 13:43:02.996 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger - 404 0 null 1.4217ms
+2025-02-19 13:43:02.998 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/swagger, Response status code: 404
+2025-02-19 13:43:06.500 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/ - null null
+2025-02-19 13:43:06.500 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/ - 404 0 null 0.745ms
+2025-02-19 13:43:06.501 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/, Response status code: 404
+2025-02-19 13:44:11.486 +00:00 [INF] Request starting HTTP/1.1 GET http://127.0.0.1:5217/swagger - null null
+2025-02-19 13:44:11.489 +00:00 [INF] Request finished HTTP/1.1 GET http://127.0.0.1:5217/swagger - 404 0 null 2.8727ms
+2025-02-19 13:44:11.490 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://127.0.0.1:5217/swagger, Response status code: 404
+2025-02-19 13:44:15.644 +00:00 [INF] Request starting HTTP/1.1 GET http://127.0.0.1:5217/ - null null
+2025-02-19 13:44:15.645 +00:00 [INF] Request finished HTTP/1.1 GET http://127.0.0.1:5217/ - 404 0 null 0.639ms
+2025-02-19 13:44:15.645 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://127.0.0.1:5217/, Response status code: 404
+2025-02-19 13:45:17.718 +00:00 [INF] Application is shutting down...
+2025-02-19 13:54:09.316 +00:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-02-19 13:54:09.502 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-02-19 13:54:09.631 +00:00 [INF] Now listening on: http://localhost:5217
+2025-02-19 13:54:09.635 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-19 13:54:09.636 +00:00 [INF] Hosting environment: Development
+2025-02-19 13:54:09.636 +00:00 [INF] Content root path: /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API
+2025-02-19 13:54:18.058 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/ - null null
+2025-02-19 13:54:18.071 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-02-19 13:54:18.119 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/ - 404 0 null 62.1275ms
+2025-02-19 13:54:18.129 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/, Response status code: 404
+2025-02-19 13:54:52.401 +00:00 [INF] Application is shutting down...
+2025-02-19 13:54:56.230 +00:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-02-19 13:54:56.310 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-02-19 13:54:56.373 +00:00 [INF] Now listening on: http://localhost:5217
+2025-02-19 13:54:56.378 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-19 13:54:56.379 +00:00 [INF] Hosting environment: Development
+2025-02-19 13:54:56.379 +00:00 [INF] Content root path: /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API
+2025-02-19 13:54:59.722 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/ - null null
+2025-02-19 13:54:59.737 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-02-19 13:54:59.785 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/ - 404 0 null 62.8575ms
+2025-02-19 13:54:59.797 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/, Response status code: 404
+2025-02-19 13:55:11.640 +00:00 [INF] Request starting HTTP/1.1 GET http://127.0.0.1:5217/ - null null
+2025-02-19 13:55:11.643 +00:00 [INF] Request finished HTTP/1.1 GET http://127.0.0.1:5217/ - 404 0 null 3.792ms
+2025-02-19 13:55:11.645 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://127.0.0.1:5217/, Response status code: 404
+2025-02-19 14:02:12.122 +00:00 [INF] Request starting HTTP/1.1 GET http://127.0.0.1:5217/ - null null
+2025-02-19 14:02:12.125 +00:00 [INF] Request finished HTTP/1.1 GET http://127.0.0.1:5217/ - 404 0 null 3.6032ms
+2025-02-19 14:02:12.126 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://127.0.0.1:5217/, Response status code: 404

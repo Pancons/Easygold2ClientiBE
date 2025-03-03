@@ -1,0 +1,159 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EasyGold.API.Models.Users;
+using EasyGold.API.Services;
+
+namespace EasyGold.API.Controllers
+{
+    /// <summary>
+    /// Controller per la gestione degli utenti.
+    /// </summary>
+    [ApiController]
+    [Route("api/[controller]")]
+    public class UserController : ControllerBase
+    {
+        private readonly UtenteService _utenteService;
+
+        public UserController(UtenteService utenteService)
+        {
+            _utenteService = utenteService;
+        }
+
+
+        /// <summary>
+        /// Restituisce una lista di utenti filtrati e paginati.
+        /// </summary>
+        /// <param name="filter">Filtri di ricerca utenti</param>
+        /// <returns>Lista utenti e totale</returns>
+        /// <response code="200">Lista utenti restituita con successo</response>
+        /// <response code="500">Errore interno del server</response>
+        [HttpPost("list")]
+        public async Task<IActionResult> GetUsersList([FromBody] UserFilterDTO filter)
+        {
+            try
+            {
+                var result = await _utenteService.GetUsersListAsync(filter);
+                return Ok(new { utenti = result.Users, total = result.Total });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
+            }
+        }
+
+        /// <summary>
+        /// Aggiunge un nuovo utente al sistema.
+        /// </summary>
+        /// <param name="userDto">Dati dell'utente da creare</param>
+        /// <returns>Utente creato</returns>
+        /// <response code="201">Utente creato con successo</response>
+        /// <response code="400">Errore nei dati inviati</response>
+        /// <response code="500">Errore interno del server</response>
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> AddUser([FromBody] UtenteDTO userDto)
+        {
+            await _utenteService.AddAsync(userDto);
+            return CreatedAtAction(nameof(GetUser), new { id = userDto.Ute_IDUtente }, userDto);
+        }
+
+
+        /// <summary>
+        /// Aggiorna i dati di un utente esistente.
+        /// </summary>
+        /// <param name="id">ID dell'utente da aggiornare</param>
+        /// <param name="userDto">Nuovi dati dell'utente</param>
+        /// <returns>Conferma aggiornamento</returns>
+        /// <response code="204">Utente aggiornato con successo</response>
+        /// <response code="400">Errore nei dati inviati</response>
+        /// <response code="404">Utente non trovato</response>
+        /// <response code="500">Errore interno del server</response>
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UtenteDTO userDto)
+        {
+            if (id != userDto.Ute_IDUtente)
+            {
+                return BadRequest();
+            }
+
+            await _utenteService.UpdateAsync(userDto);
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Restituisce un utente per ID.
+        /// </summary>
+        /// <param name="id">ID dell'utente</param>
+        /// <returns>Dettagli dell'utente</returns>
+        /// <response code="200">Utente trovato</response>
+        /// <response code="404">Utente non trovato</response>
+        /// <response code="500">Errore interno</response>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            var user = await _utenteService.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound(new { error = "Utente non trovato" });
+            }
+            return Ok(new { user });
+        }
+
+
+
+        /*
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _utenteService.GetAllAsync();
+            
+            return Ok(new { users });
+        }
+
+        [HttpGet("{id}")]
+        [Authorize]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            var user = await _utenteService.GetByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(new { user });
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> AddUser([FromBody] UtenteDettaglioDTO userDto)
+        {
+            await _utenteService.AddAsync(userDto);
+            return CreatedAtAction(nameof(GetUser), new { id = userDto.Utw_IDUtente }, userDto);
+        }
+
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UtenteDettaglioDTO userDto)
+        {
+            if (id != userDto.Utw_IDUtente)
+            {
+                return BadRequest();
+            }
+
+            await _utenteService.UpdateAsync(userDto);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            await _utenteService.DeleteAsync(id);
+            return NoContent();
+        }
+        */
+    }
+}

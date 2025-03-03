@@ -1,0 +1,6 @@
+/workspace/EasyGold.API.Tests/obj/Debug/net8.0/EasyGold.API.Tests.csproj.AssemblyReference.cache
+/workspace/EasyGold.API.Tests/obj/Debug/net8.0/EasyGold.API.Tests.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/EasyGold.API.Tests/obj/Debug/net8.0/EasyGold.API.Tests.AssemblyInfoInputs.cache
+/workspace/EasyGold.API.Tests/obj/Debug/net8.0/EasyGold.API.Tests.AssemblyInfo.cs
+/workspace/EasyGold.API.Tests/obj/Debug/net8.0/EasyGold.API.Tests.csproj.CoreCompileInputs.cache
+/workspace/EasyGold.API.Tests/bin/Debug/net8.0/CoverletSourceRootsMapping_EasyGold.API.Tests

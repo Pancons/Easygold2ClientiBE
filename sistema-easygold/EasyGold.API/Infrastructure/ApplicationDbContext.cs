@@ -1,0 +1,34 @@
+using Microsoft.EntityFrameworkCore;
+using EasyGold.API.Models;
+using EasyGold.API.Models.Entities;
+
+namespace EasyGold.API.Infrastructure
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
+        public DbSet<DbCliente> Clienti { get; set; }
+        public DbSet<DbUtente> Utenti { get; set; }
+        public DbSet<DbModuloEasygoldLang> ModuloEasygoldLangs { get; set; }
+        public DbSet<DbModuloCliente> ModuloClienti { get; set; }
+        public DbSet<DbModuloEasygold> ModuloEasygolds { get; set; }
+        public DbSet<DbDatiCliente> DatiClienti { get; set; }
+        public DbSet<DbRuolo> Ruoli { get; set; }
+        public DbSet<DbAllegato> Allegati { get; set; }
+        public DbSet<DbNegozi> Negozi { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<DbCliente>().HasKey(c => c.Utw_IDClienteAuto);
+            modelBuilder.Entity<DbUtente>().HasKey(u => u.Ute_IDUtente);
+            modelBuilder.Entity<DbModuloEasygoldLang>().HasKey(m => m.Mdeid_ID); // Assuming Id is the primary key
+            modelBuilder.Entity<DbModuloCliente>().HasKey(m => m.Mdc_IDModulo); // Assuming Id is the primary key
+            modelBuilder.Entity<DbModuloEasygold>().HasKey(m => m.Mde_IDAuto    ); // Assuming Id is the primary key
+            modelBuilder.Entity<DbDatiCliente>().HasKey(d => d.Dtc_IDCliente); // Assuming Id is the primary key
+            
+        }
+    }
+}
