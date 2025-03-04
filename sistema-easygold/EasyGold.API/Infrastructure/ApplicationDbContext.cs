@@ -10,9 +10,9 @@ namespace EasyGold.API.Infrastructure
 
         public DbSet<DbCliente> Clienti { get; set; }
         public DbSet<DbUtente> Utenti { get; set; }
-        public DbSet<DbModuloEasygoldLang> ModuloEasygoldLangs { get; set; }
+        public DbSet<DbModuloEasygoldLang> ModuloEasygoldLang { get; set; }
         public DbSet<DbModuloCliente> ModuloClienti { get; set; }
-        public DbSet<DbModuloEasygold> ModuloEasygolds { get; set; }
+        public DbSet<DbModuloEasygold> ModuloEasygold { get; set; }
         public DbSet<DbDatiCliente> DatiClienti { get; set; }
         public DbSet<DbRuolo> Ruoli { get; set; }
         public DbSet<DbAllegato> Allegati { get; set; }
