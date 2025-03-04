@@ -16,7 +16,7 @@ namespace EasyGold.API.Repositories.Implementations
 
         public async Task<IEnumerable<DbModuloEasygold>> GetAllAsync()
         {
-            return await _context.ModuloEasygolds.ToListAsync();
+            return await _context.ModuloEasygold.ToListAsync();
         }
 
         public async Task<DbModuloCliente> GetByIdAsync(int id)

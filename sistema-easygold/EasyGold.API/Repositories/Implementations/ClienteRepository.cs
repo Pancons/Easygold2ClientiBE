@@ -125,7 +125,7 @@ namespace EasyGold.API.Repositories.Implementations
             // Recupero separato dei Moduli associati al Cliente
             cliente.Moduli = await _context.ModuloClienti
                 .Where(mc => mc.Mdc_IDCliente == id)
-                .Join(_context.ModuloEasygolds,
+                .Join(_context.ModuloEasygold,
                       mc => mc.Mdc_IDModulo,
                       me => me.Mde_IDAuto,
                       (mc, me) => new ModuloDTO
