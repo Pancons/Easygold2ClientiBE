@@ -59,7 +59,7 @@
             <response code="404">Allegato non trovato</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="M:EasyGold.API.Controllers.AuthController.Login(EasyGold.API.Controllers.LoginRequest)">
+        <member name="M:EasyGold.API.Controllers.AuthController.Login(EasyGold.API.Controllers.AuthController.LoginRequest)">
             <summary>
             Esegue il login e restituisce un token JWT.
             </summary>
@@ -68,14 +68,6 @@
             <response code="200">Login effettuato con successo</response>
             <response code="401">Credenziali non valide</response>
             <response code="500">Errore interno del server</response>
-        </member>
-        <member name="M:EasyGold.API.Controllers.AuthController.Logout">
-            <summary>
-            Esegue il logout dell'utente.
-            </summary>
-            <returns>Conferma del logout</returns>
-            <response code="200">Logout effettuato con successo</response>
-            <response code="500">Errore interno durante il logout</response>
         </member>
         <member name="T:EasyGold.API.Controllers.ClienteController">
             <summary>
@@ -202,6 +194,9 @@
             <inheritdoc />
         </member>
         <member name="M:EasyGold.API.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_IDAllegato">

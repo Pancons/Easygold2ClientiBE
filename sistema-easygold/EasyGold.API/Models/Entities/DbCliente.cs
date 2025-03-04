@@ -1,11 +1,16 @@
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace EasyGold.API.Models.Entities
 {
-public class DbCliente
+    public class DbCliente
     {
         /// <summary>
         /// ID automatico del cliente.
         /// </summary>
+        [Key]  // <- Definisce la chiave primaria
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Utw_IDClienteAuto { get; set; }
 
         /// <summary>

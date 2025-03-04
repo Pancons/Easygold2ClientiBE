@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Models.Clients;
 using EasyGold.API.Services;
+using EasyGold.API.Services.Implementations;
+using EasyGold.API.Services.Interfaces;
 
 
 
@@ -17,9 +19,9 @@ namespace EasyGold.API.Controllers
     [Route("api/[controller]")]
     public class ClienteController : ControllerBase
     {
-        private readonly ClienteService _clienteService;
+        private readonly IClienteService _clienteService;
 
-        public ClienteController(ClienteService clienteService)
+        public ClienteController(IClienteService clienteService)
         {
             _clienteService = clienteService;
         }
@@ -60,6 +62,12 @@ namespace EasyGold.API.Controllers
         {
             try
             {
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
                 if (clienteDto == null)
                     return BadRequest(new { error = "Errore nei dati inviati" });
 
@@ -88,6 +96,12 @@ namespace EasyGold.API.Controllers
         {
             try
             {
+
+                 if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                
                 if (clienteDto == null)
                     return BadRequest(new { error = "Errore nei dati inviati" });
 

@@ -14,6 +14,7 @@ using BCrypt.Net;
 
 namespace EasyGold.API.Controllers
 {
+
     [ApiController]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
@@ -43,58 +44,55 @@ namespace EasyGold.API.Controllers
             if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
                 return BadRequest(new { error = "Username e password sono obbligatori" });
 
-            var user = await _userService.AuthenticateAsync(request.Username, request.Password);
-            if (user == null)
-                return Unauthorized(new { error = "Credenziali non valide" });
-
-            // Generazione del token JWT
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Secret"]);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim(ClaimTypes.Name, user.Ute_NomeUtente),
-                    new Claim(ClaimTypes.Role, user.Ute_IDRuolo.ToString())
-                }),
-                Expires = DateTime.UtcNow.AddHours(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var tokenString = tokenHandler.WriteToken(token);
-
-            return Ok(new
-            {
-                user = new { user.Ute_IDUtente, user.Ute_NomeUtente, user.Ute_IDRuolo },
-                token = tokenString
-            });
-        }
-
-
-        /// <summary>
-        /// Esegue il logout dell'utente.
-        /// </summary>
-        /// <returns>Conferma del logout</returns>
-        /// <response code="200">Logout effettuato con successo</response>
-        /// <response code="500">Errore interno durante il logout</response>
-        [HttpPost("logout")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public IActionResult Logout()
-        {
             try
             {
-                return Ok(new { success = true, message = "Logout effettuato con successo" });
+                var user = await _userService.AuthenticateAsync(request.Username, request.Password);
+                if (user == null)
+                {
+                    return Unauthorized(new { error = "Credenziali non valide" });
+                }
+
+                // Controllo se la chiave segreta è null
+                var secretKey = _configuration["Jwt:Secret"];
+                if (string.IsNullOrEmpty(secretKey))
+                {
+                    return StatusCode(500, new { error = "Errore interno: Secret JWT non configurato" });
+                }
+
+                // Generazione del token JWT
+                var key = Encoding.UTF8.GetBytes(secretKey);
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new[]
+                    {
+                new Claim(ClaimTypes.Name, user.Ute_NomeUtente),
+                new Claim(ClaimTypes.Role, user.Ute_IDRuolo.ToString())
+            }),
+                    Expires = DateTime.UtcNow.AddHours(1),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var tokenString = tokenHandler.WriteToken(token);
+
+                return Ok(new
+                {
+                    user = new { user.Ute_IDUtente, user.Ute_NomeUtente, user.Ute_IDRuolo },
+                    token = tokenString
+                });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { error = "Errore durante il logout", details = ex.Message });
+                return StatusCode(500, new { error = "Errore interno del server", details = ex.Message });
             }
         }
-    }
 
-    public class LoginRequest
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
+
+        public class LoginRequest
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+        }
     }
 }

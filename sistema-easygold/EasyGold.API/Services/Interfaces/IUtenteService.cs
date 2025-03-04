@@ -17,5 +17,6 @@ namespace EasyGold.API.Services.Interfaces
         Task AddAsync(UtenteDTO utenteDettaglioDto);
         Task UpdateAsync(UtenteDTO utenteDettaglioDto);
 
+        Task<UtenteDTO> GetUserByIdAsync(int id);
     }
 }

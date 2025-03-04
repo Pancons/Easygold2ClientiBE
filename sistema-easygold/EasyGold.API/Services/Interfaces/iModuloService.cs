@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using EasyGold.API.Models.Clients;
-
+using EasyGold.API.Models.Moduli;
 
 namespace EasyGold.API.Services.Interfaces
 {

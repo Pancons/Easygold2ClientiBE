@@ -32,8 +32,15 @@ namespace EasyGold.API.Controllers
         public async Task<IActionResult> GetModulesDropdown()
         {
             // Usa il servizio per ottenere i moduli
-            var modules = await _moduloService.GetAllAsync();
-            return Ok(new { modules });
+            try
+            {
+                var modules = await _moduloService.GetAllAsync();
+                return Ok(new { modules });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
 

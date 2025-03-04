@@ -1,12 +1,16 @@
 using Swashbuckle.AspNetCore.Annotations;
 using EasyGold.API.Models.Allegati;
-using EasyGold.API.Models.Clients;
+using EasyGold.API.Models.Moduli;
+using EasyGold.API.Models.Negozi;
+using EasyGold.API.Models.Configurazioni;
+using System.ComponentModel.DataAnnotations;
 
 public class ClienteDettaglioDTO
 {
     [SwaggerSchema(Description = "Identificativo univoco del cliente")]
     public int Utw_IDClienteAuto { get; set; }
 
+    [Required]
     [SwaggerSchema(Description = "Ragione sociale del cliente")]
     public string Dtc_RagioneSociale { get; set; }
 

@@ -2,6 +2,7 @@ using AutoMapper;
 using EasyGold.API.Models.Allegati;
 using EasyGold.API.Models.Clients;
 using EasyGold.API.Models.Entities;
+using EasyGold.API.Models.Moduli;
 using EasyGold.API.Models.Roles;
 using EasyGold.API.Models.Users;
 

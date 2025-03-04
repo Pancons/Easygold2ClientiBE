@@ -1,13 +1,15 @@
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace EasyGold.API.Models.Entities
 {
-public class DbDatiCliente
+    public class DbDatiCliente
     {
         /// <summary>
         /// ID del cliente.
         /// </summary>
+        [Key]
         public int Dtc_IDCliente { get; set; }
 
         /// <summary>
@@ -118,6 +120,6 @@ public class DbDatiCliente
         /// <summary>
         /// Ranking del cliente.
         /// </summary>
-        public int Dtc_Ranking { get;  set; }
+        public int Dtc_Ranking { get; set; }
     }
 }

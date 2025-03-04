@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Models.Users;
 using EasyGold.API.Services;
+using EasyGold.API.Services.Implementations;
+using EasyGold.API.Services.Interfaces;
 
 namespace EasyGold.API.Controllers
 {
@@ -14,9 +16,9 @@ namespace EasyGold.API.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly UtenteService _utenteService;
+        private readonly IUtenteService _utenteService;
 
-        public UserController(UtenteService utenteService)
+        public UserController(IUtenteService utenteService)
         {
             _utenteService = utenteService;
         }
@@ -55,8 +57,22 @@ namespace EasyGold.API.Controllers
         [Authorize]
         public async Task<IActionResult> AddUser([FromBody] UtenteDTO userDto)
         {
-            await _utenteService.AddAsync(userDto);
-            return CreatedAtAction(nameof(GetUser), new { id = userDto.Ute_IDUtente }, userDto);
+
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                await _utenteService.AddAsync(userDto);
+                return CreatedAtAction(nameof(GetUser), new { id = userDto.Ute_IDUtente }, userDto);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
+            }
+
         }
 
 
@@ -74,13 +90,26 @@ namespace EasyGold.API.Controllers
         [Authorize]
         public async Task<IActionResult> UpdateUser(int id, [FromBody] UtenteDTO userDto)
         {
-            if (id != userDto.Ute_IDUtente)
+            try
             {
-                return BadRequest();
-            }
 
-            await _utenteService.UpdateAsync(userDto);
-            return NoContent();
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                if (id != userDto.Ute_IDUtente)
+                {
+                    return BadRequest();
+                }
+
+                await _utenteService.UpdateAsync(userDto);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
+            }
         }
 
         /// <summary>
@@ -94,12 +123,22 @@ namespace EasyGold.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
-            var user = await _utenteService.GetUserByIdAsync(id);
-            if (user == null)
+            try
             {
-                return NotFound(new { error = "Utente non trovato" });
+                var user = await _utenteService.GetUserByIdAsync(id);
+                if (user == null)
+                {
+                    return NotFound(new { error = "Utente non trovato" });
+                }
+                return Ok(new { user });
+
             }
-            return Ok(new { user });
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
+            }
+
+            
         }
 
 

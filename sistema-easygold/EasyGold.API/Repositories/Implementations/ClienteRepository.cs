@@ -1,7 +1,10 @@
 using EasyGold.API.Infrastructure;
 using EasyGold.API.Models.Allegati;
 using EasyGold.API.Models.Clients;
+using EasyGold.API.Models.Configurazioni;
 using EasyGold.API.Models.Entities;
+using EasyGold.API.Models.Moduli;
+using EasyGold.API.Models.Negozi;
 using EasyGold.API.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

@@ -1,18 +1,23 @@
 
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyGold.API.Models.Entities
 {
-public class DbModuloCliente
+    public class DbModuloCliente
     {
         /// <summary>
         /// ID del cliente associato al modulo.
         /// </summary>
+        [Key]  // <- Definisce la chiave primaria
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Mdc_IDCliente { get; set; }
 
         /// <summary>
         /// ID del modulo associato al cliente.
         /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Mdc_IDModulo { get; set; }
 
         /// <summary>

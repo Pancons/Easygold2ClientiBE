@@ -1,10 +1,15 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace EasyGold.API.Models.Entities
 {
-public class DbAllegato
+    public class DbAllegato
     {
         /// <summary>
         /// ID dell'allegato.
         /// </summary>
+        [Key]  // <- Definisce la chiave primaria
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int All_IDAllegato { get; set; }
 
         /// <summary>

@@ -1,0 +1,472 @@
+2025-03-03 17:56:35.066 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-03-03 17:56:35.065 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-03-03 17:56:35.223 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Cliente/save - multipart/form-data; boundary="4924ee3d-f042-4c6b-98b6-c6528e810756" 344
+2025-03-03 17:56:35.234 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Auth/login - application/json; charset=utf-8 47
+2025-03-03 17:56:35.278 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-03-03 17:56:35.280 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-03-03 17:56:35.409 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 17:56:35.409 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ClienteController.SaveClient (EasyGold.API)'
+2025-03-03 17:56:35.437 +00:00 [INF] Route matched with {action = "Login", controller = "A2025-03-03 17:56:35.455 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method111(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, 2025-03-03 17:56:35.472 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Cliente/save - 500 null application/json 252.8497ms
+2025-03-03 17:56:35.472 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 238.4999ms
+2025-03-03 17:56:35.739 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Auth/login - application/json; charset=utf-8 45
+2025-03-03 17:56:35.742 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 17:56:35.743 +00:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.API.Controllers.LoginRequest) on controller EasyGold.API.Controllers.AuthController (EasyGold.API).
+2025-03-03 17:56:35.744 +00:00 [INF] Executed action EasyGold.API.Controllers.AuthController.Login (EasyGold.API) in 0.2692ms
+2025-03-03 17:56:35.744 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 17:56:35.749 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 11.0233ms
+2025-03-03 17:56:35.751 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Auth/login - application/json; charset=utf-8 45
+2025-03-03 17:56:35.753 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 17:56:35.762 +00:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.API.Controllers.LoginRequest) on controller EasyGold.API.Controllers.AuthController (EasyGold.API).
+2025-03-03 17:56:35.764 +00:00 [INF] Executed action EasyGold.API.Controllers.AuthController.Login (EasyGold.API) in 0.2888ms
+2025-03-03 17:56:35.764 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 17:56:35.768 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 16.4337ms
+2025-03-03 17:56:35.823 +00:00 [INF] Request starting HTTP/1.1 PUT http://localhost/api/Cliente/update/5678 - multipart/form-data; boundary="2caadfed-fc9b-403f-b4d2-b5afb60d3cfd" 347
+2025-03-03 17:56:35.833 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ClienteController.UpdateClient (EasyGold.API)'
+2025-03-03 17:56:35.841 +00:00 [INF] Route matched with {action = "UpdateClient", controller = "Cliente"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateClient(Int32, ClienteDettaglioDTO) on controller EasyGold.API.Controllers.ClienteController (EasyGold.API).
+2025-03-03 17:56:35.841 +00:00 [INF] Executed action EasyGold.API.Controllers.ClienteController.UpdateClient (EasyGold.API) in 0.2769ms
+2025-03-03 17:56:35.841 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ClienteController.UpdateClient (EasyGold.API)'
+2025-03-03 17:56:35.843 +00:00 [INF] Request finished HTTP/1.1 PUT http://localhost/api/Cliente/update/5678 - 500 null application/json 20.0699ms
+2025-03-03 17:56:35.849 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Cliente/123 - null null
+2025-03-03 17:56:35.850 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Cliente/123 - 401 null null 0.7279ms
+2025-03-03 17:56:35.862 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Cliente/list - application/json; charset=utf-8 62
+2025-03-03 17:56:35.863 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ClienteController.List (EasyGold.API)'
+2025-03-03 17:56:35.869 +00:00 [INF] Route matched with {action = "List", controller = "Cliente"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] List(EasyGold.API.Models.Clients.ClienteListRequest) on controller EasyGold.API.Controllers.ClienteController (EasyGold.API).
+2025-03-03 17:56:35.870 +00:00 [INF] Executed action EasyGold.API.Controllers.ClienteController.List (EasyGold.API) in 0.2627ms
+2025-03-03 17:56:35.870 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ClienteController.List (EasyGold.API)'
+2025-03-03 17:56:35.872 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Cliente/list - 500 null application/json 9.8982ms
+lve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method119(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 17:56:35.511 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 20.562ms
+2025-03-03 17:56:35.510 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-03-03 17:56:35.513 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Role - 401 null null 23.6379ms
+2025-03-03 17:56:35.768 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Auth/login - application/json; charset=utf-8 45
+2025-03-03 17:56:35.775 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 17:56:35.781 +00:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.API.C2025-03-03 17:56:35.785 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Auth/login - application/json; charset=utf-8 45
+2025-03-03 17:56:35.790 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 17:56:35.795 +00:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyG2025-03-03 17:56:35.798 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Module/dropdown - null null
+2025-03-03 17:56:35.800 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Module/dropdown - 401 null null 2.0814ms
+6:35.796 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 17:56:35.798 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 12.2504ms
+2025-03-03 17:56:35.844 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Auth/login - application/json; charset=utf-8 45
+2025-03-03 17:56:35.847 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 17:56:35.847 +00:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.API.Controllers.LoginRequest) on controller EasyGold.API.Controllers.AuthController (EasyGold.API).
+2025-03-03 17:56:35.848 +00:00 [INF] Executed action EasyGold.API.Controllers.AuthController.Login (EasyGold.API) in 0.225ms
+2025-03-03 17:56:35.848 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 17:56:35.854 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 9.6437ms
+Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 17:56:35.723 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 19.769ms
+2025-03-03 17:56:35.745 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method111(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 17:56:35.765 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method139(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 17:56:35.782 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method147(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 17:56:35.796 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method155(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 17:56:35.800 +00:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-03-03 17:56:35.800 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-03-03 17:56:35.801 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/User/list - application/json; charset=utf-8 2
+2025-03-03 17:56:35.802 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.UserController.GetUsersList (EasyGold.API)'
+2025-03-03 17:56:35.806 +00:00 [INF] Route matched with {action = "GetUsersList", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsersList(EasyGold.API.Models.Users.UserFilterDTO) on controller EasyGold.API.Controllers.UserController (EasyGold.API).
+2025-03-03 17:56:35.807 +00:00 [INF] Executed action EasyGold.API.Controllers.UserController.GetUsersList (EasyGold.API) in 0.2984ms
+2025-03-03 17:56:35.807 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.UserController.GetUsersList (EasyGold.API)'
+2025-03-03 17:56:35.807 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Implementations.UtenteService' while attempting to activate 'EasyGold.API.Controllers.UserController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method163(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 17:56:35.809 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/User/list - 500 null application/json 8.1373ms
+2025-03-03 17:56:35.842 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Implementations.ClienteService' while attempting to activate 'EasyGold.API.Controllers.ClienteController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method171(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 17:56:35.850 +00:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-03-03 17:56:35.850 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-03-03 17:56:35.848 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method155(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 17:56:35.871 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Implementations.ClienteService' while attempting to activate 'EasyGold.API.Controllers.ClienteController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method179(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 18:25:20.605 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-03-03 18:25:20.605 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-03-03 18:25:20.745 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Allegato - null null
+2025-03-03 18:25:20.801 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-03-03 18:25:20.830 +00:00 [INF] Request finished HTTP/1.1 GET http://localhos2025-03-03 18:25:20.861 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Role - null null
+2025-03-03 18:25:20.877 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Role - 401 null null 15.7029ms
+2025-03-03 18:25:21.194 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Auth/login - application/json; charset=utf-8 45
+2025-03-03 18:25:21.199 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 18:25:21.204 +00:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.API.Controllers.LoginRequest) on controller EasyGold.API.Controllers.AuthController (EasyGold.API).
+2025-03-03 18:25:21.204 +00:00 [INF] Executed action EasyGold.API.Controllers.AuthController.Login (EasyGold.API) in 0.3544ms
+2025-03-03 18:25:21.204 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 18:25:21.206 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 12.1164ms
+gin - application/json; charset=utf-8 45
+2025-03-03 18:25:21.177 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 18:25:21.187 +00:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.API.Controllers.LoginRequest) on controller EasyGold.API.Controllers.AuthController (EasyGold.API).
+2025-03-03 18:25:21.190 +00:00 [INF] Executed action EasyGold.API.Controllers.AuthController.Login (EasyGold.API) in 0.2922025-03-03 18:25:21.229 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Module/dropdown - null null
+2025-03-03 18:25:21.230 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Module/dropdown - 401 null null 1.6406ms
+json 26.135ms
+2025-03-03 18:25:21.228 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/User/list - application/json; charset=utf-8 2
+2025-03-03 18:25:21.230 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.UserController.GetUsersList (EasyGold.API)'
+2025-03-03 18:25:21.238 +00:00 [INF] Route matched with {action = "GetUsersList", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsersList(EasyGold.API.Models.Users.UserFilterDTO) on controller EasyGold.API.Controllers.UserController (EasyGold.API).
+2025-03-03 18:25:21.239 +00:00 [INF] Executed action EasyGold.API.Controllers.UserController.GetUsersList (EasyGold.API) in 0.7965ms
+2025-03-03 18:25:21.240 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.UserController.GetUsersList (EasyGold.API)'
+2025-03-03 18:25:21.242 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/User/list - 500 null application/json 14.2272ms
+2025-03-03 18:25:21.243 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Auth/login - application/json; charset=utf-8 45
+2025-03-03 18:25:21.248 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 18:25:21.251 +00:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.API.Controllers.LoginRequest) on controller EasyGold.API.Controllers.AuthController (EasyGold.API).
+2025-03-03 18:25:21.252 +00:00 [INF] Executed action EasyGold.API.Controllers.AuthController.Login (EasyGold.API) in 0.2637ms
+2025-03-03 18:25:21.252 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 18:25:21.256 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 12.8211ms
+nInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 18:25:21.043 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Cliente/save - multipart/form-data; boundary="3cb5f71b-c042-4043-b341-d55577e15059" 344
+2025-03-03 18:25:21.045 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-03-03 18:25:21.050 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ClienteController.SaveClient (EasyGold.API)'
+2025-03-03 18:25:21.100 +00:00 [INF] Route matched with {action = "SaveClient", controller = "Cliente"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveClient(ClienteDettaglioDTO) on controller EasyGold.API.Controllers.ClienteController (EasyGold.API).
+2025-03-03 18:25:21.100 +00:00 [INF] Executed action EasyGold.API.Controllers.ClienteController.SaveClient (EasyGold.API) in 0.339ms
+2025-03-03 18:25:21.101 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ClienteController.SaveClient (EasyGold.API)'
+2025-03-03 18:25:21.112 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Cliente/save - 500 null application/json 68.5874ms
+2025-03-03 18:25:21.207 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Auth/login - application/json; charset=utf-8 45
+2025-03-03 18:25:21.209 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 18:25:21.213 +00:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.API.Controllers.LoginRequest) on controller EasyGold.API.Controllers.AuthController (EasyGold.API).
+2025-03-03 18:25:21.214 +00:00 [INF] Executed action EasyGold.API.Controllers.AuthController.Login (EasyGold.API) in 0.272ms
+2025-03-03 18:25:21.214 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 18:25:21.216 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 8.7787ms
+2025-03-03 18:25:21.276 +00:00 [INF] Request starting HTTP/1.1 PUT http://localhost/api/Cliente/update/5678 - multipart/form-data; boundary="38422ade-b113-45a8-bc55-f00225477c03" 347
+2025-03-03 18:25:21.286 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ClienteController.UpdateClient (EasyGold.API)'
+2025-03-03 18:25:21.293 +00:00 [INF] Route matched with {action = "UpdateClient", controller = "Cliente"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateClient(Int32, ClienteDettaglioDTO) on controller EasyGold.API.Controllers.ClienteController (EasyGold.API).
+2025-03-03 18:25:21.294 +00:00 [INF] Executed action EasyGold.API.Controllers.ClienteController.UpdateClient (EasyGold.API) in 0.2723ms
+2025-03-03 18:25:21.295 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ClienteController.UpdateClient (EasyGold.API)'
+2025-03-03 18:25:21.297 +00:00 [INF] Request finished HTTP/1.1 PUT http://localhost/api/Cliente/update/5678 - 500 null application/json 21.0194ms
+2025-03-03 18:25:21.300 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Cliente/123 - null null
+2025-03-03 18:25:21.301 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Cliente/123 - 401 null null 0.7756ms
+2025-03-03 18:25:21.311 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Cliente/list - application/json; charset=utf-8 62
+2025-03-03 18:25:21.312 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ClienteController.List (EasyGold.API)'
+2025-03-03 18:25:21.317 +00:00 [INF] Route matched with {action = "List", controller = "Cliente"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] List(EasyGold.API.Models.Clients.ClienteListRequest) on controller EasyGold.API.Controllers.ClienteController (EasyGold.API).
+2025-03-03 18:25:21.318 +00:00 [INF] Executed action EasyGold.API.Controllers.ClienteController.List (EasyGold.API) in 0.215ms
+2025-03-03 18:25:21.319 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ClienteController.List (EasyGold.API)'
+2025-03-03 18:25:21.320 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Cliente/list - 500 null application/json 9.0883ms
+ate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method131(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 18:25:21.144 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 13.7627ms
+2025-03-03 18:25:21.191 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method139(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 18:25:21.205 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method147(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 18:25:21.214 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method155(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 18:25:21.216 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Auth/login - application/json; charset=utf-8 45
+2025-03-03 18:25:21.218 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 18:25:21.218 +00:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.API.Controllers.LoginRequest) on controller EasyGold.API.Controllers.AuthController (EasyGold.API).
+2025-03-03 18:25:21.222 +00:00 [INF] Executed action EasyGold.API.Controllers.AuthController.Login (EasyGold.API) in 3.2856ms
+2025-03-03 18:25:21.223 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.AuthController.Login (EasyGold.API)'
+2025-03-03 18:25:21.224 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method131(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 18:25:21.228 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Auth/login - 500 null application/json 11.5659ms
+2025-03-03 18:25:21.230 +00:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-03-03 18:25:21.230 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-03-03 18:25:21.240 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Implementations.UtenteService' while attempting to activate 'EasyGold.API.Controllers.UserController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method163(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 18:25:21.253 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.IUserService' while attempting to activate 'EasyGold.API.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method139(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 18:25:21.296 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Implementations.ClienteService' while attempting to activate 'EasyGold.API.Controllers.ClienteController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method171(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-03-03 18:25:21.300 +00:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-03-03 18:25:21.300 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-03-03 18:25:21.319 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Implementations.ClienteService' while attempting to activate 'EasyGold.API.Controllers.ClienteController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method179(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22

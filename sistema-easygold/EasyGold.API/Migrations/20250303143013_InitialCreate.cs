@@ -1,0 +1,218 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace EasyGold.API.Migrations
+{
+    /// <inheritdoc />
+    public partial class InitialCreate : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "Allegati",
+                columns: table => new
+                {
+                    All_IDAllegato = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    All_NomeFile = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    All_Estensione = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    All_Dimensione = table.Column<int>(type: "int", nullable: false),
+                    All_EntitaRiferimento = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    All_RecordId = table.Column<int>(type: "int", nullable: false),
+                    All_Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    All_ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Allegati", x => x.All_IDAllegato);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Clienti",
+                columns: table => new
+                {
+                    Utw_IDClienteAuto = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Utw_NomeConnessione = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Utw_StringaConnessione = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Utw_DataAttivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Utw_DataDisattivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Utw_NegoziAttivabili = table.Column<int>(type: "int", nullable: false),
+                    Utw_NegoziVirtuali = table.Column<int>(type: "int", nullable: false),
+                    Utw_UtentiAttivi = table.Column<int>(type: "int", nullable: false),
+                    Utw_PercorsoReports = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Utw_PercorsoImmagini = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Utw_Blocco = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clienti", x => x.Utw_IDClienteAuto);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DatiClienti",
+                columns: table => new
+                {
+                    Dtc_IDCliente = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Dtc_Gioielleria = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_RagioneSociale = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_Indirizzo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_CAP = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_Localita = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_Provincia = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_StatoRegione = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_Nazione = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_PartitaIVA = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_CodiceFiscale = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_REA = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_CapitaleSociale = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Dtc_RagSocialePrincipale = table.Column<bool>(type: "bit", nullable: false),
+                    Dtc_Annullato = table.Column<bool>(type: "bit", nullable: false),
+                    Dtc_PEC = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_ReferenteCognome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_ReferenteNome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_ReferenteTelefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_ReferenteCellulare = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_ReferenteEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_ReferenteWeb = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_Ranking = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DatiClienti", x => x.Dtc_IDCliente);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ModuloClienti",
+                columns: table => new
+                {
+                    Mdc_IDModulo = table.Column<int>(type: "int", nullable: false),
+                    Mdc_IDCliente = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Mdc_DataAttivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Mdc_DataDisattivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Mdc_BloccoModulo = table.Column<bool>(type: "bit", nullable: false),
+                    Mdc_DataOraBlocco = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Mdc_Nota = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModuloClienti", x => x.Mdc_IDModulo);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ModuloEasygoldLangs",
+                columns: table => new
+                {
+                    Mdeid_ID = table.Column<int>(type: "int", nullable: false),
+                    Mdeid_ISONum = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Mdeid_Descrizione = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Mdeid_DescEstesa = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModuloEasygoldLangs", x => x.Mdeid_ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ModuloEasygolds",
+                columns: table => new
+                {
+                    Mde_IDAuto = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Mde_Descrizione = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Mde_DescrizioneEstesa = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModuloEasygolds", x => x.Mde_IDAuto);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Negozi",
+                columns: table => new
+                {
+                    Neg_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Neg_RagioneSociale = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Neg_NomeNegozio = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Neg_DataAttivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Neg_DataDisattivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Neg_Bloccato = table.Column<bool>(type: "bit", nullable: false),
+                    Neg_Note = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Negozi", x => x.Neg_id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ruoli",
+                columns: table => new
+                {
+                    Ur_IDRuolo = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Ur_Descrizione = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ruoli", x => x.Ur_IDRuolo);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Utenti",
+                columns: table => new
+                {
+                    Ute_IDUtente = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Ute_Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ute_Cognome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ute_NomeUtente = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ute_IDRuolo = table.Column<int>(type: "int", nullable: false),
+                    Ute_Bloccato = table.Column<bool>(type: "bit", nullable: false),
+                    Ute_Nota = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ute_Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Utenti", x => x.Ute_IDUtente);
+                });
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Allegati");
+
+            migrationBuilder.DropTable(
+                name: "Clienti");
+
+            migrationBuilder.DropTable(
+                name: "DatiClienti");
+
+            migrationBuilder.DropTable(
+                name: "ModuloClienti");
+
+            migrationBuilder.DropTable(
+                name: "ModuloEasygoldLangs");
+
+            migrationBuilder.DropTable(
+                name: "ModuloEasygolds");
+
+            migrationBuilder.DropTable(
+                name: "Negozi");
+
+            migrationBuilder.DropTable(
+                name: "Ruoli");
+
+            migrationBuilder.DropTable(
+                name: "Utenti");
+        }
+    }
+}

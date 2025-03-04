@@ -31,6 +31,7 @@ namespace EasyGold.API.Models.Users
         [SwaggerSchema(Description = "Note aggiuntive sull'utente")]
         public string Ute_Nota { get; set; }
 
+        [Required]
         [SwaggerSchema(Description = "Password hashata dell'utente")]
         public string Ute_Password { get; set; }
     }

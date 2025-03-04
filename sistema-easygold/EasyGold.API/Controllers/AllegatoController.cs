@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Models.Allegati;
 using EasyGold.API.Services;
+using EasyGold.API.Services.Implementations;
+using EasyGold.API.Services.Interfaces;
 
 namespace EasyGold.API.Controllers
 {
@@ -14,9 +16,9 @@ namespace EasyGold.API.Controllers
     [Route("api/[controller]")]
     public class AllegatoController : ControllerBase
     {
-        private readonly AllegatoService _allegatoService;
+        private readonly IAllegatoService _allegatoService;
 
-        public AllegatoController(AllegatoService allegatoService)
+        public AllegatoController(IAllegatoService allegatoService)
         {
             _allegatoService = allegatoService;
         }

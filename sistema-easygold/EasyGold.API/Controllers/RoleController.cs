@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Models.Roles;
 using EasyGold.API.Repositories.Implementations;
+using EasyGold.API.Services.Implementations;
+using EasyGold.API.Services.Interfaces;
 
 namespace EasyGold.API.Controllers
 {
@@ -14,11 +16,11 @@ namespace EasyGold.API.Controllers
     [Route("api/[controller]")]
     public class RoleController : ControllerBase
     {
-        private readonly RoleRepository _roleRepository;
+        private readonly IRoleService _roleService;
 
-        public RoleController(RoleRepository roleRepository)
+        public RoleController(IRoleService RoleService)
         {
-            _roleRepository = roleRepository;
+            _roleService = RoleService;
         }
 
         /// <summary>
@@ -31,9 +33,16 @@ namespace EasyGold.API.Controllers
         [Authorize]
         public async Task<IActionResult> GetRoles()
         {
-            // Retrieve roles from the database
-            var roles = await _roleRepository.GetAllAsync();
-            return Ok(new { roles });
+            try
+            {
+                // Retrieve roles from the database
+                var roles = await _roleService.GetAllRolesAsync();
+                return Ok(new { roles });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
     }
 }
