@@ -1,7 +1,7 @@
 using Xunit;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using EasyGold.API.Models.Roles;
+using EasyGold.API.Models.Ruoli;
 
 public class RuoloDTOTests
 {

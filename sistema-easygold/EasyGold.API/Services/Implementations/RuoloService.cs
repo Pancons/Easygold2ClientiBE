@@ -1,6 +1,6 @@
 using AutoMapper;
 using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.Roles;
+using EasyGold.API.Models.Ruoli;
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Services;
 using EasyGold.API.Services.Interfaces;
@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace EasyGold.API.Services.Implementations
 {
-    public class RoleService :IRoleService
+    public class RuoloService :IRuoloService
     {
-        private readonly IRoleRepository _roleRepository;
+        private readonly IRuoloRepository _roleRepository;
 
-        public RoleService(IRoleRepository roleRepository, IMapper mapper)
+        public RuoloService(IRuoloRepository roleRepository, IMapper mapper)
         {
             _roleRepository = roleRepository;
              _mapper = mapper;

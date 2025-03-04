@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models.Users;
+using EasyGold.API.Models.Utenti;
 using EasyGold.API.Services;
 using EasyGold.API.Services.Implementations;
 using EasyGold.API.Services.Interfaces;
@@ -14,11 +14,11 @@ namespace EasyGold.API.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController : ControllerBase
+    public class UtentiController : ControllerBase
     {
         private readonly IUtenteService _utenteService;
 
-        public UserController(IUtenteService utenteService)
+        public UtentiController(IUtenteService utenteService)
         {
             _utenteService = utenteService;
         }

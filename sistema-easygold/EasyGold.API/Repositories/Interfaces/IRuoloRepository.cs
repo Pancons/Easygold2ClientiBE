@@ -2,7 +2,7 @@
 using EasyGold.API.Models.Entities;
 namespace EasyGold.API.Repositories.Interfaces
 {
-    public interface IRoleRepository
+    public interface IRuoloRepository
     {
         Task<IEnumerable<DbRuolo>> GetAllAsync();
         Task<DbRuolo> GetByIdAsync(int id);

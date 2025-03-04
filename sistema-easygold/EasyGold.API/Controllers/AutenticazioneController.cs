@@ -17,12 +17,12 @@ namespace EasyGold.API.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthController : ControllerBase
+    public class AutenticazioneController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IAutenticazioneService _userService;
         private readonly IConfiguration _configuration;
 
-        public AuthController(IUserService userService, IConfiguration configuration)
+        public AutenticazioneController(IAutenticazioneService userService, IConfiguration configuration)
         {
             _userService = userService;
             _configuration = configuration;
@@ -91,8 +91,8 @@ namespace EasyGold.API.Controllers
 
         public class LoginRequest
         {
-            public string Username { get; set; }
-            public string Password { get; set; }
+            public required string Username { get; set; }
+            public required string Password { get; set; }
         }
     }
 }

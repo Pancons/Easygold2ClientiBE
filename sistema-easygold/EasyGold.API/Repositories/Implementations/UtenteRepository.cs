@@ -1,7 +1,7 @@
 
 using EasyGold.API.Infrastructure;
 using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.Users;
+using EasyGold.API.Models.Utenti;
 using EasyGold.API.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

@@ -8,11 +8,11 @@ using EasyGold.API.Services.Interfaces;
 
 namespace EasyGold.API.Services.Implementations
 {
-    public class UserService : IUserService
+    public class AutenticazioneService : IAutenticazioneService
     {
         private readonly ApplicationDbContext _context;
 
-        public UserService(ApplicationDbContext context)
+        public AutenticazioneService(ApplicationDbContext context)
         {
             _context = context;
         }

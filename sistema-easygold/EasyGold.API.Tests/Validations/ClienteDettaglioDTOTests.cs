@@ -2,7 +2,7 @@
 using Xunit;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using EasyGold.API.Models.Clients;
+using EasyGold.API.Models.Clienti;
 
 public class ClienteDettaglioDTOTests
 {

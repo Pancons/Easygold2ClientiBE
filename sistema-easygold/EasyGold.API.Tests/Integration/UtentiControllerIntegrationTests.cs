@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EasyGold.API.Tests.Integration
 {
-    public class UserControllerIntegrationTests 
+    public class UtentiControllerIntegrationTests 
         : IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly HttpClient _client;
 
-        public UserControllerIntegrationTests(WebApplicationFactory<Program> factory)
+        public UtentiControllerIntegrationTests(WebApplicationFactory<Program> factory)
         {
             _client = factory.CreateClient();
         }
@@ -21,7 +21,7 @@ namespace EasyGold.API.Tests.Integration
         [Fact]
         public async Task GetUsersList_NoAuth_ReturnsOk()
         {
-            // Nel tuo UserController, /api/User/list NON ha [Authorize]
+            // Nel tuo UtentiController, /api/User/list NON ha [Authorize]
             // Quindi senza token dovrebbe rispondere 200 OK
             var filter = new { /* campi di UserFilterDTO se vuoi */ };
             var resp = await _client.PostAsJsonAsync("/api/User/list", filter);

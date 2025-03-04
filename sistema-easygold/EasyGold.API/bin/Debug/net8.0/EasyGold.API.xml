@@ -59,7 +59,7 @@
             <response code="404">Allegato non trovato</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="M:EasyGold.API.Controllers.AuthController.Login(EasyGold.API.Controllers.AuthController.LoginRequest)">
+        <member name="M:EasyGold.API.Controllers.AutenticazioneController.Login(EasyGold.API.Controllers.AutenticazioneController.LoginRequest)">
             <summary>
             Esegue il login e restituisce un token JWT.
             </summary>
@@ -74,7 +74,7 @@
             Controller per la gestione dei clienti.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Controllers.ClienteController.List(EasyGold.API.Models.Clients.ClienteListRequest)">
+        <member name="M:EasyGold.API.Controllers.ClienteController.List(EasyGold.API.Models.Clienti.ClienteListRequest)">
             <summary>
             Restituisce una lista di clienti con filtri e paginazione.
             </summary>
@@ -83,7 +83,7 @@
             <response code="200">Lista clienti restituita</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="M:EasyGold.API.Controllers.ClienteController.SaveClient(ClienteDettaglioDTO)">
+        <member name="M:EasyGold.API.Controllers.ClienteController.SaveClient(EasyGold.API.Models.Clienti.ClienteDettaglioDTO)">
             <summary>
             Salva un nuovo cliente con i dettagli forniti.
             </summary>
@@ -93,7 +93,7 @@
             <response code="400">Errore nei dati inviati</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="M:EasyGold.API.Controllers.ClienteController.UpdateClient(System.Int32,ClienteDettaglioDTO)">
+        <member name="M:EasyGold.API.Controllers.ClienteController.UpdateClient(System.Int32,EasyGold.API.Models.Clienti.ClienteDettaglioDTO)">
             <summary>
             Aggiorna un cliente esistente con i dati forniti.
             </summary>
@@ -115,12 +115,12 @@
             <response code="404">Cliente non trovato</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="T:EasyGold.API.Controllers.ModuleController">
+        <member name="T:EasyGold.API.Controllers.ModuliController">
             <summary>
             Controller per la gestione dei moduli.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Controllers.ModuleController.GetModulesDropdown">
+        <member name="M:EasyGold.API.Controllers.ModuliController.GetModulesDropdown">
             <summary>
             Restituisce l'elenco dei moduli per il dropdown.
             </summary>
@@ -128,12 +128,12 @@
             <response code="200">Moduli restituiti con successo</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="T:EasyGold.API.Controllers.RoleController">
+        <member name="T:EasyGold.API.Controllers.RuoliController">
             <summary>
             Controller per la gestione dei ruoli.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Controllers.RoleController.GetRoles">
+        <member name="M:EasyGold.API.Controllers.RuoliController.GetRoles">
             <summary>
             Restituisce tutti i ruoli disponibili.
             </summary>
@@ -141,12 +141,12 @@
             <response code="200">Ruoli restituiti con successo</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="T:EasyGold.API.Controllers.UserController">
+        <member name="T:EasyGold.API.Controllers.UtentiController">
             <summary>
             Controller per la gestione degli utenti.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Controllers.UserController.GetUsersList(EasyGold.API.Models.Users.UserFilterDTO)">
+        <member name="M:EasyGold.API.Controllers.UtentiController.GetUsersList(EasyGold.API.Models.Utenti.UserFilterDTO)">
             <summary>
             Restituisce una lista di utenti filtrati e paginati.
             </summary>
@@ -155,7 +155,7 @@
             <response code="200">Lista utenti restituita con successo</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="M:EasyGold.API.Controllers.UserController.AddUser(EasyGold.API.Models.Users.UtenteDTO)">
+        <member name="M:EasyGold.API.Controllers.UtentiController.AddUser(EasyGold.API.Models.Utenti.UtenteDTO)">
             <summary>
             Aggiunge un nuovo utente al sistema.
             </summary>
@@ -165,7 +165,7 @@
             <response code="400">Errore nei dati inviati</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="M:EasyGold.API.Controllers.UserController.UpdateUser(System.Int32,EasyGold.API.Models.Users.UtenteDTO)">
+        <member name="M:EasyGold.API.Controllers.UtentiController.UpdateUser(System.Int32,EasyGold.API.Models.Utenti.UtenteDTO)">
             <summary>
             Aggiorna i dati di un utente esistente.
             </summary>
@@ -177,7 +177,7 @@
             <response code="404">Utente non trovato</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="M:EasyGold.API.Controllers.UserController.GetUser(System.Int32)">
+        <member name="M:EasyGold.API.Controllers.UtentiController.GetUser(System.Int32)">
             <summary>
             Restituisce un utente per ID.
             </summary>

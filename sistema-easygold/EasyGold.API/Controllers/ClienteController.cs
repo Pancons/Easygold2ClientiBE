@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models.Clients;
+using EasyGold.API.Models.Clienti;
 using EasyGold.API.Services;
 using EasyGold.API.Services.Implementations;
 using EasyGold.API.Services.Interfaces;
@@ -92,7 +92,7 @@ namespace EasyGold.API.Controllers
         /// <response code="404">Cliente non trovato</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateClient(int id, [FromForm] ClienteDettaglioDTO clienteDto)
+        public async Task<IActionResult> UpdateClient(int id, [FromBody] ClienteDettaglioDTO clienteDto)
         {
             try
             {

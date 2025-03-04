@@ -1,7 +1,7 @@
 using Xunit;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using EasyGold.API.Models.Users;
+using EasyGold.API.Models.Utenti;
 
 public class UtenteDTOTests
 {

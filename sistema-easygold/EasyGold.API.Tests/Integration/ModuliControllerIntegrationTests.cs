@@ -8,31 +8,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EasyGold.API.Tests.Integration
 {
-    public class RoleControllerIntegrationTests 
+    public class ModuliControllerIntegrationTests 
         : IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly HttpClient _client;
 
-        public RoleControllerIntegrationTests(WebApplicationFactory<Program> factory)
+        public ModuliControllerIntegrationTests(WebApplicationFactory<Program> factory)
         {
             _client = factory.CreateClient();
         }
 
         [Fact]
-        public async Task GetRoles_WithoutToken_Returns401()
+        public async Task GetModulesDropdown_WithoutToken_Returns401()
         {
-            var resp = await _client.GetAsync("/api/Role");
+            // /api/Module/dropdown è protetto da [Authorize], 
+            // quindi senza token => 401
+            var resp = await _client.GetAsync("/api/Module/dropdown");
             Assert.Equal(HttpStatusCode.Unauthorized, resp.StatusCode);
         }
 
         [Fact]
-        public async Task GetRoles_WithToken_ReturnsOk()
+        public async Task GetModulesDropdown_WithToken_ReturnsOk()
         {
             var token = await GetTestToken();
-            _client.DefaultRequestHeaders.Authorization
+            _client.DefaultRequestHeaders.Authorization 
                 = new AuthenticationHeaderValue("Bearer", token);
 
-            var resp = await _client.GetAsync("/api/Role");
+            var resp = await _client.GetAsync("/api/Module/dropdown");
             resp.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, resp.StatusCode);
         }

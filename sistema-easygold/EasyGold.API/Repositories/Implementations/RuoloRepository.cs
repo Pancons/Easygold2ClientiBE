@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EasyGold.API.Repositories.Implementations
 {
-    public class RoleRepository : IRoleRepository
+    public class RoleRepository : IRuoloRepository
     {
         private readonly ApplicationDbContext _context;
 

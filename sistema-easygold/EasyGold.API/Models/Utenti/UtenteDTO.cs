@@ -1,7 +1,7 @@
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 
-namespace EasyGold.API.Models.Users
+namespace EasyGold.API.Models.Utenti
 {
     public class UtenteDTO
     {

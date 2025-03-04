@@ -1,6 +1,6 @@
 
 using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.Users;
+using EasyGold.API.Models.Utenti;
 namespace EasyGold.API.Repositories.Interfaces
 {
     public interface IUtenteRepository

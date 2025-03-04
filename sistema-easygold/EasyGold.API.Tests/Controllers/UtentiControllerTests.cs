@@ -2,7 +2,7 @@
 using Xunit;
 using Moq;
 using EasyGold.API.Controllers;
-using EasyGold.API.Models.Users;
+using EasyGold.API.Models.Utenti;
 using EasyGold.API.Services.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -10,15 +10,15 @@ using System.Collections.Generic;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc;
 using EasyGold.API.Services.Interfaces;
-public class UserControllerTests
+public class UtentiControllerTests
 {
     private readonly Mock<IUtenteService> _mockUtenteService;
-    private readonly UserController _controller;
+    private readonly UtentiController _controller;
 
-    public UserControllerTests()
+    public UtentiControllerTests()
     {
         _mockUtenteService = new Mock<IUtenteService>();
-        _controller = new UserController(_mockUtenteService.Object);
+        _controller = new UtentiController(_mockUtenteService.Object);
     }
 
     [Fact]

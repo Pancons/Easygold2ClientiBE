@@ -1,6 +1,6 @@
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.Clients;
+using EasyGold.API.Models.Clienti;
 using AutoMapper;
 using EasyGold.API.Models;
 using EasyGold.API.Services.Interfaces;

@@ -1,7 +1,7 @@
 using Xunit;
 using Moq;
 using EasyGold.API.Controllers;
-using EasyGold.API.Models.Roles;
+using EasyGold.API.Models.Ruoli;
 using EasyGold.API.Services.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -9,17 +9,17 @@ using System.Collections.Generic;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc;
 using EasyGold.API.Services.Interfaces;
-public class RoleControllerTests
+public class RuoliControllerTests
 {
-    private readonly Mock<IRoleService> _mockRoleService;
-    private readonly RoleController _controller;
+    private readonly Mock<IRuoloService> _mockRoleService;
+    private readonly RuoliController _controller;
 
-    public RoleControllerTests()
+    public RuoliControllerTests()
     {
         // Supponendo che RoleService abbia un costruttore senza parametri 
         // o con parametri mockabili
-        _mockRoleService = new Mock<IRoleService>();
-        _controller = new RoleController(_mockRoleService.Object);
+        _mockRoleService = new Mock<IRuoloService>();
+        _controller = new RuoliController(_mockRoleService.Object);
     }
 
     [Fact]

@@ -1,6 +1,6 @@
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace EasyGold.API.Models.Clients
+namespace EasyGold.API.Models.Clienti
 {
     public class ClienteListRequest
     {

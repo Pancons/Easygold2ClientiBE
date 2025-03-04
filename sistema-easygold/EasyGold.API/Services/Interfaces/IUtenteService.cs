@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models.Users;
+using EasyGold.API.Models.Utenti;
 
 namespace EasyGold.API.Services.Interfaces
 {

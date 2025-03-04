@@ -12,11 +12,11 @@ namespace EasyGold.API.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    public class ModuleController : ControllerBase
+    public class ModuliController : ControllerBase
     {
         private readonly IModuloService _moduloService; // 🔹 Usa il servizio invece del repository
 
-        public ModuleController(IModuloService moduloService)
+        public ModuliController(IModuloService moduloService)
         {
             _moduloService = moduloService;
         }

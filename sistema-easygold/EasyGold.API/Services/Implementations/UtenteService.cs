@@ -4,7 +4,7 @@ using EasyGold.API.Repositories;
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Models.Entities;
 using EasyGold.API.Models;
-using EasyGold.API.Models.Users;
+using EasyGold.API.Models.Utenti;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 

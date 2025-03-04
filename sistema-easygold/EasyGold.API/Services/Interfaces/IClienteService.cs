@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models.Clients;
+using EasyGold.API.Models.Clienti;
 using EasyGold.API.Models.Entities;
 
 namespace EasyGold.API.Services.Interfaces

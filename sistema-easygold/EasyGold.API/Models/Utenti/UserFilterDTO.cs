@@ -1,6 +1,6 @@
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace EasyGold.API.Models.Users
+namespace EasyGold.API.Models.Utenti
 {
     public class UserFilterDTO
     {

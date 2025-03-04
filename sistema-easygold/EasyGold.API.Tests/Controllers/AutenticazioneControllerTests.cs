@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Models.Users;
+using EasyGold.API.Models.Utenti;
 using EasyGold.API.Models.Entities;
 
-public class AuthControllerTests
+public class AutenticazioneControllerTests
 {
     [Fact]
     public async Task Login_ReturnsOkResult()
     {
         // Arrange
-        var mockUserService = new Mock<IUserService>();
+        var mockUserService = new Mock<IAutenticazioneService>();
         var mockConfiguration = new Mock<IConfiguration>();
 
         var fakeUser = new DbUtente
@@ -35,9 +35,9 @@ public class AuthControllerTests
             .Setup(c => c["Jwt:Secret"])
             .Returns("LaMiaChiaveSegretaSuperLungaDiAlmeno32Caratteri");
 
-        var controller = new AuthController(mockUserService.Object, mockConfiguration.Object);
+        var controller = new AutenticazioneController(mockUserService.Object, mockConfiguration.Object);
 
-        var request = new EasyGold.API.Controllers.AuthController.LoginRequest
+        var request = new EasyGold.API.Controllers.AutenticazioneController.LoginRequest
         {
             Username = "testUser",
             Password = "testPassword"

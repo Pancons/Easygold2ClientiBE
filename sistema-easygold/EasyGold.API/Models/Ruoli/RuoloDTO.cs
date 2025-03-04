@@ -2,7 +2,7 @@
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 
-namespace EasyGold.API.Models.Roles
+namespace EasyGold.API.Models.Ruoli
 {
     public class RuoloDTO
     {

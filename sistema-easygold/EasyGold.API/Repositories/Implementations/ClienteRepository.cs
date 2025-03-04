@@ -1,6 +1,6 @@
 using EasyGold.API.Infrastructure;
 using EasyGold.API.Models.Allegati;
-using EasyGold.API.Models.Clients;
+using EasyGold.API.Models.Clienti;
 using EasyGold.API.Models.Configurazioni;
 using EasyGold.API.Models.Entities;
 using EasyGold.API.Models.Moduli;

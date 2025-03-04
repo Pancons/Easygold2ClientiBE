@@ -11,15 +11,15 @@ using Microsoft.AspNetCore.Mvc;
 // 🔸 Importa il namespace dove sta ModuloDTO
 using EasyGold.API.Models.Moduli;
 
-public class ModuleControllerTests
+public class ModuliControllerTests
 {
     private readonly Mock<IModuloService> _mockModuloService;
-    private readonly ModuleController _controller;
+    private readonly ModuliController _controller;
 
-    public ModuleControllerTests()
+    public ModuliControllerTests()
     {
         _mockModuloService = new Mock<IModuloService>();
-        _controller = new ModuleController(_mockModuloService.Object);
+        _controller = new ModuliController(_mockModuloService.Object);
     }
 
     [Fact]

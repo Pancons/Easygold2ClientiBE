@@ -1,10 +1,10 @@
 using AutoMapper;
 using EasyGold.API.Models.Allegati;
-using EasyGold.API.Models.Clients;
+using EasyGold.API.Models.Clienti;
 using EasyGold.API.Models.Entities;
 using EasyGold.API.Models.Moduli;
-using EasyGold.API.Models.Roles;
-using EasyGold.API.Models.Users;
+using EasyGold.API.Models.Ruoli;
+using EasyGold.API.Models.Utenti;
 
 namespace EasyGold.API.Infrastructure
 {

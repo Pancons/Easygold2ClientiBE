@@ -1,7 +1,7 @@
 using Xunit;
 using Moq;
 using EasyGold.API.Controllers;
-using EasyGold.API.Models.Clients;
+using EasyGold.API.Models.Clienti;
 using EasyGold.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

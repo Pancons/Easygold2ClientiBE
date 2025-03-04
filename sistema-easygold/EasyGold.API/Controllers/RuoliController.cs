@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models.Roles;
+using EasyGold.API.Models.Ruoli;
 using EasyGold.API.Repositories.Implementations;
 using EasyGold.API.Services.Implementations;
 using EasyGold.API.Services.Interfaces;
@@ -14,11 +14,11 @@ namespace EasyGold.API.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    public class RoleController : ControllerBase
+    public class RuoliController : ControllerBase
     {
-        private readonly IRoleService _roleService;
+        private readonly IRuoloService _roleService;
 
-        public RoleController(IRoleService RoleService)
+        public RuoliController(IRuoloService RoleService)
         {
             _roleService = RoleService;
         }
