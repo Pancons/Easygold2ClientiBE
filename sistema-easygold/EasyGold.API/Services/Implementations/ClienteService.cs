@@ -20,95 +20,82 @@ namespace EasyGold.API.Services.Implementations
 
         public async Task<ClienteListResult> GetClientiListAsync(ClienteListRequest request)
         {
-            var (clienti, total) = await _clienteRepository.GetClientiAsync(
-                request.Filters, request.Offset, request.Limit, request.Sort?.Field, request.Sort?.Order);
+            var filters = request.Filters ?? new ClienteFilter(); // Se i filtri sono null, crea un oggetto vuoto
+
+            var (clientiData, total) = await _clienteRepository.GetClientiAsync(
+                filters, request.Offset, request.Limit, request.Sort?.Field, request.Sort?.Order);
 
             return new ClienteListResult
             {
-                Clienti = _mapper.Map<IEnumerable<ClienteDTO>>(clienti),
+                Clienti = _mapper.Map<IEnumerable<ClienteDTO>>(clientiData),  // ✅ Mappa automaticamente senza "N/A"
                 Total = total
             };
         }
 
         public async Task<ClienteDettaglioDTO> CreateClienteAsync(ClienteDettaglioDTO clienteDto)
         {
-            var cliente = new DbCliente
-            {
-                Utw_NomeConnessione = clienteDto.Dtc_RagioneSociale,
-                Utw_DataAttivazione = clienteDto.Utw_DataAttivazione,
-                Utw_DataDisattivazione = clienteDto.Utw_DataDisattivazione,
-                Utw_NegoziAttivabili = clienteDto.Configurazione.Utw_NegoziAttivabili,
-                Utw_NegoziVirtuali = clienteDto.Configurazione.Utw_NegoziVirtuali,
-                Utw_UtentiAttivi = clienteDto.Configurazione.Utw_UtentiAttivi,
-                Utw_Blocco = clienteDto.Utw_Bloccato
-            };
+            // Mappa il DTO in oggetti Db
+            var cliente = _mapper.Map<DbCliente>(clienteDto);
+            var datiCliente = _mapper.Map<DbDatiCliente>(clienteDto);
+            var moduli = _mapper.Map<List<DbModuloCliente>>(clienteDto.Moduli);
+            var allegati = _mapper.Map<List<DbAllegato>>(clienteDto.Allegati);
+            var negozi = _mapper.Map<List<DbNegozi>>(clienteDto.Negozi);
 
-            var datiCliente = new DbDatiCliente
-            {
-                Dtc_IDCliente = cliente.Utw_IDClienteAuto,
-                Dtc_RagioneSociale = clienteDto.Dtc_RagioneSociale,
-                Dtc_Gioielleria = clienteDto.Dtc_Gioielleria,
-                Dtc_Indirizzo = clienteDto.Dtc_Indirizzo,
-                Dtc_CAP = clienteDto.Dtc_CAP,
-                Dtc_Localita = clienteDto.Dtc_Citta,
-                Dtc_Provincia = clienteDto.Dtc_Provincia,
-                Dtc_StatoRegione = clienteDto.Dtc_StatoRegione,
-                Dtc_Nazione = clienteDto.Dtc_Nazione,
-                Dtc_PartitaIVA = clienteDto.Dtc_PartitaIVA,
-                Dtc_CodiceFiscale = clienteDto.Dtc_CodiceFiscale,
-                Dtc_REA = clienteDto.Dtc_REA,
-                Dtc_CapitaleSociale = clienteDto.Dtc_CapitaleSociale,
-                Dtc_PEC = clienteDto.Dtc_PEC,
-                Dtc_ReferenteCognome = clienteDto.Dtc_ReferenteCognome,
-                Dtc_ReferenteNome = clienteDto.Dtc_ReferenteNome,
-                Dtc_ReferenteTelefono = clienteDto.Dtc_ReferenteTelefono,
-                Dtc_ReferenteCellulare = clienteDto.Dtc_ReferenteCellulare,
-                Dtc_ReferenteEmail = clienteDto.Dtc_ReferenteEmail,
-                Dtc_ReferenteWeb = clienteDto.Dtc_ReferenteWeb,
-                Dtc_Ranking = clienteDto.Dtc_Ranking
-            };
+            // Salva nel database tramite repository
+            await _clienteRepository.AddClienteAsync(cliente, datiCliente, moduli, allegati, negozi);
 
-            await _clienteRepository.AddClienteAsync(cliente, datiCliente);
             return clienteDto;
         }
 
         public async Task<ClienteDettaglioDTO> UpdateClienteAsync(int id, ClienteDettaglioDTO clienteDto)
         {
-            var cliente = await _clienteRepository.GetClienteByIdAsync(id);
-            if (cliente == null)
+            var clienteData = await _clienteRepository.GetClienteByIdAsync(id);
+
+            // Se il cliente non esiste, ritorna null
+            if (clienteData.Cliente == null)
                 return null;
 
-            cliente.Dtc_RagioneSociale = clienteDto.Dtc_RagioneSociale;
-            cliente.Dtc_Gioielleria = clienteDto.Dtc_Gioielleria;
-            cliente.Dtc_Indirizzo = clienteDto.Dtc_Indirizzo;
-            cliente.Dtc_Citta = clienteDto.Dtc_Citta;
-            cliente.Dtc_CAP = clienteDto.Dtc_CAP;
-            cliente.Dtc_Provincia = clienteDto.Dtc_Provincia;
-            cliente.Dtc_StatoRegione = clienteDto.Dtc_StatoRegione;
-            cliente.Dtc_Nazione = clienteDto.Dtc_Nazione;
-            cliente.Dtc_PartitaIVA = clienteDto.Dtc_PartitaIVA;
-            cliente.Dtc_CodiceFiscale = clienteDto.Dtc_CodiceFiscale;
-            cliente.Dtc_REA = clienteDto.Dtc_REA;
-            cliente.Dtc_CapitaleSociale = clienteDto.Dtc_CapitaleSociale;
-            cliente.Dtc_PEC = clienteDto.Dtc_PEC;
-            cliente.Dtc_ReferenteCognome = clienteDto.Dtc_ReferenteCognome;
-            cliente.Dtc_ReferenteNome = clienteDto.Dtc_ReferenteNome;
-            cliente.Dtc_ReferenteTelefono = clienteDto.Dtc_ReferenteTelefono;
-            cliente.Dtc_ReferenteCellulare = clienteDto.Dtc_ReferenteCellulare;
-            cliente.Dtc_ReferenteEmail = clienteDto.Dtc_ReferenteEmail;
-            cliente.Dtc_ReferenteWeb = clienteDto.Dtc_ReferenteWeb;
-            cliente.Dtc_Ranking = clienteDto.Dtc_Ranking;
+            // Mappa solo le proprietà aggiornabili
+            _mapper.Map(clienteDto, clienteData.Cliente);
+            _mapper.Map(clienteDto, clienteData.DatiCliente);
+            var moduli = _mapper.Map<List<DbModuloCliente>>(clienteDto.Moduli);
+            var allegati = _mapper.Map<List<DbAllegato>>(clienteDto.Allegati);
+            var negozi = _mapper.Map<List<DbNegozi>>(clienteDto.Negozi);
 
-            await _clienteRepository.UpdateClienteAsync(cliente);
+            // Aggiorna i dati tramite repository
+            await _clienteRepository.UpdateClienteAsync(clienteData.Cliente, clienteData.DatiCliente, moduli, allegati, negozi);
+
             return clienteDto;
         }
 
         public async Task<ClienteDettaglioDTO> GetByIdAsync(int id)
         {
-            return await _clienteRepository.GetClienteByIdAsync(id);
+            // Recupera i dati dalla repository come tupla
+            var clienteData = await _clienteRepository.GetClienteByIdAsync(id);
+
+            // Controllo su null: Se il cliente non esiste, ritorna null
+            if (clienteData.Cliente == null)
+                return null;
+
+            // Destruttura la tupla
+            var (cliente, datiCliente, moduli, allegati, negozi) = clienteData;
+
+            // Crea un oggetto intermedio per il mapping
+            var clienteIntermedio = new ClienteDettaglioIntermedio
+            {
+                Cliente = cliente,
+                DatiCliente = datiCliente ?? new DbDatiCliente(), // Se null, assegna un oggetto vuoto
+                Moduli = moduli ?? new List<DbModuloEasygold>(),
+                Allegati = allegati ?? new List<DbAllegato>(),
+                Negozi = negozi ?? new List<DbNegozi>()
+                 
+            };
+
+            // Usa AutoMapper con l'oggetto intermedio
+            return _mapper.Map<ClienteDettaglioDTO>(clienteIntermedio);
         }
 
-
+       
 
         /*
 public async Task<IEnumerable<ClienteDTO>> GetAllAsync()

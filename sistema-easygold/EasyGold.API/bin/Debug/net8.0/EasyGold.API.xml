@@ -199,6 +199,54 @@
         <member name="M:EasyGold.API.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EasyGold.API.Migrations.AggiuntaCampiDatiClientiValoriNull">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.AggiuntaCampiDatiClientiValoriNull.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.AggiuntaCampiDatiClientiValoriNull.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.AggiuntaCampiDatiClientiValoriNull.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EasyGold.API.Migrations.NomeMigrazione">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.NomeMigrazione.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.NomeMigrazione.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.NomeMigrazione.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EasyGold.API.Migrations.FixNegozioForeignKey">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.FixNegozioForeignKey.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.FixNegozioForeignKey.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.FixNegozioForeignKey.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_IDAllegato">
             <summary>
             ID dell'allegato.
@@ -407,6 +455,16 @@
         <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Ranking">
             <summary>
             Ranking del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Valuta">
+            <summary>
+            Valuta corrente del cliente
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_NumeroContratto">
+            <summary>
+            Numero Contratto 
             </summary>
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_IDCliente">

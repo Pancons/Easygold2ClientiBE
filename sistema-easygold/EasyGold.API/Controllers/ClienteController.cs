@@ -36,10 +36,13 @@ namespace EasyGold.API.Controllers
         /// <response code="200">Lista clienti restituita</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
+        [Authorize]
         public async Task<IActionResult> List([FromBody] ClienteListRequest request)
         {
             try
             {
+                request ??= new ClienteListRequest(); // Se la richiesta è nulla, crea un oggetto vuoto
+
                 var result = await _clienteService.GetClientiListAsync(request);
                 return Ok(new { clienti = result.Clienti, total = result.Total });
             }
@@ -58,6 +61,7 @@ namespace EasyGold.API.Controllers
         /// <response code="400">Errore nei dati inviati</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("save")]
+        [Authorize]
         public async Task<IActionResult> SaveClient([FromForm] ClienteDettaglioDTO clienteDto)
         {
             try
@@ -92,6 +96,7 @@ namespace EasyGold.API.Controllers
         /// <response code="404">Cliente non trovato</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPut("update/{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateClient(int id, [FromBody] ClienteDettaglioDTO clienteDto)
         {
             try

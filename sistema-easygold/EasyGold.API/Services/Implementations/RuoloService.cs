@@ -11,11 +11,11 @@ namespace EasyGold.API.Services.Implementations
 {
     public class RuoloService :IRuoloService
     {
-        private readonly IRuoloRepository _roleRepository;
+        private readonly IRuoloRepository _RuoloRepository;
 
-        public RuoloService(IRuoloRepository roleRepository, IMapper mapper)
+        public RuoloService(IRuoloRepository RuoloRepository, IMapper mapper)
         {
-            _roleRepository = roleRepository;
+            _RuoloRepository = RuoloRepository;
              _mapper = mapper;
         }
 
@@ -23,31 +23,31 @@ namespace EasyGold.API.Services.Implementations
 
         public async Task<IEnumerable<RuoloDTO>> GetAllRolesAsync()
         {
-            var ruoli = await _roleRepository.GetAllAsync();
+            var ruoli = await _RuoloRepository.GetAllAsync();
             return _mapper.Map<IEnumerable<RuoloDTO>>(ruoli);
         }
 
         public async Task<RuoloDTO> GetRoleByIdAsync(int id)
         {
-            var ruolo = await  _roleRepository.GetAllAsync();
+            var ruolo = await  _RuoloRepository.GetAllAsync();
             return _mapper.Map<RuoloDTO>(ruolo);
         }
 
         public async Task AddRoleAsync(RuoloDTO ruoloDTO)
         {
             var ruolo = _mapper.Map<DbRuolo>(ruoloDTO);
-            await _roleRepository.AddAsync(ruolo);
+            await _RuoloRepository.AddAsync(ruolo);
         }
 
         public async Task UpdateRoleAsync(RuoloDTO ruoloDTO)
         {
             var ruolo = _mapper.Map<DbRuolo>(ruoloDTO);
-            await _roleRepository.UpdateAsync(ruolo);
+            await _RuoloRepository.UpdateAsync(ruolo);
         }
 
         public async Task DeleteRoleAsync(int id)
         {
-            await _roleRepository.DeleteAsync(id);
+            await _RuoloRepository.DeleteAsync(id);
         }
     }
 }

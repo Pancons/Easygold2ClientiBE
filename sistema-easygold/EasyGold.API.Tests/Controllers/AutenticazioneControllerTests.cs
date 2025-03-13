@@ -13,7 +13,7 @@ using EasyGold.API.Models.Entities;
 
 public class AutenticazioneControllerTests
 {
-    [Fact]
+   [Fact]
     public async Task Login_ReturnsOkResult()
     {
         // Arrange
@@ -27,6 +27,12 @@ public class AutenticazioneControllerTests
             Ute_IDRuolo = 2
         };
 
+        // Simula la registrazione di un utente
+        mockUserService
+            .Setup(s => s.RegisterUserAsync("testUser", "testPassword", 2))
+            .ReturnsAsync(true); // Simuliamo che la registrazione vada a buon fine
+
+        // Simula l'autenticazione dell'utente appena registrato
         mockUserService
             .Setup(s => s.AuthenticateAsync("testUser", "testPassword"))
             .ReturnsAsync(fakeUser);
@@ -43,18 +49,17 @@ public class AutenticazioneControllerTests
             Password = "testPassword"
         };
 
+        // **Precondizione: Registra l'utente prima della login**
+        await mockUserService.Object.RegisterUserAsync("testUser", "testPassword", 2);
+
         // Act
         var result = await controller.Login(request);
 
-        // Debug: stampa il tipo di risultato per capire il problema
-        Console.WriteLine($"Tipo di risultato: {result.GetType().Name}");
-
         // Assert
         var objectResult = Assert.IsType<ObjectResult>(result);
-        Console.WriteLine($"Codice HTTP restituito: {objectResult.StatusCode}");
-
         Assert.Equal(200, objectResult.StatusCode);
     }
+
 
 
 }

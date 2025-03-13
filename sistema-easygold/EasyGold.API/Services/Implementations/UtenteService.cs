@@ -7,10 +7,11 @@ using EasyGold.API.Models;
 using EasyGold.API.Models.Utenti;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using EasyGold.API.Services.Interfaces;
 
 namespace EasyGold.API.Services.Implementations
 {
-    public class UtenteService
+    public class UtenteService : IUtenteService
     {
         private readonly IUtenteRepository _utenteRepository;
         private readonly IMapper _mapper;
@@ -60,6 +61,10 @@ namespace EasyGold.API.Services.Implementations
         public async Task AddAsync(UtenteDTO utenteDettaglioDto)
         {
             var utente = _mapper.Map<DbUtente>(utenteDettaglioDto);
+
+            // 🔹 Cripta la password prima di salvare l'utente
+            utente.Ute_Password = BCrypt.Net.BCrypt.HashPassword(utenteDettaglioDto.Ute_Password);
+
             await _utenteRepository.AddAsync(utente);
         }
 

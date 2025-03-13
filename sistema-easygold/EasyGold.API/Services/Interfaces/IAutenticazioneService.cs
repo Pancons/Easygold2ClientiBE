@@ -7,5 +7,6 @@ namespace EasyGold.API.Services.Interfaces
     {
         Task<DbUtente> AuthenticateAsync(string username, string password);
         Task<bool> RegisterUserAsync(string username, string password, int tipoAbilitazione);
+       
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj": {}
+    "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj": {}
   },
   "projects": {
-    "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj": {
+    "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj",
+        "projectUniqueName": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj",
         "projectName": "EasyGold.API",
-        "projectPath": "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj",
+        "projectPath": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj",
         "packagesPath": "/home/ubuntu/.nuget/packages/",
-        "outputPath": "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/obj/",
+        "outputPath": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ubuntu/.nuget/NuGet/NuGet.Config"
@@ -83,7 +83,7 @@
             },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
-              "version": "[8.5.0, )"
+              "version": "[8.3.0, )"
             },
             "Serilog.AspNetCore": {
               "target": "Package",
@@ -96,6 +96,14 @@
             "Swashbuckle.AspNetCore.Annotations": {
               "target": "Package",
               "version": "[7.3.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.3.0, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[9.0.2, )"
             }
           },
           "imports": [
@@ -117,7 +125,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/mnt/newdisk/usr/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

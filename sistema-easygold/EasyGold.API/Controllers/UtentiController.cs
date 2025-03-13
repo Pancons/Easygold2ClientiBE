@@ -54,7 +54,7 @@ namespace EasyGold.API.Controllers
         /// <response code="400">Errore nei dati inviati</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost]
-        [Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> AddUser([FromBody] UtenteDTO userDto)
         {
 

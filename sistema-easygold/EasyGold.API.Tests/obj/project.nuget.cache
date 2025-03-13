@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kdg1AR2gGqU=",
+  "dgSpecHash": "B4KEwN20/Gw=",
   "success": true,
-  "projectFilePath": "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/EasyGold.API.Tests.csproj",
+  "projectFilePath": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/EasyGold.API.Tests.csproj",
   "expectedPackageFiles": [
     "/home/ubuntu/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/home/ubuntu/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

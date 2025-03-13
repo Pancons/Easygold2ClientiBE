@@ -4,6 +4,7 @@ using EasyGold.API.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGold.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250313082049_NomeMigrazione")]
+    partial class NomeMigrazione
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,6 +97,7 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Utw_StringaConnessione")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Utw_UtentiAttivi")
@@ -294,9 +298,6 @@ namespace EasyGold.API.Migrations
 
                     b.Property<DateTime>("Neg_DataDisattivazione")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Neg_IDCliente")
-                        .HasColumnType("int");
 
                     b.Property<string>("Neg_NomeNegozio")
                         .IsRequired()

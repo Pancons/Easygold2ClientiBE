@@ -93,13 +93,13 @@ namespace EasyGold.API.Models.Clienti
         public ConfigurazioneDTO Configurazione { get; set; }
 
         [SwaggerSchema(Description = "Lista dei moduli del cliente")]
-        public List<ModuloDTO> Moduli { get; set; }
+        public List<ModuloDTO>? Moduli { get; set; }
 
         [SwaggerSchema(Description = "Lista degli allegati del cliente")]
-        public List<AllegatoDTO> Allegati { get; set; }
+        public List<AllegatoDTO>? Allegati { get; set; }
 
         [SwaggerSchema(Description = "Lista dei negozi del cliente")]
-        public List<NegozioDTO> Negozi { get; set; }
+        public List<NegozioDTO>? Negozi { get; set; }
     }
 
 }

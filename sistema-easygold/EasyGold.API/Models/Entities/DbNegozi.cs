@@ -10,6 +10,8 @@ namespace EasyGold.API.Models.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Neg_id { get; set; }
 
+        public int Neg_IDCliente { get; set; }
+        
         [Required]
         [StringLength(255)]
         public string Neg_RagioneSociale { get; set; }

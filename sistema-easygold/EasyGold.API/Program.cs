@@ -13,6 +13,7 @@ using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Repositories;
 using EasyGold.API.Repositories.Implementations;
 using System.Reflection;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // 🔹 AutoMapper e MediatR
 builder.Services.AddAutoMapper(typeof(Program));
 
+builder.Services.AddScoped<IUtenteRepository, UtenteRepository>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IModuloRepository, ModuloRepository>();
+builder.Services.AddScoped<IRuoloRepository, RuoloRepository>();
+builder.Services.AddScoped<IAllegatoRepository, AllegatoRepository>();
+
+
+builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAllegatoService, EasyGold.API.Services.Implementations.AllegatoService>();
+builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IClienteService, EasyGold.API.Services.Implementations.ClienteService>();
+builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IUtenteService, EasyGold.API.Services.Implementations.UtenteService>();
+builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAutenticazioneService, EasyGold.API.Services.Implementations.AutenticazioneService>();
+builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IModuloService, EasyGold.API.Services.Implementations.ModuloService>();
+builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IRuoloService, EasyGold.API.Services.Implementations.RuoloService>();
 
 // 🔹 Abilita i controller e Swagger
 builder.Services.AddControllers();
@@ -120,8 +134,13 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+
+
 // 🔹 Middleware globali
 app.UseMiddleware<ErrorHandlingMiddleware>(); // Gestione errori personalizzata
+ 
+          
+
 app.UseHttpsRedirection();
 app.UseCors("AllowAll"); // Abilita CORS
 app.UseAuthentication();

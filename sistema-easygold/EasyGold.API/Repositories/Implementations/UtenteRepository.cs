@@ -17,7 +17,7 @@ namespace EasyGold.API.Repositories.Implementations
             _context = context;
         }
 
-         public async Task AddAsync(DbUtente utente)
+        public async Task AddAsync(DbUtente utente)
         {
             await _context.Utenti.AddAsync(utente);
             await _context.SaveChangesAsync();

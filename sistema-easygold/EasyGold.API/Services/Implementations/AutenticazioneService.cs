@@ -44,5 +44,6 @@ namespace EasyGold.API.Services.Implementations
             await _context.SaveChangesAsync();
             return true;
         }
+
     }
 }
