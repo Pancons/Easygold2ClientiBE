@@ -48,14 +48,21 @@ namespace EasyGold.API.Services.Implementations
             await _utenteRepository.DeleteAsync(id);
         }
         */
-        public async Task<(IEnumerable<UtenteDTO> Users, int Total)> GetUsersListAsync(UserFilterDTO filter)
+       public async Task<(IEnumerable<UtenteDTO> Users, int Total)> GetUsersListAsync(UserFilterDTO filter)
         {
-            return await _utenteRepository.GetUsersListAsync(filter);
+            var (utentiData, total) = await _utenteRepository.GetUsersListAsync(filter);
+            
+            // ✅ Mappa una LISTA di DbUtente in una LISTA di UtenteDTO
+            var utentiDataConverted = _mapper.Map<List<UtenteDTO>>(utentiData);
+
+            return (utentiDataConverted, total);
         }
 
         public async Task<UtenteDTO> GetUserByIdAsync(int id)
         {
-            return await _utenteRepository.GetUserByIdAsync(id);
+            var utenteDettaglioDto = await _utenteRepository.GetUserByIdAsync(id);
+            return _mapper.Map<UtenteDTO>(utenteDettaglioDto);
+         
         }
 
         public async Task AddAsync(UtenteDTO utenteDettaglioDto)

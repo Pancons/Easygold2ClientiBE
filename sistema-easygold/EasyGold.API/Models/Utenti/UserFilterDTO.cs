@@ -8,7 +8,7 @@ namespace EasyGold.API.Models.Utenti
         public int? IDUtente { get; set; }
 
         [SwaggerSchema(Description = "Cognome dell'utente")]
-        public string Utw_Cognome { get; set; }
+        public string? Utw_Cognome { get; set; }
 
         [SwaggerSchema(Description = "Identificativo opzionale del ruolo dell'utente")]
         public int? Utw_IDRuolo { get; set; }

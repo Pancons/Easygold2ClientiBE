@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EasyGold.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+309ae72fe17e4a7209d119ba47e9a277d9a9cd76")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be12547d1b079a341301729572da7f359d2e9955")]
 [assembly: System.Reflection.AssemblyProductAttribute("EasyGold.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EasyGold.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

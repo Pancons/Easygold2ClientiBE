@@ -45,7 +45,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// URL dell'immagine allegata (solo lettura).
         /// </summary>
-        public string All_ImgUrl { get; private set; }
+        public string All_ImgUrl { get;  set; }
 
         /// <summary>
         /// Base64 del file allegato (non salvato nel database).

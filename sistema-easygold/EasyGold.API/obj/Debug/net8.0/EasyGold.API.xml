@@ -479,5 +479,40 @@
             Relazione con il Modulo
             </summary>
         </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.GetAllAsync">
+            <summary>
+            Recupera tutti gli allegati dal database.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.GetByIdAsync(System.Int32)">
+            <summary>
+            Recupera un allegato per ID.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.AddAsync(EasyGold.API.Models.Entities.DbAllegato)">
+            <summary>
+            Aggiunge un nuovo allegato e salva il file su disco.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.UpdateAsync(EasyGold.API.Models.Entities.DbAllegato)">
+            <summary>
+            Aggiorna un allegato esistente e il relativo file.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Elimina un allegato e rimuove il file associato.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.SaveFileAsync(EasyGold.API.Models.Entities.DbAllegato,System.String)">
+            <summary>
+            Salva il file su disco e restituisce il percorso relativo.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.DeleteFile(System.String)">
+            <summary>
+            Elimina un file dal disco.
+            </summary>
+        </member>
     </members>
 </doc>
