@@ -19,19 +19,20 @@ namespace EasyGold.API.Repositories.Interfaces
         // Aggiunta della definizione del metodo GetClientiAsync
        
         Task AddClienteAsync(
-            DbCliente cliente, 
-            DbDatiCliente datiCliente, 
-            List<DbModuloCliente> moduli, 
-            List<DbAllegato> allegati, 
+            DbCliente cliente,
+            DbDatiCliente datiCliente,
+            List<ModuloIntermedio> moduli,
+            List<DbAllegato> allegati,
             List<DbNegozi> negozi);
         
+        
 
-        Task UpdateClienteAsync(
-            DbCliente cliente, 
-            DbDatiCliente datiCliente, 
-            List<DbModuloCliente> moduli, 
-            List<DbAllegato> allegati, 
-            List<DbNegozi> negozi);
+       Task UpdateClienteAsync(
+        DbCliente cliente,
+        DbDatiCliente datiCliente,
+        List<ModuloIntermedio> moduli,
+        List<DbAllegato> allegati,
+        List<DbNegozi> negozi);
         
         
        

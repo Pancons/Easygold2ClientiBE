@@ -94,7 +94,14 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Dtc_Ranking, opt => opt.MapFrom(src => src.Dtc_Ranking));
 
             CreateMap<ModuloDTO, DbModuloCliente>()
-                .ForMember(dest => dest.Mdc_IDModulo, opt => opt.MapFrom(src => src.Mdc_IDModulo));
+                .ForMember(dest => dest.Mdc_IDAuto, opt => opt.Ignore()) // ID gestito dal database
+                .ForMember(dest => dest.Mdc_IDModulo, opt => opt.MapFrom(src => src.Mdc_IDModulo))
+                .ForMember(dest => dest.Mdc_DataAttivazione, opt => opt.MapFrom(src => src.Mdc_DataAttivazione))
+                .ForMember(dest => dest.Mdc_DataDisattivazione, opt => opt.MapFrom(src => src.Mdc_DataDisattivazione))
+                .ForMember(dest => dest.Mdc_BloccoModulo, opt => opt.MapFrom(src => src.Mdc_BloccoModulo))
+                .ForMember(dest => dest.Mdc_DataOraBlocco, opt => opt.MapFrom(src => src.Mdc_DataOraBlocco))
+                .ForMember(dest => dest.Mdc_Nota, opt => opt.MapFrom(src => src.Mdc_Nota));
+
 
             CreateMap<AllegatoDTO, DbAllegato>()
                 .ForMember(dest => dest.All_EntitaRiferimento, opt => opt.MapFrom(src => "Cliente"))
@@ -107,6 +114,50 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Neg_DataDisattivazione, opt => opt.MapFrom(src => src.Neg_DataDisattivazione))
                 .ForMember(dest => dest.Neg_Bloccato, opt => opt.MapFrom(src => src.Neg_Bloccato))
                 .ForMember(dest => dest.Neg_Note, opt => opt.MapFrom(src => src.Neg_Note));
+
+                // Mapping tra ModuloDTO e ModuloIntermedio
+            CreateMap<ModuloDTO, ModuloIntermedio>().ReverseMap();
+
+            // Mapping tra ModuloIntermedio e DbModuloEasygold
+            CreateMap<ModuloIntermedio, DbModuloEasygold>()
+                .ForMember(dest => dest.Mde_IDAuto, opt => opt.MapFrom(src => src.Mde_IDAuto))
+                .ForMember(dest => dest.Mde_Descrizione, opt => opt.MapFrom(src => src.Mde_Descrizione))
+                .ForMember(dest => dest.Mde_DescrizioneEstesa, opt => opt.MapFrom(src => src.Mde_DescrizioneEstesa))
+                .ReverseMap();
+
+            CreateMap<ModuloIntermedio, DbModuloCliente>()
+                .ForMember(dest => dest.Mdc_IDModulo, opt => opt.MapFrom(src => src.Mde_IDAuto))
+                .ForMember(dest => dest.Mdc_DataAttivazione, opt => opt.MapFrom(src => src.Mdc_DataAttivazione)) // ✅ Usa valore di default
+                .ForMember(dest => dest.Mdc_DataDisattivazione, opt => opt.MapFrom(src => src.Mdc_DataDisattivazione )) // ✅ Usa valore di default
+                .ForMember(dest => dest.Mdc_BloccoModulo, opt => opt.MapFrom(src => src.Mdc_BloccoModulo))
+                .ForMember(dest => dest.Mdc_DataOraBlocco, opt => opt.MapFrom(src => src.Mdc_DataOraBlocco)) // ✅ Usa valore minimo per evitare null
+                .ForMember(dest => dest.Mdc_Nota, opt => opt.MapFrom(src => src.Mdc_Nota))
+                .ReverseMap();
+
+            // **Mapping delle liste**
+            CreateMap<List<ModuloDTO>, List<ModuloIntermedio>>().ConvertUsing(src => src.Select(x => new ModuloIntermedio
+            {
+                
+                Mde_Descrizione = x.Mde_Descrizione,
+                Mde_DescrizioneEstesa = x.Mde_DescrizioneEstesa,
+                Mdc_DataAttivazione = x.Mdc_DataAttivazione,
+                Mdc_DataDisattivazione = x.Mdc_DataDisattivazione,
+                Mdc_BloccoModulo = x.Mdc_BloccoModulo,
+                Mdc_DataOraBlocco = x.Mdc_DataOraBlocco,
+                Mdc_Nota = x.Mdc_Nota
+            }).ToList());
+
+            CreateMap<List<ModuloIntermedio>, List<ModuloDTO>>().ConvertUsing(src => src.Select(x => new ModuloDTO
+            {
+               
+                Mde_Descrizione = x.Mde_Descrizione,
+                Mde_DescrizioneEstesa = x.Mde_DescrizioneEstesa,
+                Mdc_DataAttivazione = x.Mdc_DataAttivazione,
+                Mdc_DataDisattivazione = x.Mdc_DataDisattivazione,
+                Mdc_BloccoModulo = x.Mdc_BloccoModulo,
+                Mdc_DataOraBlocco = x.Mdc_DataOraBlocco,
+                Mdc_Nota = x.Mdc_Nota
+            }).ToList());
 
             CreateMap<DbCliente, ClienteDTO>().ReverseMap();
             CreateMap<DbUtente, UtenteDTO>().ReverseMap();

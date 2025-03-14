@@ -34,13 +34,13 @@ namespace EasyGold.API.Services.Implementations
 
         public async Task AddAsync(ModuloDTO moduloDto)
         {
-            var modulo = _mapper.Map<DbModuloCliente>(moduloDto);
+            var modulo = _mapper.Map<DbModuloEasygold>(moduloDto);
             await _moduloRepository.AddAsync(modulo);
         }
 
         public async Task UpdateAsync(ModuloDTO moduloDto)
         {
-            var modulo = _mapper.Map<DbModuloCliente>(moduloDto);
+            var modulo = _mapper.Map<DbModuloEasygold>(moduloDto);
             await _moduloRepository.UpdateAsync(modulo);
         }
 

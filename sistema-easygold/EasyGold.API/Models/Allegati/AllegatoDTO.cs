@@ -1,4 +1,3 @@
-
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 
@@ -35,7 +34,15 @@ namespace EasyGold.API.Models.Allegati
         public string All_Note { get; set; }
 
         [Url]
-        [SwaggerSchema(Description = "URL dell'immagine allegata")]
-        public string All_ImgUrl { get; set; }
+        [SwaggerSchema(Description = "URL dell'immagine allegata (solo lettura)")]
+        public string? All_ImgUrl { get; private set; }
+
+        [SwaggerSchema(Description = "Base64 del file da caricare")]
+        public string? All_FileBase64 { private get; set; }
+
+        public void SetImgUrl(string url)
+        {
+            All_ImgUrl = url;
+        }
     }
 }

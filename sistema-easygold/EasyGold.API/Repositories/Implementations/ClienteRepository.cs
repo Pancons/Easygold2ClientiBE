@@ -6,19 +6,30 @@ using EasyGold.API.Models.Entities;
 using EasyGold.API.Models.Moduli;
 using EasyGold.API.Models.Negozi;
 using EasyGold.API.Repositories.Interfaces;
+using EasyGold.API.Repositories.Implementations;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EasyGold.API.Models.Moduli;
+
 
 namespace EasyGold.API.Repositories.Implementations
 {
     public class ClienteRepository : IClienteRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IAllegatoRepository _allegatoRepository;
+        private readonly IModuloClienteRepository _moduloClienteRepository;
+        private readonly IModuloRepository _moduloRepository;
+        private readonly INegozioRepository _negozioRepository;
 
-        public ClienteRepository(ApplicationDbContext context)
+        public ClienteRepository(ApplicationDbContext context,IAllegatoRepository allegatoRepository,IModuloClienteRepository moduloClienteRepository,IModuloRepository  moduloRepository,INegozioRepository negozioRepository)
         {
             _context = context;
+            _allegatoRepository = allegatoRepository;
+            _moduloClienteRepository = moduloClienteRepository;
+            _moduloRepository = moduloRepository;
+            _negozioRepository = negozioRepository;
         }
 
         public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente)> Clienti, int Total)> 
@@ -65,93 +76,159 @@ namespace EasyGold.API.Repositories.Implementations
 
             return (result, total);
         }
-
+    
         public async Task AddClienteAsync(
-            DbCliente cliente, 
-            DbDatiCliente datiCliente, 
-            List<DbModuloCliente> moduli, 
-            List<DbAllegato> allegati, 
+            DbCliente cliente,
+            DbDatiCliente datiCliente,
+            List<ModuloIntermedio> moduli,
+            List<DbAllegato> allegati,
             List<DbNegozi> negozi)
         {
             // Aggiunta del cliente
             await _context.Clienti.AddAsync(cliente);
-            await _context.SaveChangesAsync(); // Necessario per generare l'ID del cliente
+            await _context.SaveChangesAsync(); // Generazione dell'ID cliente
 
-            // Assegnazione dell'ID cliente agli altri oggetti prima di salvarli
-            
-            moduli.ForEach(m => m.Mdc_IDCliente = cliente.Utw_IDClienteAuto);
-            allegati.ForEach(a => a.All_RecordId = cliente.Utw_IDClienteAuto);
+            // Assegnazione ID Cliente ai negozi
             negozi.ForEach(n => n.Neg_IDCliente = cliente.Utw_IDClienteAuto);
 
             // Aggiunta dei dati cliente
             await _context.DatiClienti.AddAsync(datiCliente);
 
-            // Aggiunta dei moduli associati
-            if (moduli.Any())
-                await _context.ModuloClienti.AddRangeAsync(moduli);
+            // **Gestione Allegati tramite Repository**
+            foreach (var allegato in allegati)
+            {
+                allegato.All_RecordId = cliente.Utw_IDClienteAuto;
+                await _allegatoRepository.AddAsync(allegato);
+            }
 
-            // Aggiunta degli allegati associati
-            if (allegati.Any())
-                await _context.Allegati.AddRangeAsync(allegati);
+            // **Gestione Negozi tramite Repository**
+            foreach (var negozio in negozi)
+            {
+                var negozioEsistente = await _negozioRepository.GetByIdAsync(negozio.Neg_id);
+                if (negozioEsistente == null)
+                {
+                    negozio.Neg_IDCliente = cliente.Utw_IDClienteAuto;
+                    await _negozioRepository.AddAsync(negozio);
+                }
+            }
 
-            // Aggiunta dei negozi associati
-            if (negozi.Any())
-                await _context.Negozi.AddRangeAsync(negozi);
+            // **Gestione Moduli: Creazione e Associazione**
+            foreach (var modulo in moduli)
+            {
+                var moduloEsistente = await _moduloRepository.GetByIdAsync(modulo.Mde_IDAuto);
+                if (moduloEsistente == null)
+                {
+                    var moduloEasygold = new DbModuloEasygold
+                    {
+                        Mde_Descrizione = modulo.Mde_Descrizione,
+                        Mde_DescrizioneEstesa = modulo.Mde_DescrizioneEstesa
+                    };
+                    await _moduloRepository.AddAsync(moduloEasygold);
+                    moduloEsistente = moduloEasygold; // Aggiorna il riferimento
+                }
 
-            // Salvataggio delle modifiche nel database
+                var moduloCliente = new DbModuloCliente
+                {
+                    Mdc_IDCliente = cliente.Utw_IDClienteAuto,
+                    Mdc_IDModulo = moduloEsistente.Mde_IDAuto,
+                    Mdc_DataAttivazione = modulo.Mdc_DataAttivazione,
+                    Mdc_DataDisattivazione = modulo.Mdc_DataDisattivazione,
+                    Mdc_BloccoModulo = modulo.Mdc_BloccoModulo,
+                    Mdc_DataOraBlocco = modulo.Mdc_DataOraBlocco,
+                    Mdc_Nota = modulo.Mdc_Nota
+                };
+                await _moduloClienteRepository.AddAsync(moduloCliente);
+            }
+
+            // Salvataggio finale
             await _context.SaveChangesAsync();
         }
 
-
         public async Task UpdateClienteAsync(
-            DbCliente cliente, 
-            DbDatiCliente datiCliente, 
-            List<DbModuloCliente> moduli, 
-            List<DbAllegato> allegati, 
+            DbCliente cliente,
+            DbDatiCliente datiCliente,
+            List<ModuloIntermedio> moduli,
+            List<DbAllegato> allegati,
             List<DbNegozi> negozi)
         {
-            // Verifica se il cliente esiste
             var clienteEsistente = await _context.Clienti.FindAsync(cliente.Utw_IDClienteAuto);
             if (clienteEsistente == null)
                 throw new KeyNotFoundException("Cliente non trovato.");
 
-            // Aggiornamento delle proprietà del cliente
+            // **Aggiornamento Cliente**
             _context.Entry(clienteEsistente).CurrentValues.SetValues(cliente);
 
-            // Aggiornamento dei dati cliente
+            // **Aggiornamento Dati Cliente**
             var datiClienteEsistenti = await _context.DatiClienti
                 .FirstOrDefaultAsync(d => d.Dtc_IDCliente == cliente.Utw_IDClienteAuto);
-            
+
             if (datiClienteEsistenti != null)
                 _context.Entry(datiClienteEsistenti).CurrentValues.SetValues(datiCliente);
             else
-                await _context.DatiClienti.AddAsync(datiCliente); // Se non esiste, lo aggiunge
+                await _context.DatiClienti.AddAsync(datiCliente);
 
-            // **Gestione dei moduli associati**
-            var moduliEsistenti = await _context.ModuloClienti
-                .Where(m => m.Mdc_IDCliente == cliente.Utw_IDClienteAuto)
-                .ToListAsync();
-            
-            _context.ModuloClienti.RemoveRange(moduliEsistenti); // Rimuove quelli esistenti
-            await _context.ModuloClienti.AddRangeAsync(moduli); // Aggiunge quelli nuovi
+            // **Gestione Allegati tramite Repository**
+            foreach (var allegato in allegati)
+            {
+                allegato.All_RecordId = cliente.Utw_IDClienteAuto;
+                await _allegatoRepository.AddAsync(allegato);
+            }
 
-            // **Gestione degli allegati associati**
-            var allegatiEsistenti = await _context.Allegati
-                .Where(a => a.All_RecordId == cliente.Utw_IDClienteAuto && a.All_EntitaRiferimento == "Cliente")
-                .ToListAsync();
-            
-            _context.Allegati.RemoveRange(allegatiEsistenti); // Rimuove quelli esistenti
-            await _context.Allegati.AddRangeAsync(allegati); // Aggiunge quelli nuovi
+            foreach (var negozio in negozi)
+            {
+                var negozioEsistente = await _negozioRepository.GetByIdAsync(negozio.Neg_id);
+                
+                if (negozioEsistente == null)
+                {
+                    negozio.Neg_IDCliente = cliente.Utw_IDClienteAuto;
+                    await _negozioRepository.AddAsync(negozio);
+                }
+                else
+                {
+                    _context.Entry(negozioEsistente).CurrentValues.SetValues(negozio);
+                    await _negozioRepository.UpdateAsync(negozioEsistente);
+                }
+            }
 
-            // **Gestione dei negozi associati**
-            var negoziEsistenti = await _context.Negozi
-                .Where(n => n.Neg_IDCliente == cliente.Utw_IDClienteAuto)
-                .ToListAsync();
-            
-            _context.Negozi.RemoveRange(negoziEsistenti); // Rimuove quelli esistenti
-            await _context.Negozi.AddRangeAsync(negozi); // Aggiunge quelli nuovi
+            // **Gestione Moduli: Creazione e Associazione**
+            foreach (var modulo in moduli)
+            {
+                var moduloEsistente = await _moduloRepository.GetByIdAsync(modulo.Mde_IDAuto);
+                if (moduloEsistente == null)
+                {
+                    var moduloEasygold = new DbModuloEasygold
+                    {
+                        Mde_Descrizione = modulo.Mde_Descrizione,
+                        Mde_DescrizioneEstesa = modulo.Mde_DescrizioneEstesa
+                    };
+                    await _moduloRepository.AddAsync(moduloEasygold);
+                    moduloEsistente = moduloEasygold;
+                }
 
-            // Salvataggio delle modifiche
+                // Controlla se l'associazione esiste già
+                var associazioneEsistente = await _moduloClienteRepository.GetByClienteAndModuloAsync(cliente.Utw_IDClienteAuto, moduloEsistente.Mde_IDAuto);
+                if (associazioneEsistente == null)
+                {
+                    var moduloCliente = new DbModuloCliente
+                    {
+                        Mdc_IDCliente = cliente.Utw_IDClienteAuto,
+                        Mdc_IDModulo = moduloEsistente.Mde_IDAuto,
+                        Mdc_DataAttivazione = modulo.Mdc_DataAttivazione,
+                        Mdc_DataDisattivazione = modulo.Mdc_DataDisattivazione,
+                        Mdc_BloccoModulo = modulo.Mdc_BloccoModulo,
+                        Mdc_DataOraBlocco = modulo.Mdc_DataOraBlocco,
+                        Mdc_Nota = modulo.Mdc_Nota
+                    };
+                    await _moduloClienteRepository.AddAsync(moduloCliente);
+                }
+                else
+                {
+                    _context.Entry(associazioneEsistente).CurrentValues.SetValues(modulo);
+                    await _moduloClienteRepository.UpdateAsync(associazioneEsistente);
+                }
+            }
+
+            // Salvataggio finale
             await _context.SaveChangesAsync();
         }
 

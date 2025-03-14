@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "/fENFgZ5M6Uv5FxYNLXfBxfJFw/69e/Rv1UIh2qWJM0=",
+  "Hash": "11Qh0CTN3PoFmcMlMOESgJENOTgLNUSB99Tr+9+xpO4=",
   "Source": "EasyGold.API",
   "BasePath": "_content/EasyGold.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "EasyGold.API/wwwroot",
+      "Source": "EasyGold.API",
+      "ContentRoot": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/wwwroot/",
+      "BasePath": "_content/EasyGold.API",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

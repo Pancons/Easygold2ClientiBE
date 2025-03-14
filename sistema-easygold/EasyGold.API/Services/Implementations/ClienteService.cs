@@ -1,6 +1,7 @@
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Models.Entities;
 using EasyGold.API.Models.Clienti;
+using EasyGold.API.Models.Moduli;
 using AutoMapper;
 using EasyGold.API.Models;
 using EasyGold.API.Services.Interfaces;
@@ -37,10 +38,11 @@ namespace EasyGold.API.Services.Implementations
             // Mappa il DTO in oggetti Db
             var cliente = _mapper.Map<DbCliente>(clienteDto);
             var datiCliente = _mapper.Map<DbDatiCliente>(clienteDto);
-            var moduli = _mapper.Map<List<DbModuloCliente>>(clienteDto.Moduli);
+            var moduli = _mapper.Map<List<ModuloIntermedio>>(clienteDto.Moduli);
             var allegati = _mapper.Map<List<DbAllegato>>(clienteDto.Allegati);
             var negozi = _mapper.Map<List<DbNegozi>>(clienteDto.Negozi);
 
+            Console.WriteLine($"Moduli: {moduli.Count}, Allegati: {allegati.Count}, Negozi: {negozi.Count}");
             // Salva nel database tramite repository
             await _clienteRepository.AddClienteAsync(cliente, datiCliente, moduli, allegati, negozi);
 
@@ -58,9 +60,10 @@ namespace EasyGold.API.Services.Implementations
             // Mappa solo le proprietà aggiornabili
             _mapper.Map(clienteDto, clienteData.Cliente);
             _mapper.Map(clienteDto, clienteData.DatiCliente);
-            var moduli = _mapper.Map<List<DbModuloCliente>>(clienteDto.Moduli);
+            var moduli = _mapper.Map<List<ModuloIntermedio>>(clienteDto.Moduli);
             var allegati = _mapper.Map<List<DbAllegato>>(clienteDto.Allegati);
             var negozi = _mapper.Map<List<DbNegozi>>(clienteDto.Negozi);
+            var modulicliente = _mapper.Map<List<DbModuloCliente>>(clienteDto.Moduli);
 
             // Aggiorna i dati tramite repository
             await _clienteRepository.UpdateClienteAsync(clienteData.Cliente, clienteData.DatiCliente, moduli, allegati, negozi);

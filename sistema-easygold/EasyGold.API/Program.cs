@@ -56,6 +56,8 @@ builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IModuloRepository, ModuloRepository>();
 builder.Services.AddScoped<IRuoloRepository, RuoloRepository>();
 builder.Services.AddScoped<IAllegatoRepository, AllegatoRepository>();
+builder.Services.AddScoped<INegozioRepository, NegozioRepository>();
+builder.Services.AddScoped<IModuloClienteRepository, ModuloClienteRepository>();
 
 
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAllegatoService, EasyGold.API.Services.Implementations.AllegatoService>();

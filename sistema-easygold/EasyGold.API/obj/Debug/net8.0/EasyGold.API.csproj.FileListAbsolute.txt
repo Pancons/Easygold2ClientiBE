@@ -574,3 +574,4 @@
 /mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/obj/Debug/net8.0/EasyGold.API.pdb
 /mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/obj/Debug/net8.0/EasyGold.API.genruntimeconfig.cache
 /mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/obj/Debug/net8.0/ref/EasyGold.API.dll
+/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/bin/Debug/net8.0/EasyGold.API.staticwebassets.runtime.json

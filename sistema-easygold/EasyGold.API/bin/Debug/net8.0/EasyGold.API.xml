@@ -199,54 +199,6 @@
         <member name="M:EasyGold.API.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:EasyGold.API.Migrations.AggiuntaCampiDatiClientiValoriNull">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.AggiuntaCampiDatiClientiValoriNull.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.AggiuntaCampiDatiClientiValoriNull.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.AggiuntaCampiDatiClientiValoriNull.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:EasyGold.API.Migrations.NomeMigrazione">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.NomeMigrazione.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.NomeMigrazione.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.NomeMigrazione.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:EasyGold.API.Migrations.FixNegozioForeignKey">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.FixNegozioForeignKey.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.FixNegozioForeignKey.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.FixNegozioForeignKey.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
         <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_IDAllegato">
             <summary>
             ID dell'allegato.
@@ -284,7 +236,17 @@
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_ImgUrl">
             <summary>
-            URL dell'immagine allegata.
+            URL dell'immagine allegata (solo lettura).
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_FileBase64">
+            <summary>
+            Base64 del file allegato (non salvato nel database).
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Models.Entities.DbAllegato.SetImgUrl(System.String)">
+            <summary>
+            Imposta l'URL dell'immagine allegata (solo internamente nel codice).
             </summary>
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_IDClienteAuto">
@@ -467,6 +429,11 @@
             Numero Contratto 
             </summary>
         </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_IDAuto">
+            <summary>
+            ID univoco del record (chiave primaria).
+            </summary>
+        </member>
         <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_IDCliente">
             <summary>
             ID del cliente associato al modulo.
@@ -500,6 +467,16 @@
         <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_Nota">
             <summary>
             Note aggiuntive sul modulo per il cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Cliente">
+            <summary>
+            Relazione con il Cliente
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Modulo">
+            <summary>
+            Relazione con il Modulo
             </summary>
         </member>
     </members>

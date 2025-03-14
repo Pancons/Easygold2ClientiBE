@@ -35,7 +35,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Località del cliente.
         /// </summary>
-        public string Dtc_Localita { get; set; }
+        public string? Dtc_Localita { get; set; }
 
         /// <summary>
         /// Provincia del cliente.

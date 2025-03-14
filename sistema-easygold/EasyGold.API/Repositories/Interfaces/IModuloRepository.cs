@@ -7,9 +7,9 @@ namespace EasyGold.API.Repositories.Interfaces
         Task<IEnumerable<DbModuloEasygold>> GetAllAsync();
 
         
-        Task<DbModuloCliente> GetByIdAsync(int id);
-        Task AddAsync(DbModuloCliente modulo);
-        Task UpdateAsync(DbModuloCliente modulo);
+        Task<DbModuloEasygold> GetByIdAsync(int id);
+        Task AddAsync(DbModuloEasygold modulo);
+        Task UpdateAsync(DbModuloEasygold modulo);
         Task DeleteAsync(int id);
     }
 }

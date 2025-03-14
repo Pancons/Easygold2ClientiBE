@@ -62,10 +62,11 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpPost("save")]
         [Authorize]
-        public async Task<IActionResult> SaveClient([FromForm] ClienteDettaglioDTO clienteDto)
+        public async Task<IActionResult> SaveClient([FromBody] ClienteDettaglioDTO clienteDto)
         {
             try
             {
+                Console.WriteLine($"DTO ricevuto - Moduli: {clienteDto.Moduli?.Count}, Allegati: {clienteDto.Allegati?.Count}, Negozi: {clienteDto.Negozi?.Count}");
 
                 if (!ModelState.IsValid)
                 {

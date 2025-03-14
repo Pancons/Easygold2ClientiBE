@@ -62,5 +62,8 @@ namespace EasyGold.API.Models.Entities
         /// Indica se il cliente è bloccato.
         /// </summary>
         public bool Utw_Blocco { get; set; }
+
+        public ICollection<DbModuloCliente> ModuliClienti { get; set; } = new List<DbModuloCliente>();
+    
     }
 }
