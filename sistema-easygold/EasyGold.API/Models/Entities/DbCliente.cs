@@ -16,12 +16,12 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Nome della connessione del cliente.
         /// </summary>
-        public string Utw_NomeConnessione { get; set; }
+        public string? Utw_NomeConnessione { get; set; }
 
         /// <summary>
         /// Stringa di connessione del cliente.
         /// </summary>
-        public string Utw_StringaConnessione { get; set; }
+        public string? Utw_StringaConnessione { get; set; }
 
         /// <summary>
         /// Data di attivazione del cliente.
@@ -51,16 +51,19 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Percorso dei report per il cliente.
         /// </summary>
-        public string Utw_PercorsoReports { get; set; }
+        public string? Utw_PercorsoReports { get; set; }
 
         /// <summary>
         /// Percorso delle immagini per il cliente.
         /// </summary>
-        public string Utw_PercorsoImmagini { get; set; }
+        public string? Utw_PercorsoImmagini { get; set; }
 
         /// <summary>
         /// Indica se il cliente è bloccato.
         /// </summary>
         public bool Utw_Blocco { get; set; }
+
+        public ICollection<DbModuloCliente> ModuliClienti { get; set; } = new List<DbModuloCliente>();
+    
     }
 }

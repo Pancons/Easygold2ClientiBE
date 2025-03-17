@@ -7,10 +7,11 @@ using EasyGold.API.Models;
 using EasyGold.API.Models.Utenti;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using EasyGold.API.Services.Interfaces;
 
 namespace EasyGold.API.Services.Implementations
 {
-    public class UtenteService
+    public class UtenteService : IUtenteService
     {
         private readonly IUtenteRepository _utenteRepository;
         private readonly IMapper _mapper;
@@ -47,19 +48,30 @@ namespace EasyGold.API.Services.Implementations
             await _utenteRepository.DeleteAsync(id);
         }
         */
-        public async Task<(IEnumerable<UtenteDTO> Users, int Total)> GetUsersListAsync(UserFilterDTO filter)
+       public async Task<(IEnumerable<UtenteDTO> Users, int Total)> GetUsersListAsync(UserFilterDTO filter)
         {
-            return await _utenteRepository.GetUsersListAsync(filter);
+            var (utentiData, total) = await _utenteRepository.GetUsersListAsync(filter);
+            
+            // ✅ Mappa una LISTA di DbUtente in una LISTA di UtenteDTO
+            var utentiDataConverted = _mapper.Map<List<UtenteDTO>>(utentiData);
+
+            return (utentiDataConverted, total);
         }
 
         public async Task<UtenteDTO> GetUserByIdAsync(int id)
         {
-            return await _utenteRepository.GetUserByIdAsync(id);
+            var utenteDettaglioDto = await _utenteRepository.GetUserByIdAsync(id);
+            return _mapper.Map<UtenteDTO>(utenteDettaglioDto);
+         
         }
 
         public async Task AddAsync(UtenteDTO utenteDettaglioDto)
         {
             var utente = _mapper.Map<DbUtente>(utenteDettaglioDto);
+
+            // 🔹 Cripta la password prima di salvare l'utente
+            utente.Ute_Password = BCrypt.Net.BCrypt.HashPassword(utenteDettaglioDto.Ute_Password);
+
             await _utenteRepository.AddAsync(utente);
         }
 

@@ -36,15 +36,15 @@ namespace EasyGold.API.Migrations
                 {
                     Utw_IDClienteAuto = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Utw_NomeConnessione = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Utw_StringaConnessione = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Utw_NomeConnessione = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Utw_StringaConnessione = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Utw_DataAttivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Utw_DataDisattivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Utw_NegoziAttivabili = table.Column<int>(type: "int", nullable: false),
                     Utw_NegoziVirtuali = table.Column<int>(type: "int", nullable: false),
                     Utw_UtentiAttivi = table.Column<int>(type: "int", nullable: false),
-                    Utw_PercorsoReports = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Utw_PercorsoImmagini = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Utw_PercorsoReports = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Utw_PercorsoImmagini = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Utw_Blocco = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -87,25 +87,21 @@ namespace EasyGold.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ModuloClienti",
+                name: "ModuloEasygold",
                 columns: table => new
                 {
-                    Mdc_IDModulo = table.Column<int>(type: "int", nullable: false),
-                    Mdc_IDCliente = table.Column<int>(type: "int", nullable: false)
+                    Mde_IDAuto = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Mdc_DataAttivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Mdc_DataDisattivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Mdc_BloccoModulo = table.Column<bool>(type: "bit", nullable: false),
-                    Mdc_DataOraBlocco = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Mdc_Nota = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Mde_Descrizione = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Mde_DescrizioneEstesa = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ModuloClienti", x => x.Mdc_IDModulo);
+                    table.PrimaryKey("PK_ModuloEasygold", x => x.Mde_IDAuto);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ModuloEasygoldLangs",
+                name: "ModuloEasygoldLang",
                 columns: table => new
                 {
                     Mdeid_ID = table.Column<int>(type: "int", nullable: false),
@@ -116,21 +112,7 @@ namespace EasyGold.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ModuloEasygoldLangs", x => x.Mdeid_ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ModuloEasygolds",
-                columns: table => new
-                {
-                    Mde_IDAuto = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Mde_Descrizione = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Mde_DescrizioneEstesa = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ModuloEasygolds", x => x.Mde_IDAuto);
+                    table.PrimaryKey("PK_ModuloEasygoldLang", x => x.Mdeid_ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -139,6 +121,7 @@ namespace EasyGold.API.Migrations
                 {
                     Neg_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Neg_IDCliente = table.Column<int>(type: "int", nullable: false),
                     Neg_RagioneSociale = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Neg_NomeNegozio = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Neg_DataAttivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -182,6 +165,47 @@ namespace EasyGold.API.Migrations
                 {
                     table.PrimaryKey("PK_Utenti", x => x.Ute_IDUtente);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "ModuloClienti",
+                columns: table => new
+                {
+                    Mdc_IDAuto = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Mdc_IDCliente = table.Column<int>(type: "int", nullable: false),
+                    Mdc_IDModulo = table.Column<int>(type: "int", nullable: false),
+                    Mdc_DataAttivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Mdc_DataDisattivazione = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Mdc_BloccoModulo = table.Column<bool>(type: "bit", nullable: false),
+                    Mdc_DataOraBlocco = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Mdc_Nota = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModuloClienti", x => x.Mdc_IDAuto);
+                    table.ForeignKey(
+                        name: "FK_ModuloClienti_Clienti_Mdc_IDCliente",
+                        column: x => x.Mdc_IDCliente,
+                        principalTable: "Clienti",
+                        principalColumn: "Utw_IDClienteAuto",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ModuloClienti_ModuloEasygold_Mdc_IDModulo",
+                        column: x => x.Mdc_IDModulo,
+                        principalTable: "ModuloEasygold",
+                        principalColumn: "Mde_IDAuto",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ModuloClienti_Mdc_IDCliente",
+                table: "ModuloClienti",
+                column: "Mdc_IDCliente");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ModuloClienti_Mdc_IDModulo",
+                table: "ModuloClienti",
+                column: "Mdc_IDModulo");
         }
 
         /// <inheritdoc />
@@ -191,19 +215,13 @@ namespace EasyGold.API.Migrations
                 name: "Allegati");
 
             migrationBuilder.DropTable(
-                name: "Clienti");
-
-            migrationBuilder.DropTable(
                 name: "DatiClienti");
 
             migrationBuilder.DropTable(
                 name: "ModuloClienti");
 
             migrationBuilder.DropTable(
-                name: "ModuloEasygoldLangs");
-
-            migrationBuilder.DropTable(
-                name: "ModuloEasygolds");
+                name: "ModuloEasygoldLang");
 
             migrationBuilder.DropTable(
                 name: "Negozi");
@@ -213,6 +231,12 @@ namespace EasyGold.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Utenti");
+
+            migrationBuilder.DropTable(
+                name: "Clienti");
+
+            migrationBuilder.DropTable(
+                name: "ModuloEasygold");
         }
     }
 }

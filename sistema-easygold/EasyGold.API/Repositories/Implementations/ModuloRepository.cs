@@ -19,20 +19,20 @@ namespace EasyGold.API.Repositories.Implementations
             return await _context.ModuloEasygold.ToListAsync();
         }
 
-        public async Task<DbModuloCliente> GetByIdAsync(int id)
+        public async Task<DbModuloEasygold> GetByIdAsync(int id)
         {
-            return await _context.ModuloClienti.FindAsync(id);
+            return await _context.ModuloEasygold.FindAsync(id);
         }
 
-        public async Task AddAsync(DbModuloCliente modulo)
+        public async Task AddAsync(DbModuloEasygold modulo)
         {
-            await _context.ModuloClienti.AddAsync(modulo);
+            await _context.ModuloEasygold.AddAsync(modulo);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(DbModuloCliente modulo)
+        public async Task UpdateAsync(DbModuloEasygold modulo)
         {
-            _context.ModuloClienti.Update(modulo);
+            _context.ModuloEasygold.Update(modulo);
             await _context.SaveChangesAsync();
         }
 
@@ -41,7 +41,7 @@ namespace EasyGold.API.Repositories.Implementations
             var modulo = await GetByIdAsync(id);
             if (modulo != null)
             {
-                _context.ModuloClienti.Remove(modulo);
+                _context.ModuloEasygold.Remove(modulo);
                 await _context.SaveChangesAsync();
             }
         }

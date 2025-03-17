@@ -12,7 +12,7 @@ namespace EasyGold.API.Repositories.Interfaces
       
         Task DeleteAsync(int id);
         */ 
-        Task<(IEnumerable<UtenteDTO> Users, int Total)> GetUsersListAsync(UserFilterDTO filter);
+        Task<(IEnumerable<DbUtente> Users, int Total)> GetUsersListAsync(UserFilterDTO filter);
         Task<UtenteDTO> GetUserByIdAsync(int id);
 
         Task AddAsync(DbUtente utente);

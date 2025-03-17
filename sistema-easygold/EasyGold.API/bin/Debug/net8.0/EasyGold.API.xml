@@ -236,7 +236,17 @@
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_ImgUrl">
             <summary>
-            URL dell'immagine allegata.
+            URL dell'immagine allegata (solo lettura).
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_FileBase64">
+            <summary>
+            Base64 del file allegato (non salvato nel database).
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Models.Entities.DbAllegato.SetImgUrl(System.String)">
+            <summary>
+            Imposta l'URL dell'immagine allegata (solo internamente nel codice).
             </summary>
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_IDClienteAuto">
@@ -409,6 +419,21 @@
             Ranking del cliente.
             </summary>
         </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Valuta">
+            <summary>
+            Valuta corrente del cliente
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_NumeroContratto">
+            <summary>
+            Numero Contratto 
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_IDAuto">
+            <summary>
+            ID univoco del record (chiave primaria).
+            </summary>
+        </member>
         <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_IDCliente">
             <summary>
             ID del cliente associato al modulo.
@@ -442,6 +467,51 @@
         <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_Nota">
             <summary>
             Note aggiuntive sul modulo per il cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Cliente">
+            <summary>
+            Relazione con il Cliente
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Modulo">
+            <summary>
+            Relazione con il Modulo
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.GetAllAsync">
+            <summary>
+            Recupera tutti gli allegati dal database.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.GetByIdAsync(System.Int32)">
+            <summary>
+            Recupera un allegato per ID.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.AddAsync(EasyGold.API.Models.Entities.DbAllegato)">
+            <summary>
+            Aggiunge un nuovo allegato e salva il file su disco.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.UpdateAsync(EasyGold.API.Models.Entities.DbAllegato)">
+            <summary>
+            Aggiorna un allegato esistente e il relativo file.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Elimina un allegato e rimuove il file associato.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.SaveFileAsync(EasyGold.API.Models.Entities.DbAllegato,System.String)">
+            <summary>
+            Salva il file su disco e restituisce il percorso relativo.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.DeleteFile(System.String)">
+            <summary>
+            Elimina un file dal disco.
             </summary>
         </member>
     </members>

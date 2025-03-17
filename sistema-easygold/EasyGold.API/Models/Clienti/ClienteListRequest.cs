@@ -5,7 +5,7 @@ namespace EasyGold.API.Models.Clienti
     public class ClienteListRequest
     {
         [SwaggerSchema(Description = "Filtri per la ricerca dei clienti")]
-        public ClienteFilter Filters { get; set; }
+        public ClienteFilter? Filters { get; set; }
 
         [SwaggerSchema(Description = "Offset per la paginazione dei risultati")]
         public int Offset { get; set; } = 0;
@@ -14,7 +14,7 @@ namespace EasyGold.API.Models.Clienti
         public int Limit { get; set; } = 20;
 
         [SwaggerSchema(Description = "Opzioni di ordinamento")]
-        public SortOptions Sort { get; set; }
+        public SortOptions? Sort { get; set; }
     }
 
     public class ClienteFilter

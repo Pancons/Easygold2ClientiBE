@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/EasyGold.API.Tests.csproj": {}
+    "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/EasyGold.API.Tests.csproj": {}
   },
   "projects": {
-    "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/EasyGold.API.Tests.csproj": {
+    "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/EasyGold.API.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/EasyGold.API.Tests.csproj",
+        "projectUniqueName": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/EasyGold.API.Tests.csproj",
         "projectName": "EasyGold.API.Tests",
-        "projectPath": "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/EasyGold.API.Tests.csproj",
+        "projectPath": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/EasyGold.API.Tests.csproj",
         "packagesPath": "/home/ubuntu/.nuget/packages/",
-        "outputPath": "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/obj/",
+        "outputPath": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ubuntu/.nuget/NuGet/NuGet.Config"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj": {
-                "projectPath": "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj"
+              "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj": {
+                "projectPath": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj"
               }
             }
           }
@@ -100,18 +100,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/mnt/newdisk/usr/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj": {
+    "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj",
+        "projectUniqueName": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj",
         "projectName": "EasyGold.API",
-        "projectPath": "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj",
+        "projectPath": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/EasyGold.API.csproj",
         "packagesPath": "/home/ubuntu/.nuget/packages/",
-        "outputPath": "/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/obj/",
+        "outputPath": "/mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ubuntu/.nuget/NuGet/NuGet.Config"
@@ -217,7 +217,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/mnt/newdisk/usr/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

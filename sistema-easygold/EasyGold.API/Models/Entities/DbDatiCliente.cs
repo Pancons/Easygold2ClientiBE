@@ -35,7 +35,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Località del cliente.
         /// </summary>
-        public string Dtc_Localita { get; set; }
+        public string? Dtc_Localita { get; set; }
 
         /// <summary>
         /// Provincia del cliente.
@@ -121,5 +121,16 @@ namespace EasyGold.API.Models.Entities
         /// Ranking del cliente.
         /// </summary>
         public int Dtc_Ranking { get; set; }
+
+        /// <summary>
+        /// Valuta corrente del cliente
+        /// </summary>
+        public string Dtc_Valuta { get; }
+
+        /// <summary>
+        /// Numero Contratto 
+        /// </summary>
+        public string Dtc_NumeroContratto { get; }
+
     }
 }

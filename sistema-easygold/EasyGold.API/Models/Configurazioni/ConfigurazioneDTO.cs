@@ -17,10 +17,6 @@ namespace EasyGold.API.Models.Configurazioni
         [SwaggerSchema(Description = "Numero massimo di utenti attivi")]
         public int Utw_UtentiAttivi { get; set; }
 
-        [Range(0, int.MaxValue)]
-        [SwaggerSchema(Description = "Numero massimo di postazioni")]
-        public int Utw_Postazioni { get; set; }
-
         [DataType(DataType.Date)]
         [SwaggerSchema(Description = "Data di attivazione della configurazione")]
         public DateTime Utw_DataAttivazione { get; set; }

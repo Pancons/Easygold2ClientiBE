@@ -8,7 +8,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// ID dell'allegato.
         /// </summary>
-        [Key]  // <- Definisce la chiave primaria
+        [Key]  
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int All_IDAllegato { get; set; }
 
@@ -43,8 +43,22 @@ namespace EasyGold.API.Models.Entities
         public string All_Note { get; set; }
 
         /// <summary>
-        /// URL dell'immagine allegata.
+        /// URL dell'immagine allegata (solo lettura).
         /// </summary>
-        public string All_ImgUrl { get; set; }
+        public string All_ImgUrl { get;  set; }
+
+        /// <summary>
+        /// Base64 del file allegato (non salvato nel database).
+        /// </summary>
+        [NotMapped]
+        public string All_FileBase64 { get; set; }
+
+        /// <summary>
+        /// Imposta l'URL dell'immagine allegata (solo internamente nel codice).
+        /// </summary>
+        public void SetImgUrl(string url)
+        {
+            All_ImgUrl = url;
+        }
     }
 }

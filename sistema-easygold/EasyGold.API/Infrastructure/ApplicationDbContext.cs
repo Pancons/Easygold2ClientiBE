@@ -25,10 +25,18 @@ namespace EasyGold.API.Infrastructure
             modelBuilder.Entity<DbCliente>().HasKey(c => c.Utw_IDClienteAuto);
             modelBuilder.Entity<DbUtente>().HasKey(u => u.Ute_IDUtente);
             modelBuilder.Entity<DbModuloEasygoldLang>().HasKey(m => m.Mdeid_ID); // Assuming Id is the primary key
-            modelBuilder.Entity<DbModuloCliente>().HasKey(m => m.Mdc_IDModulo); // Assuming Id is the primary key
             modelBuilder.Entity<DbModuloEasygold>().HasKey(m => m.Mde_IDAuto    ); // Assuming Id is the primary key
             modelBuilder.Entity<DbDatiCliente>().HasKey(d => d.Dtc_IDCliente); // Assuming Id is the primary key
             
+            modelBuilder.Entity<DbModuloCliente>()
+                .HasOne(mc => mc.Cliente)
+                .WithMany(c => c.ModuliClienti)
+                .HasForeignKey(mc => mc.Mdc_IDCliente);
+
+            modelBuilder.Entity<DbModuloCliente>()
+                .HasOne(mc => mc.Modulo)
+                .WithMany(m => m.ModuliClienti)
+                .HasForeignKey(mc => mc.Mdc_IDModulo);
         }
     }
 }

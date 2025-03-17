@@ -13,7 +13,7 @@ namespace EasyGold.API.Services.Interfaces
         Task AddAsync(ClienteDettaglioDTO clienteDettaglioDto);
         Task UpdateAsync(ClienteDettaglioDTO clienteDettaglioDto);
         Task DeleteAsync(int id);
-        */
+        */ 
         Task<ClienteListResult> GetClientiListAsync(ClienteListRequest request);
         Task<ClienteDettaglioDTO> CreateClienteAsync(ClienteDettaglioDTO clienteDto);
         Task<ClienteDettaglioDTO> UpdateClienteAsync(int id, ClienteDettaglioDTO clienteDto);

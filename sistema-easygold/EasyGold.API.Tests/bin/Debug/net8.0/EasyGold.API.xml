@@ -199,6 +199,18 @@
         <member name="M:EasyGold.API.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.Rimossa_S_da_tabelle_Moduli.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_IDAllegato">
             <summary>
             ID dell'allegato.

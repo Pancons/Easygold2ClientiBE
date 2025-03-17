@@ -37,9 +37,6 @@ namespace EasyGold.API.Models.Clienti
         [SwaggerSchema(Description = "Stato del cliente")]
         public string Dtc_Stato { get; set; }
 
-        [SwaggerSchema(Description = "Indica se il cliente è attivo")]
-        public bool Utw_Attivo { get; set; }
-
         [SwaggerSchema(Description = "Indica se il cliente è bloccato")]
         public bool Utw_Bloccato { get; set; }
     }

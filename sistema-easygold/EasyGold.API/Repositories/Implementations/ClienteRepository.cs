@@ -6,171 +6,263 @@ using EasyGold.API.Models.Entities;
 using EasyGold.API.Models.Moduli;
 using EasyGold.API.Models.Negozi;
 using EasyGold.API.Repositories.Interfaces;
+using EasyGold.API.Repositories.Implementations;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EasyGold.API.Models.Moduli;
+
 
 namespace EasyGold.API.Repositories.Implementations
 {
     public class ClienteRepository : IClienteRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IAllegatoRepository _allegatoRepository;
+        private readonly IModuloClienteRepository _moduloClienteRepository;
+        private readonly IModuloRepository _moduloRepository;
+        private readonly INegozioRepository _negozioRepository;
 
-        public ClienteRepository(ApplicationDbContext context)
+        public ClienteRepository(ApplicationDbContext context,IAllegatoRepository allegatoRepository,IModuloClienteRepository moduloClienteRepository,IModuloRepository  moduloRepository,INegozioRepository negozioRepository)
         {
             _context = context;
+            _allegatoRepository = allegatoRepository;
+            _moduloClienteRepository = moduloClienteRepository;
+            _moduloRepository = moduloRepository;
+            _negozioRepository = negozioRepository;
         }
 
-        public async Task<(IEnumerable<DbCliente> Clienti, int Total)> GetClientiAsync(
-        ClienteFilter filters, int offset, int limit, string sortField, string sortOrder)
+        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente)> Clienti, int Total)> 
+            GetClientiAsync(ClienteFilter filters, int offset, int limit, string sortField, string sortOrder)
         {
             var query = from cliente in _context.Clienti
                         join datiCliente in _context.DatiClienti
-                        on cliente.Utw_IDClienteAuto equals datiCliente.Dtc_IDCliente
-                        where (string.IsNullOrEmpty(filters.DtcRagioneSociale) || datiCliente.Dtc_RagioneSociale.Contains(filters.DtcRagioneSociale))
-                           && (string.IsNullOrEmpty(filters.DtcGioielleria) || datiCliente.Dtc_Gioielleria.Contains(filters.DtcGioielleria))
-                           && (!filters.NonAttivi.HasValue || (filters.NonAttivi.Value && cliente.Utw_DataDisattivazione != null))
-                           && (!filters.Scaduti.HasValue || (filters.Scaduti.Value && cliente.Utw_DataAttivazione < DateTime.UtcNow.AddYears(-1)))
-                        select cliente;
+                        on cliente.Utw_IDClienteAuto equals datiCliente.Dtc_IDCliente into clientiGroup
+                        from datiCliente in clientiGroup.DefaultIfEmpty() // ✅ Permette datiCliente null
+                        where (filters == null || string.IsNullOrEmpty(filters.DtcRagioneSociale) || datiCliente.Dtc_RagioneSociale.Contains(filters.DtcRagioneSociale))
+                        && (filters == null || string.IsNullOrEmpty(filters.DtcGioielleria) || datiCliente.Dtc_Gioielleria.Contains(filters.DtcGioielleria))
+                        && (filters == null || !filters.NonAttivi.HasValue || (filters.NonAttivi.Value && cliente.Utw_DataDisattivazione != null))
+                        && (filters == null || !filters.Scaduti.HasValue || (filters.Scaduti.Value && cliente.Utw_DataAttivazione < DateTime.UtcNow.AddYears(-1)))
+                        select new { Cliente = cliente, DatiCliente = datiCliente };
 
+            // Conteggio totale dei risultati prima della paginazione
             int total = await query.CountAsync();
 
+            // ✅ Verifica che il campo di ordinamento esista in entrambe le tabelle
             if (!string.IsNullOrEmpty(sortField))
             {
-                query = sortOrder.ToLower() == "asc"
-                    ? query.OrderBy(c => EF.Property<object>(c, sortField))
-                    : query.OrderByDescending(c => EF.Property<object>(c, sortField));
+                bool isClienteField = typeof(DbCliente).GetProperty(sortField) != null;
+                bool isDatiClienteField = typeof(DbDatiCliente).GetProperty(sortField) != null;
+
+                if (isClienteField)
+                {
+                    query = sortOrder?.ToLower() == "asc"
+                        ? query.OrderBy(c => EF.Property<object>(c.Cliente, sortField))
+                        : query.OrderByDescending(c => EF.Property<object>(c.Cliente, sortField));
+                }
+                else if (isDatiClienteField)
+                {
+                    query = sortOrder?.ToLower() == "asc"
+                        ? query.OrderBy(c => EF.Property<object>(c.DatiCliente, sortField))
+                        : query.OrderByDescending(c => EF.Property<object>(c.DatiCliente, sortField));
+                }
             }
 
+            // Paginazione (Skip & Take)
             var clienti = await query.Skip(offset).Take(limit).ToListAsync();
-            return (clienti, total);
-        }
 
-        public async Task AddClienteAsync(DbCliente cliente, DbDatiCliente datiCliente)
+            // ✅ Converte la lista di oggetti anonimi in una tupla di entità
+            var result = clienti.Select(x => (x.Cliente, x.DatiCliente)).ToList();
+
+            return (result, total);
+        }
+    
+        public async Task AddClienteAsync(
+            DbCliente cliente,
+            DbDatiCliente datiCliente,
+            List<ModuloIntermedio> moduli,
+            List<DbAllegato> allegati,
+            List<DbNegozi> negozi)
         {
+            // Aggiunta del cliente
             await _context.Clienti.AddAsync(cliente);
+            await _context.SaveChangesAsync(); // Generazione dell'ID cliente
+
+            // Assegnazione ID Cliente ai negozi
+            negozi.ForEach(n => n.Neg_IDCliente = cliente.Utw_IDClienteAuto);
+
+            // Aggiunta dei dati cliente
             await _context.DatiClienti.AddAsync(datiCliente);
-            await _context.SaveChangesAsync();
-        }
 
-        public async Task UpdateClienteAsync(ClienteDettaglioDTO clienteDto)
-        {
-            var cliente = await _context.Clienti.FindAsync(clienteDto.Utw_IDClienteAuto);
-            if (cliente == null) return;
-
-            cliente.Utw_NomeConnessione = clienteDto.Dtc_RagioneSociale;
-            cliente.Utw_DataAttivazione = clienteDto.Utw_DataAttivazione;
-            cliente.Utw_DataDisattivazione = clienteDto.Utw_DataDisattivazione;
-            cliente.Utw_NegoziAttivabili = clienteDto.Configurazione.Utw_NegoziAttivabili;
-            cliente.Utw_NegoziVirtuali = clienteDto.Configurazione.Utw_NegoziVirtuali;
-            cliente.Utw_UtentiAttivi = clienteDto.Configurazione.Utw_UtentiAttivi;
-            cliente.Utw_Blocco = clienteDto.Utw_Bloccato;
-
-            _context.Clienti.Update(cliente);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<ClienteDettaglioDTO> GetClienteByIdAsync(int id)
-        {
-            // Recupero i dati principali del Cliente con Join sui dati anagrafici
-            var cliente = await (from c in _context.Clienti
-                                 join d in _context.DatiClienti on c.Utw_IDClienteAuto equals d.Dtc_IDCliente
-                                 where c.Utw_IDClienteAuto == id
-                                 select new ClienteDettaglioDTO
-                                 {
-                                     Utw_IDClienteAuto = c.Utw_IDClienteAuto,
-                                     Dtc_RagioneSociale = d.Dtc_RagioneSociale,
-                                     Dtc_Gioielleria = d.Dtc_Gioielleria,
-                                     Dtc_Indirizzo = d.Dtc_Indirizzo,
-                                     Dtc_Citta = d.Dtc_Localita,
-                                     Dtc_CAP = d.Dtc_CAP,
-                                     Dtc_Provincia = d.Dtc_Provincia,
-                                     Dtc_StatoRegione = d.Dtc_StatoRegione,
-                                     Dtc_Nazione = d.Dtc_Nazione,
-                                     Dtc_PartitaIVA = d.Dtc_PartitaIVA,
-                                     Dtc_CodiceFiscale = d.Dtc_CodiceFiscale,
-                                     Dtc_REA = d.Dtc_REA,
-                                     Dtc_CapitaleSociale = d.Dtc_CapitaleSociale,
-                                     Dtc_PEC = d.Dtc_PEC,
-                                     Dtc_ReferenteCognome = d.Dtc_ReferenteCognome,
-                                     Dtc_ReferenteNome = d.Dtc_ReferenteNome,
-                                     Dtc_ReferenteTelefono = d.Dtc_ReferenteTelefono,
-                                     Dtc_ReferenteCellulare = d.Dtc_ReferenteCellulare,
-                                     Dtc_ReferenteEmail = d.Dtc_ReferenteEmail,
-                                     Dtc_ReferenteWeb = d.Dtc_ReferenteWeb,
-                                     Dtc_Ranking = d.Dtc_Ranking,
-                                     Utw_DataAttivazione = c.Utw_DataAttivazione,
-                                     Utw_DataDisattivazione = c.Utw_DataDisattivazione,
-                                     Dtc_Stato = d.Dtc_StatoRegione,
-                                     Utw_Attivo = c.Utw_DataDisattivazione == null,
-                                     Utw_Bloccato = c.Utw_Blocco,
-
-                                     // Configurazione cliente
-                                     Configurazione = new ConfigurazioneDTO
-                                     {
-                                         Utw_NegoziAttivabili = c.Utw_NegoziAttivabili,
-                                         Utw_NegoziVirtuali = c.Utw_NegoziVirtuali,
-                                         Utw_UtentiAttivi = c.Utw_UtentiAttivi,
-                                         Utw_DataAttivazione = c.Utw_DataAttivazione,
-                                         Utw_DataDisattivazione = c.Utw_DataDisattivazione,
-                                         Utw_Blocco = c.Utw_Blocco
-                                     }
-                                 }).FirstOrDefaultAsync();
-
-            if (cliente == null)
+            // **Gestione Allegati tramite Repository**
+            foreach (var allegato in allegati)
             {
-                return null;
+                allegato.All_RecordId = cliente.Utw_IDClienteAuto;
+                await _allegatoRepository.AddAsync(allegato);
             }
 
-            // Recupero separato dei Moduli associati al Cliente
-            cliente.Moduli = await _context.ModuloClienti
+            // **Gestione Negozi tramite Repository**
+            foreach (var negozio in negozi)
+            {
+                var negozioEsistente = await _negozioRepository.GetByIdAsync(negozio.Neg_id);
+                if (negozioEsistente == null)
+                {
+                    negozio.Neg_IDCliente = cliente.Utw_IDClienteAuto;
+                    await _negozioRepository.AddAsync(negozio);
+                }
+            }
+
+            // **Gestione Moduli: Creazione e Associazione**
+            foreach (var modulo in moduli)
+            {
+                var moduloEsistente = await _moduloRepository.GetByIdAsync(modulo.Mde_IDAuto);
+                if (moduloEsistente == null)
+                {
+                    var moduloEasygold = new DbModuloEasygold
+                    {
+                        Mde_Descrizione = modulo.Mde_Descrizione,
+                        Mde_DescrizioneEstesa = modulo.Mde_DescrizioneEstesa
+                    };
+                    await _moduloRepository.AddAsync(moduloEasygold);
+                    moduloEsistente = moduloEasygold; // Aggiorna il riferimento
+                }
+
+                var moduloCliente = new DbModuloCliente
+                {
+                    Mdc_IDCliente = cliente.Utw_IDClienteAuto,
+                    Mdc_IDModulo = moduloEsistente.Mde_IDAuto,
+                    Mdc_DataAttivazione = modulo.Mdc_DataAttivazione,
+                    Mdc_DataDisattivazione = modulo.Mdc_DataDisattivazione,
+                    Mdc_BloccoModulo = modulo.Mdc_BloccoModulo,
+                    Mdc_DataOraBlocco = modulo.Mdc_DataOraBlocco,
+                    Mdc_Nota = modulo.Mdc_Nota
+                };
+                await _moduloClienteRepository.AddAsync(moduloCliente);
+            }
+
+            // Salvataggio finale
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateClienteAsync(
+            DbCliente cliente,
+            DbDatiCliente datiCliente,
+            List<ModuloIntermedio> moduli,
+            List<DbAllegato> allegati,
+            List<DbNegozi> negozi)
+        {
+            var clienteEsistente = await _context.Clienti.FindAsync(cliente.Utw_IDClienteAuto);
+            if (clienteEsistente == null)
+                throw new KeyNotFoundException("Cliente non trovato.");
+
+            // **Aggiornamento Cliente**
+            _context.Entry(clienteEsistente).CurrentValues.SetValues(cliente);
+
+            // **Aggiornamento Dati Cliente**
+            var datiClienteEsistenti = await _context.DatiClienti
+                .FirstOrDefaultAsync(d => d.Dtc_IDCliente == cliente.Utw_IDClienteAuto);
+
+            if (datiClienteEsistenti != null)
+                _context.Entry(datiClienteEsistenti).CurrentValues.SetValues(datiCliente);
+            else
+                await _context.DatiClienti.AddAsync(datiCliente);
+
+            // **Gestione Allegati tramite Repository**
+            foreach (var allegato in allegati)
+            {
+                allegato.All_RecordId = cliente.Utw_IDClienteAuto;
+                await _allegatoRepository.AddAsync(allegato);
+            }
+
+            foreach (var negozio in negozi)
+            {
+                var negozioEsistente = await _negozioRepository.GetByIdAsync(negozio.Neg_id);
+                
+                if (negozioEsistente == null)
+                {
+                    negozio.Neg_IDCliente = cliente.Utw_IDClienteAuto;
+                    await _negozioRepository.AddAsync(negozio);
+                }
+                else
+                {
+                    _context.Entry(negozioEsistente).CurrentValues.SetValues(negozio);
+                    await _negozioRepository.UpdateAsync(negozioEsistente);
+                }
+            }
+
+            // **Gestione Moduli: Creazione e Associazione**
+            foreach (var modulo in moduli)
+            {
+                var moduloEsistente = await _moduloRepository.GetByIdAsync(modulo.Mde_IDAuto);
+                if (moduloEsistente == null)
+                {
+                    var moduloEasygold = new DbModuloEasygold
+                    {
+                        Mde_Descrizione = modulo.Mde_Descrizione,
+                        Mde_DescrizioneEstesa = modulo.Mde_DescrizioneEstesa
+                    };
+                    await _moduloRepository.AddAsync(moduloEasygold);
+                    moduloEsistente = moduloEasygold;
+                }
+
+                // Controlla se l'associazione esiste già
+                var associazioneEsistente = await _moduloClienteRepository.GetByClienteAndModuloAsync(cliente.Utw_IDClienteAuto, moduloEsistente.Mde_IDAuto);
+                if (associazioneEsistente == null)
+                {
+                    var moduloCliente = new DbModuloCliente
+                    {
+                        Mdc_IDCliente = cliente.Utw_IDClienteAuto,
+                        Mdc_IDModulo = moduloEsistente.Mde_IDAuto,
+                        Mdc_DataAttivazione = modulo.Mdc_DataAttivazione,
+                        Mdc_DataDisattivazione = modulo.Mdc_DataDisattivazione,
+                        Mdc_BloccoModulo = modulo.Mdc_BloccoModulo,
+                        Mdc_DataOraBlocco = modulo.Mdc_DataOraBlocco,
+                        Mdc_Nota = modulo.Mdc_Nota
+                    };
+                    await _moduloClienteRepository.AddAsync(moduloCliente);
+                }
+                else
+                {
+                    _context.Entry(associazioneEsistente).CurrentValues.SetValues(modulo);
+                    await _moduloClienteRepository.UpdateAsync(associazioneEsistente);
+                }
+            }
+
+            // Salvataggio finale
+            await _context.SaveChangesAsync();
+        }
+
+        
+        public async Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold> Moduli, List<DbAllegato> Allegati, List<DbNegozi> Negozi)> 
+        GetClienteByIdAsync(int id)
+        {
+            var cliente = await _context.Clienti
+                .Where(c => c.Utw_IDClienteAuto == id)
+                .FirstOrDefaultAsync();
+
+            var datiCliente = await _context.DatiClienti
+                .Where(d => d.Dtc_IDCliente == id)
+                .FirstOrDefaultAsync();
+
+            var moduli = await _context.ModuloClienti
                 .Where(mc => mc.Mdc_IDCliente == id)
                 .Join(_context.ModuloEasygold,
-                      mc => mc.Mdc_IDModulo,
-                      me => me.Mde_IDAuto,
-                      (mc, me) => new ModuloDTO
-                      {
-                          Mdc_IDModulo = me.Mde_IDAuto,
-                          Mde_Descrizione = me.Mde_Descrizione,
-                          Mde_DescrizioneEstesa = me.Mde_DescrizioneEstesa,
-                          Mdc_DataAttivazione = mc.Mdc_DataAttivazione,
-                          Mdc_DataDisattivazione = mc.Mdc_DataDisattivazione,
-                          Mdc_BloccoModulo = mc.Mdc_BloccoModulo,
-                          Mdc_DataOraBlocco = mc.Mdc_DataOraBlocco,
-                          Mdc_Nota = mc.Mdc_Nota
-                      }).ToListAsync();
+                    mc => mc.Mdc_IDModulo,
+                    me => me.Mde_IDAuto,
+                    (mc, me) => me)
+                .ToListAsync();
 
-            // Recupero separato degli Allegati associati al Cliente
-            cliente.Allegati = await _context.Allegati
+            var allegati = await _context.Allegati
                 .Where(a => a.All_EntitaRiferimento == "Cliente" && a.All_RecordId == id)
-                .Select(a => new AllegatoDTO
-                {
-                    All_IDAllegato = a.All_IDAllegato,
-                    All_NomeFile = a.All_NomeFile,
-                    All_Estensione = a.All_Estensione,
-                    All_Dimensione = a.All_Dimensione,
-                    All_EntitaRiferimento = a.All_EntitaRiferimento,
-                    All_RecordId = a.All_RecordId,
-                    All_Note = a.All_Note,
-                    All_ImgUrl = a.All_ImgUrl
-                }).ToListAsync();
+                .ToListAsync();
 
-            // Recupero separato dei Negozi associati al Cliente
-            cliente.Negozi = await _context.Negozi
+            var negozi = await _context.Negozi
                 .Where(n => n.Neg_id == id)
-                .Select(n => new NegozioDTO
-                {
-                    Id = n.Neg_id,
-                    Neg_RagioneSociale = n.Neg_RagioneSociale,
-                    Neg_NomeNegozio = n.Neg_NomeNegozio,
-                    Neg_DataAttivazione = n.Neg_DataAttivazione,
-                    Neg_DataDisattivazione = n.Neg_DataDisattivazione,
-                    Neg_Bloccato = n.Neg_Bloccato,
-                    Neg_Note = n.Neg_Note
-                }).ToListAsync();
+                .ToListAsync();
 
-            return cliente;
+            return (cliente, datiCliente, moduli, allegati, negozi);
         }
+
         /*
                public async Task<IEnumerable<DbCliente>> GetAllAsync()
                {

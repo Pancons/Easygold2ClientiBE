@@ -85,19 +85,15 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Utw_NomeConnessione")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Utw_PercorsoImmagini")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Utw_PercorsoReports")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Utw_StringaConnessione")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Utw_UtentiAttivi")
@@ -207,8 +203,11 @@ namespace EasyGold.API.Migrations
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloCliente", b =>
                 {
-                    b.Property<int>("Mdc_IDModulo")
+                    b.Property<int>("Mdc_IDAuto")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mdc_IDAuto"));
 
                     b.Property<bool>("Mdc_BloccoModulo")
                         .HasColumnType("bit");
@@ -223,16 +222,20 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Mdc_IDCliente")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mdc_IDCliente"));
+                    b.Property<int>("Mdc_IDModulo")
+                        .HasColumnType("int");
 
                     b.Property<string>("Mdc_Nota")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Mdc_IDModulo");
+                    b.HasKey("Mdc_IDAuto");
+
+                    b.HasIndex("Mdc_IDCliente");
+
+                    b.HasIndex("Mdc_IDModulo");
 
                     b.ToTable("ModuloClienti");
                 });
@@ -298,6 +301,9 @@ namespace EasyGold.API.Migrations
 
                     b.Property<DateTime>("Neg_DataDisattivazione")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Neg_IDCliente")
+                        .HasColumnType("int");
 
                     b.Property<string>("Neg_NomeNegozio")
                         .IsRequired()
@@ -373,6 +379,35 @@ namespace EasyGold.API.Migrations
                     b.HasKey("Ute_IDUtente");
 
                     b.ToTable("Utenti");
+                });
+
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloCliente", b =>
+                {
+                    b.HasOne("EasyGold.API.Models.Entities.DbCliente", "Cliente")
+                        .WithMany("ModuliClienti")
+                        .HasForeignKey("Mdc_IDCliente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EasyGold.API.Models.Entities.DbModuloEasygold", "Modulo")
+                        .WithMany("ModuliClienti")
+                        .HasForeignKey("Mdc_IDModulo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Modulo");
+                });
+
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbCliente", b =>
+                {
+                    b.Navigation("ModuliClienti");
+                });
+
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloEasygold", b =>
+                {
+                    b.Navigation("ModuliClienti");
                 });
 #pragma warning restore 612, 618
         }
