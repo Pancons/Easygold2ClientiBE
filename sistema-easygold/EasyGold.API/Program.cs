@@ -128,7 +128,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // 🔹 Abilita Swagger solo in sviluppo
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Configuration.GetValue<bool>("EnableSwagger"))
 {
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EasyGold API v1"));
