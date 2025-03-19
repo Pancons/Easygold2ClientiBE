@@ -53,12 +53,13 @@ namespace EasyGold.API.Controllers
         }
 
         /// <summary>
-        /// Salva un nuovo cliente con i dettagli forniti.
+        /// Salva un nuovo cliente o aggiorna un cliente esistente con i dettagli forniti.
         /// </summary>
-        /// <param name="clienteDto">Dati del cliente da salvare</param>
-        /// <returns>Cliente creato</returns>
-        /// <response code="200">Cliente salvato con successo</response>
+        /// <param name="clienteDto">Dati del cliente da salvare o aggiornare</param>
+        /// <returns>Cliente creato o aggiornato</returns>
+        /// <response code="200">Cliente salvato o aggiornato con successo</response>
         /// <response code="400">Errore nei dati inviati</response>
+        /// <response code="404">Cliente non trovato (solo in caso di aggiornamento)</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("save")]
         [Authorize]
@@ -66,62 +67,40 @@ namespace EasyGold.API.Controllers
         {
             try
             {
-                Console.WriteLine($"DTO ricevuto - Moduli: {clienteDto.Moduli?.Count}, Allegati: {clienteDto.Allegati?.Count}, Negozi: {clienteDto.Negozi?.Count}");
+                if (clienteDto == null)
+                {
+                    return BadRequest(new { error = "Errore nei dati inviati" });
+                }
 
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
 
-                if (clienteDto == null)
-                    return BadRequest(new { error = "Errore nei dati inviati" });
-
-                var cliente = await _clienteService.CreateClienteAsync(clienteDto);
-                return Ok(new { cliente });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
-            }
-        }
-
-
-        /// <summary>
-        /// Aggiorna un cliente esistente con i dati forniti.
-        /// </summary>
-        /// <param name="id">ID del cliente da aggiornare</param>
-        /// <param name="clienteDto">Nuovi dati del cliente</param>
-        /// <returns>Cliente aggiornato</returns>
-        /// <response code="200">Cliente aggiornato con successo</response>
-        /// <response code="400">Errore nei dati inviati</response>
-        /// <response code="404">Cliente non trovato</response>
-        /// <response code="500">Errore interno del server</response>
-        [HttpPut("update/{id}")]
-        [Authorize]
-        public async Task<IActionResult> UpdateClient(int id, [FromBody] ClienteDettaglioDTO clienteDto)
-        {
-            try
-            {
-
-                 if (!ModelState.IsValid)
+                if (clienteDto.Utw_IDClienteAuto > 0) // Se ha un ID valido, esegue l'aggiornamento
                 {
-                    return BadRequest(ModelState);
+                    var clienteAggiornato = await _clienteService.UpdateClienteAsync(clienteDto.Utw_IDClienteAuto, clienteDto);
+                    if (clienteAggiornato == null)
+                    {
+                        return NotFound(new { error = "Cliente non trovato" });
+                    }
+
+                    return Ok(new { cliente = clienteAggiornato });
                 }
-                
-                if (clienteDto == null)
-                    return BadRequest(new { error = "Errore nei dati inviati" });
+                else // Altrimenti, crea un nuovo cliente
+                {
+                    Console.WriteLine($"DTO ricevuto - Moduli: {clienteDto.Moduli?.Count}, Allegati: {clienteDto.Allegati?.Count}, Negozi: {clienteDto.Negozi?.Count}");
 
-                var clienteAggiornato = await _clienteService.UpdateClienteAsync(id, clienteDto);
-                if (clienteAggiornato == null)
-                    return NotFound(new { error = "Cliente non trovato" });
-
-                return Ok(new { cliente = clienteAggiornato });
+                    var cliente = await _clienteService.CreateClienteAsync(clienteDto);
+                    return Ok(new { cliente });
+                }
             }
             catch (Exception ex)
             {
                 return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
             }
         }
+
 
         /// <summary>
         /// Restituisce i dettagli di un cliente specifico.

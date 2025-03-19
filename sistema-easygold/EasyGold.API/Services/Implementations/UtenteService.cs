@@ -65,7 +65,7 @@ namespace EasyGold.API.Services.Implementations
          
         }
 
-        public async Task AddAsync(UtenteDTO utenteDettaglioDto)
+        public async Task<UtenteDTO> AddAsync(UtenteDTO utenteDettaglioDto)
         {
             var utente = _mapper.Map<DbUtente>(utenteDettaglioDto);
 
@@ -73,13 +73,15 @@ namespace EasyGold.API.Services.Implementations
             utente.Ute_Password = BCrypt.Net.BCrypt.HashPassword(utenteDettaglioDto.Ute_Password);
 
             await _utenteRepository.AddAsync(utente);
+            return utenteDettaglioDto;
         }
 
 
-        public async Task UpdateAsync(UtenteDTO utenteDettaglioDto)
+        public async Task<UtenteDTO> UpdateAsync(UtenteDTO utenteDettaglioDto)
         {
             var utente = _mapper.Map<DbUtente>(utenteDettaglioDto);
             await _utenteRepository.UpdateAsync(utente);
+            return utenteDettaglioDto;
         }
 
     }

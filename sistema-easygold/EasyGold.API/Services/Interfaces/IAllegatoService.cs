@@ -8,8 +8,8 @@ namespace EasyGold.API.Services.Interfaces
     {
         Task<IEnumerable<AllegatoDTO>> GetAllAsync();
         Task<AllegatoDTO> GetByIdAsync(int id);
-        Task AddAsync(AllegatoDTO allegato);
-        Task UpdateAsync(AllegatoDTO allegato);
+        Task<AllegatoDTO> AddAsync(AllegatoDTO allegato);
+        Task<AllegatoDTO> UpdateAsync(AllegatoDTO allegato);
         Task DeleteAsync(int id);
     }
 

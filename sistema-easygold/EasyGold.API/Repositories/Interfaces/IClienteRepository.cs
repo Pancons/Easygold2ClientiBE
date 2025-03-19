@@ -10,7 +10,7 @@ namespace EasyGold.API.Repositories.Interfaces
     public interface IClienteRepository
     {
 
-        Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold> Moduli, List<DbAllegato> Allegati, List<DbNegozi> Negozi)> 
+        Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold> Moduli, List<DbAllegato> Allegati, List<DbNegozi> Negozi,List<DbNazioni> Nazioni)> 
         GetClienteByIdAsync(int id);
 
         Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente)> Clienti, int Total)> 

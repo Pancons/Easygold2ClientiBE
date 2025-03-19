@@ -135,12 +135,10 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_Localita")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Dtc_Nazione")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Dtc_Nazione")
+                        .HasColumnType("int");
 
                     b.Property<string>("Dtc_PEC")
                         .IsRequired()
@@ -283,6 +281,24 @@ namespace EasyGold.API.Migrations
                     b.HasKey("Mdeid_ID");
 
                     b.ToTable("ModuloEasygoldLang");
+                });
+
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbNazioni", b =>
+                {
+                    b.Property<int>("Naz_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Naz_id"));
+
+                    b.Property<string>("Naz_Nome")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Naz_id");
+
+                    b.ToTable("Nazioni");
                 });
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbNegozi", b =>

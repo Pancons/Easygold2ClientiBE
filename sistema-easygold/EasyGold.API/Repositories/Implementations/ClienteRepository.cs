@@ -233,7 +233,7 @@ namespace EasyGold.API.Repositories.Implementations
         }
 
         
-        public async Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold> Moduli, List<DbAllegato> Allegati, List<DbNegozi> Negozi)> 
+        public async Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold> Moduli, List<DbAllegato> Allegati, List<DbNegozi> Negozi,List<DbNazioni> Nazioni)> 
         GetClienteByIdAsync(int id)
         {
             var cliente = await _context.Clienti
@@ -259,8 +259,12 @@ namespace EasyGold.API.Repositories.Implementations
             var negozi = await _context.Negozi
                 .Where(n => n.Neg_id == id)
                 .ToListAsync();
+            
+            var nazioni = await _context.Nazioni
+                .Where(n => n.Naz_id == id)
+                .ToListAsync();
 
-            return (cliente, datiCliente, moduli, allegati, negozi);
+            return (cliente, datiCliente, moduli, allegati, negozi,nazioni);
         }
 
         /*

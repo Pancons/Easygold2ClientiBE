@@ -50,7 +50,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Nazione del cliente.
         /// </summary>
-        public string Dtc_Nazione { get; set; }
+        public int Dtc_Nazione { get; set; }
 
         /// <summary>
         /// Partita IVA del cliente.

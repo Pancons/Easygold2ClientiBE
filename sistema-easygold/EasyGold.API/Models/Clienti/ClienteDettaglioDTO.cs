@@ -2,6 +2,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using EasyGold.API.Models.Allegati;
 using EasyGold.API.Models.Moduli;
 using EasyGold.API.Models.Negozi;
+using EasyGold.API.Models.Nazioni;
 using EasyGold.API.Models.Configurazioni;
 using System.ComponentModel.DataAnnotations;
 
@@ -36,7 +37,7 @@ namespace EasyGold.API.Models.Clienti
         public string Dtc_StatoRegione { get; set; }
 
         [SwaggerSchema(Description = "Nazione del cliente")]
-        public string Dtc_Nazione { get; set; }
+        public int Dtc_Nazione { get; set; }
 
         [SwaggerSchema(Description = "Partita IVA del cliente")]
         public string Dtc_PartitaIVA { get; set; }
@@ -100,6 +101,9 @@ namespace EasyGold.API.Models.Clienti
 
         [SwaggerSchema(Description = "Lista dei negozi del cliente")]
         public List<NegozioDTO>? Negozi { get; set; }
+
+        [SwaggerSchema(Description = "Lista delle nazioni disponibili per la selezione")]
+        public List<NazioniDTO>? Nazioni { get; set; }
     }
 
 }

@@ -26,11 +26,11 @@ namespace EasyGold.API.Controllers
 
         /// <summary>
         /// Restituisce tutti gli allegati disponibili.
-        /// </summary>
+        /// </summary>s
         /// <returns>Lista degli allegati</returns>
         /// <response code="200">Lista allegati restituita con successo</response>
         /// <response code="500">Errore interno del server</response>
-        [HttpGet]
+        [HttpPost("list")]
         [Authorize]
         public async Task<IActionResult> GetAllAttachments()
         {
@@ -72,36 +72,16 @@ namespace EasyGold.API.Controllers
         [Authorize]
         public async Task<IActionResult> AddAttachment([FromBody] AllegatoDTO attachmentDto)
         {
-            await _allegatoService.AddAsync(attachmentDto);
-            return CreatedAtAction(nameof(GetAttachment), new { id = attachmentDto.All_IDAllegato }, attachmentDto);
-        }
 
-
-
-        /// <summary>
-        /// Aggiorna un allegato esistente.
-        /// </summary>
-        /// <param name="id">ID dell'allegato da aggiornare</param>
-        /// <param name="attachmentDto">Nuovi dati dell'allegato</param>
-        /// <returns>Conferma aggiornamento</returns>
-        /// <response code="204">Allegato aggiornato con successo</response>
-        /// <response code="400">Errore nei dati inviati</response>
-        /// <response code="404">Allegato non trovato</response>
-        /// <response code="500">Errore interno del server</response>
-
-        [HttpPut("{id}")]
-        [Authorize]
-        public async Task<IActionResult> UpdateAttachment(int id, [FromBody] AllegatoDTO attachmentDto)
-        {
-            if (id != attachmentDto.All_IDAllegato)
-            {
-                return BadRequest();
+            if(attachmentDto.All_IDAllegato>0){
+                var attachment = await _allegatoService.UpdateAsync(attachmentDto);
+                return  Ok(new { attachment });
+            }else{
+                var attachment = await _allegatoService.AddAsync(attachmentDto);
+                return  Ok(new { attachment });
             }
-
-            await _allegatoService.UpdateAsync(attachmentDto);
-            return NoContent();
+            
         }
-
 
         /// <summary>
         /// Elimina un allegato specifico.

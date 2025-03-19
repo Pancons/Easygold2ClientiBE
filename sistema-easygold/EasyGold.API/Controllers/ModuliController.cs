@@ -27,11 +27,10 @@ namespace EasyGold.API.Controllers
         /// <returns>Lista di moduli</returns>
         /// <response code="200">Moduli restituiti con successo</response>
         /// <response code="500">Errore interno del server</response>
-        [HttpGet("dropdown")]
+        [HttpPost("list")]
         [Authorize]
-        public async Task<IActionResult> GetModulesDropdown()
+        public async Task<IActionResult> GetModulesList()
         {
-            // Usa il servizio per ottenere i moduli
             try
             {
                 var modules = await _moduloService.GetAllAsync();

@@ -12,7 +12,7 @@
         <member name="M:EasyGold.API.Controllers.AllegatoController.GetAllAttachments">
             <summary>
             Restituisce tutti gli allegati disponibili.
-            </summary>
+            </summary>s
             <returns>Lista degli allegati</returns>
             <response code="200">Lista allegati restituita con successo</response>
             <response code="500">Errore interno del server</response>
@@ -35,18 +35,6 @@
             <returns>Allegato creato</returns>
             <response code="201">Allegato creato con successo</response>
             <response code="400">Errore nei dati inviati</response>
-            <response code="500">Errore interno del server</response>
-        </member>
-        <member name="M:EasyGold.API.Controllers.AllegatoController.UpdateAttachment(System.Int32,EasyGold.API.Models.Allegati.AllegatoDTO)">
-            <summary>
-            Aggiorna un allegato esistente.
-            </summary>
-            <param name="id">ID dell'allegato da aggiornare</param>
-            <param name="attachmentDto">Nuovi dati dell'allegato</param>
-            <returns>Conferma aggiornamento</returns>
-            <response code="204">Allegato aggiornato con successo</response>
-            <response code="400">Errore nei dati inviati</response>
-            <response code="404">Allegato non trovato</response>
             <response code="500">Errore interno del server</response>
         </member>
         <member name="M:EasyGold.API.Controllers.AllegatoController.DeleteAttachment(System.Int32)">
@@ -85,24 +73,13 @@
         </member>
         <member name="M:EasyGold.API.Controllers.ClienteController.SaveClient(EasyGold.API.Models.Clienti.ClienteDettaglioDTO)">
             <summary>
-            Salva un nuovo cliente con i dettagli forniti.
+            Salva un nuovo cliente o aggiorna un cliente esistente con i dettagli forniti.
             </summary>
-            <param name="clienteDto">Dati del cliente da salvare</param>
-            <returns>Cliente creato</returns>
-            <response code="200">Cliente salvato con successo</response>
+            <param name="clienteDto">Dati del cliente da salvare o aggiornare</param>
+            <returns>Cliente creato o aggiornato</returns>
+            <response code="200">Cliente salvato o aggiornato con successo</response>
             <response code="400">Errore nei dati inviati</response>
-            <response code="500">Errore interno del server</response>
-        </member>
-        <member name="M:EasyGold.API.Controllers.ClienteController.UpdateClient(System.Int32,EasyGold.API.Models.Clienti.ClienteDettaglioDTO)">
-            <summary>
-            Aggiorna un cliente esistente con i dati forniti.
-            </summary>
-            <param name="id">ID del cliente da aggiornare</param>
-            <param name="clienteDto">Nuovi dati del cliente</param>
-            <returns>Cliente aggiornato</returns>
-            <response code="200">Cliente aggiornato con successo</response>
-            <response code="400">Errore nei dati inviati</response>
-            <response code="404">Cliente non trovato</response>
+            <response code="404">Cliente non trovato (solo in caso di aggiornamento)</response>
             <response code="500">Errore interno del server</response>
         </member>
         <member name="M:EasyGold.API.Controllers.ClienteController.GetClient(System.Int32)">
@@ -120,7 +97,7 @@
             Controller per la gestione dei moduli.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Controllers.ModuliController.GetModulesDropdown">
+        <member name="M:EasyGold.API.Controllers.ModuliController.GetModulesList">
             <summary>
             Restituisce l'elenco dei moduli per il dropdown.
             </summary>
@@ -155,26 +132,16 @@
             <response code="200">Lista utenti restituita con successo</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="M:EasyGold.API.Controllers.UtentiController.AddUser(EasyGold.API.Models.Utenti.UtenteDTO)">
+        <member name="M:EasyGold.API.Controllers.UtentiController.AddOrUpdateUser(EasyGold.API.Models.Utenti.UtenteDTO)">
             <summary>
-            Aggiunge un nuovo utente al sistema.
+            Crea un nuovo utente o aggiorna un utente esistente nel sistema.
             </summary>
-            <param name="userDto">Dati dell'utente da creare</param>
-            <returns>Utente creato</returns>
+            <param name="userDto">Dati dell'utente da creare o aggiornare</param>
+            <returns>Utente creato o aggiornato</returns>
             <response code="201">Utente creato con successo</response>
+            <response code="200">Utente aggiornato con successo</response>
             <response code="400">Errore nei dati inviati</response>
-            <response code="500">Errore interno del server</response>
-        </member>
-        <member name="M:EasyGold.API.Controllers.UtentiController.UpdateUser(System.Int32,EasyGold.API.Models.Utenti.UtenteDTO)">
-            <summary>
-            Aggiorna i dati di un utente esistente.
-            </summary>
-            <param name="id">ID dell'utente da aggiornare</param>
-            <param name="userDto">Nuovi dati dell'utente</param>
-            <returns>Conferma aggiornamento</returns>
-            <response code="204">Utente aggiornato con successo</response>
-            <response code="400">Errore nei dati inviati</response>
-            <response code="404">Utente non trovato</response>
+            <response code="404">Utente non trovato (in caso di aggiornamento)</response>
             <response code="500">Errore interno del server</response>
         </member>
         <member name="M:EasyGold.API.Controllers.UtentiController.GetUser(System.Int32)">
@@ -187,16 +154,16 @@
             <response code="404">Utente non trovato</response>
             <response code="500">Errore interno</response>
         </member>
-        <member name="T:EasyGold.API.Migrations.InitialCreate">
+        <member name="T:EasyGold.API.Migrations.RicreaDatiClienti">
             <inheritdoc />
         </member>
-        <member name="M:EasyGold.API.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:EasyGold.API.Migrations.RicreaDatiClienti.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:EasyGold.API.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:EasyGold.API.Migrations.RicreaDatiClienti.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:EasyGold.API.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:EasyGold.API.Migrations.RicreaDatiClienti.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_IDAllegato">

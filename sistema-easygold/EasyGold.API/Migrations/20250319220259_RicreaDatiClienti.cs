@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EasyGold.API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class RicreaDatiClienti : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -62,10 +62,10 @@ namespace EasyGold.API.Migrations
                     Dtc_RagioneSociale = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Dtc_Indirizzo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Dtc_CAP = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Dtc_Localita = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_Localita = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Dtc_Provincia = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Dtc_StatoRegione = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Dtc_Nazione = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dtc_Nazione = table.Column<int>(type: "int", nullable: false),
                     Dtc_PartitaIVA = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Dtc_CodiceFiscale = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Dtc_REA = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -113,6 +113,19 @@ namespace EasyGold.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ModuloEasygoldLang", x => x.Mdeid_ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Nazioni",
+                columns: table => new
+                {
+                    Naz_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naz_Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Nazioni", x => x.Naz_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -222,6 +235,9 @@ namespace EasyGold.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "ModuloEasygoldLang");
+
+            migrationBuilder.DropTable(
+                name: "Nazioni");
 
             migrationBuilder.DropTable(
                 name: "Negozi");

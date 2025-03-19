@@ -45,66 +45,46 @@ namespace EasyGold.API.Controllers
             }
         }
 
-        /// <summary>
-        /// Aggiunge un nuovo utente al sistema.
+       /// <summary>
+        /// Crea un nuovo utente o aggiorna un utente esistente nel sistema.
         /// </summary>
-        /// <param name="userDto">Dati dell'utente da creare</param>
-        /// <returns>Utente creato</returns>
+        /// <param name="userDto">Dati dell'utente da creare o aggiornare</param>
+        /// <returns>Utente creato o aggiornato</returns>
         /// <response code="201">Utente creato con successo</response>
+        /// <response code="200">Utente aggiornato con successo</response>
         /// <response code="400">Errore nei dati inviati</response>
+        /// <response code="404">Utente non trovato (in caso di aggiornamento)</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> AddUser([FromBody] UtenteDTO userDto)
+        public async Task<IActionResult> AddOrUpdateUser([FromBody] UtenteDTO userDto)
         {
-
             try
             {
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
-                await _utenteService.AddAsync(userDto);
-                return CreatedAtAction(nameof(GetUser), new { id = userDto.Ute_IDUtente }, userDto);
 
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
-            }
-
-        }
-
-
-        /// <summary>
-        /// Aggiorna i dati di un utente esistente.
-        /// </summary>
-        /// <param name="id">ID dell'utente da aggiornare</param>
-        /// <param name="userDto">Nuovi dati dell'utente</param>
-        /// <returns>Conferma aggiornamento</returns>
-        /// <response code="204">Utente aggiornato con successo</response>
-        /// <response code="400">Errore nei dati inviati</response>
-        /// <response code="404">Utente non trovato</response>
-        /// <response code="500">Errore interno del server</response>
-        [HttpPut("{id}")]
-        [Authorize]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UtenteDTO userDto)
-        {
-            try
-            {
-
-                if (!ModelState.IsValid)
+                if (userDto == null)
                 {
-                    return BadRequest(ModelState);
+                    return BadRequest(new { error = "Dati non validi" });
                 }
 
-                if (id != userDto.Ute_IDUtente)
+                if (userDto.Ute_IDUtente > 0) // Se ha un ID, esegue l'aggiornamento
                 {
-                    return BadRequest();
+                    var user = await _utenteService.UpdateAsync(userDto);
+                    if (user == null)
+                    {
+                        return NotFound(new { error = "Utente non trovato" });
+                    }
+                    return Ok(new { user }); // Restituisce l'utente aggiornato con codice 200
                 }
-
-                await _utenteService.UpdateAsync(userDto);
-                return NoContent();
+                else // Se non ha un ID, crea un nuovo utente
+                {
+                    var newUser = await _utenteService.AddAsync(userDto);
+                    return CreatedAtAction(nameof(AddOrUpdateUser), new { id = newUser.Ute_IDUtente }, newUser);
+                }
             }
             catch (Exception ex)
             {

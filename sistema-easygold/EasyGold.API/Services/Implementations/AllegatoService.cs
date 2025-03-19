@@ -29,16 +29,18 @@ namespace EasyGold.API.Services.Implementations
             return _mapper.Map<AllegatoDTO>(allegato);
         }
 
-        public async Task AddAsync(AllegatoDTO allegatoDto)
+        public async Task<AllegatoDTO> AddAsync(AllegatoDTO allegatoDto)
         {
             var allegato = _mapper.Map<DbAllegato>(allegatoDto);
             await _allegatoRepository.AddAsync(allegato);
+            return allegatoDto;
         }
 
-        public async Task UpdateAsync(AllegatoDTO allegatoDto)
+        public async Task<AllegatoDTO> UpdateAsync(AllegatoDTO allegatoDto)
         {
             var allegato = _mapper.Map<DbAllegato>(allegatoDto);
             await _allegatoRepository.UpdateAsync(allegato);
+            return allegatoDto;
         }
 
         public async Task DeleteAsync(int id)

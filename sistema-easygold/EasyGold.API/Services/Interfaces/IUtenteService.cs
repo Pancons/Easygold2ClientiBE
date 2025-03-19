@@ -8,7 +8,7 @@ namespace EasyGold.API.Services.Interfaces
     {
        Task<(IEnumerable<UtenteDTO> Users, int Total)> GetUsersListAsync(UserFilterDTO filter);
         Task<UtenteDTO> GetUserByIdAsync(int id);
-        Task AddAsync(UtenteDTO utenteDettaglioDto);
-        Task UpdateAsync(UtenteDTO utenteDettaglioDto);
+        Task<UtenteDTO> AddAsync(UtenteDTO utenteDettaglioDto);
+        Task<UtenteDTO> UpdateAsync(UtenteDTO utenteDettaglioDto);
     }
 }

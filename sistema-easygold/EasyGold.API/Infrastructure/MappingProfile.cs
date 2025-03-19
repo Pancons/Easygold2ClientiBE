@@ -1,6 +1,7 @@
 using AutoMapper;
 using EasyGold.API.Models.Allegati;
 using EasyGold.API.Models.Negozi;
+using EasyGold.API.Models.Nazioni;
 using EasyGold.API.Models.Clienti;
 using EasyGold.API.Models.Configurazioni;
 using EasyGold.API.Models.Entities;
@@ -14,6 +15,15 @@ namespace EasyGold.API.Infrastructure
     {
         public MappingProfile()
         {
+
+            CreateMap<DbNegozi, NegozioDTO>()
+            .ForMember(dest => dest.Neg_RagioneSociale, opt => opt.MapFrom(src => src.Neg_RagioneSociale))
+            .ForMember(dest => dest.Neg_NomeNegozio, opt => opt.MapFrom(src => src.Neg_NomeNegozio))
+            .ForMember(dest => dest.Neg_DataAttivazione, opt => opt.MapFrom(src => src.Neg_DataAttivazione))
+            .ForMember(dest => dest.Neg_DataDisattivazione, opt => opt.MapFrom(src => src.Neg_DataDisattivazione))
+            .ForMember(dest => dest.Neg_Bloccato, opt => opt.MapFrom(src => src.Neg_Bloccato))
+            .ForMember(dest => dest.Neg_Note, opt => opt.MapFrom(src => src.Neg_Note))
+            .ReverseMap();
             // Mapping da (DbCliente + DbDatiCliente) a ClienteDTO
             CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente), ClienteDTO>()
                 .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.MapFrom(src => src.Cliente.Utw_IDClienteAuto))
@@ -48,6 +58,8 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Moduli, opt => opt.MapFrom(src => src.Moduli))
                 .ForMember(dest => dest.Allegati, opt => opt.MapFrom(src => src.Allegati))
                 .ForMember(dest => dest.Negozi, opt => opt.MapFrom(src => src.Negozi))
+                .ForMember(dest => dest.Nazioni, opt => opt.MapFrom(src => src.Nazioni))
+                
                 // Campi di DbCliente mappati in ConfigurazioneDTO
                 .ForMember(dest => dest.Configurazione, opt => opt.MapFrom(src => new ConfigurazioneDTO
                 {
@@ -167,6 +179,7 @@ namespace EasyGold.API.Infrastructure
             CreateMap<DbDatiCliente, ClienteDettaglioDTO>().ReverseMap();
             CreateMap<DbAllegato, AllegatoDTO>().ReverseMap();
             CreateMap<DbRuolo, RuoloDTO>().ReverseMap();
+            CreateMap<DbNazioni, NazioniDTO>().ReverseMap();
         }
     }
 }
