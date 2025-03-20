@@ -39,6 +39,10 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpPost("login")]
         [AllowAnonymous]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)] // ✅ Successo: Token JWT
+        [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)] // ✅ Username/password mancanti
+        [ProducesResponseType(typeof(object), StatusCodes.Status401Unauthorized)] // ✅ Credenziali non valide
+        [ProducesResponseType(typeof(object), StatusCodes.Status500InternalServerError)] // ✅ Errore interno
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))

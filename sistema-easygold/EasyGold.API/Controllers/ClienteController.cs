@@ -37,6 +37,8 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
         [Authorize]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> List([FromBody] ClienteListRequest request)
         {
             try
@@ -63,7 +65,10 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpPost("save")]
         [Authorize]
-        public async Task<IActionResult> SaveClient([FromBody] ClienteDettaglioDTO clienteDto)
+        [ProducesResponseType(typeof(ClienteDettaglioDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]        public async Task<IActionResult> SaveClient([FromBody] ClienteDettaglioDTO clienteDto)
         {
             try
             {
@@ -112,6 +117,9 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpGet("{id}")]
         [Authorize]
+        [ProducesResponseType(typeof(ClienteDettaglioDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetClient(int id)
         {
             var client = await _clienteService.GetByIdAsync(id);
@@ -133,6 +141,9 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpDelete("{id}")]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteCliente(int id)
         {
             await _clienteService.DeleteAsync(id);

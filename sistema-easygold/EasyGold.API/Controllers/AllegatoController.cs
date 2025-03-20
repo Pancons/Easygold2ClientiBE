@@ -32,6 +32,8 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
         [Authorize]
+        [ProducesResponseType(typeof(List<AllegatoDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAllAttachments()
         {
             var attachments = await _allegatoService.GetAllAsync();
@@ -49,6 +51,9 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpGet("{id}")]
         [Authorize]
+        [ProducesResponseType(typeof(AllegatoDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAttachment(int id)
         {
             var attachment = await _allegatoService.GetByIdAsync(id);
@@ -70,6 +75,9 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpPost("save")]
         [Authorize]
+        [ProducesResponseType(typeof(AllegatoDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddAttachment([FromBody] AllegatoDTO attachmentDto)
         {
 
@@ -93,6 +101,9 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpDelete("{id}")]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)] // ✅ Corretta gestione della risposta
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteAttachment(int id)
         {
             await _allegatoService.DeleteAsync(id);
