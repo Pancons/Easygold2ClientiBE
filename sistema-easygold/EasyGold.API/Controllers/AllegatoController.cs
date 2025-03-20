@@ -68,7 +68,7 @@ namespace EasyGold.API.Controllers
         /// <response code="201">Allegato creato con successo</response>
         /// <response code="400">Errore nei dati inviati</response>
         /// <response code="500">Errore interno del server</response>
-        [HttpPost]
+        [HttpPost("save")]
         [Authorize]
         public async Task<IActionResult> AddAttachment([FromBody] AllegatoDTO attachmentDto)
         {

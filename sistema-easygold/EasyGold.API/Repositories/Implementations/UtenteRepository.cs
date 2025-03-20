@@ -93,6 +93,18 @@ namespace EasyGold.API.Repositories.Implementations
             return user;
         }
 
+        /// <summary>
+        /// Elimina un utente e rimuove il file associato.
+        /// </summary>
+        public async Task DeleteAsync(int id)
+        {
+            var utente = await _context.Utenti.FindAsync(id);
+            if (utente != null)
+            {
+                _context.Utenti.Remove(utente);
+                await _context.SaveChangesAsync();
+            }
+        }        
     
 
         /*

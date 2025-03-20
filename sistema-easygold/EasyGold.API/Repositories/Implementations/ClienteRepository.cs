@@ -23,7 +23,7 @@ namespace EasyGold.API.Repositories.Implementations
         private readonly IModuloRepository _moduloRepository;
         private readonly INegozioRepository _negozioRepository;
 
-        public ClienteRepository(ApplicationDbContext context,IAllegatoRepository allegatoRepository,IModuloClienteRepository moduloClienteRepository,IModuloRepository  moduloRepository,INegozioRepository negozioRepository)
+        public ClienteRepository(ApplicationDbContext context, IAllegatoRepository allegatoRepository, IModuloClienteRepository moduloClienteRepository, IModuloRepository moduloRepository, INegozioRepository negozioRepository)
         {
             _context = context;
             _allegatoRepository = allegatoRepository;
@@ -32,7 +32,7 @@ namespace EasyGold.API.Repositories.Implementations
             _negozioRepository = negozioRepository;
         }
 
-        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente)> Clienti, int Total)> 
+        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente)> Clienti, int Total)>
             GetClientiAsync(ClienteFilter filters, int offset, int limit, string sortField, string sortOrder)
         {
             var query = from cliente in _context.Clienti
@@ -76,7 +76,7 @@ namespace EasyGold.API.Repositories.Implementations
 
             return (result, total);
         }
-    
+
         public async Task AddClienteAsync(
             DbCliente cliente,
             DbDatiCliente datiCliente,
@@ -177,7 +177,7 @@ namespace EasyGold.API.Repositories.Implementations
             foreach (var negozio in negozi)
             {
                 var negozioEsistente = await _negozioRepository.GetByIdAsync(negozio.Neg_id);
-                
+
                 if (negozioEsistente == null)
                 {
                     negozio.Neg_IDCliente = cliente.Utw_IDClienteAuto;
@@ -232,8 +232,8 @@ namespace EasyGold.API.Repositories.Implementations
             await _context.SaveChangesAsync();
         }
 
-        
-        public async Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold> Moduli, List<DbAllegato> Allegati, List<DbNegozi> Negozi,List<DbNazioni> Nazioni)> 
+
+        public async Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold> Moduli, List<DbAllegato> Allegati, List<DbNegozi> Negozi, List<DbNazioni> Nazioni)>
         GetClienteByIdAsync(int id)
         {
             var cliente = await _context.Clienti
@@ -259,13 +259,56 @@ namespace EasyGold.API.Repositories.Implementations
             var negozi = await _context.Negozi
                 .Where(n => n.Neg_id == id)
                 .ToListAsync();
-            
+
             var nazioni = await _context.Nazioni
                 .Where(n => n.Naz_id == id)
                 .ToListAsync();
 
-            return (cliente, datiCliente, moduli, allegati, negozi,nazioni);
+            return (cliente, datiCliente, moduli, allegati, negozi, nazioni);
         }
+
+        /// <summary>
+        /// Elimina un allegato e rimuove il file associato.
+        /// </summary>
+        public async Task DeleteAsync(int id)
+        {
+            var cliente = await _context.Clienti.FindAsync(id);
+            if (cliente == null)
+            {
+                throw new KeyNotFoundException("Cliente non trovato.");
+            }
+
+            // ✅ Elimina Dati Cliente
+            var datiCliente = await _context.DatiClienti
+                .Where(d => d.Dtc_IDCliente == id)
+                .ToListAsync();
+            _context.DatiClienti.RemoveRange(datiCliente);
+
+            // ✅ Elimina Moduli Cliente
+            var moduliCliente = await _context.ModuloClienti
+                .Where(mc => mc.Mdc_IDCliente == id)
+                .ToListAsync();
+            _context.ModuloClienti.RemoveRange(moduliCliente);
+
+            // ✅ Elimina Allegati Cliente
+            var allegati = await _context.Allegati
+                .Where(a => a.All_EntitaRiferimento == "Cliente" && a.All_RecordId == id)
+                .ToListAsync();
+            _context.Allegati.RemoveRange(allegati);
+
+            // ✅ Elimina Negozi Cliente
+            var negozi = await _context.Negozi
+                .Where(n => n.Neg_IDCliente == id)
+                .ToListAsync();
+            _context.Negozi.RemoveRange(negozi);
+
+            // ✅ Elimina il Cliente dopo aver rimosso i dati correlati
+            _context.Clienti.Remove(cliente);
+
+            // ✅ Salvataggio finale
+            await _context.SaveChangesAsync();
+        }
+
 
         /*
                public async Task<IEnumerable<DbCliente>> GetAllAsync()

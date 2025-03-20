@@ -99,6 +99,10 @@ namespace EasyGold.API.Services.Implementations
             return _mapper.Map<ClienteDettaglioDTO>(clienteIntermedio);
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            await _clienteRepository.DeleteAsync(id);
+        }
        
 
         /*

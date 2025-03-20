@@ -55,8 +55,8 @@ namespace EasyGold.API.Controllers
         /// <response code="400">Errore nei dati inviati</response>
         /// <response code="404">Utente non trovato (in caso di aggiornamento)</response>
         /// <response code="500">Errore interno del server</response>
-        [HttpPost]
-        [AllowAnonymous]
+        [HttpPost("save")]
+        [AllowAnonymous]    
         public async Task<IActionResult> AddOrUpdateUser([FromBody] UtenteDTO userDto)
         {
             try
@@ -121,6 +121,21 @@ namespace EasyGold.API.Controllers
             
         }
 
+        /// <summary>
+        /// Elimina un Utente specifico.
+        /// </summary>
+        /// <param name="id">ID del Utente da eliminare</param>
+        /// <returns>Conferma eliminazione</returns>
+        /// <response code="204">Utente eliminato con successo</response>
+        /// <response code="404">Utente non trovato</response>
+        /// <response code="500">Errore interno del server</response>
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteUtente(int id)
+        {
+            await _utenteService.DeleteAsync(id);
+            return NoContent();
+        }
 
 
         /*

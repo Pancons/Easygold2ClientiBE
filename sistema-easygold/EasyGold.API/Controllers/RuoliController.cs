@@ -29,7 +29,8 @@ namespace EasyGold.API.Controllers
         /// <returns>Lista di ruoli</returns>
         /// <response code="200">Ruoli restituiti con successo</response>
         /// <response code="500">Errore interno del server</response>
-        [HttpPost]
+       
+        [HttpPost("list")]
         [Authorize]
         public async Task<IActionResult> GetRoles()
         {

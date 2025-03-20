@@ -15,36 +15,50 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Nome della gioielleria del cliente.
         /// </summary>
+        
+        [StringLength(100)]
         public string Dtc_Gioielleria { get; set; }
 
         /// <summary>
         /// Ragione sociale del cliente.
         /// </summary>
+        
+        [StringLength(100)]
         public string Dtc_RagioneSociale { get; set; }
 
         /// <summary>
         /// Indirizzo del cliente.
         /// </summary>
+        /// 
+        [StringLength(100)]
         public string Dtc_Indirizzo { get; set; }
 
         /// <summary>
         /// CAP del cliente.
         /// </summary>
+        /// 
+        [StringLength(10)]
         public string Dtc_CAP { get; set; }
 
         /// <summary>
         /// Località del cliente.
         /// </summary>
+        /// 
+        [StringLength(100)]
         public string? Dtc_Localita { get; set; }
 
         /// <summary>
         /// Provincia del cliente.
         /// </summary>
+        /// 
+        [StringLength(100)]
         public string Dtc_Provincia { get; set; }
 
         /// <summary>
         /// Stato o regione del cliente.
         /// </summary>
+        /// 
+        [StringLength(100)]
         public string Dtc_StatoRegione { get; set; }
 
         /// <summary>
@@ -55,16 +69,22 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Partita IVA del cliente.
         /// </summary>
+        /// 
+        [StringLength(30)]
         public string Dtc_PartitaIVA { get; set; }
 
         /// <summary>
         /// Codice fiscale del cliente.
         /// </summary>
+        /// 
+        [StringLength(30)]
         public string Dtc_CodiceFiscale { get; set; }
 
         /// <summary>
         /// Numero REA del cliente.
         /// </summary>
+        /// 
+        [StringLength(30)]
         public string Dtc_REA { get; set; }
 
         /// <summary>

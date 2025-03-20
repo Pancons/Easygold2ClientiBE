@@ -123,6 +123,22 @@ namespace EasyGold.API.Controllers
         }
 
 
+        /// <summary>
+        /// Elimina un Cliente specifico.
+        /// </summary>
+        /// <param name="id">ID del cliente da eliminare</param>
+        /// <returns>Conferma eliminazione</returns>
+        /// <response code="204">Cliente eliminato con successo</response>
+        /// <response code="404">Cliente non trovato</response>
+        /// <response code="500">Errore interno del server</response>
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteCliente(int id)
+        {
+            await _clienteService.DeleteAsync(id);
+            return NoContent();
+        }
+
         /*
         [HttpPost]
         [Authorize]

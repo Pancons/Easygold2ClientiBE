@@ -9,11 +9,11 @@ namespace EasyGold.API.Models.Moduli
         public int Mdc_IDModulo { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [StringLength(50)]
         [SwaggerSchema(Description = "Descrizione del modulo")]
         public string Mde_Descrizione { get; set; }
 
-        [StringLength(1000)]
+        [StringLength(150)]
         [SwaggerSchema(Description = "Descrizione estesa del modulo")]
         public string Mde_DescrizioneEstesa { get; set; }
 

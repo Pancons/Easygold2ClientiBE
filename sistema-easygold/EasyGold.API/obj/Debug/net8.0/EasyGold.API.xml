@@ -92,6 +92,16 @@
             <response code="404">Cliente non trovato</response>
             <response code="500">Errore interno del server</response>
         </member>
+        <member name="M:EasyGold.API.Controllers.ClienteController.DeleteCliente(System.Int32)">
+            <summary>
+            Elimina un Cliente specifico.
+            </summary>
+            <param name="id">ID del cliente da eliminare</param>
+            <returns>Conferma eliminazione</returns>
+            <response code="204">Cliente eliminato con successo</response>
+            <response code="404">Cliente non trovato</response>
+            <response code="500">Errore interno del server</response>
+        </member>
         <member name="T:EasyGold.API.Controllers.ModuliController">
             <summary>
             Controller per la gestione dei moduli.
@@ -153,6 +163,16 @@
             <response code="200">Utente trovato</response>
             <response code="404">Utente non trovato</response>
             <response code="500">Errore interno</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.UtentiController.DeleteUtente(System.Int32)">
+            <summary>
+            Elimina un Utente specifico.
+            </summary>
+            <param name="id">ID del Utente da eliminare</param>
+            <returns>Conferma eliminazione</returns>
+            <response code="204">Utente eliminato con successo</response>
+            <response code="404">Utente non trovato</response>
+            <response code="500">Errore interno del server</response>
         </member>
         <member name="T:EasyGold.API.Migrations.RicreaDatiClienti">
             <inheritdoc />
@@ -290,26 +310,31 @@
             <summary>
             Indirizzo del cliente.
             </summary>
+            
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_CAP">
             <summary>
             CAP del cliente.
             </summary>
+            
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Localita">
             <summary>
             Località del cliente.
             </summary>
+            
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Provincia">
             <summary>
             Provincia del cliente.
             </summary>
+            
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_StatoRegione">
             <summary>
             Stato o regione del cliente.
             </summary>
+            
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Nazione">
             <summary>
@@ -320,16 +345,19 @@
             <summary>
             Partita IVA del cliente.
             </summary>
+            
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_CodiceFiscale">
             <summary>
             Codice fiscale del cliente.
             </summary>
+            
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_REA">
             <summary>
             Numero REA del cliente.
             </summary>
+            
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_CapitaleSociale">
             <summary>
@@ -435,6 +463,7 @@
             <summary>
             Note aggiuntive sul modulo per il cliente.
             </summary>
+            
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Cliente">
             <summary>
@@ -445,6 +474,94 @@
             <summary>
             Relazione con il Modulo
             </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloEasygold.Mde_Descrizione">
+            <summary>
+            Descrizione del modulo
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloEasygold.Mde_DescrizioneEstesa">
+            <summary>
+            Descrizione estesa del modulo
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_RagioneSociale">
+            <summary>
+            Ragione sociale del negozio
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_NomeNegozio">
+            <summary>
+            Nome del negozio
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_DataAttivazione">
+            <summary>
+             Data di attivazione
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_DataDisattivazione">
+            <summary>
+            Data disattivazione del negozio
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_Bloccato">
+            <summary>
+            Negozio è bloccato
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_Note">
+            <summary>
+            Nota sul negozio
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Nome">
+            <summary>
+            Stringa nome dell'utente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Cognome">
+            <summary>
+            Stringa cognome dell'utente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_NomeUtente">
+            <summary>
+            Stringa nomeutete 
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_IDRuolo">
+            <summary>
+            Intero  Ruolo dell'utente
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Bloccato">
+            <summary>
+            Indica se l'utente è bloccato.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Nota">
+            <summary>
+            Nota sull'utente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Password">
+            <summary>
+            Passeword dell'utente.
+            </summary>
+            
         </member>
         <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.GetAllAsync">
             <summary>
@@ -479,6 +596,16 @@
         <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.DeleteFile(System.String)">
             <summary>
             Elimina un file dal disco.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.ClienteRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Elimina un allegato e rimuove il file associato.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.UtenteRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Elimina un utente e rimuove il file associato.
             </summary>
         </member>
     </members>

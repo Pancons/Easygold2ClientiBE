@@ -16,31 +16,37 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Nome della connessione del cliente.
         /// </summary>
+        [StringLength(100)]
         public string? Utw_NomeConnessione { get; set; }
 
         /// <summary>
         /// Stringa di connessione del cliente.
         /// </summary>
+        [StringLength(200)]
         public string? Utw_StringaConnessione { get; set; }
 
         /// <summary>
         /// Data di attivazione del cliente.
         /// </summary>
+        [Required]
         public DateTime Utw_DataAttivazione { get; set; }
 
         /// <summary>
         /// Data di disattivazione del cliente.
         /// </summary>
+
         public DateTime Utw_DataDisattivazione { get; set; }
 
         /// <summary>
         /// Numero di negozi attivabili per il cliente.
         /// </summary>
+        [Required]
         public int Utw_NegoziAttivabili { get; set; }
 
         /// <summary>
         /// Numero di negozi virtuali per il cliente.
         /// </summary>
+        [Required]
         public int Utw_NegoziVirtuali { get; set; }
 
         /// <summary>
@@ -51,11 +57,13 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Percorso dei report per il cliente.
         /// </summary>
+        [StringLength(100)]
         public string? Utw_PercorsoReports { get; set; }
 
         /// <summary>
         /// Percorso delle immagini per il cliente.
         /// </summary>
+        [StringLength(100)]
         public string? Utw_PercorsoImmagini { get; set; }
 
         /// <summary>
@@ -64,6 +72,6 @@ namespace EasyGold.API.Models.Entities
         public bool Utw_Blocco { get; set; }
 
         public ICollection<DbModuloCliente> ModuliClienti { get; set; } = new List<DbModuloCliente>();
-    
+
     }
 }

@@ -17,5 +17,7 @@ namespace EasyGold.API.Repositories.Interfaces
 
         Task AddAsync(DbUtente utente);
         Task UpdateAsync(DbUtente utente);
+
+        Task DeleteAsync(int id);
     }
 }
