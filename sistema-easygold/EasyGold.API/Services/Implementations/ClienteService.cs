@@ -81,7 +81,7 @@ namespace EasyGold.API.Services.Implementations
                 return null;
 
             // Destruttura la tupla
-            var (cliente, datiCliente, moduli, allegati, negozi,nazione) = clienteData;
+            var (cliente, datiCliente, moduli, allegati, negozi, nazione) = clienteData;
 
             // Crea un oggetto intermedio per il mapping
             var clienteIntermedio = new ClienteDettaglioIntermedio
@@ -91,7 +91,7 @@ namespace EasyGold.API.Services.Implementations
                 Moduli = moduli ?? new List<DbModuloEasygold>(),
                 Allegati = allegati ?? new List<DbAllegato>(),
                 Negozi = negozi ?? new List<DbNegozi>(),
-                Nazioni = nazione ?? new  List<DbNazioni>()
+                Nazione = nazione ?? new DbNazioni()
                  
             };
 

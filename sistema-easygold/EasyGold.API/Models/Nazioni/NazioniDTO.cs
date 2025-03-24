@@ -6,7 +6,7 @@ namespace EasyGold.API.Models.Nazioni
     public class NazioniDTO
     {
 
-        [SwaggerSchema(Description = "Identificativo univoco del negozio")]
+        [SwaggerSchema(Description = "Identificativo univoco della nazione")]
         public int Naz_id { get; set; }
 
         [StringLength(255)]

@@ -11,7 +11,7 @@ namespace EasyGold.API.Models.Clienti
         public List<DbModuloEasygold> Moduli { get; set; }
         public List<DbAllegato> Allegati { get; set; }
         public List<DbNegozi> Negozi { get; set; }
-        public List<DbNazioni> Nazioni { get; set; }
+        public DbNazioni Nazione { get; set; }
       
 
         public ClienteDettaglioIntermedio()
@@ -21,7 +21,7 @@ namespace EasyGold.API.Models.Clienti
             Moduli = new List<DbModuloEasygold>();
             Allegati = new List<DbAllegato>();
             Negozi = new List<DbNegozi>();
-            Nazioni = new List<DbNazioni>();
+            Nazione = new DbNazioni();
         }
     }
 }

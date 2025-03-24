@@ -58,7 +58,7 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Moduli, opt => opt.MapFrom(src => src.Moduli))
                 .ForMember(dest => dest.Allegati, opt => opt.MapFrom(src => src.Allegati))
                 .ForMember(dest => dest.Negozi, opt => opt.MapFrom(src => src.Negozi))
-                .ForMember(dest => dest.Nazioni, opt => opt.MapFrom(src => src.Nazioni))
+                .ForMember(dest => dest.Nazione, opt => opt.MapFrom(src => src.Nazione))
                 
                 // Campi di DbCliente mappati in ConfigurazioneDTO
                 .ForMember(dest => dest.Configurazione, opt => opt.MapFrom(src => new ConfigurazioneDTO

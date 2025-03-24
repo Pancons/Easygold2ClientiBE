@@ -102,7 +102,7 @@ namespace EasyGold.API.Models.Clienti
         [StringLength(100)]
         public string Dtc_StatoRegione { get; set; }
 
-        [SwaggerSchema(Description = "Nazione del cliente")]
+        [SwaggerSchema(Description = "ID Nazione del cliente")]
         public int Dtc_Nazione { get; set; }
 
         [SwaggerSchema(Description = "Partita IVA del cliente")]
@@ -171,8 +171,8 @@ namespace EasyGold.API.Models.Clienti
         [SwaggerSchema(Description = "Lista dei negozi del cliente")]
         public List<NegozioDTO>? Negozi { get; set; }
 
-        [SwaggerSchema(Description = "Lista delle nazioni disponibili per la selezione")]
-        public List<NazioniDTO>? Nazioni { get; set; }
+        [SwaggerSchema(Description = "Dettaglio Nazione del cliente")]
+        public NazioniDTO? Nazione { get; set; }
     }
 
 }
