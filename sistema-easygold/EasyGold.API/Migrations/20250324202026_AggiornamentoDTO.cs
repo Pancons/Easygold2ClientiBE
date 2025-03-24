@@ -5,7 +5,7 @@
 namespace EasyGold.API.Migrations
 {
     /// <inheritdoc />
-    public partial class AutoFix : Migration
+    public partial class AggiornamentoDTO : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,8 +31,8 @@ namespace EasyGold.API.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Mde_DescrizioneEstesa",
                 table: "ModuloEasygold",
-                type: "nvarchar(150)",
-                maxLength: 150,
+                type: "nvarchar(400)",
+                maxLength: 400,
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
@@ -46,14 +46,13 @@ namespace EasyGold.API.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
 
-            migrationBuilder.AlterColumn<string>(
+            migrationBuilder.AddColumn<string>(
                 name: "Mde_CodEcomm",
                 table: "ModuloEasygold",
                 type: "nvarchar(50)",
                 maxLength: 50,
                 nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                defaultValue: "");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Mdc_Nota",
@@ -199,6 +198,10 @@ namespace EasyGold.API.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "Mde_CodEcomm",
+                table: "ModuloEasygold");
+
             migrationBuilder.AlterColumn<string>(
                 name: "Ute_Nota",
                 table: "Utenti",
@@ -223,8 +226,8 @@ namespace EasyGold.API.Migrations
                 type: "nvarchar(max)",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(150)",
-                oldMaxLength: 150);
+                oldType: "nvarchar(400)",
+                oldMaxLength: 400);
 
             migrationBuilder.AlterColumn<string>(
                 name: "Mde_Descrizione",

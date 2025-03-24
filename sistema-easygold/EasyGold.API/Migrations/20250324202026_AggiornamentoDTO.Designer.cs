@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGold.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250324084133_AutoFix")]
-    partial class AutoFix
+    [Migration("20250324202026_AggiornamentoDTO")]
+    partial class AggiornamentoDTO
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -264,6 +264,11 @@ namespace EasyGold.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mde_IDAuto"));
 
+                    b.Property<string>("Mde_CodEcomm")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Mde_Descrizione")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -271,8 +276,8 @@ namespace EasyGold.API.Migrations
 
                     b.Property<string>("Mde_DescrizioneEstesa")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
 
                     b.HasKey("Mde_IDAuto");
 

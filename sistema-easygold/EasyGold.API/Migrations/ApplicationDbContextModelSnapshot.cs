@@ -273,8 +273,8 @@ namespace EasyGold.API.Migrations
 
                     b.Property<string>("Mde_DescrizioneEstesa")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
 
                     b.HasKey("Mde_IDAuto");
 
