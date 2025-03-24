@@ -133,6 +133,7 @@ namespace EasyGold.API.Infrastructure
             // Mapping tra ModuloIntermedio e DbModuloEasygold
             CreateMap<ModuloIntermedio, DbModuloEasygold>()
                 .ForMember(dest => dest.Mde_IDAuto, opt => opt.MapFrom(src => src.Mde_IDAuto))
+                .ForMember(dest => dest.Mde_CodEcomm, opt => opt.MapFrom(src => src.Mde_CodEcomm))
                 .ForMember(dest => dest.Mde_Descrizione, opt => opt.MapFrom(src => src.Mde_Descrizione))
                 .ForMember(dest => dest.Mde_DescrizioneEstesa, opt => opt.MapFrom(src => src.Mde_DescrizioneEstesa))
                 .ReverseMap();
@@ -149,7 +150,8 @@ namespace EasyGold.API.Infrastructure
             // **Mapping delle liste**
             CreateMap<List<ModuloDTO>, List<ModuloIntermedio>>().ConvertUsing(src => src.Select(x => new ModuloIntermedio
             {
-                
+
+                Mde_CodEcomm = x.Mde_CodEcomm,
                 Mde_Descrizione = x.Mde_Descrizione,
                 Mde_DescrizioneEstesa = x.Mde_DescrizioneEstesa,
                 Mdc_DataAttivazione = x.Mdc_DataAttivazione,
@@ -161,7 +163,8 @@ namespace EasyGold.API.Infrastructure
 
             CreateMap<List<ModuloIntermedio>, List<ModuloDTO>>().ConvertUsing(src => src.Select(x => new ModuloDTO
             {
-               
+
+                Mde_CodEcomm = x.Mde_CodEcomm,
                 Mde_Descrizione = x.Mde_Descrizione,
                 Mde_DescrizioneEstesa = x.Mde_DescrizioneEstesa,
                 Mdc_DataAttivazione = x.Mdc_DataAttivazione,

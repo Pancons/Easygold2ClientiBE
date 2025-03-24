@@ -8,6 +8,10 @@ namespace EasyGold.API.Models.Moduli
         [SwaggerSchema(Description = "Identificativo univoco del modulo")]
         public int Mdc_IDModulo { get; set; }
 
+        [SwaggerSchema(Description = "Nome modulo su e-commerce")]
+        [StringLength(50)]
+        public string Mde_CodEcomm { get; set; }
+
         [Required]
         [StringLength(50)]
         [SwaggerSchema(Description = "Descrizione del modulo")]

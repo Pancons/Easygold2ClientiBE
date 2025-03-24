@@ -9,6 +9,11 @@ namespace EasyGold.API.Models.Entities
         public int Mde_IDAuto { get; set; }
 
         /// <summary>
+        /// Nome modulo su e-commerce
+        /// </summary>
+        [StringLength(50)]
+        public string Mde_CodEcomm { get; set; }
+        /// <summary>
         /// Descrizione del modulo
         /// </summary>
         [StringLength(50)]
