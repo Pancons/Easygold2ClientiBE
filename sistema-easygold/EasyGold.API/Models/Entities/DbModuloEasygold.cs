@@ -22,7 +22,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Descrizione estesa del modulo
         /// </summary>
-        [StringLength(150)]
+        [StringLength(400)]
         public string Mde_DescrizioneEstesa { get; set; }
 
         // Relazione con DbModuloCliente

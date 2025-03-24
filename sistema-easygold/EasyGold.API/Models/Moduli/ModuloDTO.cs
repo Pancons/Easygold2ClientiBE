@@ -17,7 +17,7 @@ namespace EasyGold.API.Models.Moduli
         [SwaggerSchema(Description = "Descrizione del modulo")]
         public string Mde_Descrizione { get; set; }
 
-        [StringLength(150)]
+        [StringLength(400)]
         [SwaggerSchema(Description = "Descrizione estesa del modulo")]
         public string Mde_DescrizioneEstesa { get; set; }
 
