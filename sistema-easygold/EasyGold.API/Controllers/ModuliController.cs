@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
 using EasyGold.API.Models;
+using EasyGold.API.Models.Moduli;
 
 namespace EasyGold.API.Controllers
 {
@@ -37,7 +38,7 @@ namespace EasyGold.API.Controllers
             try
             {
                 var modules = await _moduloService.GetAllAsync();
-                if (modules == null || modules.Count == 0)
+                if (modules == null)
                 {
                     return NotFound(new { message = "Nessun modulo disponibile" });
                 }

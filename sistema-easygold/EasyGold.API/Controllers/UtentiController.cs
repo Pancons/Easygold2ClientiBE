@@ -56,7 +56,9 @@ namespace EasyGold.API.Controllers
         /// <response code="404">Utente non trovato (in caso di aggiornamento)</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("save")]
-        [AllowAnonymous]    
+        [AllowAnonymous]   
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)] 
         public async Task<IActionResult> AddOrUpdateUser([FromBody] UtenteDTO userDto)
         {
             try
@@ -101,6 +103,9 @@ namespace EasyGold.API.Controllers
         /// <response code="404">Utente non trovato</response>
         /// <response code="500">Errore interno</response>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(UtenteDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetUser(int id)
         {
             try
@@ -131,6 +136,9 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpDelete("{id}")]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteUtente(int id)
         {
             await _utenteService.DeleteAsync(id);
