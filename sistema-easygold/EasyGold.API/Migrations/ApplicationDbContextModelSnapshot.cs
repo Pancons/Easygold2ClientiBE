@@ -261,6 +261,11 @@ namespace EasyGold.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mde_IDAuto"));
 
+                    b.Property<string>("Mde_CodEcomm")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Mde_Descrizione")
                         .IsRequired()
                         .HasMaxLength(50)

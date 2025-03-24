@@ -47,6 +47,15 @@ namespace EasyGold.API.Migrations
                 oldType: "nvarchar(max)");
 
             migrationBuilder.AlterColumn<string>(
+                name: "Mde_CodEcomm",
+                table: "ModuloEasygold",
+                type: "nvarchar(50)",
+                maxLength: 50,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)");
+
+            migrationBuilder.AlterColumn<string>(
                 name: "Mdc_Nota",
                 table: "ModuloClienti",
                 type: "nvarchar(200)",
