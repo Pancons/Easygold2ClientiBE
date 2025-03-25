@@ -75,12 +75,12 @@ namespace EasyGold.API.Controllers
 
                 if (userDto.Ute_IDUtente > 0) // Se ha un ID, esegue l'aggiornamento
                 {
-                    var user = await _utenteService.UpdateAsync(userDto);
-                    if (user == null)
+                    var result = await _utenteService.UpdateAsync(userDto);
+                    if (result == null)
                     {
                         return NotFound(new { error = "Utente non trovato" });
                     }
-                    return Ok(new { user }); // Restituisce l'utente aggiornato con codice 200
+                    return Ok(new { result }); // Restituisce l'utente aggiornato con codice 200
                 }
                 else // Se non ha un ID, crea un nuovo utente
                 {
@@ -110,12 +110,12 @@ namespace EasyGold.API.Controllers
         {
             try
             {
-                var user = await _utenteService.GetUserByIdAsync(id);
-                if (user == null)
+                var result = await _utenteService.GetUserByIdAsync(id);
+                if (result == null)
                 {
                     return NotFound(new { error = "Utente non trovato" });
                 }
-                return Ok(new { user });
+                return Ok(new { result });
 
             }
             catch (Exception ex)

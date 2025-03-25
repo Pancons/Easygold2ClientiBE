@@ -36,8 +36,8 @@ namespace EasyGold.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAllAttachments()
         {
-            var attachments = await _allegatoService.GetAllAsync();
-            return Ok(new { attachments });
+            var result = await _allegatoService.GetAllAsync();
+            return Ok(new { result });
         }
 
 
@@ -56,12 +56,12 @@ namespace EasyGold.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAttachment(int id)
         {
-            var attachment = await _allegatoService.GetByIdAsync(id);
-            if (attachment == null)
+            var result = await _allegatoService.GetByIdAsync(id);
+            if (result == null)
             {
                 return NotFound();
             }
-            return Ok(new { attachment });
+            return Ok(new { result });
         }
 
 
@@ -82,11 +82,11 @@ namespace EasyGold.API.Controllers
         {
 
             if(attachmentDto.All_IDAllegato>0){
-                var attachment = await _allegatoService.UpdateAsync(attachmentDto);
-                return  Ok(new { attachment });
+                var result = await _allegatoService.UpdateAsync(attachmentDto);
+                return  Ok(new { result });
             }else{
-                var attachment = await _allegatoService.AddAsync(attachmentDto);
-                return  Ok(new { attachment });
+                var result = await _allegatoService.AddAsync(attachmentDto);
+                return  Ok(new { result });
             }
             
         }

@@ -90,14 +90,14 @@ namespace EasyGold.API.Controllers
                         return NotFound(new { error = "Cliente non trovato" });
                     }
 
-                    return Ok(new { cliente = clienteAggiornato });
+                    return Ok(new { result = clienteAggiornato });
                 }
                 else // Altrimenti, crea un nuovo cliente
                 {
                     Console.WriteLine($"DTO ricevuto - Moduli: {clienteDto.Moduli?.Count}, Allegati: {clienteDto.Allegati?.Count}, Negozi: {clienteDto.Negozi?.Count}");
 
-                    var cliente = await _clienteService.CreateClienteAsync(clienteDto);
-                    return Ok(new { cliente });
+                    var result = await _clienteService.CreateClienteAsync(clienteDto);
+                    return Ok(new { result });
                 }
             }
             catch (Exception ex)
