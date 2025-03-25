@@ -46,7 +46,7 @@ namespace EasyGold.API.Controllers
                 request ??= new ClienteListRequest(); // Se la richiesta è nulla, crea un oggetto vuoto
 
                 var result = await _clienteService.GetClientiListAsync(request);
-                return Ok(new { clienti = result.Clienti, total = result.Total });
+                return Ok(new { result = result.Clienti, total = result.Total });
             }
             catch (Exception ex)
             {
@@ -122,12 +122,12 @@ namespace EasyGold.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetClient(int id)
         {
-            var client = await _clienteService.GetByIdAsync(id);
-            if (client == null)
+            var result = await _clienteService.GetByIdAsync(id);
+            if (result == null)
             {
                 return NotFound();
             }
-            return Ok(new { client });
+            return Ok(new { result });
         }
 
 

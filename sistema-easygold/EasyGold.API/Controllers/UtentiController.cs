@@ -37,7 +37,7 @@ namespace EasyGold.API.Controllers
             try
             {
                 var result = await _utenteService.GetUsersListAsync(filter);
-                return Ok(new { utenti = result.Users, total = result.Total });
+                return Ok(new { result = result.Users, total = result.Total });
             }
             catch (Exception ex)
             {
