@@ -46,7 +46,7 @@ namespace EasyGold.API.Controllers
                 request ??= new ClienteListRequest(); // Se la richiesta è nulla, crea un oggetto vuoto
 
                 var result = await _clienteService.GetClientiListAsync(request);
-                return Ok(new { result = result.Clienti, total = result.Total });
+                return Ok(new { results = result.Clienti, total = result.Total });
             }
             catch (Exception ex)
             {

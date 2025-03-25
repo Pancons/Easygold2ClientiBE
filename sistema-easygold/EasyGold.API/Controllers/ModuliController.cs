@@ -37,12 +37,12 @@ namespace EasyGold.API.Controllers
         {
             try
             {
-                var modules = await _moduloService.GetAllAsync();
-                if (modules == null)
+                var results = await _moduloService.GetAllAsync();
+                if (results == null)
                 {
                     return NotFound(new { message = "Nessun modulo disponibile" });
                 }
-                return Ok(new { modules });
+                return Ok(new { results });
             }
             catch (Exception ex)
             {
