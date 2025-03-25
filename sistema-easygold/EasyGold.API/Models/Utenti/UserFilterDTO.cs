@@ -20,7 +20,7 @@ namespace EasyGold.API.Models.Utenti
         public int Limit { get; set; } = 20;
 
         [SwaggerSchema(Description = "Lista di criteri di ordinamento")]
-        public List<SortDTO> Sort { get; set; }
+        public List<SortDTO>? Sort { get; set; }
     }
 
     public class SortDTO
