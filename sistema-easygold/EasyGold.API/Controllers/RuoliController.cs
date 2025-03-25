@@ -40,8 +40,8 @@ namespace EasyGold.API.Controllers
             try
             {
                 // Retrieve roles from the database
-                var roles = await _roleService.GetAllRolesAsync();
-                return Ok(new { roles });
+                var results = await _roleService.GetAllRolesAsync();
+                return Ok(new { results });
             }
             catch (Exception ex)
             {
