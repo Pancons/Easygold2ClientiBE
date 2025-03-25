@@ -23,7 +23,7 @@ namespace EasyGold.API.Migrations
                 columns: new[] { "Ute_IDUtente", "Ute_Nome", "Ute_Cognome", "Ute_NomeUtente", "Ute_IDRuolo", "Ute_Bloccato", "Ute_Nota", "Ute_Password" },
                 values: new object[,]
                 {
-                    {1, "Amministratore", "", "admin", 1, false, "", "Pippo#123!" }
+                    {1, "Amministratore", "", "admin", 1, false, "", BCrypt.Net.BCrypt.HashPassword("Abcd1234@") }
                 });
 
             migrationBuilder.InsertData(
