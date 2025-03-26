@@ -33,7 +33,7 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Dtc_Telefono, opt => opt.MapFrom(src => src.DatiCliente.Dtc_ReferenteTelefono))
                 .ForMember(dest => dest.Dtc_Email, opt => opt.MapFrom(src => src.DatiCliente.Dtc_ReferenteEmail))
                 .ForMember(dest => dest.Dtc_Stato, opt => opt.MapFrom(src => src.DatiCliente.Dtc_StatoRegione))
-                .ForMember(dest => dest.Dtc_Citta, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Localita))
+                .ForMember(dest => dest.Dtc_Citta, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Citta))
                 .ForMember(dest => dest.Utw_Bloccato, opt => opt.MapFrom(src => src.Cliente.Utw_Blocco));
 
             // Mapping per ClienteDettaglioIntermedio -> ClienteDettaglioDTO
@@ -42,7 +42,7 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Dtc_RagioneSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_RagioneSociale))
                 .ForMember(dest => dest.Dtc_Gioielleria, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Gioielleria))
                 .ForMember(dest => dest.Dtc_Indirizzo, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Indirizzo))
-                .ForMember(dest => dest.Dtc_Citta, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Localita))
+                .ForMember(dest => dest.Dtc_Citta, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Citta))
                 .ForMember(dest => dest.Dtc_CAP, opt => opt.MapFrom(src => src.DatiCliente.Dtc_CAP))
                 .ForMember(dest => dest.Dtc_Provincia, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Provincia))
                 .ForMember(dest => dest.Dtc_StatoRegione, opt => opt.MapFrom(src => src.DatiCliente.Dtc_StatoRegione))
@@ -88,7 +88,7 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Dtc_Gioielleria, opt => opt.MapFrom(src => src.Dtc_Gioielleria))
                 .ForMember(dest => dest.Dtc_Indirizzo, opt => opt.MapFrom(src => src.Dtc_Indirizzo))
                 .ForMember(dest => dest.Dtc_CAP, opt => opt.MapFrom(src => src.Dtc_CAP))
-                .ForMember(dest => dest.Dtc_Localita, opt => opt.MapFrom(src => src.Dtc_Citta))
+                .ForMember(dest => dest.Dtc_Citta, opt => opt.MapFrom(src => src.Dtc_Citta))
                 .ForMember(dest => dest.Dtc_Provincia, opt => opt.MapFrom(src => src.Dtc_Provincia))
                 .ForMember(dest => dest.Dtc_StatoRegione, opt => opt.MapFrom(src => src.Dtc_StatoRegione))
                 .ForMember(dest => dest.Dtc_Nazione, opt => opt.MapFrom(src => src.Dtc_Nazione))

@@ -41,11 +41,11 @@ namespace EasyGold.API.Models.Entities
         public string Dtc_CAP { get; set; }
 
         /// <summary>
-        /// Località del cliente.
+        /// Città del cliente.
         /// </summary>
         /// 
         [StringLength(100)]
-        public string? Dtc_Localita { get; set; }
+        public string? Dtc_Citta { get; set; }
 
         /// <summary>
         /// Provincia del cliente.
