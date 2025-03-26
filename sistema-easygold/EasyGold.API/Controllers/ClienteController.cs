@@ -68,7 +68,8 @@ namespace EasyGold.API.Controllers
         [ProducesResponseType(typeof(ClienteDettaglioDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]        public async Task<IActionResult> SaveClient([FromBody] ClienteDettaglioDTO clienteDto)
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]        
+        public async Task<IActionResult> SaveClient([FromBody] ClienteDettaglioDTO clienteDto)
         {
             try
             {
