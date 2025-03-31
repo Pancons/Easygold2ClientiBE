@@ -148,7 +148,7 @@ namespace EasyGold.API.Models.Clienti
         public DateTime Utw_DataAttivazione { get; set; }
 
         [SwaggerSchema(Description = "Data di disattivazione del cliente")]
-        public DateTime Utw_DataDisattivazione { get; set; }
+        public DateTime? Utw_DataDisattivazione { get; set; }
 
         [SwaggerSchema(Description = "Stato del cliente")]
         public string Dtc_Stato { get; set; }

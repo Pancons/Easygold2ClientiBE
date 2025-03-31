@@ -35,7 +35,7 @@ namespace EasyGold.API.Models.Entities
         /// Data di disattivazione del cliente.
         /// </summary>
 
-        public DateTime Utw_DataDisattivazione { get; set; }
+        public DateTime? Utw_DataDisattivazione { get; set; }
 
         /// <summary>
         /// Numero di negozi attivabili per il cliente.
