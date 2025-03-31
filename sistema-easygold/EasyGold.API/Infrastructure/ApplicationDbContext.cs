@@ -39,6 +39,11 @@ namespace EasyGold.API.Infrastructure
                 .HasOne(mc => mc.Modulo)
                 .WithMany(m => m.ModuliClienti)
                 .HasForeignKey(mc => mc.Mdc_IDModulo);
+
+            modelBuilder.Entity<DbUtente>()
+            .HasOne(u => u.Ruolo)
+            .WithMany()
+            .HasForeignKey(u => u.Ute_IDRuolo);
         }
     }
 }

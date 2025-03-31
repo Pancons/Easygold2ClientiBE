@@ -32,7 +32,7 @@ namespace EasyGold.API.Controllers
         /// <response code="200">Lista utenti restituita con successo</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
-        public async Task<IActionResult> GetUsersList([FromBody] UserFilterDTO filter)
+        public async Task<IActionResult> GetUsersList([FromBody] UtentiListRequest filter)
         {
             try
             {

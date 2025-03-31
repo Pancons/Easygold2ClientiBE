@@ -49,7 +49,9 @@ namespace EasyGold.API.Models.Entities
         /// 
         [Required]
         public string Ute_Password { get; set; } // Password hashata
-
+        
+        [NotMapped] 
+        public DbRuolo? Ruolo { get; set; }  // ✅ Oggetto completo Ruolo
 
 
     }

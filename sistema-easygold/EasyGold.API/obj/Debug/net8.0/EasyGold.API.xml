@@ -133,7 +133,7 @@
             Controller per la gestione degli utenti.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Controllers.UtentiController.GetUsersList(EasyGold.API.Models.Utenti.UserFilterDTO)">
+        <member name="M:EasyGold.API.Controllers.UtentiController.GetUsersList(EasyGold.API.Models.Utenti.UtentiListRequest)">
             <summary>
             Restituisce una lista di utenti filtrati e paginati.
             </summary>
@@ -184,6 +184,42 @@
             <inheritdoc />
         </member>
         <member name="M:EasyGold.API.Migrations.RicreaDatiClienti.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EasyGold.API.Migrations.AggiornamentoDTO">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.AggiornamentoDTO.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.AggiornamentoDTO.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.AggiornamentoDTO.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EasyGold.API.Migrations.InitializeTables">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.InitializeTables.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.InitializeTables.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.InitializeTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EasyGold.API.Migrations.RenameLocalitaToCitta">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.RenameLocalitaToCitta.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.RenameLocalitaToCitta.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.RenameLocalitaToCitta.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_IDAllegato">
@@ -318,9 +354,9 @@
             </summary>
             
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Localita">
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Citta">
             <summary>
-            Località del cliente.
+            Città del cliente.
             </summary>
             
         </member>
@@ -473,6 +509,11 @@
         <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Modulo">
             <summary>
             Relazione con il Modulo
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloEasygold.Mde_CodEcomm">
+            <summary>
+            Nome modulo su e-commerce
             </summary>
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbModuloEasygold.Mde_Descrizione">

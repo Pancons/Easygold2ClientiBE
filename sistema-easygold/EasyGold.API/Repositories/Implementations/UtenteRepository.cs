@@ -28,71 +28,87 @@ namespace EasyGold.API.Repositories.Implementations
             _context.Utenti.Update(utente);
             await _context.SaveChangesAsync();
         }
-
-        public async Task<(IEnumerable<DbUtente> Users, int Total)> GetUsersListAsync(UserFilterDTO filter)
+        
+       public async Task<(IEnumerable<DbUtente> Users, int Total)> GetUsersListAsync(UtentiListRequest request)
         {
-            var query = _context.Utenti.AsQueryable();
+            var query = from u in _context.Utenti
+                        join r in _context.Ruoli on u.Ute_IDRuolo equals r.Ur_IDRuolo
+                        select new DbUtente
+                        {
+                            Ute_IDUtente = u.Ute_IDUtente,
+                            Ute_Nome = u.Ute_Nome,
+                            Ute_Cognome = u.Ute_Cognome,
+                            Ute_NomeUtente = u.Ute_NomeUtente,
+                            Ute_IDRuolo = u.Ute_IDRuolo,
+                            Ute_Bloccato = u.Ute_Bloccato,
+                            Ute_Nota = u.Ute_Nota,
+                            Ute_Password = u.Ute_Password,
+                            Ruolo = new DbRuolo
+                            {
+                                Ur_IDRuolo = r.Ur_IDRuolo,
+                                Ur_Descrizione = r.Ur_Descrizione
+                            }
+                        };
 
-            // ✅ Filtri
-            if (filter != null)
+            // Filtri
+            if (request.Filters != null)
             {
-                if (!string.IsNullOrEmpty(filter.Utw_Cognome))
-                    query = query.Where(u => u.Ute_Cognome.Contains(filter.Utw_Cognome));
+                if (!string.IsNullOrEmpty(request.Filters.Utw_Cognome))
+                    query = query.Where(u => u.Ute_Cognome.Contains(request.Filters.Utw_Cognome));
 
-                if (filter.Utw_IDRuolo.HasValue)
-                    query = query.Where(u => u.Ute_IDRuolo == filter.Utw_IDRuolo.Value);
+                if (request.Filters.Utw_IDRuolo.HasValue)
+                    query = query.Where(u => u.Ute_IDRuolo == request.Filters.Utw_IDRuolo.Value);
             }
 
-            // ✅ Conteggio totale prima della paginazione
             int total = await query.CountAsync();
 
-            // ✅ Ordinamento dinamico con verifica del campo esistente
-            if (filter.Sort != null && filter.Sort.Any())
+            // Ordinamento
+            if (request.Sort != null && request.Sort.Any())
             {
-                foreach (var sortItem in filter.Sort)
-                {
-                    bool isUserField = typeof(DbUtente).GetProperty(sortItem.Field) != null;
+                IOrderedQueryable<DbUtente>? orderedQuery = null;
 
-                    if (isUserField)
+                foreach (var sort in request.Sort)
+                {
+                    bool isValid = typeof(DbUtente).GetProperty(sort.Field) != null;
+                    if (!isValid) continue;
+
+                    if (orderedQuery == null)
                     {
-                        query = sortItem.Order.ToLower() == "asc"
-                            ? query.OrderBy(u => EF.Property<object>(u, sortItem.Field))
-                            : query.OrderByDescending(u => EF.Property<object>(u, sortItem.Field));
+                        orderedQuery = sort.Order.ToLower() == "asc"
+                            ? query.OrderBy(u => EF.Property<object>(u, sort.Field))
+                            : query.OrderByDescending(u => EF.Property<object>(u, sort.Field));
+                    }
+                    else
+                    {
+                        orderedQuery = sort.Order.ToLower() == "asc"
+                            ? orderedQuery.ThenBy(u => EF.Property<object>(u, sort.Field))
+                            : orderedQuery.ThenByDescending(u => EF.Property<object>(u, sort.Field));
                     }
                 }
+
+                if (orderedQuery != null)
+                    query = orderedQuery;
             }
 
-            // ✅ Paginazione (Skip & Take)
-            var utenti = await query.Skip(filter.Offset).Take(filter.Limit).ToListAsync();
+            var utenti = await query
+                .Skip(request.Offset)
+                .Take(request.Limit)
+                .ToListAsync();
 
-            // ✅ Converte la lista in una tupla per mantenere il formato richiesto
-            var result = utenti.ToList();
-
-            return (result, total);
+            return (utenti, total);
         }
+
 
 
         // Recupero singolo utente
-        public async Task<UtenteDTO> GetUserByIdAsync(int id)
+        public async Task<DbUtente> GetUserByIdAsync(int id)
         {
-            var user = await _context.Utenti
-                .Where(u => u.Ute_IDUtente == id)
-                .Select(u => new UtenteDTO
-                {
-                    Ute_IDUtente = u.Ute_IDUtente,
-                    Ute_Nome = u.Ute_Nome,
-                    Ute_Cognome = u.Ute_Cognome,
-                    Ute_NomeUtente = u.Ute_NomeUtente,
-                    Ute_IDRuolo = u.Ute_IDRuolo,
-                    Ute_Bloccato = u.Ute_Bloccato,
-                    Ute_Nota = u.Ute_Nota,
-                    Ute_Password = u.Ute_Password // Assicurati che sia già hashata nel DB
-                })
-                .FirstOrDefaultAsync();
-
-            return user;
+            return await _context.Utenti
+                .Include(u => u.Ruolo) // ✅ include anche i dati del ruolo, se presenti
+                .FirstOrDefaultAsync(u => u.Ute_IDUtente == id);
         }
 
+        
         /// <summary>
         /// Elimina un utente e rimuove il file associato.
         /// </summary>
