@@ -13,9 +13,9 @@ namespace EasyGold.API.Models.Moduli
         public int Mdc_IDCliente { get; set; }
         public int Mdc_IDModulo { get; set; }
         public DateTime Mdc_DataAttivazione { get; set; }
-        public DateTime Mdc_DataDisattivazione { get; set; }
+        public DateTime? Mdc_DataDisattivazione { get; set; }
         public bool Mdc_BloccoModulo { get; set; }
-        public DateTime Mdc_DataOraBlocco { get; set; }
+        public DateTime? Mdc_DataOraBlocco { get; set; }
         public string Mdc_Nota { get; set; }
     }
     
