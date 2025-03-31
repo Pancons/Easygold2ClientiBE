@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -10,6 +11,10 @@ namespace EasyGold.API.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "Dtc_Localita",
+                table: "DatiClienti");
+
             migrationBuilder.AlterColumn<string>(
                 name: "Ute_Nota",
                 table: "Utenti",
@@ -27,6 +32,12 @@ namespace EasyGold.API.Migrations
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
+
+            migrationBuilder.AddColumn<DateTime>(
+                name: "Neg_DataOraBlocco",
+                table: "Negozi",
+                type: "datetime2",
+                nullable: true);
 
             migrationBuilder.AlterColumn<string>(
                 name: "Mde_DescrizioneEstesa",
@@ -62,6 +73,22 @@ namespace EasyGold.API.Migrations
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "Mdc_DataOraBlocco",
+                table: "ModuloClienti",
+                type: "datetime2",
+                nullable: true,
+                oldClrType: typeof(DateTime),
+                oldType: "datetime2");
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "Mdc_DataDisattivazione",
+                table: "ModuloClienti",
+                type: "datetime2",
+                nullable: true,
+                oldClrType: typeof(DateTime),
+                oldType: "datetime2");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Dtc_StatoRegione",
@@ -109,16 +136,6 @@ namespace EasyGold.API.Migrations
                 oldType: "nvarchar(max)");
 
             migrationBuilder.AlterColumn<string>(
-                name: "Dtc_Localita",
-                table: "DatiClienti",
-                type: "nvarchar(100)",
-                maxLength: 100,
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<string>(
                 name: "Dtc_Indirizzo",
                 table: "DatiClienti",
                 type: "nvarchar(100)",
@@ -153,6 +170,13 @@ namespace EasyGold.API.Migrations
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
+
+            migrationBuilder.AddColumn<string>(
+                name: "Dtc_Citta",
+                table: "DatiClienti",
+                type: "nvarchar(100)",
+                maxLength: 100,
+                nullable: true);
 
             migrationBuilder.AlterColumn<string>(
                 name: "Utw_StringaConnessione",
@@ -193,14 +217,30 @@ namespace EasyGold.API.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "Utw_DataDisattivazione",
+                table: "Clienti",
+                type: "datetime2",
+                nullable: true,
+                oldClrType: typeof(DateTime),
+                oldType: "datetime2");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
+                name: "Neg_DataOraBlocco",
+                table: "Negozi");
+
+            migrationBuilder.DropColumn(
                 name: "Mde_CodEcomm",
                 table: "ModuloEasygold");
+
+            migrationBuilder.DropColumn(
+                name: "Dtc_Citta",
+                table: "DatiClienti");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Ute_Nota",
@@ -247,6 +287,26 @@ namespace EasyGold.API.Migrations
                 oldType: "nvarchar(200)",
                 oldMaxLength: 200);
 
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "Mdc_DataOraBlocco",
+                table: "ModuloClienti",
+                type: "datetime2",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                oldClrType: typeof(DateTime),
+                oldType: "datetime2",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "Mdc_DataDisattivazione",
+                table: "ModuloClienti",
+                type: "datetime2",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                oldClrType: typeof(DateTime),
+                oldType: "datetime2",
+                oldNullable: true);
+
             migrationBuilder.AlterColumn<string>(
                 name: "Dtc_StatoRegione",
                 table: "DatiClienti",
@@ -293,16 +353,6 @@ namespace EasyGold.API.Migrations
                 oldMaxLength: 30);
 
             migrationBuilder.AlterColumn<string>(
-                name: "Dtc_Localita",
-                table: "DatiClienti",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(100)",
-                oldMaxLength: 100,
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<string>(
                 name: "Dtc_Indirizzo",
                 table: "DatiClienti",
                 type: "nvarchar(max)",
@@ -337,6 +387,12 @@ namespace EasyGold.API.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(10)",
                 oldMaxLength: 10);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Dtc_Localita",
+                table: "DatiClienti",
+                type: "nvarchar(max)",
+                nullable: true);
 
             migrationBuilder.AlterColumn<string>(
                 name: "Utw_StringaConnessione",
@@ -376,6 +432,16 @@ namespace EasyGold.API.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(100)",
                 oldMaxLength: 100,
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "Utw_DataDisattivazione",
+                table: "Clienti",
+                type: "datetime2",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                oldClrType: typeof(DateTime),
+                oldType: "datetime2",
                 oldNullable: true);
         }
     }

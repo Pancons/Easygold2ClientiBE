@@ -227,10 +227,10 @@ namespace EasyGold.API.Migrations
                     b.Property<DateTime>("Mdc_DataAttivazione")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Mdc_DataDisattivazione")
+                    b.Property<DateTime?>("Mdc_DataDisattivazione")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Mdc_DataOraBlocco")
+                    b.Property<DateTime?>("Mdc_DataOraBlocco")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Mdc_IDCliente")
@@ -340,7 +340,7 @@ namespace EasyGold.API.Migrations
                     b.Property<DateTime>("Neg_DataDisattivazione")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Neg_DataOraBlocco")
+                    b.Property<DateTime?>("Neg_DataOraBlocco")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Neg_IDCliente")

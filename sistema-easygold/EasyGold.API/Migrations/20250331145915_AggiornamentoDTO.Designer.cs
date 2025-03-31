@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGold.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250331103228_AddColumnDataBloccoNegozio")]
-    partial class AddColumnDataBloccoNegozio
+    [Migration("20250331145915_AggiornamentoDTO")]
+    partial class AggiornamentoDTO
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,7 +78,7 @@ namespace EasyGold.API.Migrations
                     b.Property<DateTime>("Utw_DataAttivazione")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Utw_DataDisattivazione")
+                    b.Property<DateTime?>("Utw_DataDisattivazione")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Utw_NegoziAttivabili")
@@ -230,10 +230,10 @@ namespace EasyGold.API.Migrations
                     b.Property<DateTime>("Mdc_DataAttivazione")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Mdc_DataDisattivazione")
+                    b.Property<DateTime?>("Mdc_DataDisattivazione")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Mdc_DataOraBlocco")
+                    b.Property<DateTime?>("Mdc_DataOraBlocco")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Mdc_IDCliente")
@@ -343,7 +343,7 @@ namespace EasyGold.API.Migrations
                     b.Property<DateTime>("Neg_DataDisattivazione")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Neg_DataOraBlocco")
+                    b.Property<DateTime?>("Neg_DataOraBlocco")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Neg_IDCliente")
