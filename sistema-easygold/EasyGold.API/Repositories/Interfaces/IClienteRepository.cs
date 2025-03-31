@@ -14,7 +14,7 @@ namespace EasyGold.API.Repositories.Interfaces
         GetClienteByIdAsync(int id);
 
         Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold>? Moduli)> Clienti, int Total)>
-            GetClientiAsync(ClienteFilter filters, int offset, int limit, string sortField, string sortOrder);
+            GetClientiAsync(ClienteListRequest request);
 
         // Aggiunta della definizione del metodo GetClientiAsync
 

@@ -1,5 +1,6 @@
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
+using EasyGold.API.Models.Ruoli;
 
 namespace EasyGold.API.Models.Utenti
 {
@@ -34,5 +35,9 @@ namespace EasyGold.API.Models.Utenti
         [Required]
         [SwaggerSchema(Description = "Password hashata dell'utente")]
         public string Ute_Password { get; set; }
+
+      
+        public RuoloDTO? Ruolo { get; set; }  
+
     }
 }

@@ -21,10 +21,8 @@ namespace EasyGold.API.Services.Implementations
 
         public async Task<ClienteListResult> GetClientiListAsync(ClienteListRequest request)
         {
-            var filters = request.Filters ?? new ClienteFilter(); // Se i filtri sono null, crea un oggetto vuoto
-
-            var (clientiData, total) = await _clienteRepository.GetClientiAsync(
-                filters, request.Offset, request.Limit, request.Sort?.Field, request.Sort?.Order);
+            // Chiamata diretta con l'intero oggetto request (compatibile con ordinamento multiplo)
+            var (clientiData, total) = await _clienteRepository.GetClientiAsync(request);
 
             return new ClienteListResult
             {

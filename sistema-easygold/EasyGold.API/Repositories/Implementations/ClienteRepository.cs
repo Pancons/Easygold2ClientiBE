@@ -33,52 +33,73 @@ namespace EasyGold.API.Repositories.Implementations
         }
 
         public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold>? Moduli)> Clienti, int Total)>
-            GetClientiAsync(ClienteFilter filters, int offset, int limit, string sortField, string sortOrder)
+        GetClientiAsync(ClienteListRequest request)
         {
             var query = from cliente in _context.Clienti
                         join datiCliente in _context.DatiClienti
-                        on cliente.Utw_IDClienteAuto equals datiCliente.Dtc_IDCliente into clientiGroup
-                        from datiCliente in clientiGroup.DefaultIfEmpty() // ✅ Permette datiCliente null
-                        where (filters == null || string.IsNullOrEmpty(filters.DtcRagioneSociale) || datiCliente.Dtc_RagioneSociale.Contains(filters.DtcRagioneSociale))
-                        && (filters == null || string.IsNullOrEmpty(filters.DtcGioielleria) || datiCliente.Dtc_Gioielleria.Contains(filters.DtcGioielleria))
-                        && (filters == null || !filters.NonAttivi.HasValue || (filters.NonAttivi.Value && cliente.Utw_DataDisattivazione != null))
-                        && (filters == null || !filters.Scaduti.HasValue || (filters.Scaduti.Value && cliente.Utw_DataAttivazione < DateTime.UtcNow.AddYears(-1)))
-                        select new { Cliente = cliente, DatiCliente = datiCliente };
+                            on cliente.Utw_IDClienteAuto equals datiCliente.Dtc_IDCliente into clientiGroup
+                        from datiCliente in clientiGroup.DefaultIfEmpty()
+                        where (request.Filters == null || string.IsNullOrEmpty(request.Filters.DtcRagioneSociale) || datiCliente.Dtc_RagioneSociale.Contains(request.Filters.DtcRagioneSociale))
+                        && (request.Filters == null || string.IsNullOrEmpty(request.Filters.DtcGioielleria) || datiCliente.Dtc_Gioielleria.Contains(request.Filters.DtcGioielleria))
+                        && (request.Filters == null || !request.Filters.NonAttivi.HasValue || (request.Filters.NonAttivi.Value && cliente.Utw_DataDisattivazione != null))
+                        && (request.Filters == null || !request.Filters.Scaduti.HasValue || (request.Filters.Scaduti.Value && cliente.Utw_DataAttivazione < DateTime.UtcNow.AddYears(-1)))
+                        select new ClienteRecord
+                        {
+                            Cliente = cliente,
+                            DatiCliente = datiCliente
+                        };
 
-            // Conteggio totale dei risultati prima della paginazione
             int total = await query.CountAsync();
 
-            // ✅ Verifica che il campo di ordinamento esista in entrambe le tabelle
-            if (!string.IsNullOrEmpty(sortField))
+            // ✅ Ordinamento multiplo tip-safe
+            if (request.Sort != null && request.Sort.Any())
             {
-                bool isClienteField = typeof(DbCliente).GetProperty(sortField) != null;
-                bool isDatiClienteField = typeof(DbDatiCliente).GetProperty(sortField) != null;
+                IOrderedQueryable<ClienteRecord>? orderedQuery = null;
 
-                if (isClienteField)
+                foreach (var sort in request.Sort)
                 {
-                    query = sortOrder?.ToLower() == "asc"
-                        ? query.OrderBy(c => EF.Property<object>(c.Cliente, sortField))
-                        : query.OrderByDescending(c => EF.Property<object>(c.Cliente, sortField));
+                    bool isClienteField = typeof(DbCliente).GetProperty(sort.Field) != null;
+                    bool isDatiClienteField = typeof(DbDatiCliente).GetProperty(sort.Field) != null;
+
+                    if (isClienteField)
+                    {
+                        orderedQuery = orderedQuery == null
+                            ? (sort.Order.ToLower() == "asc"
+                                ? query.OrderBy(x => EF.Property<object>(x.Cliente, sort.Field))
+                                : query.OrderByDescending(x => EF.Property<object>(x.Cliente, sort.Field)))
+                            : (sort.Order.ToLower() == "asc"
+                                ? orderedQuery.ThenBy(x => EF.Property<object>(x.Cliente, sort.Field))
+                                : orderedQuery.ThenByDescending(x => EF.Property<object>(x.Cliente, sort.Field)));
+                    }
+                    else if (isDatiClienteField)
+                    {
+                        orderedQuery = orderedQuery == null
+                            ? (sort.Order.ToLower() == "asc"
+                                ? query.OrderBy(x => EF.Property<object>(x.DatiCliente, sort.Field))
+                                : query.OrderByDescending(x => EF.Property<object>(x.DatiCliente, sort.Field)))
+                            : (sort.Order.ToLower() == "asc"
+                                ? orderedQuery.ThenBy(x => EF.Property<object>(x.DatiCliente, sort.Field))
+                                : orderedQuery.ThenByDescending(x => EF.Property<object>(x.DatiCliente, sort.Field)));
+                    }
                 }
-                else if (isDatiClienteField)
-                {
-                    query = sortOrder?.ToLower() == "asc"
-                        ? query.OrderBy(c => EF.Property<object>(c.DatiCliente, sortField))
-                        : query.OrderByDescending(c => EF.Property<object>(c.DatiCliente, sortField));
-                }
+
+                if (orderedQuery != null)
+                    query = orderedQuery;
             }
 
-            // Paginazione (Skip & Take)
-            var clienti = await query.Skip(offset).Take(limit).ToListAsync();
+            // ✅ Paginazione
+            query = query.Skip(request.Offset).Take(request.Limit);
 
-            // ✅ Converte la lista di oggetti anonimi in una tupla di entità
-            var result = clienti.Select(x => (x.Cliente, x.DatiCliente, _context.ModuloClienti
+            // ✅ Esecuzione e mappatura
+            var list = await query.ToListAsync();
+            var result = list.Select(x => (x.Cliente, x.DatiCliente, _context.ModuloClienti
                 .Where(mc => mc.Mdc_IDCliente == x.Cliente.Utw_IDClienteAuto)
                 .Join(_context.ModuloEasygold,
                     mc => mc.Mdc_IDModulo,
                     me => me.Mde_IDAuto,
                     (mc, me) => me)
                 .ToList())).ToList();
+
 
             return (result, total);
         }

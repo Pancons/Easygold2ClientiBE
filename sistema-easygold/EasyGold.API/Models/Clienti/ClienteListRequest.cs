@@ -14,19 +14,19 @@ namespace EasyGold.API.Models.Clienti
         public int Limit { get; set; } = 20;
 
         [SwaggerSchema(Description = "Opzioni di ordinamento")]
-        public SortOptions? Sort { get; set; }
+        public List<SortOptions>? Sort { get; set; }
     }
 
     public class ClienteFilter
     {
         [SwaggerSchema(Description = "Ragione sociale del cliente")]
-        public string DtcRagioneSociale { get; set; }
+        public string? DtcRagioneSociale { get; set; }
 
         [SwaggerSchema(Description = "Nome della gioielleria del cliente")]
-        public string DtcGioielleria { get; set; }
+        public string? DtcGioielleria { get; set; }
 
         [SwaggerSchema(Description = "Lista di ID dei moduli")]
-        public List<int> MdcIDModuli { get; set; }
+        public List<int>? MdcIDModuli { get; set; }
 
         [SwaggerSchema(Description = "Indica se includere clienti non attivi")]
         public bool? NonAttivi { get; set; }

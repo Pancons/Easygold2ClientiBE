@@ -48,7 +48,7 @@ namespace EasyGold.API.Services.Implementations
             await _utenteRepository.DeleteAsync(id);
         }
         */
-        public async Task<(IEnumerable<UtenteDTO> Users, int Total)> GetUsersListAsync(UserFilterDTO filter)
+        public async Task<(IEnumerable<UtenteDTO> Users, int Total)> GetUsersListAsync(UtentiListRequest filter)
         {
             var (utentiData, total) = await _utenteRepository.GetUsersListAsync(filter);
 
