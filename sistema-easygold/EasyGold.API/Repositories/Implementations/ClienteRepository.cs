@@ -32,7 +32,7 @@ namespace EasyGold.API.Repositories.Implementations
             _negozioRepository = negozioRepository;
         }
 
-        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente)> Clienti, int Total)>
+        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold>? Moduli)> Clienti, int Total)>
             GetClientiAsync(ClienteFilter filters, int offset, int limit, string sortField, string sortOrder)
         {
             var query = from cliente in _context.Clienti
@@ -72,7 +72,13 @@ namespace EasyGold.API.Repositories.Implementations
             var clienti = await query.Skip(offset).Take(limit).ToListAsync();
 
             // ✅ Converte la lista di oggetti anonimi in una tupla di entità
-            var result = clienti.Select(x => (x.Cliente, x.DatiCliente)).ToList();
+            var result = clienti.Select(x => (x.Cliente, x.DatiCliente, _context.ModuloClienti
+                .Where(mc => mc.Mdc_IDCliente == x.Cliente.Utw_IDClienteAuto)
+                .Join(_context.ModuloEasygold,
+                    mc => mc.Mdc_IDModulo,
+                    me => me.Mde_IDAuto,
+                    (mc, me) => me)
+                .ToList())).ToList();
 
             return (result, total);
         }

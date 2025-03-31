@@ -28,7 +28,7 @@ namespace EasyGold.API.Services.Implementations
 
             return new ClienteListResult
             {
-                Clienti = _mapper.Map<IEnumerable<ClienteDTO>>(clientiData),  // ✅ Mappa automaticamente senza "N/A"
+                Clienti = _mapper.Map<IEnumerable<ClienteDettaglioDTO>>(clientiData),  // ✅ Mappa automaticamente senza "N/A"
                 Total = total
             };
         }

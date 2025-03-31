@@ -29,6 +29,10 @@ namespace EasyGold.API.Models.Negozi
         [SwaggerSchema(Description = "Indica se il negozio è bloccato")]
         public bool Neg_Bloccato { get; set; }
 
+        [DataType(DataType.DateTime)]
+        [SwaggerSchema(Description = "Data e ora blocco del negozio")]
+        public DateTime Neg_DataOraBlocco { get; set; }
+
         [StringLength(500)]
         [SwaggerSchema(Description = "Note aggiuntive sul negozio")]
         public string Neg_Note { get; set; }
