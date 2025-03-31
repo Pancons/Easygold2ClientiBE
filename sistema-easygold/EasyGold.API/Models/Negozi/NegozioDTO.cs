@@ -31,7 +31,7 @@ namespace EasyGold.API.Models.Negozi
 
         [DataType(DataType.DateTime)]
         [SwaggerSchema(Description = "Data e ora blocco del negozio")]
-        public DateTime Neg_DataOraBlocco { get; set; }
+        public DateTime? Neg_DataOraBlocco { get; set; }
 
         [StringLength(500)]
         [SwaggerSchema(Description = "Note aggiuntive sul negozio")]

@@ -57,7 +57,7 @@ namespace EasyGold.API.Models.Entities
         /// </summary>
         /// 
         [DataType(DataType.DateTime)]
-        public DateTime Neg_DataOraBlocco { get; set; }
+        public DateTime? Neg_DataOraBlocco { get; set; }
 
 
         /// <summary>
