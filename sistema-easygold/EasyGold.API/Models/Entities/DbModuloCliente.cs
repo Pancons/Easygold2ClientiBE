@@ -48,7 +48,7 @@ namespace EasyGold.API.Models.Entities
         /// </summary>
         /// 
         [StringLength(200)]
-        public string Mdc_Nota { get; set; }
+        public string? Mdc_Nota { get; set; }
 
         /// <summary>
         /// Relazione con il Cliente

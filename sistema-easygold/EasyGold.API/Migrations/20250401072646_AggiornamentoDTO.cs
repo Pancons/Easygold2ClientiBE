@@ -70,7 +70,7 @@ namespace EasyGold.API.Migrations
                 table: "ModuloClienti",
                 type: "nvarchar(200)",
                 maxLength: 200,
-                nullable: false,
+                nullable: true,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
 
@@ -225,11 +225,32 @@ namespace EasyGold.API.Migrations
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Utenti_Ute_IDRuolo",
+                table: "Utenti",
+                column: "Ute_IDRuolo");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Utenti_Ruoli_Ute_IDRuolo",
+                table: "Utenti",
+                column: "Ute_IDRuolo",
+                principalTable: "Ruoli",
+                principalColumn: "Ur_IDRuolo",
+                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Utenti_Ruoli_Ute_IDRuolo",
+                table: "Utenti");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Utenti_Ute_IDRuolo",
+                table: "Utenti");
+
             migrationBuilder.DropColumn(
                 name: "Neg_DataOraBlocco",
                 table: "Negozi");
@@ -283,9 +304,11 @@ namespace EasyGold.API.Migrations
                 table: "ModuloClienti",
                 type: "nvarchar(max)",
                 nullable: false,
+                defaultValue: "",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(200)",
-                oldMaxLength: 200);
+                oldMaxLength: 200,
+                oldNullable: true);
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "Mdc_DataOraBlocco",

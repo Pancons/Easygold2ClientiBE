@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGold.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250331145915_AggiornamentoDTO")]
+    [Migration("20250401072646_AggiornamentoDTO")]
     partial class AggiornamentoDTO
     {
         /// <inheritdoc />
@@ -243,7 +243,6 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Mdc_Nota")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -424,6 +423,8 @@ namespace EasyGold.API.Migrations
 
                     b.HasKey("Ute_IDUtente");
 
+                    b.HasIndex("Ute_IDRuolo");
+
                     b.ToTable("Utenti");
                 });
 
@@ -444,6 +445,17 @@ namespace EasyGold.API.Migrations
                     b.Navigation("Cliente");
 
                     b.Navigation("Modulo");
+                });
+
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbUtente", b =>
+                {
+                    b.HasOne("EasyGold.API.Models.Entities.DbRuolo", "Ruolo")
+                        .WithMany()
+                        .HasForeignKey("Ute_IDRuolo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ruolo");
                 });
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbCliente", b =>
