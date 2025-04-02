@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
 using EasyGold.API.Models;
 using EasyGold.API.Models.Moduli;
+using EasyGold.API.Models.Clienti;
+using EasyGold.API.Services.Implementations;
+using EasyGold.API.Models.Nazioni;
 
 namespace EasyGold.API.Controllers
 {
@@ -30,7 +33,7 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
         [Authorize]
-        [ProducesResponseType(typeof(List<ModuloDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<NazioniDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetNationsList()
@@ -50,6 +53,28 @@ namespace EasyGold.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Restituisce i dettagli di una Nazione specifica.
+        /// </summary>
+        /// <param name="id">ID della Nazione</param>
+        /// <returns>Dettagli della Nazione</returns>
+        /// <response code="200">Dettagli Nazione restituiti</response>
+        /// <response code="404">Nazione non trovata</response>
+        /// <response code="500">Errore interno del server</response>
+        [HttpGet("{id}")]
+        [Authorize]
+        [ProducesResponseType(typeof(NazioniDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetNazione(int id)
+        {
+            var result = await _nazioneService.GetByIdAsync(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(new { result });
+        }
 
 
     }
