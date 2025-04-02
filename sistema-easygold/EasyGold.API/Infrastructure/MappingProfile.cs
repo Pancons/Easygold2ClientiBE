@@ -16,9 +16,9 @@ namespace EasyGold.API.Infrastructure
         public MappingProfile()
         {
             MappingClienti();
+            MappingAllegati();
             MappingNegozi();
             MappingModuli();
-            MappingAllegati();
             MappingUtenti();
 
             // Reverse Mapping
@@ -27,6 +27,7 @@ namespace EasyGold.API.Infrastructure
             CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold>? Moduli), ClienteDettaglioDTO>().ReverseMap();
 
             CreateMap<DbUtente, UtenteDTO>().ReverseMap();
+            CreateMap<DbModuloEasygold, ModuloDTO>().ReverseMap();
             CreateMap<DbModuloCliente, ModuloDTO>().ReverseMap();
             CreateMap<DbAllegato, AllegatoDTO>().ReverseMap();
             CreateMap<DbRuolo, RuoloDTO>().ReverseMap();
@@ -50,7 +51,7 @@ namespace EasyGold.API.Infrastructure
 
             // Mapping per ClienteDettaglioIntermedio -> ClienteDettaglioDTO
             CreateMap<ClienteDettaglioIntermedio, ClienteDettaglioDTO>()
-                .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.Ignore())
+                .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.MapFrom(src => src.Cliente.Utw_IDClienteAuto))
                 .ForMember(dest => dest.Dtc_RagioneSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_RagioneSociale))
                 .ForMember(dest => dest.Dtc_Gioielleria, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Gioielleria))
                 .ForMember(dest => dest.Dtc_Indirizzo, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Indirizzo))
@@ -83,8 +84,8 @@ namespace EasyGold.API.Infrastructure
                     Utw_Blocco = src.Cliente.Utw_Blocco
                 }));
 
-            CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold>? Moduli), ClienteDettaglioDTO>()
-                .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.Ignore())
+            CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold>? Moduli, DbNazioni? Nazione), ClienteDettaglioDTO>()
+                .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.MapFrom(src => src.Cliente.Utw_IDClienteAuto))
                 .ForMember(dest => dest.Dtc_RagioneSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_RagioneSociale))
                 .ForMember(dest => dest.Dtc_Gioielleria, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Gioielleria))
                 .ForMember(dest => dest.Dtc_Indirizzo, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Indirizzo))
@@ -102,6 +103,9 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Utw_DataDisattivazione, opt => opt.MapFrom(src => src.Cliente.Utw_DataDisattivazione))
                 .ForMember(dest => dest.Utw_Bloccato, opt => opt.MapFrom(src => src.Cliente.Utw_Blocco))
                 .ForMember(dest => dest.Moduli, opt => opt.MapFrom(src => src.Moduli))
+                .ForMember(dest => dest.Allegati, opt => opt.MapFrom(src => new List<AllegatoDTO>())) // Nella lista clienti gli allegati non servono, quindi restituisco un array vuoto
+                .ForMember(dest => dest.Negozi, opt => opt.MapFrom(src => new List<NegozioDTO>())) // Nella lista clienti i negozi non servono, quindi restituisco un array vuoto
+                .ForMember(dest => dest.Nazione, opt => opt.MapFrom(src => src.Nazione))
                 // Campi di DbCliente mappati in ConfigurazioneDTO
                 .ForMember(dest => dest.Configurazione, opt => opt.MapFrom(src => new ConfigurazioneDTO
                 {
@@ -239,6 +243,13 @@ namespace EasyGold.API.Infrastructure
                 Mde_DescrizioneEstesa = x.Mde_DescrizioneEstesa,
             }).ToList());
 
+            CreateMap<List<ModuloDTO>, List<DbModuloEasygold>>().ConvertUsing(src => src.Select(x => new DbModuloEasygold
+            {
+                Mde_IDAuto = x.Mdc_IDModulo,
+                Mde_CodEcomm = x.Mde_CodEcomm,
+                Mde_Descrizione = x.Mde_Descrizione,
+                Mde_DescrizioneEstesa = x.Mde_DescrizioneEstesa,
+            }).ToList());
         }
         private void MappingAllegati()
         {

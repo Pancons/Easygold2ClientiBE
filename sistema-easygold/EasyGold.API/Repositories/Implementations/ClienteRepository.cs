@@ -32,7 +32,7 @@ namespace EasyGold.API.Repositories.Implementations
             _negozioRepository = negozioRepository;
         }
 
-        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold>? Moduli)> Clienti, int Total)>
+        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold>? Moduli, DbNazioni? Nazione)> Clienti, int Total)>
         GetClientiAsync(ClienteListRequest request)
         {
             var query = from cliente in _context.Clienti
@@ -58,11 +58,12 @@ namespace EasyGold.API.Repositories.Implementations
 
                 foreach (var sort in request.Sort)
                 {
-                    bool isClienteField = typeof(DbCliente).GetProperty(sort.Field) != null;
-                    bool isDatiClienteField = typeof(DbDatiCliente).GetProperty(sort.Field) != null;
+                    bool isClienteField = typeof(DbCliente).GetProperty(sort.Field, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance) != null;
+                    bool isDatiClienteField = typeof(DbDatiCliente).GetProperty(sort.Field, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance) != null;
 
                     if (isClienteField)
                     {
+                        sort.Field = typeof(DbCliente).GetProperty(sort.Field, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Name;
                         orderedQuery = orderedQuery == null
                             ? (sort.Order.ToLower() == "asc"
                                 ? query.OrderBy(x => EF.Property<object>(x.Cliente, sort.Field))
@@ -73,6 +74,7 @@ namespace EasyGold.API.Repositories.Implementations
                     }
                     else if (isDatiClienteField)
                     {
+                        sort.Field = typeof(DbDatiCliente).GetProperty(sort.Field, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Name;
                         orderedQuery = orderedQuery == null
                             ? (sort.Order.ToLower() == "asc"
                                 ? query.OrderBy(x => EF.Property<object>(x.DatiCliente, sort.Field))
@@ -98,7 +100,10 @@ namespace EasyGold.API.Repositories.Implementations
                     mc => mc.Mdc_IDModulo,
                     me => me.Mde_IDAuto,
                     (mc, me) => me)
-                .ToList())).ToList();
+                .ToList(),
+                _context.Nazioni
+                .Where(n => n.Naz_id == x.DatiCliente.Dtc_Nazione)
+                .FirstOrDefaultAsync().Result)).ToList();
 
 
             return (result, total);
@@ -284,11 +289,11 @@ namespace EasyGold.API.Repositories.Implementations
                 .ToListAsync();
 
             var negozi = await _context.Negozi
-                .Where(n => n.Neg_id == id)
+                .Where(n => n.Neg_IDCliente == id)
                 .ToListAsync();
 
             var nazioni = await _context.Nazioni
-                .Where(n => n.Naz_id == id)
+                .Where(n => n.Naz_id == datiCliente.Dtc_Nazione)
                 .FirstOrDefaultAsync();
 
             return (cliente, datiCliente, moduli, allegati, negozi, nazioni);
