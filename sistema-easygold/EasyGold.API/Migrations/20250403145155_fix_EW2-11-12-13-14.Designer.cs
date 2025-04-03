@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGold.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250403100753_fix_EW2-11-12-13-14")]
+    [Migration("20250403145155_fix_EW2-11-12-13-14")]
     partial class fix_EW211121314
     {
         /// <inheritdoc />
@@ -78,7 +78,7 @@ namespace EasyGold.API.Migrations
                     b.Property<DateTime>("Utw_DataAttivazione")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Utw_DataDisattivazione")
+                    b.Property<DateTime?>("Utw_DataDisattivazione")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Utw_NegoziAttivabili")
@@ -230,10 +230,10 @@ namespace EasyGold.API.Migrations
                     b.Property<DateTime>("Mdc_DataAttivazione")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Mdc_DataDisattivazione")
+                    b.Property<DateTime?>("Mdc_DataDisattivazione")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Mdc_DataOraBlocco")
+                    b.Property<DateTime?>("Mdc_DataOraBlocco")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Mdc_IDCliente")
@@ -243,7 +243,6 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Mdc_Nota")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -341,6 +340,9 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Neg_DataDisattivazione")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Neg_DataOraBlocco")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Neg_IDCliente")

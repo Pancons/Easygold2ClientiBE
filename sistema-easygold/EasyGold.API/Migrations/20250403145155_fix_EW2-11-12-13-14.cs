@@ -59,11 +59,31 @@ namespace EasyGold.API.Migrations
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
+
+            migrationBuilder.AddColumn<int>(
+                name: "Dtc_IDValuta",
+                table: "DatiClienti",
+                type: "int",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Dtc_NumeroContratto",
+                table: "DatiClienti",
+                type: "nvarchar(max)",
+                nullable: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "Dtc_IDValuta",
+                table: "DatiClienti");
+
+            migrationBuilder.DropColumn(
+                name: "Dtc_NumeroContratto",
+                table: "DatiClienti");
+
             migrationBuilder.AlterColumn<string>(
                 name: "Dtc_StatoRegione",
                 table: "DatiClienti",
