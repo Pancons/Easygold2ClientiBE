@@ -40,6 +40,9 @@ namespace EasyGold.API.Services.Implementations
             var allegati = _mapper.Map<List<DbAllegato>>(clienteDto.Allegati);
             var negozi = _mapper.Map<List<DbNegozi>>(clienteDto.Negozi);
 
+            datiCliente.Dtc_IDValuta = clienteDto.Configurazione?.Utw_IDValuta;
+            datiCliente.Dtc_NumeroContratto = clienteDto.Configurazione?.Utw_NumeroContratto;
+
             Console.WriteLine($"Moduli: {moduli.Count}, Allegati: {allegati.Count}, Negozi: {negozi.Count}");
             // Salva nel database tramite repository
             await _clienteRepository.AddClienteAsync(cliente, datiCliente, moduli, allegati, negozi);

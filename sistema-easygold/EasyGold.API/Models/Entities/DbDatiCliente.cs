@@ -59,7 +59,7 @@ namespace EasyGold.API.Models.Entities
         /// </summary>
         /// 
         [StringLength(100)]
-        public string Dtc_StatoRegione { get; set; }
+        public string? Dtc_StatoRegione { get; set; }
 
         /// <summary>
         /// Nazione del cliente.
@@ -110,12 +110,12 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Cognome del referente del cliente.
         /// </summary>
-        public string Dtc_ReferenteCognome { get; set; }
+        public string? Dtc_ReferenteCognome { get; set; } 
 
         /// <summary>
         /// Nome del referente del cliente.
         /// </summary>
-        public string Dtc_ReferenteNome { get; set; }
+        public string? Dtc_ReferenteNome { get; set; }
 
         /// <summary>
         /// Telefono del referente del cliente.
@@ -125,17 +125,17 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Cellulare del referente del cliente.
         /// </summary>
-        public string Dtc_ReferenteCellulare { get; set; }
+        public string? Dtc_ReferenteCellulare { get; set; }
 
         /// <summary>
         /// Email del referente del cliente.
         /// </summary>
-        public string Dtc_ReferenteEmail { get; set; }
+        public string? Dtc_ReferenteEmail { get; set; }
 
         /// <summary>
         /// Sito web del referente del cliente.
         /// </summary>
-        public string Dtc_ReferenteWeb { get; set; }
+        public string? Dtc_ReferenteWeb { get; set; }
 
         /// <summary>
         /// Ranking del cliente.
@@ -145,12 +145,12 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Valuta corrente del cliente
         /// </summary>
-        public string Dtc_Valuta { get; }
+        public int? Dtc_IDValuta { get; set; }
 
         /// <summary>
         /// Numero Contratto 
         /// </summary>
-        public string Dtc_NumeroContratto { get; }
+        public string? Dtc_NumeroContratto { get; set; }
 
     }
 }

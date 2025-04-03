@@ -68,7 +68,9 @@ namespace EasyGold.API.Infrastructure
                     Utw_UtentiAttivi = src.Cliente.Utw_UtentiAttivi,
                     Utw_DataAttivazione = src.Cliente.Utw_DataAttivazione,
                     Utw_DataDisattivazione = src.Cliente.Utw_DataDisattivazione,
-                    Utw_Blocco = src.Cliente.Utw_Blocco
+                    Utw_Blocco = src.Cliente.Utw_Blocco,
+                    Utw_IDValuta = src.DatiCliente.Dtc_IDValuta,
+                    Utw_NumeroContratto = src.DatiCliente.Dtc_NumeroContratto
                 }));
 
             CreateMap<ClienteDettaglioDTO, DbCliente>()
@@ -80,6 +82,7 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Utw_NegoziVirtuali, opt => opt.MapFrom(src => src.Configurazione.Utw_NegoziVirtuali))
                 .ForMember(dest => dest.Utw_UtentiAttivi, opt => opt.MapFrom(src => src.Configurazione.Utw_UtentiAttivi))
                 .ForMember(dest => dest.Utw_Blocco, opt => opt.MapFrom(src => src.Utw_Bloccato));
+              
                 // Altri mapping
 
             CreateMap<ClienteDettaglioDTO, DbDatiCliente>()
@@ -103,7 +106,9 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Dtc_ReferenteCellulare, opt => opt.MapFrom(src => src.Dtc_ReferenteCellulare))
                 .ForMember(dest => dest.Dtc_ReferenteEmail, opt => opt.MapFrom(src => src.Dtc_ReferenteEmail))
                 .ForMember(dest => dest.Dtc_ReferenteWeb, opt => opt.MapFrom(src => src.Dtc_ReferenteWeb))
-                .ForMember(dest => dest.Dtc_Ranking, opt => opt.MapFrom(src => src.Dtc_Ranking));
+                .ForMember(dest => dest.Dtc_Ranking, opt => opt.MapFrom(src => src.Dtc_Ranking))
+                .ForMember(dest => dest.Dtc_IDValuta, opt => opt.MapFrom(src => src.Configurazione != null ? src.Configurazione.Utw_IDValuta : (int?)null))
+                .ForMember(dest => dest.Dtc_NumeroContratto, opt => opt.MapFrom(src => src.Configurazione != null ? src.Configurazione.Utw_NumeroContratto : null));
 
             CreateMap<ModuloDTO, DbModuloCliente>()
                 .ForMember(dest => dest.Mdc_IDAuto, opt => opt.Ignore()) // ID gestito dal database
@@ -183,6 +188,14 @@ namespace EasyGold.API.Infrastructure
             CreateMap<DbAllegato, AllegatoDTO>().ReverseMap();
             CreateMap<DbRuolo, RuoloDTO>().ReverseMap();
             CreateMap<DbNazioni, NazioniDTO>().ReverseMap();
+
+
+            CreateMap<DbDatiCliente, ClienteDettaglioDTO>()
+            .ForMember(dest => dest.Configurazione, opt => opt.MapFrom(src => new ConfigurazioneDTO
+            {
+                Utw_IDValuta = src.Dtc_IDValuta,
+                Utw_NumeroContratto = src.Dtc_NumeroContratto
+            }));
         }
     }
 }

@@ -450,7 +450,7 @@
             Ranking del cliente.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Valuta">
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_IDValuta">
             <summary>
             Valuta corrente del cliente
             </summary>

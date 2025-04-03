@@ -6,7 +6,7 @@ namespace EasyGold.API.Models.Allegati
     public class AllegatoDTO
     {
         [SwaggerSchema(Description = "Identificativo univoco dell'allegato")]
-        public int All_IDAllegato { get; set; }
+        public int? All_IDAllegato { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -31,7 +31,7 @@ namespace EasyGold.API.Models.Allegati
 
         [StringLength(500)]
         [SwaggerSchema(Description = "Note aggiuntive sull'allegato")]
-        public string All_Note { get; set; }
+        public string? All_Note { get; set; }
 
         [Url]
         [SwaggerSchema(Description = "URL dell'immagine allegata (solo lettura)")]
