@@ -124,22 +124,22 @@ namespace EasyGold.API.Models.Clienti
         public string Dtc_PEC { get; set; }
 
         [SwaggerSchema(Description = "Cognome del referente del cliente")]
-        public string Dtc_ReferenteCognome { get; set; }
+        public string? Dtc_ReferenteCognome { get; set; }
 
         [SwaggerSchema(Description = "Nome del referente del cliente")]
-        public string Dtc_ReferenteNome { get; set; }
+        public string? Dtc_ReferenteNome { get; set; }
 
         [SwaggerSchema(Description = "Telefono del referente del cliente")]
-        public string Dtc_ReferenteTelefono { get; set; }
+        public string? Dtc_ReferenteTelefono { get; set; }
 
         [SwaggerSchema(Description = "Cellulare del referente del cliente")]
-        public string Dtc_ReferenteCellulare { get; set; }
+        public string? Dtc_ReferenteCellulare { get; set; }
 
         [SwaggerSchema(Description = "Email del referente del cliente")]
-        public string Dtc_ReferenteEmail { get; set; }
+        public string? Dtc_ReferenteEmail { get; set; }
 
         [SwaggerSchema(Description = "Sito web del referente del cliente")]
-        public string Dtc_ReferenteWeb { get; set; }
+        public string? Dtc_ReferenteWeb { get; set; }
 
         [SwaggerSchema(Description = "Ranking del cliente")]
         public int Dtc_Ranking { get; set; }
@@ -151,7 +151,7 @@ namespace EasyGold.API.Models.Clienti
         public DateTime? Utw_DataDisattivazione { get; set; }
 
         [SwaggerSchema(Description = "Stato del cliente")]
-        public string Dtc_Stato { get; set; }
+        public string? Dtc_Stato { get; set; }
 
         [SwaggerSchema(Description = "Indica se il cliente è attivo")]
         public bool Utw_Attivo { get; set; }

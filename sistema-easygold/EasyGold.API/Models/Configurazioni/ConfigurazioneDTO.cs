@@ -27,5 +27,12 @@ namespace EasyGold.API.Models.Configurazioni
 
         [SwaggerSchema(Description = "Indica se la configurazione è bloccata")]
         public bool Utw_Blocco { get; set; }
+
+        [SwaggerSchema(Description = "Numero contratto")]
+        public string? Utw_NumeroContratto { get; set; }
+        
+        [Range(0, int.MaxValue)]
+        [SwaggerSchema(Description = "Valuta")]
+        public int? Utw_IDValuta { get; set; }
     }
 }
