@@ -4,6 +4,7 @@ using EasyGold.API.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGold.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250401072653_InitializeTables")]
+    partial class InitializeTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,9 +144,6 @@ namespace EasyGold.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("Dtc_IDValuta")
-                        .HasColumnType("int");
-
                     b.Property<string>("Dtc_Indirizzo")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -151,9 +151,6 @@ namespace EasyGold.API.Migrations
 
                     b.Property<int>("Dtc_Nazione")
                         .HasColumnType("int");
-
-                    b.Property<string>("Dtc_NumeroContratto")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_PEC")
                         .IsRequired()
@@ -186,15 +183,19 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Dtc_ReferenteCellulare")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_ReferenteCognome")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_ReferenteEmail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_ReferenteNome")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_ReferenteTelefono")
@@ -202,9 +203,11 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_ReferenteWeb")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_StatoRegione")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 

@@ -23,7 +23,7 @@ namespace EasyGold.API.Models.Configurazioni
 
         [DataType(DataType.Date)]
         [SwaggerSchema(Description = "Data di disattivazione della configurazione")]
-        public DateTime Utw_DataDisattivazione { get; set; }
+        public DateTime? Utw_DataDisattivazione { get; set; }
 
         [SwaggerSchema(Description = "Indica se la configurazione è bloccata")]
         public bool Utw_Blocco { get; set; }

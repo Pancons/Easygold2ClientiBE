@@ -31,7 +31,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Data di disattivazione del modulo per il cliente.
         /// </summary>
-        public DateTime Mdc_DataDisattivazione { get; set; }
+        public DateTime? Mdc_DataDisattivazione { get; set; }
 
         /// <summary>
         /// Indica se il modulo è bloccato per il cliente.
@@ -41,14 +41,14 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Data e ora del blocco del modulo.
         /// </summary>
-        public DateTime Mdc_DataOraBlocco { get; set; }
+        public DateTime? Mdc_DataOraBlocco { get; set; }
 
         /// <summary>
         /// Note aggiuntive sul modulo per il cliente.
         /// </summary>
         /// 
         [StringLength(200)]
-        public string Mdc_Nota { get; set; }
+        public string? Mdc_Nota { get; set; }
 
         /// <summary>
         /// Relazione con il Cliente

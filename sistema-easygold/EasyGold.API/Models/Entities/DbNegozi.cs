@@ -1,5 +1,6 @@
 namespace EasyGold.API.Models.Entities
 {
+    using Swashbuckle.AspNetCore.Annotations;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -44,14 +45,22 @@ namespace EasyGold.API.Models.Entities
         [DataType(DataType.Date)]
         public DateTime Neg_DataDisattivazione { get; set; }
 
-         /// <summary>
+        /// <summary>
         /// Negozio è bloccato
         /// </summary>
         /// 
         public bool Neg_Bloccato { get; set; }
 
 
-         /// <summary>
+        /// <summary>
+        /// Data e ora blocco del negozio
+        /// </summary>
+        /// 
+        [DataType(DataType.DateTime)]
+        public DateTime? Neg_DataOraBlocco { get; set; }
+
+
+        /// <summary>
         /// Nota sul negozio
         /// </summary>
         /// 

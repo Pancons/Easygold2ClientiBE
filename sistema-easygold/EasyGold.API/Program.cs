@@ -58,6 +58,7 @@ builder.Services.AddScoped<IRuoloRepository, RuoloRepository>();
 builder.Services.AddScoped<IAllegatoRepository, AllegatoRepository>();
 builder.Services.AddScoped<INegozioRepository, NegozioRepository>();
 builder.Services.AddScoped<IModuloClienteRepository, ModuloClienteRepository>();
+builder.Services.AddScoped<INazioneRepository, NazioneRepository>();
 
 
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAllegatoService, EasyGold.API.Services.Implementations.AllegatoService>();
@@ -66,6 +67,7 @@ builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IUtenteService, Easy
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAutenticazioneService, EasyGold.API.Services.Implementations.AutenticazioneService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IModuloService, EasyGold.API.Services.Implementations.ModuloService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IRuoloService, EasyGold.API.Services.Implementations.RuoloService>();
+builder.Services.AddScoped<EasyGold.API.Services.Interfaces.INazioneService, EasyGold.API.Services.Implementations.NazioneService>();
 
 // 🔹 Abilita i controller e Swagger
 builder.Services.AddControllers();
