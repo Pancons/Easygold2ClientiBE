@@ -36,11 +36,11 @@ namespace EasyGold.API.Controllers
         [ProducesResponseType(typeof(List<NazioniDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetNationsList()
+        public async Task<IActionResult> GetNationsList([FromBody] NazioniListRequest request)
         {
             try
             {
-                var results = await _nazioneService.GetAllAsync();
+                var results = await _nazioneService.GetAllAsync(request);
                 if (results == null)
                 {
                     return NotFound(new { message = "Nessun Nazione trovata" });

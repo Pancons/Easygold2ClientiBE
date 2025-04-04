@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGold.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250403145155_fix_EW2-11-12-13-14")]
+    [Migration("20250404083448_fix_EW2-11-12-13-14")]
     partial class fix_EW211121314
     {
         /// <inheritdoc />
@@ -53,7 +53,6 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("All_Note")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("All_RecordId")

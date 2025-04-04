@@ -20,9 +20,9 @@ namespace EasyGold.API.Services.Implementations
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<NazioniDTO>> GetAllAsync()
+        public async Task<IEnumerable<NazioniDTO>> GetAllAsync(NazioniListRequest request)
         {
-            var moduli = await _nazioneRepository.GetAllAsync();
+            var moduli = await _nazioneRepository.GetAllAsync(request);
             return _mapper.Map<IEnumerable<NazioniDTO>>(moduli);
         }
 

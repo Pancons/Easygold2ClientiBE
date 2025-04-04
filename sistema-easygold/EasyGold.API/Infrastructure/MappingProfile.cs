@@ -24,7 +24,7 @@ namespace EasyGold.API.Infrastructure
             // Reverse Mapping
             CreateMap<DbCliente, ClienteDTO>().ReverseMap();
             CreateMap<DbDatiCliente, ClienteDettaglioDTO>().ReverseMap();
-            CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold>? Moduli), ClienteDettaglioDTO>().ReverseMap();
+            CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli), ClienteDettaglioDTO>().ReverseMap();
 
             CreateMap<DbUtente, UtenteDTO>().ReverseMap();
             CreateMap<DbModuloEasygold, ModuloDTO>().ReverseMap();
@@ -84,7 +84,7 @@ namespace EasyGold.API.Infrastructure
                     Utw_Blocco = src.Cliente.Utw_Blocco
                 }));
 
-            CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold>? Moduli, DbNazioni? Nazione), ClienteDettaglioDTO>()
+            CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, DbNazioni? Nazione), ClienteDettaglioDTO>()
                 .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.MapFrom(src => src.Cliente.Utw_IDClienteAuto))
                 .ForMember(dest => dest.Dtc_RagioneSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_RagioneSociale))
                 .ForMember(dest => dest.Dtc_Gioielleria, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Gioielleria))
@@ -157,12 +157,11 @@ namespace EasyGold.API.Infrastructure
 
            
             CreateMap<DbDatiCliente, ClienteDettaglioDTO>()
-            .ForMember(dest => dest.Configurazione, opt => opt.MapFrom(src => new ConfigurazioneDTO
-            {
-                Utw_IDValuta = src.Dtc_IDValuta,
-                Utw_NumeroContratto = src.Dtc_NumeroContratto
-            }));
-
+                .ForMember(dest => dest.Configurazione, opt => opt.MapFrom(src => new ConfigurazioneDTO
+                {
+                    Utw_IDValuta = src.Dtc_IDValuta,
+                    Utw_NumeroContratto = src.Dtc_NumeroContratto
+                }));
         }
         private void MappingNegozi()
         {
@@ -192,6 +191,17 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Mde_CodEcomm, opt => opt.MapFrom(src => src.Mde_CodEcomm))
                 .ForMember(dest => dest.Mde_Descrizione, opt => opt.MapFrom(src => src.Mde_Descrizione))
                 .ForMember(dest => dest.Mde_DescrizioneEstesa, opt => opt.MapFrom(src => src.Mde_DescrizioneEstesa));
+
+            CreateMap<Tuple<DbModuloEasygold, DbModuloCliente>, ModuloDTO>()
+                .ForMember(dest => dest.Mdc_IDModulo, opt => opt.MapFrom(src => src.Item1.Mde_IDAuto))
+                .ForMember(dest => dest.Mde_CodEcomm, opt => opt.MapFrom(src => src.Item1.Mde_CodEcomm))
+                .ForMember(dest => dest.Mde_Descrizione, opt => opt.MapFrom(src => src.Item1.Mde_Descrizione))
+                .ForMember(dest => dest.Mde_DescrizioneEstesa, opt => opt.MapFrom(src => src.Item1.Mde_DescrizioneEstesa))
+                .ForMember(dest => dest.Mdc_DataAttivazione, opt => opt.MapFrom(src => src.Item2.Mdc_DataAttivazione))
+                .ForMember(dest => dest.Mdc_DataDisattivazione, opt => opt.MapFrom(src => src.Item2.Mdc_DataDisattivazione))
+                .ForMember(dest => dest.Mdc_BloccoModulo, opt => opt.MapFrom(src => src.Item2.Mdc_BloccoModulo))
+                .ForMember(dest => dest.Mdc_DataOraBlocco, opt => opt.MapFrom(src => src.Item2.Mdc_DataOraBlocco))
+                .ForMember(dest => dest.Mdc_Nota, opt => opt.MapFrom(src => src.Item2.Mdc_Nota));
 
             CreateMap<ModuloDTO, DbModuloCliente>()
                 .ForMember(dest => dest.Mdc_IDAuto, opt => opt.Ignore()) // ID gestito dal database

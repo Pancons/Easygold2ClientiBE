@@ -40,7 +40,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Note aggiuntive sull'allegato.
         /// </summary>
-        public string All_Note { get; set; }
+        public string? All_Note { get; set; }
 
         /// <summary>
         /// URL dell'immagine allegata (solo lettura).

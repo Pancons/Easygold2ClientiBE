@@ -5,7 +5,7 @@ namespace EasyGold.API.Services.Interfaces
     public interface INazioneService
     {
        
-        Task<IEnumerable<NazioniDTO>> GetAllAsync();
+        Task<IEnumerable<NazioniDTO>> GetAllAsync(NazioniListRequest request);
         Task<NazioniDTO> GetByIdAsync(int id);
     }
 }

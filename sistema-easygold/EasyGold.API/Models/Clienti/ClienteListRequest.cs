@@ -2,19 +2,10 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace EasyGold.API.Models.Clienti
 {
-    public class ClienteListRequest
+    public class ClienteListRequest : BaseListRequest
     {
         [SwaggerSchema(Description = "Filtri per la ricerca dei clienti")]
         public ClienteFilter? Filters { get; set; }
-
-        [SwaggerSchema(Description = "Offset per la paginazione dei risultati")]
-        public int Offset { get; set; } = 0;
-
-        [SwaggerSchema(Description = "Limite massimo di risultati da restituire")]
-        public int Limit { get; set; } = 20;
-
-        [SwaggerSchema(Description = "Opzioni di ordinamento")]
-        public List<SortOptions>? Sort { get; set; }
     }
 
     public class ClienteFilter
@@ -33,14 +24,5 @@ namespace EasyGold.API.Models.Clienti
 
         [SwaggerSchema(Description = "Indica se includere clienti scaduti")]
         public bool? Scaduti { get; set; }
-    }
-
-    public class SortOptions
-    {
-        [SwaggerSchema(Description = "Campo su cui ordinare")]
-        public string Field { get; set; }
-
-        [SwaggerSchema(Description = "Ordine di ordinamento (ascendente o discendente)")]
-        public string Order { get; set; } = "asc";
     }
 }

@@ -32,7 +32,7 @@ namespace EasyGold.API.Repositories.Implementations
             _negozioRepository = negozioRepository;
         }
 
-        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold>? Moduli, DbNazioni? Nazione)> Clienti, int Total)>
+        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, DbNazioni? Nazione)> Clienti, int Total)>
         GetClientiAsync(ClienteListRequest request)
         {
             var query = from cliente in _context.Clienti
@@ -99,7 +99,7 @@ namespace EasyGold.API.Repositories.Implementations
                 .Join(_context.ModuloEasygold,
                     mc => mc.Mdc_IDModulo,
                     me => me.Mde_IDAuto,
-                    (mc, me) => me)
+                    (mc, me) => new Tuple<DbModuloEasygold, DbModuloCliente>(me, mc))
                 .ToList(),
                 _context.Nazioni
                 .Where(n => n.Naz_id == x.DatiCliente.Dtc_Nazione)

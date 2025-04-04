@@ -71,6 +71,14 @@ namespace EasyGold.API.Migrations
                 table: "DatiClienti",
                 type: "nvarchar(max)",
                 nullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "All_Note",
+                table: "Allegati",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)");
         }
 
         /// <inheritdoc />
@@ -139,6 +147,16 @@ namespace EasyGold.API.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Dtc_ReferenteCellulare",
                 table: "DatiClienti",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "",
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "All_Note",
+                table: "Allegati",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "",

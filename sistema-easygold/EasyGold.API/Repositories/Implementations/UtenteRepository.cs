@@ -69,8 +69,9 @@ namespace EasyGold.API.Repositories.Implementations
 
                 foreach (var sort in request.Sort)
                 {
-                    bool isValid = typeof(DbUtente).GetProperty(sort.Field) != null;
+                    bool isValid = typeof(DbUtente).GetProperty(sort.Field, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance) != null;
                     if (!isValid) continue;
+                    sort.Field = typeof(DbUtente).GetProperty(sort.Field, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Name;
 
                     if (orderedQuery == null)
                     {
