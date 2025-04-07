@@ -33,6 +33,7 @@ namespace EasyGold.API.Services.Implementations
         {
             var allegato = _mapper.Map<DbAllegato>(allegatoDto);
             await _allegatoRepository.AddAsync(allegato);
+            allegatoDto = _mapper.Map<AllegatoDTO>(allegato);
             return allegatoDto;
         }
 
@@ -40,6 +41,7 @@ namespace EasyGold.API.Services.Implementations
         {
             var allegato = _mapper.Map<DbAllegato>(allegatoDto);
             await _allegatoRepository.UpdateAsync(allegato);
+            allegatoDto = _mapper.Map<AllegatoDTO>(allegato);
             return allegatoDto;
         }
 
