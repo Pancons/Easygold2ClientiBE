@@ -81,23 +81,7 @@ namespace EasyGold.API.Services.Implementations
             if (clienteData.Cliente == null)
                 return null;
 
-            // Destruttura la tupla
-            var (cliente, datiCliente, moduli, allegati, negozi, nazione) = clienteData;
-
-            // Crea un oggetto intermedio per il mapping
-            var clienteIntermedio = new ClienteDettaglioIntermedio
-            {
-                Cliente = cliente,
-                DatiCliente = datiCliente ?? new DbDatiCliente(), // Se null, assegna un oggetto vuoto
-                Moduli = moduli ?? new List<DbModuloEasygold>(),
-                Allegati = allegati ?? new List<DbAllegato>(),
-                Negozi = negozi ?? new List<DbNegozi>(),
-                Nazione = nazione ?? new DbNazioni()
-                 
-            };
-
-            // Usa AutoMapper con l'oggetto intermedio
-            return _mapper.Map<ClienteDettaglioDTO>(clienteIntermedio);
+            return _mapper.Map<ClienteDettaglioDTO>(clienteData);
         }
 
         public async Task DeleteAsync(int id)

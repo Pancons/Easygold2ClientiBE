@@ -8,6 +8,7 @@ using EasyGold.API.Models.Entities;
 using EasyGold.API.Models.Moduli;
 using EasyGold.API.Models.Ruoli;
 using EasyGold.API.Models.Utenti;
+using EasyGold.API.Models.Valute;
 
 namespace EasyGold.API.Infrastructure
 {
@@ -20,6 +21,7 @@ namespace EasyGold.API.Infrastructure
             MappingNegozi();
             MappingModuli();
             MappingUtenti();
+            MappingValute();
 
             // Reverse Mapping
             CreateMap<DbCliente, ClienteDTO>().ReverseMap();
@@ -84,7 +86,7 @@ namespace EasyGold.API.Infrastructure
                     Utw_Blocco = src.Cliente.Utw_Blocco
                 }));
 
-            CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, DbNazioni? Nazione), ClienteDettaglioDTO>()
+            CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, List<DbAllegato>? Allegati, List<DbNegozi>? Negozi, DbNazioni? Nazione, DbValute? Valuta), ClienteDettaglioDTO>()
                 .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.MapFrom(src => src.Cliente.Utw_IDClienteAuto))
                 .ForMember(dest => dest.Dtc_RagioneSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_RagioneSociale))
                 .ForMember(dest => dest.Dtc_Gioielleria, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Gioielleria))
@@ -103,9 +105,10 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Utw_DataDisattivazione, opt => opt.MapFrom(src => src.Cliente.Utw_DataDisattivazione))
                 .ForMember(dest => dest.Utw_Bloccato, opt => opt.MapFrom(src => src.Cliente.Utw_Blocco))
                 .ForMember(dest => dest.Moduli, opt => opt.MapFrom(src => src.Moduli))
-                .ForMember(dest => dest.Allegati, opt => opt.MapFrom(src => new List<AllegatoDTO>())) // Nella lista clienti gli allegati non servono, quindi restituisco un array vuoto
-                .ForMember(dest => dest.Negozi, opt => opt.MapFrom(src => new List<NegozioDTO>())) // Nella lista clienti i negozi non servono, quindi restituisco un array vuoto
+                .ForMember(dest => dest.Allegati, opt => opt.MapFrom(src => src.Allegati ?? new List<DbAllegato>())) // Nella lista clienti gli allegati non servono, quindi restituisco un array vuoto
+                .ForMember(dest => dest.Negozi, opt => opt.MapFrom(src => src.Negozi ?? new List<DbNegozi>())) // Nella lista clienti i negozi non servono, quindi restituisco un array vuoto
                 .ForMember(dest => dest.Nazione, opt => opt.MapFrom(src => src.Nazione))
+                .ForMember(dest => dest.Valuta, opt => opt.MapFrom(src => src.Valuta))
                 // Campi di DbCliente mappati in ConfigurazioneDTO
                 .ForMember(dest => dest.Configurazione, opt => opt.MapFrom(src => new ConfigurazioneDTO
                 {
@@ -280,6 +283,14 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.All_EntitaRiferimento, opt => opt.MapFrom(src => "Cliente"))
                 .ForMember(dest => dest.All_RecordId, opt => opt.Ignore());
         }
+
+        private void MappingValute()
+        {
+            CreateMap<DbValute, ValuteDTO>();
+
+            CreateMap<ValuteDTO, DbValute>();
+        }
+
         private void MappingUtenti()
         {
 

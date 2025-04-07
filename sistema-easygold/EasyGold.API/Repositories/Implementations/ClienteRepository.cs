@@ -32,7 +32,7 @@ namespace EasyGold.API.Repositories.Implementations
             _negozioRepository = negozioRepository;
         }
 
-        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, DbNazioni? Nazione)> Clienti, int Total)>
+        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, List<DbAllegato>? Allegati, List<DbNegozi>? Negozi, DbNazioni? Nazione, DbValute? Valuta)> Clienti, int Total)>
         GetClientiAsync(ClienteListRequest request)
         {
             var query = from cliente in _context.Clienti
@@ -101,8 +101,13 @@ namespace EasyGold.API.Repositories.Implementations
                     me => me.Mde_IDAuto,
                     (mc, me) => new Tuple<DbModuloEasygold, DbModuloCliente>(me, mc))
                 .ToList(),
+                new List<DbAllegato>(),
+                new List<DbNegozi>(),
                 _context.Nazioni
                 .Where(n => n.Naz_id == x.DatiCliente.Dtc_Nazione)
+                .FirstOrDefaultAsync().Result,
+                _context.Valute
+                .Where(v => v.Val_id == x.DatiCliente.Dtc_IDValuta)
                 .FirstOrDefaultAsync().Result)).ToList();
 
 
@@ -265,7 +270,7 @@ namespace EasyGold.API.Repositories.Implementations
         }
 
 
-        public async Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold> Moduli, List<DbAllegato> Allegati, List<DbNegozi> Negozi, DbNazioni Nazione)>
+        public async Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, List<DbAllegato>? Allegati, List<DbNegozi>? Negozi, DbNazioni? Nazione, DbValute? Valuta)>
         GetClienteByIdAsync(int id)
         {
             var cliente = await _context.Clienti
@@ -281,7 +286,7 @@ namespace EasyGold.API.Repositories.Implementations
                 .Join(_context.ModuloEasygold,
                     mc => mc.Mdc_IDModulo,
                     me => me.Mde_IDAuto,
-                    (mc, me) => me)
+                    (mc, me) => new Tuple<DbModuloEasygold, DbModuloCliente>(me, mc))
                 .ToListAsync();
 
             var allegati = await _context.Allegati
@@ -296,7 +301,11 @@ namespace EasyGold.API.Repositories.Implementations
                 .Where(n => n.Naz_id == datiCliente.Dtc_Nazione)
                 .FirstOrDefaultAsync();
 
-            return (cliente, datiCliente, moduli, allegati, negozi, nazioni);
+            var valuta = await _context.Valute
+                .Where(v => v.Val_id == datiCliente.Dtc_IDValuta)
+                .FirstOrDefaultAsync();
+
+            return (cliente, datiCliente, moduli, allegati, negozi, nazioni, valuta);
         }
 
         /// <summary>

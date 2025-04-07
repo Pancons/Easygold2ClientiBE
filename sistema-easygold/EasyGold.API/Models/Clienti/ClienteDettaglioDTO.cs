@@ -5,71 +5,13 @@ using EasyGold.API.Models.Negozi;
 using EasyGold.API.Models.Nazioni;
 using EasyGold.API.Models.Configurazioni;
 using System.ComponentModel.DataAnnotations;
+using EasyGold.API.Models.Valute;
 
 namespace EasyGold.API.Models.Clienti
 {
 
     public class ClienteDettaglioDTO
     {
-        /*
-        
-        [Required]
-        [StringLength(100)]
-        [SwaggerSchema(Description = "Ragione sociale del cliente")]
-        public string Dtc_RagioneSociale { get; set; }
-
-        [StringLength(100)]
-        [SwaggerSchema(Description = "Nome della gioielleria del cliente")]
-        public string Dtc_Gioielleria { get; set; }
-
-        [StringLength(100)]
-        [SwaggerSchema(Description = "Indirizzo del cliente")]
-        public string Dtc_Indirizzo { get; set; }
-
-        [StringLength(10)]
-        [SwaggerSchema(Description = "CAP del cliente")]
-        public string Dtc_CAP { get; set; }
-
-        [StringLength(100)]
-        [SwaggerSchema(Description = "Città del cliente")]
-        public string Dtc_Citta { get; set; }
-
-        [StringLength(100)]
-        [SwaggerSchema(Description = "Provincia del cliente")]
-        public string Dtc_Provincia { get; set; }
-
-        [StringLength(100)]
-        [SwaggerSchema(Description = "Stato o regione del cliente")]
-        public string Dtc_StatoRegione { get; set; }
-
-        [SwaggerSchema(Description = "Nazione del cliente, selezionata da una lista predefinita")]
-        public int Dtc_Nazione { get; set; }
-
-        [StringLength(30)]
-        [SwaggerSchema(Description = "Partita IVA del cliente")]
-        public string Dtc_PartitaIVA { get; set; }
-
-        [StringLength(30)]
-        [SwaggerSchema(Description = "Codice fiscale del cliente")]
-        public string Dtc_CodiceFiscale { get; set; }
-
-        [StringLength(30)]
-        [SwaggerSchema(Description = "Codice REA del cliente")]
-        public string Dtc_REA { get; set; }
-
-        [SwaggerSchema(Description = "Capitale sociale del cliente")]
-        public decimal Dtc_CapitaleSociale { get; set; }
-
-        [SwaggerSchema(Description = "Indica se la ragione sociale è quella principale")]
-        public bool Dtc_RagSocialePrincipale { get; set; }
-
-        [SwaggerSchema(Description = "Indica se la ragione sociale è stata annullata")]
-        public bool Dtc_Annullato { get; set; }
-
-        [SwaggerSchema(Description = "Lista delle nazioni disponibili per la selezione")]
-        public List<NazioniDTO>? Nazioni { get; set; }
-        */
-
         [SwaggerSchema(Description = "Identificativo univoco del cliente")]
         public int Utw_IDClienteAuto { get; set; }
 
@@ -173,6 +115,9 @@ namespace EasyGold.API.Models.Clienti
 
         [SwaggerSchema(Description = "Dettaglio Nazione del cliente")]
         public NazioniDTO? Nazione { get; set; }
+
+        [SwaggerSchema(Description = "Dettaglio Valuta del cliente")]
+        public ValuteDTO? Valuta { get; set; }
     }
 
 }

@@ -18,6 +18,7 @@ namespace EasyGold.API.Infrastructure
         public DbSet<DbAllegato> Allegati { get; set; }
         public DbSet<DbNegozi> Negozi { get; set; }
         public DbSet<DbNazioni> Nazioni { get; set; }
+        public DbSet<DbValute> Valute { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,6 +30,7 @@ namespace EasyGold.API.Infrastructure
             modelBuilder.Entity<DbModuloEasygold>().HasKey(m => m.Mde_IDAuto    ); // Assuming Id is the primary key
             modelBuilder.Entity<DbDatiCliente>().HasKey(d => d.Dtc_IDCliente); // Assuming Id is the primary key
             modelBuilder.Entity<DbNazioni>().HasKey(n => n.Naz_id);
+            modelBuilder.Entity<DbValute>().HasKey(v => v.Val_id);
 
             modelBuilder.Entity<DbModuloCliente>()
                 .HasOne(mc => mc.Cliente)

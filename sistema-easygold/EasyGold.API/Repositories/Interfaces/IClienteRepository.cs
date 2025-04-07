@@ -10,10 +10,10 @@ namespace EasyGold.API.Repositories.Interfaces
     public interface IClienteRepository
     {
 
-        Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<DbModuloEasygold> Moduli, List<DbAllegato> Allegati, List<DbNegozi> Negozi, DbNazioni Nazione)>
+        Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, List<DbAllegato>? Allegati, List<DbNegozi>? Negozi, DbNazioni? Nazione, DbValute? Valuta)>
         GetClienteByIdAsync(int id);
 
-        Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, DbNazioni? Nazione)> Clienti, int Total)>
+        Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, List<DbAllegato>? Allegati, List<DbNegozi>? Negozi, DbNazioni? Nazione, DbValute? Valuta)> Clienti, int Total)>
             GetClientiAsync(ClienteListRequest request);
 
         // Aggiunta della definizione del metodo GetClientiAsync
