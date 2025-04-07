@@ -29,7 +29,7 @@ namespace EasyGold.API.Controllers
         /// Restituisce l'elenco delle nazioni per il dropdown.
         /// </summary>
         /// <returns>Lista delle nazioni</returns>
-        /// <response code="200">Moduli restituiti con successo</response>
+        /// <response code="200">Nazioni con successo</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
         [Authorize]
