@@ -120,7 +120,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Telefono del referente del cliente.
         /// </summary>
-        public string Dtc_ReferenteTelefono { get; set; }
+        public string? Dtc_ReferenteTelefono { get; set; }
 
         /// <summary>
         /// Cellulare del referente del cliente.
