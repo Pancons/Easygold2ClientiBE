@@ -47,7 +47,7 @@ namespace EasyGold.API.Services.Implementations
             // Salva nel database tramite repository
             await _clienteRepository.AddClienteAsync(cliente, datiCliente, moduli, allegati, negozi);
 
-            return clienteDto;
+            return await GetByIdAsync(cliente.Utw_IDClienteAuto);
         }
 
         public async Task<ClienteDettaglioDTO> UpdateClienteAsync(int id, ClienteDettaglioDTO clienteDto)
