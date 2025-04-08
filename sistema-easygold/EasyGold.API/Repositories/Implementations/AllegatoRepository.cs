@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 using EasyGold.API.Infrastructure;
 using EasyGold.API.Models.Entities;
 using EasyGold.API.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace EasyGold.API.Repositories.Implementations
 {
     public class AllegatoRepository : IAllegatoRepository
     {
         private readonly ApplicationDbContext _context;
-        private readonly string _basePath = "wwwroot/uploads";
+        private readonly string _basePath = "uploads";
 
         public AllegatoRepository(ApplicationDbContext context)
         {
@@ -48,15 +51,17 @@ namespace EasyGold.API.Repositories.Implementations
         {
             if (allegato == null) return;
 
+            allegato.All_ImgUrl = "";
+            await _context.Allegati.AddAsync(allegato);
+            await _context.SaveChangesAsync();
+
             // Salva il file se è presente in Base64
             if (!string.IsNullOrEmpty(allegato.All_FileBase64))
             {
                 string filePath = await SaveFileAsync(allegato, allegato.All_FileBase64);
                 allegato.All_ImgUrl = filePath;
+                await UpdateAsync(allegato);
             }
-
-            await _context.Allegati.AddAsync(allegato);
-            await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -132,17 +137,17 @@ namespace EasyGold.API.Repositories.Implementations
                 }
 
                 // Se l'estensione non è fornita, assegna ".png" di default
-                string estensione = string.IsNullOrWhiteSpace(allegato.All_Estensione) ? ".png" : allegato.All_Estensione;
+                string estensione = string.IsNullOrWhiteSpace(allegato.All_Estensione) ? Path.GetExtension(allegato.All_NomeFile) : allegato.All_Estensione;
 
                 // Genera il nome del file
-                string fileName = $"{allegato.All_NomeFile}{estensione}";
+                string fileName = $"{allegato.All_IDAllegato}.{estensione}";
                 string filePath = Path.Combine(folderPath, fileName);
 
                 // Salva il file
                 await File.WriteAllBytesAsync(filePath, fileBytes);
 
                 // Restituisce il percorso accessibile via URL
-                return $"/{filePath.Replace("wwwroot", "").Replace("\\", "/").TrimStart('/')}";
+                return $"/{filePath.Replace("wwwroot", "").Replace("\\", "/").TrimStart('/').Replace(_basePath, "file")}";
             }
             catch (Exception ex)
             {
@@ -164,6 +169,47 @@ namespace EasyGold.API.Repositories.Implementations
                     File.Delete(fullPath);
                 }
             }
+        }
+
+        /// <summary>
+        /// Legge un file dal disco.
+        /// </summary>
+        public async Task<(bool success, byte[] fileBytes, string contentType)> GetFileByPathAsync(string filePath)
+        {
+            return ReadFile(filePath);
+        }
+
+        private (bool success, byte[] fileBytes, string contentType) ReadFile(string filePath)
+        {
+            // Normalizza i percorsi
+            string rootPath = Path.GetFullPath(_basePath);
+            string requestedPath = Path.GetFullPath(Path.Combine(_basePath, filePath));
+
+            // Verifica sicurezza: il file deve essere dentro basePath
+            if (!requestedPath.StartsWith(rootPath, StringComparison.OrdinalIgnoreCase))
+                return (false, null, null);
+
+            if (!System.IO.File.Exists(requestedPath))
+                return (false, null, null);
+
+            var fileExt = Path.GetExtension(requestedPath);
+
+            // Opzionale: blocca alcune estensioni
+            var blockedExtensions = new[] { ".config", ".cs", ".exe", ".dll", ".json" };
+            if (blockedExtensions.Contains(fileExt))
+                return (false, null, null);
+
+
+            // Se passa tutti i controlli, restituisce l'array di byte ed il content type
+            return (true, File.ReadAllBytes(requestedPath), GetContentType(requestedPath));
+        }
+
+        private string GetContentType(string path)
+        {
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(path, out var contentType))
+                contentType = "application/octet-stream";
+            return contentType;
         }
     }
 }

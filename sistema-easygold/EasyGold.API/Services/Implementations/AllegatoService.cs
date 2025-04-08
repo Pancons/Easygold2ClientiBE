@@ -3,6 +3,7 @@ using EasyGold.API.Models.Entities;
 using EasyGold.API.Models.Allegati;
 using AutoMapper;
 using EasyGold.API.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EasyGold.API.Services.Implementations
 {
@@ -48,6 +49,11 @@ namespace EasyGold.API.Services.Implementations
         public async Task DeleteAsync(int id)
         {
             await _allegatoRepository.DeleteAsync(id);
+        }
+
+        public async Task<(bool success, byte[] fileBytes, string contentType)> GetFileByPathAsync(string filePath)
+        {
+            return await _allegatoRepository.GetFileByPathAsync(filePath);
         }
     }
 

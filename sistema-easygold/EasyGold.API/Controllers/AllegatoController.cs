@@ -109,5 +109,25 @@ namespace EasyGold.API.Controllers
             await _allegatoService.DeleteAsync(id);
             return NoContent();
         }
+
+        /// <summary>
+        /// Restituisce il file indicato da Path.
+        /// </summary>
+        /// <param name="filePath">Percorso del file</param>
+        /// <returns>File</returns>
+        /// <response code="404">File non trovato</response>
+        /// <response code="500">Errore interno del server</response>
+        [HttpGet("file/{**filePath}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAttachment(string filePath)
+        {
+            var(success, fileBytes, contentType) = await _allegatoService.GetFileByPathAsync(filePath);
+            if (!success)
+            {
+                return NotFound();
+            }
+            return File(fileBytes, contentType);
+        }
     }
 }
