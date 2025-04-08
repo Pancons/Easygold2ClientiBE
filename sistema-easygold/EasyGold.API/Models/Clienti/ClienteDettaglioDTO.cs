@@ -86,12 +86,6 @@ namespace EasyGold.API.Models.Clienti
         [SwaggerSchema(Description = "Ranking del cliente")]
         public int Dtc_Ranking { get; set; }
 
-        [SwaggerSchema(Description = "Data di attivazione del cliente")]
-        public DateTime Utw_DataAttivazione { get; set; }
-
-        [SwaggerSchema(Description = "Data di disattivazione del cliente")]
-        public DateTime? Utw_DataDisattivazione { get; set; }
-
         [SwaggerSchema(Description = "Stato del cliente")]
         public string? Dtc_Stato { get; set; }
 
@@ -105,7 +99,7 @@ namespace EasyGold.API.Models.Clienti
         public ConfigurazioneDTO Configurazione { get; set; }
 
         [SwaggerSchema(Description = "Lista dei moduli del cliente")]
-        public List<ModuloDTO>? Moduli { get; set; }
+        public List<ModuloClienteDTO>? Moduli { get; set; }
 
         [SwaggerSchema(Description = "Lista degli allegati del cliente")]
         public List<AllegatoDTO>? Allegati { get; set; }
@@ -115,9 +109,6 @@ namespace EasyGold.API.Models.Clienti
 
         [SwaggerSchema(Description = "Dettaglio Nazione del cliente")]
         public NazioniDTO? Nazione { get; set; }
-
-        [SwaggerSchema(Description = "Dettaglio Valuta del cliente")]
-        public ValuteDTO? Valuta { get; set; }
     }
 
 }

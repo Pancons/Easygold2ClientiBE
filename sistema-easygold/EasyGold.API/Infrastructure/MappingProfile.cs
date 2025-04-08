@@ -29,8 +29,8 @@ namespace EasyGold.API.Infrastructure
             CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli), ClienteDettaglioDTO>().ReverseMap();
 
             CreateMap<DbUtente, UtenteDTO>().ReverseMap();
-            CreateMap<DbModuloEasygold, ModuloDTO>().ReverseMap();
-            CreateMap<DbModuloCliente, ModuloDTO>().ReverseMap();
+            CreateMap<DbModuloEasygold, ModuloClienteDTO>().ReverseMap();
+            CreateMap<DbModuloCliente, ModuloClienteDTO>().ReverseMap();
             CreateMap<DbAllegato, AllegatoDTO>().ReverseMap();
             CreateMap<DbRuolo, RuoloDTO>().ReverseMap();
             CreateMap<DbNazioni, NazioniDTO>().ReverseMap();
@@ -67,8 +67,6 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Dtc_REA, opt => opt.MapFrom(src => src.DatiCliente.Dtc_REA))
                 .ForMember(dest => dest.Dtc_CapitaleSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_CapitaleSociale))
                 .ForMember(dest => dest.Dtc_PEC, opt => opt.MapFrom(src => src.DatiCliente.Dtc_PEC))
-                .ForMember(dest => dest.Utw_DataAttivazione, opt => opt.MapFrom(src => src.Cliente.Utw_DataAttivazione))
-                .ForMember(dest => dest.Utw_DataDisattivazione, opt => opt.MapFrom(src => src.Cliente.Utw_DataDisattivazione))
                 .ForMember(dest => dest.Utw_Bloccato, opt => opt.MapFrom(src => src.Cliente.Utw_Blocco))
                 .ForMember(dest => dest.Moduli, opt => opt.MapFrom(src => src.Moduli))
                 .ForMember(dest => dest.Allegati, opt => opt.MapFrom(src => src.Allegati))
@@ -101,14 +99,11 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Dtc_REA, opt => opt.MapFrom(src => src.DatiCliente.Dtc_REA))
                 .ForMember(dest => dest.Dtc_CapitaleSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_CapitaleSociale))
                 .ForMember(dest => dest.Dtc_PEC, opt => opt.MapFrom(src => src.DatiCliente.Dtc_PEC))
-                .ForMember(dest => dest.Utw_DataAttivazione, opt => opt.MapFrom(src => src.Cliente.Utw_DataAttivazione))
-                .ForMember(dest => dest.Utw_DataDisattivazione, opt => opt.MapFrom(src => src.Cliente.Utw_DataDisattivazione))
                 .ForMember(dest => dest.Utw_Bloccato, opt => opt.MapFrom(src => src.Cliente.Utw_Blocco))
                 .ForMember(dest => dest.Moduli, opt => opt.MapFrom(src => src.Moduli))
                 .ForMember(dest => dest.Allegati, opt => opt.MapFrom(src => src.Allegati ?? new List<DbAllegato>())) // Nella lista clienti gli allegati non servono, quindi restituisco un array vuoto
                 .ForMember(dest => dest.Negozi, opt => opt.MapFrom(src => src.Negozi ?? new List<DbNegozi>())) // Nella lista clienti i negozi non servono, quindi restituisco un array vuoto
                 .ForMember(dest => dest.Nazione, opt => opt.MapFrom(src => src.Nazione))
-                .ForMember(dest => dest.Valuta, opt => opt.MapFrom(src => src.Valuta))
                 // Campi di DbCliente mappati in ConfigurazioneDTO
                 .ForMember(dest => dest.Configurazione, opt => opt.MapFrom(src => new ConfigurazioneDTO
                 {
@@ -120,13 +115,15 @@ namespace EasyGold.API.Infrastructure
                     Utw_Blocco = src.Cliente.Utw_Blocco,
                     Utw_IDValuta = src.DatiCliente.Dtc_IDValuta,
                     Utw_NumeroContratto = src.DatiCliente.Dtc_NumeroContratto
-                }));
+                }))
+                .ForPath(dest => dest.Configurazione.Valuta, opt => opt.MapFrom(src => src.Valuta))
+                ;
 
             CreateMap<ClienteDettaglioDTO, DbCliente>()
                 .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.Ignore())
                 .ForMember(dest => dest.Utw_NomeConnessione, opt => opt.MapFrom(src => src.Dtc_RagioneSociale))
-                .ForMember(dest => dest.Utw_DataAttivazione, opt => opt.MapFrom(src => src.Utw_DataAttivazione))
-                .ForMember(dest => dest.Utw_DataDisattivazione, opt => opt.MapFrom(src => src.Utw_DataDisattivazione))
+                .ForMember(dest => dest.Utw_DataAttivazione, opt => opt.MapFrom(src => src.Configurazione.Utw_DataAttivazione))
+                .ForMember(dest => dest.Utw_DataDisattivazione, opt => opt.MapFrom(src => src.Configurazione.Utw_DataDisattivazione))
                 .ForMember(dest => dest.Utw_NegoziAttivabili, opt => opt.MapFrom(src => src.Configurazione.Utw_NegoziAttivabili))
                 .ForMember(dest => dest.Utw_NegoziVirtuali, opt => opt.MapFrom(src => src.Configurazione.Utw_NegoziVirtuali))
                 .ForMember(dest => dest.Utw_UtentiAttivi, opt => opt.MapFrom(src => src.Configurazione.Utw_UtentiAttivi))
@@ -195,7 +192,14 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Mde_Descrizione, opt => opt.MapFrom(src => src.Mde_Descrizione))
                 .ForMember(dest => dest.Mde_DescrizioneEstesa, opt => opt.MapFrom(src => src.Mde_DescrizioneEstesa));
 
-            CreateMap<Tuple<DbModuloEasygold, DbModuloCliente>, ModuloDTO>()
+            // Mapping tra DbModuloEasygold e ModuloDTO
+            CreateMap<DbModuloEasygold, ModuloClienteDTO>()
+                .ForMember(dest => dest.Mdc_IDModulo, opt => opt.MapFrom(src => src.Mde_IDAuto))
+                .ForMember(dest => dest.Mde_CodEcomm, opt => opt.MapFrom(src => src.Mde_CodEcomm))
+                .ForMember(dest => dest.Mde_Descrizione, opt => opt.MapFrom(src => src.Mde_Descrizione))
+                .ForMember(dest => dest.Mde_DescrizioneEstesa, opt => opt.MapFrom(src => src.Mde_DescrizioneEstesa));
+
+            CreateMap<Tuple<DbModuloEasygold, DbModuloCliente>, ModuloClienteDTO>()
                 .ForMember(dest => dest.Mdc_IDModulo, opt => opt.MapFrom(src => src.Item1.Mde_IDAuto))
                 .ForMember(dest => dest.Mde_CodEcomm, opt => opt.MapFrom(src => src.Item1.Mde_CodEcomm))
                 .ForMember(dest => dest.Mde_Descrizione, opt => opt.MapFrom(src => src.Item1.Mde_Descrizione))
@@ -204,9 +208,10 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Mdc_DataDisattivazione, opt => opt.MapFrom(src => src.Item2.Mdc_DataDisattivazione))
                 .ForMember(dest => dest.Mdc_BloccoModulo, opt => opt.MapFrom(src => src.Item2.Mdc_BloccoModulo))
                 .ForMember(dest => dest.Mdc_DataOraBlocco, opt => opt.MapFrom(src => src.Item2.Mdc_DataOraBlocco))
-                .ForMember(dest => dest.Mdc_Nota, opt => opt.MapFrom(src => src.Item2.Mdc_Nota));
+                .ForMember(dest => dest.Mdc_Nota, opt => opt.MapFrom(src => src.Item2.Mdc_Nota))
+                .ForMember(dest => dest.Mdc_Selezionato, opt => opt.MapFrom(src => (src.Item2.Mdc_IDCliente != null && src.Item2.Mdc_IDCliente > 0)));
 
-            CreateMap<ModuloDTO, DbModuloCliente>()
+            CreateMap<ModuloClienteDTO, DbModuloCliente>()
                 .ForMember(dest => dest.Mdc_IDAuto, opt => opt.Ignore()) // ID gestito dal database
                 .ForMember(dest => dest.Mdc_IDModulo, opt => opt.MapFrom(src => src.Mdc_IDModulo))
                 .ForMember(dest => dest.Mdc_DataAttivazione, opt => opt.MapFrom(src => src.Mdc_DataAttivazione))
@@ -216,7 +221,7 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Mdc_Nota, opt => opt.MapFrom(src => src.Mdc_Nota));
 
             // Mapping tra ModuloDTO e ModuloIntermedio
-            CreateMap<ModuloDTO, ModuloIntermedio>().ReverseMap();
+            CreateMap<ModuloClienteDTO, ModuloIntermedio>().ReverseMap();
 
             // Mapping tra ModuloIntermedio e DbModuloEasygold
             CreateMap<ModuloIntermedio, DbModuloEasygold>()
@@ -236,21 +241,20 @@ namespace EasyGold.API.Infrastructure
                 .ReverseMap();
 
             // **Mapping delle liste**
-            CreateMap<List<ModuloDTO>, List<ModuloIntermedio>>().ConvertUsing(src => src.Select(x => new ModuloIntermedio
+            CreateMap<List<ModuloClienteDTO>, List<ModuloIntermedio>>().ConvertUsing(src => src.Select(x => new ModuloIntermedio
             {
-                Mde_CodEcomm = x.Mde_CodEcomm,
+                Mde_CodEcomm = x.Mde_CodEcomm ?? "",
                 Mde_Descrizione = x.Mde_Descrizione,
                 Mde_DescrizioneEstesa = x.Mde_DescrizioneEstesa,
                 Mdc_DataAttivazione = x.Mdc_DataAttivazione,
                 Mdc_DataDisattivazione = x.Mdc_DataDisattivazione,
                 Mdc_BloccoModulo = x.Mdc_BloccoModulo,
                 Mdc_DataOraBlocco = x.Mdc_DataOraBlocco,
-                Mdc_Nota = x.Mdc_Nota
+                Mdc_Nota = x.Mdc_Nota ?? ""
             }).ToList());
 
-            CreateMap<List<ModuloIntermedio>, List<ModuloDTO>>().ConvertUsing(src => src.Select(x => new ModuloDTO
+            CreateMap<List<ModuloIntermedio>, List<ModuloClienteDTO>>().ConvertUsing(src => src.Select(x => new ModuloClienteDTO
             {
-
                 Mde_CodEcomm = x.Mde_CodEcomm,
                 Mde_Descrizione = x.Mde_Descrizione,
                 Mde_DescrizioneEstesa = x.Mde_DescrizioneEstesa,
@@ -258,7 +262,8 @@ namespace EasyGold.API.Infrastructure
                 Mdc_DataDisattivazione = x.Mdc_DataDisattivazione,
                 Mdc_BloccoModulo = x.Mdc_BloccoModulo,
                 Mdc_DataOraBlocco = x.Mdc_DataOraBlocco,
-                Mdc_Nota = x.Mdc_Nota
+                Mdc_Nota = x.Mdc_Nota,
+                Mdc_Selezionato = true
             }).ToList());
 
             CreateMap<List<DbModuloEasygold>, List<ModuloDTO>>().ConvertUsing(src => src.Select(x => new ModuloDTO

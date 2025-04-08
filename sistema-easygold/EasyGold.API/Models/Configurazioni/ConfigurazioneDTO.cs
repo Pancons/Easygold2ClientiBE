@@ -1,3 +1,4 @@
+using EasyGold.API.Models.Valute;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 
@@ -34,5 +35,8 @@ namespace EasyGold.API.Models.Configurazioni
         [Range(0, int.MaxValue)]
         [SwaggerSchema(Description = "Valuta")]
         public int? Utw_IDValuta { get; set; }
+
+        [SwaggerSchema(Description = "Dettaglio Valuta del cliente")]
+        public ValuteDTO? Valuta { get; set; }
     }
 }

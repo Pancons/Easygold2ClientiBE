@@ -289,6 +289,27 @@ namespace EasyGold.API.Repositories.Implementations
                     (mc, me) => new Tuple<DbModuloEasygold, DbModuloCliente>(me, mc))
                 .ToListAsync();
 
+
+            if (moduli.Count() > 0)
+            {
+                var moduliSelezionati = moduli.Select(mc => mc.Item1.Mde_IDAuto).ToList();
+
+                var moduliNonSelezionati = await _context.ModuloEasygold
+                    .Where(me => !moduliSelezionati.Contains(me.Mde_IDAuto))
+                    .Select(me => new Tuple<DbModuloEasygold, DbModuloCliente>(me, new DbModuloCliente()))
+                    .ToListAsync();
+
+                moduli.AddRange(moduliNonSelezionati);
+            }
+            else
+            {
+                var moduliNonSelezionati = await _context.ModuloEasygold
+                    .Select(me => new Tuple<DbModuloEasygold, DbModuloCliente>(me, new DbModuloCliente()))
+                    .ToListAsync();
+
+                moduli.AddRange(moduliNonSelezionati);
+            }
+
             var allegati = await _context.Allegati
                 .Where(a => a.All_EntitaRiferimento == "Cliente" && a.All_RecordId == id)
                 .ToListAsync();
