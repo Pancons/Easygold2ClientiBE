@@ -32,7 +32,7 @@ namespace EasyGold.API.Repositories.Implementations
             _negozioRepository = negozioRepository;
         }
 
-        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, List<DbAllegato>? Allegati, List<DbNegozi>? Negozi, DbNazioni? Nazione, DbValute? Valuta)> Clienti, int Total)>
+        public async Task<(IEnumerable<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, List<DbAllegato>? Allegati, List<DbNegozi>? Negozi, DbNazioni? Nazione, DbValute? Valuta, DbStatoCliente? StatoCliente)> Clienti, int Total)>
         GetClientiAsync(ClienteListRequest request)
         {
             var query = from cliente in _context.Clienti
@@ -108,8 +108,10 @@ namespace EasyGold.API.Repositories.Implementations
                 .FirstOrDefaultAsync().Result,
                 _context.Valute
                 .Where(v => v.Val_id == x.DatiCliente.Dtc_IDValuta)
+                .FirstOrDefaultAsync().Result,
+                _context.StatiCliente
+                .Where(sc => sc.Stc_id == x.Cliente.Utw_IdStatoCliente)
                 .FirstOrDefaultAsync().Result)).ToList();
-
 
             return (result, total);
         }
@@ -270,7 +272,7 @@ namespace EasyGold.API.Repositories.Implementations
         }
 
 
-        public async Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, List<DbAllegato>? Allegati, List<DbNegozi>? Negozi, DbNazioni? Nazione, DbValute? Valuta)>
+        public async Task<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, List<DbAllegato>? Allegati, List<DbNegozi>? Negozi, DbNazioni? Nazione, DbValute? Valuta, DbStatoCliente? StatoCliente)>
         GetClienteByIdAsync(int id)
         {
             var cliente = await _context.Clienti
@@ -326,7 +328,11 @@ namespace EasyGold.API.Repositories.Implementations
                 .Where(v => v.Val_id == datiCliente.Dtc_IDValuta)
                 .FirstOrDefaultAsync();
 
-            return (cliente, datiCliente, moduli, allegati, negozi, nazioni, valuta);
+            var statoCliente = await _context.StatiCliente
+                .Where(sc => sc.Stc_id == cliente.Utw_IdStatoCliente)
+                .FirstOrDefaultAsync();
+
+            return (cliente, datiCliente, moduli, allegati, negozi, nazioni, valuta, statoCliente);
         }
 
         /// <summary>

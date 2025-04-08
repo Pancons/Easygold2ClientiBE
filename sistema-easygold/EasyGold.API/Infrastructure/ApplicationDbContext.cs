@@ -19,6 +19,7 @@ namespace EasyGold.API.Infrastructure
         public DbSet<DbNegozi> Negozi { get; set; }
         public DbSet<DbNazioni> Nazioni { get; set; }
         public DbSet<DbValute> Valute { get; set; }
+        public DbSet<DbStatoCliente> StatiCliente { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

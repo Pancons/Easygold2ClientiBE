@@ -6,6 +6,7 @@ using EasyGold.API.Models.Nazioni;
 using EasyGold.API.Models.Configurazioni;
 using System.ComponentModel.DataAnnotations;
 using EasyGold.API.Models.Valute;
+using EasyGold.API.Models.StatiCliente;
 
 namespace EasyGold.API.Models.Clienti
 {
@@ -86,15 +87,6 @@ namespace EasyGold.API.Models.Clienti
         [SwaggerSchema(Description = "Ranking del cliente")]
         public int Dtc_Ranking { get; set; }
 
-        [SwaggerSchema(Description = "Stato del cliente")]
-        public string? Dtc_Stato { get; set; }
-
-        [SwaggerSchema(Description = "Indica se il cliente è attivo")]
-        public bool Utw_Attivo { get; set; }
-
-        [SwaggerSchema(Description = "Indica se il cliente è bloccato")]
-        public bool Utw_Bloccato { get; set; }
-
         [SwaggerSchema(Description = "Configurazione del cliente")]
         public ConfigurazioneDTO Configurazione { get; set; }
 
@@ -109,6 +101,7 @@ namespace EasyGold.API.Models.Clienti
 
         [SwaggerSchema(Description = "Dettaglio Nazione del cliente")]
         public NazioniDTO? Nazione { get; set; }
+
     }
 
 }

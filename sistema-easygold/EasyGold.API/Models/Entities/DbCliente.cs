@@ -67,9 +67,9 @@ namespace EasyGold.API.Models.Entities
         public string? Utw_PercorsoImmagini { get; set; }
 
         /// <summary>
-        /// Indica se il cliente è bloccato.
+        /// Stato del cliente.
         /// </summary>
-        public bool Utw_Blocco { get; set; }
+        public int? Utw_IdStatoCliente { get; set; }
 
         public ICollection<DbModuloCliente> ModuliClienti { get; set; } = new List<DbModuloCliente>();
 

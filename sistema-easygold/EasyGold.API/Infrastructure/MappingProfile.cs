@@ -7,6 +7,7 @@ using EasyGold.API.Models.Configurazioni;
 using EasyGold.API.Models.Entities;
 using EasyGold.API.Models.Moduli;
 using EasyGold.API.Models.Ruoli;
+using EasyGold.API.Models.StatiCliente;
 using EasyGold.API.Models.Utenti;
 using EasyGold.API.Models.Valute;
 
@@ -24,7 +25,6 @@ namespace EasyGold.API.Infrastructure
             MappingValute();
 
             // Reverse Mapping
-            CreateMap<DbCliente, ClienteDTO>().ReverseMap();
             CreateMap<DbDatiCliente, ClienteDettaglioDTO>().ReverseMap();
             CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli), ClienteDettaglioDTO>().ReverseMap();
 
@@ -34,25 +34,13 @@ namespace EasyGold.API.Infrastructure
             CreateMap<DbAllegato, AllegatoDTO>().ReverseMap();
             CreateMap<DbRuolo, RuoloDTO>().ReverseMap();
             CreateMap<DbNazioni, NazioniDTO>().ReverseMap();
+            CreateMap<DbStatoCliente, StatoClienteDTO>().ReverseMap();
 
         }
 
         private void MappingClienti()
         {
-            // Mapping da (DbCliente + DbDatiCliente) a ClienteDTO
-            CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente), ClienteDTO>()
-                .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.MapFrom(src => src.Cliente.Utw_IDClienteAuto))
-                .ForMember(dest => dest.Dtc_RagioneSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_RagioneSociale))
-                .ForMember(dest => dest.Dtc_Gioielleria, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Gioielleria))
-                .ForMember(dest => dest.Dtc_Referente, opt => opt.MapFrom(src => src.DatiCliente.Dtc_ReferenteNome + " " + src.DatiCliente.Dtc_ReferenteCognome))
-                .ForMember(dest => dest.Dtc_Telefono, opt => opt.MapFrom(src => src.DatiCliente.Dtc_ReferenteTelefono))
-                .ForMember(dest => dest.Dtc_Email, opt => opt.MapFrom(src => src.DatiCliente.Dtc_ReferenteEmail))
-                .ForMember(dest => dest.Dtc_Stato, opt => opt.MapFrom(src => src.DatiCliente.Dtc_StatoRegione))
-                .ForMember(dest => dest.Dtc_Citta, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Citta))
-                .ForMember(dest => dest.Utw_Bloccato, opt => opt.MapFrom(src => src.Cliente.Utw_Blocco));
-
-            // Mapping per ClienteDettaglioIntermedio -> ClienteDettaglioDTO
-            CreateMap<ClienteDettaglioIntermedio, ClienteDettaglioDTO>()
+            CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, List<DbAllegato>? Allegati, List<DbNegozi>? Negozi, DbNazioni? Nazione, DbValute? Valuta, DbStatoCliente? StatoCliente), ClienteDettaglioDTO>()
                 .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.MapFrom(src => src.Cliente.Utw_IDClienteAuto))
                 .ForMember(dest => dest.Dtc_RagioneSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_RagioneSociale))
                 .ForMember(dest => dest.Dtc_Gioielleria, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Gioielleria))
@@ -67,39 +55,6 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Dtc_REA, opt => opt.MapFrom(src => src.DatiCliente.Dtc_REA))
                 .ForMember(dest => dest.Dtc_CapitaleSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_CapitaleSociale))
                 .ForMember(dest => dest.Dtc_PEC, opt => opt.MapFrom(src => src.DatiCliente.Dtc_PEC))
-                .ForMember(dest => dest.Utw_Bloccato, opt => opt.MapFrom(src => src.Cliente.Utw_Blocco))
-                .ForMember(dest => dest.Moduli, opt => opt.MapFrom(src => src.Moduli))
-                .ForMember(dest => dest.Allegati, opt => opt.MapFrom(src => src.Allegati))
-                .ForMember(dest => dest.Negozi, opt => opt.MapFrom(src => src.Negozi))
-                .ForMember(dest => dest.Nazione, opt => opt.MapFrom(src => src.Nazione))
-
-                // Campi di DbCliente mappati in ConfigurazioneDTO
-                .ForMember(dest => dest.Configurazione, opt => opt.MapFrom(src => new ConfigurazioneDTO
-                {
-                    Utw_NegoziAttivabili = src.Cliente.Utw_NegoziAttivabili,
-                    Utw_NegoziVirtuali = src.Cliente.Utw_NegoziVirtuali,
-                    Utw_UtentiAttivi = src.Cliente.Utw_UtentiAttivi,
-                    Utw_DataAttivazione = src.Cliente.Utw_DataAttivazione,
-                    Utw_DataDisattivazione = src.Cliente.Utw_DataDisattivazione,
-                    Utw_Blocco = src.Cliente.Utw_Blocco
-                }));
-
-            CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli, List<DbAllegato>? Allegati, List<DbNegozi>? Negozi, DbNazioni? Nazione, DbValute? Valuta), ClienteDettaglioDTO>()
-                .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.MapFrom(src => src.Cliente.Utw_IDClienteAuto))
-                .ForMember(dest => dest.Dtc_RagioneSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_RagioneSociale))
-                .ForMember(dest => dest.Dtc_Gioielleria, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Gioielleria))
-                .ForMember(dest => dest.Dtc_Indirizzo, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Indirizzo))
-                .ForMember(dest => dest.Dtc_Citta, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Citta))
-                .ForMember(dest => dest.Dtc_CAP, opt => opt.MapFrom(src => src.DatiCliente.Dtc_CAP))
-                .ForMember(dest => dest.Dtc_Provincia, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Provincia))
-                .ForMember(dest => dest.Dtc_StatoRegione, opt => opt.MapFrom(src => src.DatiCliente.Dtc_StatoRegione))
-                .ForMember(dest => dest.Dtc_Nazione, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Nazione))
-                .ForMember(dest => dest.Dtc_PartitaIVA, opt => opt.MapFrom(src => src.DatiCliente.Dtc_PartitaIVA))
-                .ForMember(dest => dest.Dtc_CodiceFiscale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_CodiceFiscale))
-                .ForMember(dest => dest.Dtc_REA, opt => opt.MapFrom(src => src.DatiCliente.Dtc_REA))
-                .ForMember(dest => dest.Dtc_CapitaleSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_CapitaleSociale))
-                .ForMember(dest => dest.Dtc_PEC, opt => opt.MapFrom(src => src.DatiCliente.Dtc_PEC))
-                .ForMember(dest => dest.Utw_Bloccato, opt => opt.MapFrom(src => src.Cliente.Utw_Blocco))
                 .ForMember(dest => dest.Moduli, opt => opt.MapFrom(src => src.Moduli))
                 .ForMember(dest => dest.Allegati, opt => opt.MapFrom(src => src.Allegati ?? new List<DbAllegato>())) // Nella lista clienti gli allegati non servono, quindi restituisco un array vuoto
                 .ForMember(dest => dest.Negozi, opt => opt.MapFrom(src => src.Negozi ?? new List<DbNegozi>())) // Nella lista clienti i negozi non servono, quindi restituisco un array vuoto
@@ -112,12 +67,12 @@ namespace EasyGold.API.Infrastructure
                     Utw_UtentiAttivi = src.Cliente.Utw_UtentiAttivi,
                     Utw_DataAttivazione = src.Cliente.Utw_DataAttivazione,
                     Utw_DataDisattivazione = src.Cliente.Utw_DataDisattivazione,
-                    Utw_Blocco = src.Cliente.Utw_Blocco,
+                    Utw_IdStatoCliente = src.Cliente.Utw_IdStatoCliente,
                     Utw_IDValuta = src.DatiCliente.Dtc_IDValuta,
                     Utw_NumeroContratto = src.DatiCliente.Dtc_NumeroContratto
                 }))
                 .ForPath(dest => dest.Configurazione.Valuta, opt => opt.MapFrom(src => src.Valuta))
-                ;
+                .ForPath(dest => dest.Configurazione.StatoCliente, opt => opt.MapFrom(src => src.StatoCliente));
 
             CreateMap<ClienteDettaglioDTO, DbCliente>()
                 .ForMember(dest => dest.Utw_IDClienteAuto, opt => opt.Ignore())
@@ -127,7 +82,7 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Utw_NegoziAttivabili, opt => opt.MapFrom(src => src.Configurazione.Utw_NegoziAttivabili))
                 .ForMember(dest => dest.Utw_NegoziVirtuali, opt => opt.MapFrom(src => src.Configurazione.Utw_NegoziVirtuali))
                 .ForMember(dest => dest.Utw_UtentiAttivi, opt => opt.MapFrom(src => src.Configurazione.Utw_UtentiAttivi))
-                .ForMember(dest => dest.Utw_Blocco, opt => opt.MapFrom(src => src.Utw_Bloccato));
+                .ForMember(dest => dest.Utw_IdStatoCliente, opt => opt.MapFrom(src => src.Configurazione.Utw_IdStatoCliente));
             // Altri mapping
 
             CreateMap<ClienteDettaglioDTO, DbDatiCliente>()
