@@ -45,11 +45,32 @@ namespace EasyGold.API.Migrations
                     {12, "Trigger", "Trigger", "Gestisce la possibilità di far fare azioni ripetute quando viene eseguita una determinata funzione."},
                     {13, "My Brand", "My Brand", "Gestisce un Brand proprio con il ricevimento degli ordini da parte dei “Concessionari”."}
                 });
+
+            migrationBuilder.InsertData(
+                table: "Valute",
+                columns: new[] { "Val_id", "Val_Descrizione", "Val_Cambio", "Val_Simbolo", "Val_SimboloRegCassa", "Val_NumeroDecimali" },
+                values: new object[,]
+                {
+                    {1, "Euro", 1, "€", "EUR", 2 },
+                    {2, "Dollari", 1.33, "$", "USD", 2 },
+                    {3, "Franchi Svizzeri", 1.2, "CHF", "CHF", 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "StatiCliente",
+                columns: new[] { "Stc_id", "Stc_Descrizione" },
+                values: new object[,]
+                {
+                    {1, "Attivo"},
+                    {2, "Bloccato"},
+                    {3, "Sospeso"}
+                });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+
             migrationBuilder.DeleteData(
                 table: "Utenti",
                 keyColumn: "Ute_IDUtente",
@@ -64,6 +85,18 @@ namespace EasyGold.API.Migrations
                 table: "ModuloEasygold",
                 keyColumn: "Mde_IDAuto",
                 keyValues: new object[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }
+                );
+
+            migrationBuilder.DeleteData(
+                table: "Valute",
+                keyColumn: "Val_id",
+                keyValues: new object[] { 1, 2, 3 }
+                );
+
+            migrationBuilder.DeleteData(
+                table: "StatiCliente",
+                keyColumn: "Stc_id",
+                keyValues: new object[] { 1, 2, 3 }
                 );
         }
     }

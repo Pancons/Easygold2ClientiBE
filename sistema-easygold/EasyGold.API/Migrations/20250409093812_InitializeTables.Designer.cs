@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGold.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250404155436_TabellaValute")]
-    partial class TabellaValute
+    [Migration("20250409093812_InitializeTables")]
+    partial class InitializeTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,14 +71,14 @@ namespace EasyGold.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Utw_IDClienteAuto"));
 
-                    b.Property<bool>("Utw_Blocco")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("Utw_DataAttivazione")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("Utw_DataDisattivazione")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("Utw_IdStatoCliente")
+                        .HasColumnType("int");
 
                     b.Property<int>("Utw_NegoziAttivabili")
                         .HasColumnType("int");
@@ -97,6 +97,9 @@ namespace EasyGold.API.Migrations
                     b.Property<string>("Utw_PercorsoReports")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Utw_Postazioni")
+                        .HasColumnType("int");
 
                     b.Property<string>("Utw_StringaConnessione")
                         .HasMaxLength(200)
@@ -200,7 +203,6 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_ReferenteTelefono")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_ReferenteWeb")
@@ -382,6 +384,28 @@ namespace EasyGold.API.Migrations
                     b.HasKey("Ur_IDRuolo");
 
                     b.ToTable("Ruoli");
+                });
+
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbStatoCliente", b =>
+                {
+                    b.Property<int>("Stc_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Stc_id"));
+
+                    b.Property<string>("Stc_Colore")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Stc_Descrizione")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Stc_id");
+
+                    b.ToTable("StatiCliente");
                 });
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbUtente", b =>

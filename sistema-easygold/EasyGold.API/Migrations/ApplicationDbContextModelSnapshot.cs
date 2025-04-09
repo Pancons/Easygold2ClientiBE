@@ -225,7 +225,7 @@ namespace EasyGold.API.Migrations
                     b.Property<bool>("Mdc_BloccoModulo")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("Mdc_DataAttivazione")
+                    b.Property<DateTime?>("Mdc_DataAttivazione")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("Mdc_DataDisattivazione")
@@ -331,13 +331,13 @@ namespace EasyGold.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Neg_id"));
 
-                    b.Property<bool>("Neg_Bloccato")
+                    b.Property<bool?>("Neg_Bloccato")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("Neg_DataAttivazione")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Neg_DataDisattivazione")
+                    b.Property<DateTime?>("Neg_DataDisattivazione")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("Neg_DataOraBlocco")
@@ -352,7 +352,6 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Neg_Note")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
