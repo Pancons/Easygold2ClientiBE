@@ -6,7 +6,7 @@ namespace EasyGold.API.Models.Negozi
     public class NegozioDTO
     {
         [SwaggerSchema(Description = "Identificativo univoco del negozio")]
-        public int Id { get; set; }
+        public int Neg_id { get; set; }
 
         [Required]
         [StringLength(255)]
