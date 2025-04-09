@@ -23,14 +23,14 @@ namespace EasyGold.API.Services.Implementations
 
         public async Task<IEnumerable<ValuteDTO>> GetAllAsync(ValuteListRequest request)
         {
-            var moduli = await _valutaRepository.GetAllAsync(request);
-            return _mapper.Map<IEnumerable<ValuteDTO>>(moduli);
+            var valute = await _valutaRepository.GetAllAsync(request);
+            return _mapper.Map<IEnumerable<ValuteDTO>>(valute);
         }
 
         public async Task<ValuteDTO> GetByIdAsync(int id)
         {
-            var modulo = await _valutaRepository.GetByIdAsync(id);
-            return _mapper.Map<ValuteDTO>(modulo);
+            var valuta = await _valutaRepository.GetByIdAsync(id);
+            return _mapper.Map<ValuteDTO>(valuta);
         }
     }
 }
