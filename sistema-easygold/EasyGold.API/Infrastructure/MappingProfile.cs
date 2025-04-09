@@ -65,6 +65,7 @@ namespace EasyGold.API.Infrastructure
                     Utw_NegoziAttivabili = src.Cliente.Utw_NegoziAttivabili,
                     Utw_NegoziVirtuali = src.Cliente.Utw_NegoziVirtuali,
                     Utw_UtentiAttivi = src.Cliente.Utw_UtentiAttivi,
+                    Utw_Postazioni = src.Cliente.Utw_Postazioni,
                     Utw_DataAttivazione = src.Cliente.Utw_DataAttivazione,
                     Utw_DataDisattivazione = src.Cliente.Utw_DataDisattivazione,
                     Utw_IdStatoCliente = src.Cliente.Utw_IdStatoCliente,
@@ -82,6 +83,7 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Utw_NegoziAttivabili, opt => opt.MapFrom(src => src.Configurazione.Utw_NegoziAttivabili))
                 .ForMember(dest => dest.Utw_NegoziVirtuali, opt => opt.MapFrom(src => src.Configurazione.Utw_NegoziVirtuali))
                 .ForMember(dest => dest.Utw_UtentiAttivi, opt => opt.MapFrom(src => src.Configurazione.Utw_UtentiAttivi))
+                .ForMember(dest => dest.Utw_Postazioni, opt => opt.MapFrom(src => src.Configurazione.Utw_Postazioni))
                 .ForMember(dest => dest.Utw_IdStatoCliente, opt => opt.MapFrom(src => src.Configurazione.Utw_IdStatoCliente));
             // Altri mapping
 

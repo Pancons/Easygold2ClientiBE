@@ -16,5 +16,11 @@ namespace EasyGold.API.Models.Entities
         [Required]
         [StringLength(255)]
         public string Stc_Descrizione { get; set; }
+
+        /// <summary>
+        /// Colore dello Stato.
+        /// </summary>
+        [StringLength(10)]
+        public string? Stc_Colore { get; set; }
     }
 }

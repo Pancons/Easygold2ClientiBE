@@ -55,6 +55,11 @@ namespace EasyGold.API.Models.Entities
         public int Utw_UtentiAttivi { get; set; }
 
         /// <summary>
+        /// Numero di postazioni per il cliente.
+        /// </summary>
+        public int Utw_Postazioni { get; set; }
+
+        /// <summary>
         /// Percorso dei report per il cliente.
         /// </summary>
         [StringLength(100)]
