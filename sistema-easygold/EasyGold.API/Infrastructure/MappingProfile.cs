@@ -123,6 +123,7 @@ namespace EasyGold.API.Infrastructure
         private void MappingNegozi()
         {
             CreateMap<DbNegozi, NegozioDTO>()
+            .ForMember(dest => dest.Neg_id, opt => opt.MapFrom(src => src.Neg_id))
             .ForMember(dest => dest.Neg_RagioneSociale, opt => opt.MapFrom(src => src.Neg_RagioneSociale))
             .ForMember(dest => dest.Neg_NomeNegozio, opt => opt.MapFrom(src => src.Neg_NomeNegozio))
             .ForMember(dest => dest.Neg_DataAttivazione, opt => opt.MapFrom(src => src.Neg_DataAttivazione))
@@ -166,7 +167,27 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Mdc_BloccoModulo, opt => opt.MapFrom(src => src.Item2.Mdc_BloccoModulo))
                 .ForMember(dest => dest.Mdc_DataOraBlocco, opt => opt.MapFrom(src => src.Item2.Mdc_DataOraBlocco))
                 .ForMember(dest => dest.Mdc_Nota, opt => opt.MapFrom(src => src.Item2.Mdc_Nota))
-                .ForMember(dest => dest.Mdc_Selezionato, opt => opt.MapFrom(src => (src.Item2.Mdc_IDCliente != null && src.Item2.Mdc_IDCliente > 0)));
+                .ForMember(dest => dest.Mdc_Selezionato, opt => opt.MapFrom(src => (src.Item2.Mdc_IDCliente != null && src.Item2.Mdc_IDCliente > 0 && src.Item2.Mdc_DataDisattivazione == null)));
+
+            CreateMap<ModuloClienteDTO, (DbModuloEasygold, DbModuloCliente)>()
+                .ForMember(dest => dest.Item1, opt => opt.MapFrom(src => new DbModuloEasygold
+                {
+                    Mde_IDAuto = src.Mdc_IDModulo,
+                    Mde_CodEcomm = src.Mde_CodEcomm,
+                    Mde_Descrizione = src.Mde_Descrizione,
+                    Mde_DescrizioneEstesa = src.Mde_DescrizioneEstesa
+                }))
+                .ForMember(dest => dest.Item2, opt => opt.MapFrom(src => new DbModuloCliente
+                {
+                    Mdc_IDModulo = src.Mdc_IDModulo,
+                    Mdc_DataAttivazione = src.Mdc_DataAttivazione,
+                    Mdc_DataDisattivazione = src.Mdc_DataDisattivazione,
+                    Mdc_BloccoModulo = src.Mdc_BloccoModulo,
+                    Mdc_DataOraBlocco = src.Mdc_DataOraBlocco,
+                    Mdc_Nota = src.Mdc_Nota,
+                    Mdc_IDCliente = (src.Mdc_Selezionato ? -1 : 0)
+                }));
+
 
             CreateMap<ModuloClienteDTO, DbModuloCliente>()
                 .ForMember(dest => dest.Mdc_IDAuto, opt => opt.Ignore()) // ID gestito dal database

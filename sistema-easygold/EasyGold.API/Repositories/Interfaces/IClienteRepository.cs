@@ -30,7 +30,7 @@ namespace EasyGold.API.Repositories.Interfaces
         Task UpdateClienteAsync(
          DbCliente cliente,
          DbDatiCliente datiCliente,
-         List<ModuloIntermedio> moduli,
+         List<(DbModuloEasygold, DbModuloCliente)> moduli,
          List<DbAllegato> allegati,
          List<DbNegozi> negozi);
 

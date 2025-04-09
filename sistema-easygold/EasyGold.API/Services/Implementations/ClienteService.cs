@@ -61,7 +61,7 @@ namespace EasyGold.API.Services.Implementations
             // Mappa solo le proprietà aggiornabili
             _mapper.Map(clienteDto, clienteData.Cliente);
             _mapper.Map(clienteDto, clienteData.DatiCliente);
-            var moduli = _mapper.Map<List<ModuloIntermedio>>(clienteDto.Moduli);
+            var moduli = _mapper.Map<List<(DbModuloEasygold, DbModuloCliente)>>(clienteDto.Moduli);
             var allegati = _mapper.Map<List<DbAllegato>>(clienteDto.Allegati);
             var negozi = _mapper.Map<List<DbNegozi>>(clienteDto.Negozi);
             var modulicliente = _mapper.Map<List<DbModuloCliente>>(clienteDto.Moduli);

@@ -186,7 +186,7 @@ namespace EasyGold.API.Repositories.Implementations
         public async Task UpdateClienteAsync(
             DbCliente cliente,
             DbDatiCliente datiCliente,
-            List<ModuloIntermedio> moduli,
+            List<(DbModuloEasygold, DbModuloCliente)> moduli,
             List<DbAllegato> allegati,
             List<DbNegozi> negozi)
         {
@@ -230,40 +230,37 @@ namespace EasyGold.API.Repositories.Implementations
             }
 
             // **Gestione Moduli: Creazione e Associazione**
-            foreach (var modulo in moduli)
-            {
-                var moduloEsistente = await _moduloRepository.GetByIdAsync(modulo.Mde_IDAuto);
-                if (moduloEsistente == null)
-                {
-                    var moduloEasygold = new DbModuloEasygold
-                    {
-                        Mde_Descrizione = modulo.Mde_Descrizione,
-                        Mde_DescrizioneEstesa = modulo.Mde_DescrizioneEstesa
-                    };
-                    await _moduloRepository.AddAsync(moduloEasygold);
-                    moduloEsistente = moduloEasygold;
-                }
 
-                // Controlla se l'associazione esiste già
-                var associazioneEsistente = await _moduloClienteRepository.GetByClienteAndModuloAsync(cliente.Utw_IDClienteAuto, moduloEsistente.Mde_IDAuto);
-                if (associazioneEsistente == null)
+            // Ignoro tutti i moduli che hanno entrambe le date null
+            var moduliAssociati = moduli.Where(m => (m.Item2.Mdc_DataAttivazione != null || m.Item2.Mdc_DataDisattivazione != null)).ToList();
+            foreach (var modulo in moduliAssociati)
+            {
+                var moduloEsistente = await _moduloRepository.GetByIdAsync(modulo.Item1.Mde_IDAuto);
+                if (moduloEsistente != null)
                 {
-                    var moduloCliente = new DbModuloCliente
+                    // Controlla se l'associazione esiste già
+                    var associazioneEsistente = await _moduloClienteRepository.GetByClienteAndModuloAsync(cliente.Utw_IDClienteAuto, moduloEsistente.Mde_IDAuto);
+                    if (associazioneEsistente == null)
                     {
-                        Mdc_IDCliente = cliente.Utw_IDClienteAuto,
-                        Mdc_IDModulo = moduloEsistente.Mde_IDAuto,
-                        Mdc_DataAttivazione = modulo.Mdc_DataAttivazione,
-                        Mdc_DataDisattivazione = modulo.Mdc_DataDisattivazione,
-                        Mdc_BloccoModulo = modulo.Mdc_BloccoModulo,
-                        Mdc_DataOraBlocco = modulo.Mdc_DataOraBlocco,
-                        Mdc_Nota = modulo.Mdc_Nota
-                    };
-                    await _moduloClienteRepository.AddAsync(moduloCliente);
-                }
-                else
-                {
-                    _context.Entry(associazioneEsistente).CurrentValues.SetValues(modulo);
-                    await _moduloClienteRepository.UpdateAsync(associazioneEsistente);
+                        var moduloCliente = new DbModuloCliente
+                        {
+                            Mdc_IDCliente = cliente.Utw_IDClienteAuto,
+                            Mdc_IDModulo = moduloEsistente.Mde_IDAuto,
+                            Mdc_DataAttivazione = modulo.Item2.Mdc_DataAttivazione,
+                            Mdc_DataDisattivazione = modulo.Item2.Mdc_DataDisattivazione,
+                            Mdc_BloccoModulo = modulo.Item2.Mdc_BloccoModulo,
+                            Mdc_DataOraBlocco = modulo.Item2.Mdc_DataOraBlocco,
+                            Mdc_Nota = modulo.Item2.Mdc_Nota
+                        };
+                        await _moduloClienteRepository.AddAsync(moduloCliente);
+                    }
+                    else
+                    {
+                        modulo.Item2.Mdc_IDAuto = associazioneEsistente.Mdc_IDAuto;
+                        modulo.Item2.Mdc_IDCliente = associazioneEsistente.Mdc_IDCliente;
+                        _context.Entry(associazioneEsistente).CurrentValues.SetValues(modulo.Item2);
+                        await _moduloClienteRepository.UpdateAsync(associazioneEsistente);
+                    }
                 }
             }
 
@@ -283,34 +280,7 @@ namespace EasyGold.API.Repositories.Implementations
                 .Where(d => d.Dtc_IDCliente == id)
                 .FirstOrDefaultAsync();
 
-            var moduli = await _context.ModuloClienti
-                .Where(mc => mc.Mdc_IDCliente == id)
-                .Join(_context.ModuloEasygold,
-                    mc => mc.Mdc_IDModulo,
-                    me => me.Mde_IDAuto,
-                    (mc, me) => new Tuple<DbModuloEasygold, DbModuloCliente>(me, mc))
-                .ToListAsync();
-
-
-            if (moduli.Count() > 0)
-            {
-                var moduliSelezionati = moduli.Select(mc => mc.Item1.Mde_IDAuto).ToList();
-
-                var moduliNonSelezionati = await _context.ModuloEasygold
-                    .Where(me => !moduliSelezionati.Contains(me.Mde_IDAuto))
-                    .Select(me => new Tuple<DbModuloEasygold, DbModuloCliente>(me, new DbModuloCliente()))
-                    .ToListAsync();
-
-                moduli.AddRange(moduliNonSelezionati);
-            }
-            else
-            {
-                var moduliNonSelezionati = await _context.ModuloEasygold
-                    .Select(me => new Tuple<DbModuloEasygold, DbModuloCliente>(me, new DbModuloCliente()))
-                    .ToListAsync();
-
-                moduli.AddRange(moduliNonSelezionati);
-            }
+            var moduli = (await _moduloClienteRepository.GetByClienteIdAsync(id)).ToList();
 
             var allegati = await _context.Allegati
                 .Where(a => a.All_EntitaRiferimento == "Cliente" && a.All_RecordId == id)
@@ -376,41 +346,5 @@ namespace EasyGold.API.Repositories.Implementations
             // ✅ Salvataggio finale
             await _context.SaveChangesAsync();
         }
-
-
-        /*
-               public async Task<IEnumerable<DbCliente>> GetAllAsync()
-               {
-                   return await _context.Clienti.ToListAsync();
-               }
-
-               public async Task<DbCliente> GetByIdAsync(int id)
-               {
-                   return await _context.Clienti.FindAsync(id);
-               }
-
-               public async Task AddAsync(DbCliente cliente)
-               {
-                   await _context.Clienti.AddAsync(cliente);
-                   await _context.SaveChangesAsync();
-               }
-
-               public async Task UpdateAsync(DbCliente cliente)
-               {
-                   _context.Clienti.Update(cliente);
-                   await _context.SaveChangesAsync();
-               }
-
-               public async Task DeleteAsync(int id)
-               {
-                   var cliente = await GetByIdAsync(id);
-                   if (cliente != null)
-                   {
-                       _context.Clienti.Remove(cliente);
-                       await _context.SaveChangesAsync();
-                   }
-               }
-               */
-
     }
 }

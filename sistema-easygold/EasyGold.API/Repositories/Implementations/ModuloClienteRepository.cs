@@ -33,12 +33,38 @@ namespace EasyGold.API.Repositories.Implementations
                 .FirstOrDefaultAsync(mc => mc.Mdc_IDAuto == id);
         }
 
-        public async Task<IEnumerable<DbModuloCliente>> GetByClienteIdAsync(int clienteId)
+        public async Task<IEnumerable<Tuple<DbModuloEasygold, DbModuloCliente>>> GetByClienteIdAsync(int clienteId)
         {
-            return await _context.ModuloClienti
+            var moduli = await _context.ModuloClienti
                 .Where(mc => mc.Mdc_IDCliente == clienteId)
-                .Include(mc => mc.Modulo)
+                .Join(_context.ModuloEasygold,
+                    mc => mc.Mdc_IDModulo,
+                    me => me.Mde_IDAuto,
+                    (mc, me) => new Tuple<DbModuloEasygold, DbModuloCliente>(me, mc))
                 .ToListAsync();
+
+
+            if (moduli.Count() > 0)
+            {
+                var moduliSelezionati = moduli.Select(mc => mc.Item1.Mde_IDAuto).ToList();
+
+                var moduliNonSelezionati = await _context.ModuloEasygold
+                    .Where(me => !moduliSelezionati.Contains(me.Mde_IDAuto))
+                    .Select(me => new Tuple<DbModuloEasygold, DbModuloCliente>(me, new DbModuloCliente()))
+                    .ToListAsync();
+
+                moduli.AddRange(moduliNonSelezionati);
+            }
+            else
+            {
+                var moduliNonSelezionati = await _context.ModuloEasygold
+                    .Select(me => new Tuple<DbModuloEasygold, DbModuloCliente>(me, new DbModuloCliente()))
+                    .ToListAsync();
+
+                moduli.AddRange(moduliNonSelezionati);
+            }
+
+            return moduli;
         }
 
         public async Task<IEnumerable<DbModuloCliente>> GetByModuloIdAsync(int moduloId)
