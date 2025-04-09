@@ -26,7 +26,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Data di attivazione del modulo per il cliente.
         /// </summary>
-        public DateTime Mdc_DataAttivazione { get; set; }
+        public DateTime? Mdc_DataAttivazione { get; set; }
 
         /// <summary>
         /// Data di disattivazione del modulo per il cliente.

@@ -43,13 +43,13 @@ namespace EasyGold.API.Models.Entities
         /// </summary>
         /// 
         [DataType(DataType.Date)]
-        public DateTime Neg_DataDisattivazione { get; set; }
+        public DateTime? Neg_DataDisattivazione { get; set; }
 
         /// <summary>
         /// Negozio è bloccato
         /// </summary>
         /// 
-        public bool Neg_Bloccato { get; set; }
+        public bool? Neg_Bloccato { get; set; }
 
 
         /// <summary>
@@ -65,6 +65,6 @@ namespace EasyGold.API.Models.Entities
         /// </summary>
         /// 
         [StringLength(500)]
-        public string Neg_Note { get; set; }
+        public string? Neg_Note { get; set; }
     }
 }

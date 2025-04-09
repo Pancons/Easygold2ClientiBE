@@ -23,7 +23,7 @@ namespace EasyGold.API.Models.Moduli
 
         [DataType(DataType.Date)]
         [SwaggerSchema(Description = "Data di attivazione del modulo")]
-        public DateTime Mdc_DataAttivazione { get; set; }
+        public DateTime? Mdc_DataAttivazione { get; set; }
 
         [DataType(DataType.Date)]
         [SwaggerSchema(Description = "Data di disattivazione del modulo")]
