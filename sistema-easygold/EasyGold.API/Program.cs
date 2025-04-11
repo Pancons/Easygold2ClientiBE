@@ -14,6 +14,7 @@ using EasyGold.API.Repositories;
 using EasyGold.API.Repositories.Implementations;
 using System.Reflection;
 using System.IdentityModel.Tokens.Jwt;
+using EasyGold.API.Infrastructure.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -97,6 +98,7 @@ builder.Services.AddSwaggerGen(c =>
         
     });
     c.EnableAnnotations(); // Abilita le annotazioni Swagger
+    c.OperationFilter<RestrictToJsonContentTypeFilter>();
    
         
     // 🔹 Legge i commenti XML per documentare Swagger
