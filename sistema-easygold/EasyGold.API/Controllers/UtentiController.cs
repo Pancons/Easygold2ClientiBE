@@ -6,6 +6,8 @@ using EasyGold.API.Models.Utenti;
 using EasyGold.API.Services;
 using EasyGold.API.Services.Implementations;
 using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Models.Nazioni;
+using EasyGold.API.Models;
 
 namespace EasyGold.API.Controllers
 {
@@ -32,12 +34,15 @@ namespace EasyGold.API.Controllers
         /// <response code="200">Lista utenti restituita con successo</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
+        [ProducesResponseType(typeof(BaseListResponse<UtenteDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetUsersList([FromBody] UtentiListRequest filter)
         {
             try
             {
-                var result = await _utenteService.GetUsersListAsync(filter);
-                return Ok(new { results = result.Users, total = result.Total });
+                var results = await _utenteService.GetUsersListAsync(filter);
+                return Ok(results);
             }
             catch (Exception ex)
             {

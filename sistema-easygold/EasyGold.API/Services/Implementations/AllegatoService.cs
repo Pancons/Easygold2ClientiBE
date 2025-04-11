@@ -4,6 +4,8 @@ using EasyGold.API.Models.Allegati;
 using AutoMapper;
 using EasyGold.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using EasyGold.API.Models;
+using EasyGold.API.Models.Clienti;
 
 namespace EasyGold.API.Services.Implementations
 {
@@ -18,10 +20,14 @@ namespace EasyGold.API.Services.Implementations
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<AllegatoDTO>> GetAllAsync()
+        public async Task<BaseListResponse<AllegatoDTO>> GetAllAsync()
         {
             var allegati = await _allegatoRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<AllegatoDTO>>(allegati);
+            return new BaseListResponse<AllegatoDTO>
+            {
+                results = _mapper.Map<IEnumerable<AllegatoDTO>>(allegati).ToList(),  // ? Mappa automaticamente senza "N/A"
+                total = allegati.Count()
+            };
         }
 
         public async Task<AllegatoDTO> GetByIdAsync(int id)

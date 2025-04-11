@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Repositories;
 using EasyGold.API.Models.Entities;
@@ -6,6 +6,8 @@ using AutoMapper;
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Models.Nazioni;
 using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Models;
+using EasyGold.API.Models.Allegati;
 
 namespace EasyGold.API.Services.Implementations
 {
@@ -20,10 +22,14 @@ namespace EasyGold.API.Services.Implementations
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<NazioniDTO>> GetAllAsync(NazioniListRequest request)
+        public async Task<BaseListResponse<NazioniDTO>> GetAllAsync(NazioniListRequest request)
         {
-            var moduli = await _nazioneRepository.GetAllAsync(request);
-            return _mapper.Map<IEnumerable<NazioniDTO>>(moduli);
+            var nazioni = await _nazioneRepository.GetAllAsync(request);
+            return new BaseListResponse<NazioniDTO>
+            {
+                results = _mapper.Map<IEnumerable<NazioniDTO>>(nazioni).ToList(),  // ✅ Mappa automaticamente senza "N/A"
+                total = nazioni.Count()
+            };
         }
 
         public async Task<NazioniDTO> GetByIdAsync(int id)

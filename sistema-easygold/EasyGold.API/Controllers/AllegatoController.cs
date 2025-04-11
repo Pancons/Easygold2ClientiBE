@@ -6,6 +6,7 @@ using EasyGold.API.Models.Allegati;
 using EasyGold.API.Services;
 using EasyGold.API.Services.Implementations;
 using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Models;
 
 namespace EasyGold.API.Controllers
 {
@@ -32,12 +33,12 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
         [Authorize]
-        [ProducesResponseType(typeof(List<AllegatoDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseListResponse<AllegatoDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAllAttachments()
         {
-            var result = await _allegatoService.GetAllAsync();
-            return Ok(new { result });
+            var results = await _allegatoService.GetAllAsync();
+            return Ok(results);
         }
 
 

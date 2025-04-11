@@ -1,4 +1,6 @@
-using AutoMapper;
+﻿using AutoMapper;
+using EasyGold.API.Models;
+using EasyGold.API.Models.Allegati;
 using EasyGold.API.Models.Entities;
 using EasyGold.API.Models.Ruoli;
 using EasyGold.API.Repositories.Interfaces;
@@ -21,10 +23,14 @@ namespace EasyGold.API.Services.Implementations
 
          private readonly IMapper _mapper;
 
-        public async Task<IEnumerable<RuoloDTO>> GetAllRolesAsync()
+        public async Task<BaseListResponse<RuoloDTO>> GetAllRolesAsync()
         {
             var ruoli = await _RuoloRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<RuoloDTO>>(ruoli);
+            return new BaseListResponse<RuoloDTO>
+            {
+                results = _mapper.Map<IEnumerable<RuoloDTO>>(ruoli).ToList(),  // ✅ Mappa automaticamente senza "N/A"
+                total = ruoli.Count()
+            };
         }
 
         public async Task<RuoloDTO> GetRoleByIdAsync(int id)

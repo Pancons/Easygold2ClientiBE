@@ -6,6 +6,7 @@ using EasyGold.API.Models.Ruoli;
 using EasyGold.API.Repositories.Implementations;
 using EasyGold.API.Services.Implementations;
 using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Models;
 
 namespace EasyGold.API.Controllers
 {
@@ -32,7 +33,7 @@ namespace EasyGold.API.Controllers
        
         [HttpPost("list")]
         [Authorize]
-        [ProducesResponseType(typeof(List<RuoloDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseListResponse<RuoloDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetRoles()
@@ -41,7 +42,7 @@ namespace EasyGold.API.Controllers
             {
                 // Retrieve roles from the database
                 var results = await _roleService.GetAllRolesAsync();
-                return Ok(new { results });
+                return Ok(results);
             }
             catch (Exception ex)
             {

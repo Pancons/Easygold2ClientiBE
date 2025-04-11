@@ -8,6 +8,7 @@ using EasyGold.API.Models.Utenti;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Models.Allegati;
 
 namespace EasyGold.API.Services.Implementations
 {
@@ -22,40 +23,14 @@ namespace EasyGold.API.Services.Implementations
             _mapper = mapper;
         }
 
-        /*
-        public async Task<IEnumerable<UtenteDTO>> GetAllAsync()
-        {
-            var utenti = await _utenteRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<UtenteDTO>>(utenti);
-        }
-
-        public async Task<UtenteDettaglioDTO> GetByIdAsync(int id)
-        {
-            var utente = await _utenteRepository.GetByIdAsync(id);
-            return _mapper.Map<UtenteDettaglioDTO>(utente);
-        }
-
-       
-
-        public async Task UpdateAsync(UtenteDettaglioDTO utenteDettaglioDto)
-        {
-            var utente = _mapper.Map<DbUtente>(utenteDettaglioDto);
-            await _utenteRepository.UpdateAsync(utente);
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            await _utenteRepository.DeleteAsync(id);
-        }
-        */
-        public async Task<(IEnumerable<UtenteDTO> Users, int Total)> GetUsersListAsync(UtentiListRequest filter)
+        public async Task<BaseListResponse<UtenteDTO>> GetUsersListAsync(UtentiListRequest filter)
         {
             var (utentiData, total) = await _utenteRepository.GetUsersListAsync(filter);
-
-            // ✅ Mappa una LISTA di DbUtente in una LISTA di UtenteDTO
-            var utentiDataConverted = _mapper.Map<List<UtenteDTO>>(utentiData);
-
-            return (utentiDataConverted, total);
+            return new BaseListResponse<UtenteDTO>
+            {
+                results = _mapper.Map<IEnumerable<UtenteDTO>>(utentiData).ToList(),  // ? Mappa automaticamente senza "N/A"
+                total = total
+            };
         }
 
         public async Task<UtenteDTO> GetUserByIdAsync(int id)

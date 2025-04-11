@@ -7,6 +7,8 @@ using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Models.Nazioni;
 using EasyGold.API.Services.Interfaces;
 using EasyGold.API.Models.Valute;
+using EasyGold.API.Models;
+using EasyGold.API.Models.Utenti;
 
 namespace EasyGold.API.Services.Implementations
 {
@@ -21,10 +23,14 @@ namespace EasyGold.API.Services.Implementations
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ValuteDTO>> GetAllAsync(ValuteListRequest request)
+        public async Task<BaseListResponse<ValuteDTO>> GetAllAsync(ValuteListRequest request)
         {
             var valute = await _valutaRepository.GetAllAsync(request);
-            return _mapper.Map<IEnumerable<ValuteDTO>>(valute);
+            return new BaseListResponse<ValuteDTO>
+            {
+                results = _mapper.Map<IEnumerable<ValuteDTO>>(valute).ToList(),  // ? Mappa automaticamente senza "N/A"
+                total = valute.Count()
+            };
         }
 
         public async Task<ValuteDTO> GetByIdAsync(int id)

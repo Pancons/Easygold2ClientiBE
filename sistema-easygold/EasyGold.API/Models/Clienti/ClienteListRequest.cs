@@ -11,18 +11,18 @@ namespace EasyGold.API.Models.Clienti
     public class ClienteFilter
     {
         [SwaggerSchema(Description = "Ragione sociale del cliente")]
-        public string? DtcRagioneSociale { get; set; }
+        public string? Dtc_RagioneSociale { get; set; }
 
         [SwaggerSchema(Description = "Nome della gioielleria del cliente")]
-        public string? DtcGioielleria { get; set; }
+        public string? Dtc_Gioielleria { get; set; }
 
         [SwaggerSchema(Description = "Lista di ID dei moduli")]
-        public List<int>? MdcIDModuli { get; set; }
+        public List<int>? Mdc_IDModulo { get; set; }
 
-        [SwaggerSchema(Description = "Indica se includere clienti non attivi")]
+        [SwaggerSchema(Description = "Indica se includere moduli non attivi")]
         public bool? NonAttivi { get; set; }
 
-        [SwaggerSchema(Description = "Indica se includere clienti scaduti")]
+        [SwaggerSchema(Description = "Indica se includere moduli scaduti")]
         public bool? Scaduti { get; set; }
     }
 }

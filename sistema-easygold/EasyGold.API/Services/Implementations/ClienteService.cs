@@ -19,15 +19,15 @@ namespace EasyGold.API.Services.Implementations
             _mapper = mapper;
         }
 
-        public async Task<ClienteListResult> GetClientiListAsync(ClienteListRequest request)
+        public async Task<BaseListResponse<ClienteDettaglioDTO>> GetClientiListAsync(ClienteListRequest request)
         {
             // Chiamata diretta con l'intero oggetto request (compatibile con ordinamento multiplo)
             var (clientiData, total) = await _clienteRepository.GetClientiAsync(request);
 
-            return new ClienteListResult
+            return new BaseListResponse<ClienteDettaglioDTO>
             {
-                Clienti = _mapper.Map<IEnumerable<ClienteDettaglioDTO>>(clientiData),  // ✅ Mappa automaticamente senza "N/A"
-                Total = total
+                results = _mapper.Map<IEnumerable<ClienteDettaglioDTO>>(clientiData).ToList(),  // ✅ Mappa automaticamente senza "N/A"
+                total = total
             };
         }
 

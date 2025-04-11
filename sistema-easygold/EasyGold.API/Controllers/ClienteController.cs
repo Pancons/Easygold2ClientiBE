@@ -6,6 +6,7 @@ using EasyGold.API.Models.Clienti;
 using EasyGold.API.Services;
 using EasyGold.API.Services.Implementations;
 using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Models;
 
 
 
@@ -37,7 +38,7 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
         [Authorize]
-        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseListResponse<ClienteDettaglioDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> List([FromBody] ClienteListRequest request)
         {
@@ -46,7 +47,7 @@ namespace EasyGold.API.Controllers
                 request ??= new ClienteListRequest(); // Se la richiesta è nulla, crea un oggetto vuoto
 
                 var result = await _clienteService.GetClientiListAsync(request);
-                return Ok(new { results = result.Clienti, total = result.Total });
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -103,7 +104,7 @@ namespace EasyGold.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
+                return StatusCode(500, new { error = "Errore interno", ex = $"{ex.Message}\n{ex.InnerException?.Message}" });
             }
         }
 

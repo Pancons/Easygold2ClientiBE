@@ -30,7 +30,7 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
         [Authorize]
-        [ProducesResponseType(typeof(List<ModuloDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseListResponse<ModuloDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetModulesList()
@@ -38,11 +38,11 @@ namespace EasyGold.API.Controllers
             try
             {
                 var results = await _moduloService.GetAllAsync();
-                if (results == null)
+                if (results == null || results.total == 0)
                 {
                     return NotFound(new { message = "Nessun modulo disponibile" });
                 }
-                return Ok(new { results });
+                return Ok(results);
             }
             catch (Exception ex)
             {

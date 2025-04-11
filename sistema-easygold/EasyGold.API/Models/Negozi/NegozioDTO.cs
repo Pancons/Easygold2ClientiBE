@@ -35,6 +35,6 @@ namespace EasyGold.API.Models.Negozi
 
         [StringLength(500)]
         [SwaggerSchema(Description = "Note aggiuntive sul negozio")]
-        public string Neg_Note { get; set; }
+        public string? Neg_Note { get; set; }
     }
 }
