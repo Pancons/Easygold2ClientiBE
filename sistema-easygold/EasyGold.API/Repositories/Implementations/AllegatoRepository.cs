@@ -51,6 +51,7 @@ namespace EasyGold.API.Repositories.Implementations
         {
             if (allegato == null) return;
 
+            // Inserisco il record sul DB per generare l'ID che sarà il nome del file
             allegato.All_ImgUrl = "";
             await _context.Allegati.AddAsync(allegato);
             await _context.SaveChangesAsync();
@@ -60,7 +61,7 @@ namespace EasyGold.API.Repositories.Implementations
             {
                 string filePath = await SaveFileAsync(allegato, allegato.All_FileBase64);
                 allegato.All_ImgUrl = filePath;
-                await UpdateAsync(allegato);
+                await _context.SaveChangesAsync();
             }
         }
 
@@ -86,6 +87,40 @@ namespace EasyGold.API.Repositories.Implementations
         }
 
         /// <summary>
+        /// Aggiorna tutti gli allegati di una entità.
+        /// </summary>
+        public async Task UpdateAllAsync(int idEntita, string tipoEntita, List<DbAllegato> allegati)
+        {
+            var allegatiEsistenti = await _context.Allegati
+                .Where(a => a.All_EntitaRiferimento == tipoEntita && a.All_RecordId == idEntita)
+                .ToListAsync();
+
+            // Verifico quali allegati non sono più presenti nella lista nuova lista e li rimuovo definitivamente
+            var allegatiRimossi = allegatiEsistenti.Where(a => !allegati.Any(m => (m.All_IDAllegato == a.All_IDAllegato && a.All_IDAllegato > 0))).ToList();
+            foreach (var allegato in allegatiRimossi)
+            {
+                await DeleteAsync(allegato.All_IDAllegato);
+            }
+
+            // Per tutti gli allegati per cui mi viene passato All_FileBase64 procedo con l'inserimento o l'aggiornamento
+            foreach (var allegato in allegati.Where(all => all.All_FileBase64 != null).ToList())
+            {
+                var allegatoEsistente = allegatiEsistenti.Where(a => a.All_IDAllegato == allegato.All_IDAllegato).FirstOrDefault();
+
+                if (allegatoEsistente == null)
+                {
+                    allegato.All_IDAllegato = 0;
+                    allegato.All_RecordId = idEntita;
+                    await AddAsync(allegato);
+                } 
+                else
+                {
+                    await UpdateAsync(allegato);
+                }
+            }
+        }
+
+        /// <summary>
         /// Elimina un allegato e rimuove il file associato.
         /// </summary>
         public async Task DeleteAsync(int id)
@@ -93,10 +128,18 @@ namespace EasyGold.API.Repositories.Implementations
             var allegato = await _context.Allegati.FindAsync(id);
             if (allegato != null)
             {
-                DeleteFile(allegato.All_ImgUrl);
+                DeleteFile(allegato.All_ImgUrl.Replace("/file", ""));
                 _context.Allegati.Remove(allegato);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        /// <summary>
+        /// Legge un file dal disco.
+        /// </summary>
+        public async Task<(bool success, byte[] fileBytes, string contentType)> GetFileByPathAsync(string filePath)
+        {
+            return ReadFile(filePath);
         }
 
         /// <summary>
@@ -147,7 +190,7 @@ namespace EasyGold.API.Repositories.Implementations
                 await File.WriteAllBytesAsync(filePath, fileBytes);
 
                 // Restituisce il percorso accessibile via URL
-                return $"/{filePath.Replace("wwwroot", "").Replace("\\", "/").TrimStart('/').Replace(_basePath, "file")}";
+                return $"/{filePath.Replace("\\", "/").TrimStart('/').Replace(_basePath, "file")}";
             }
             catch (Exception ex)
             {
@@ -161,9 +204,9 @@ namespace EasyGold.API.Repositories.Implementations
         /// </summary>
         private void DeleteFile(string filePath)
         {
-            if (!string.IsNullOrEmpty(filePath))
+            string fullPath = IsValid(filePath);
+            if (!string.IsNullOrEmpty(IsValid(fullPath)))
             {
-                string fullPath = Path.Combine("wwwroot", filePath.TrimStart('/'));
                 if (File.Exists(fullPath))
                 {
                     File.Delete(fullPath);
@@ -174,34 +217,43 @@ namespace EasyGold.API.Repositories.Implementations
         /// <summary>
         /// Legge un file dal disco.
         /// </summary>
-        public async Task<(bool success, byte[] fileBytes, string contentType)> GetFileByPathAsync(string filePath)
-        {
-            return ReadFile(filePath);
-        }
-
         private (bool success, byte[] fileBytes, string contentType) ReadFile(string filePath)
         {
+            string fullPath = IsValid(filePath);
+            if (string.IsNullOrEmpty(IsValid(fullPath)))
+                return (false, null, null);
+
+            // Se passa tutti i controlli, restituisce l'array di byte ed il content type
+            return (true, File.ReadAllBytes(fullPath), GetContentType(fullPath));
+        }
+
+        /// <summary>
+        /// Verifica che il percorso ed il tipo di file siano corretti
+        /// </summary>
+        private string IsValid(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath))
+                return "";
+
             // Normalizza i percorsi
             string rootPath = Path.GetFullPath(_basePath);
-            string requestedPath = Path.GetFullPath(Path.Combine(_basePath, filePath));
+            string requestedPath = Path.GetFullPath(Path.Combine(rootPath, filePath.TrimStart('/')));
 
             // Verifica sicurezza: il file deve essere dentro basePath
             if (!requestedPath.StartsWith(rootPath, StringComparison.OrdinalIgnoreCase))
-                return (false, null, null);
+                return "";
 
             if (!System.IO.File.Exists(requestedPath))
-                return (false, null, null);
+                return "";
 
             var fileExt = Path.GetExtension(requestedPath);
 
             // Opzionale: blocca alcune estensioni
             var blockedExtensions = new[] { ".config", ".cs", ".exe", ".dll", ".json" };
             if (blockedExtensions.Contains(fileExt))
-                return (false, null, null);
+                return "";
 
-
-            // Se passa tutti i controlli, restituisce l'array di byte ed il content type
-            return (true, File.ReadAllBytes(requestedPath), GetContentType(requestedPath));
+            return requestedPath;
         }
 
         private string GetContentType(string path)

@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Models.Moduli;
+using System.Security.Principal;
 
 
 namespace EasyGold.API.Repositories.Implementations
@@ -39,8 +40,8 @@ namespace EasyGold.API.Repositories.Implementations
                         join datiCliente in _context.DatiClienti
                             on cliente.Utw_IDClienteAuto equals datiCliente.Dtc_IDCliente into clientiGroup
                         from datiCliente in clientiGroup.DefaultIfEmpty()
-                        where (request.Filters == null || string.IsNullOrEmpty(request.Filters.DtcRagioneSociale) || datiCliente.Dtc_RagioneSociale.Contains(request.Filters.DtcRagioneSociale))
-                        && (request.Filters == null || string.IsNullOrEmpty(request.Filters.DtcGioielleria) || datiCliente.Dtc_Gioielleria.Contains(request.Filters.DtcGioielleria))
+                        where (request.Filters == null || string.IsNullOrEmpty(request.Filters.Dtc_RagioneSociale) || datiCliente.Dtc_RagioneSociale.Contains(request.Filters.Dtc_RagioneSociale))
+                        && (request.Filters == null || string.IsNullOrEmpty(request.Filters.Dtc_Gioielleria) || datiCliente.Dtc_Gioielleria.Contains(request.Filters.Dtc_Gioielleria))
                         && (request.Filters == null || !request.Filters.NonAttivi.HasValue || (request.Filters.NonAttivi.Value && cliente.Utw_DataDisattivazione != null))
                         && (request.Filters == null || !request.Filters.Scaduti.HasValue || (request.Filters.Scaduti.Value && cliente.Utw_DataAttivazione < DateTime.UtcNow.AddYears(-1)))
                         select new ClienteRecord
@@ -207,12 +208,9 @@ namespace EasyGold.API.Repositories.Implementations
                 await _context.DatiClienti.AddAsync(datiCliente);
 
             // **Gestione Allegati tramite Repository**
-            foreach (var allegato in allegati)
-            {
-                allegato.All_RecordId = cliente.Utw_IDClienteAuto;
-                await _allegatoRepository.AddAsync(allegato);
-            }
+            await _allegatoRepository.UpdateAllAsync(cliente.Utw_IDClienteAuto, "Cliente", allegati);
 
+            // **Gestione Negozi tramite Repository**
             foreach (var negozio in negozi)
             {
                 var negozioEsistente = await _negozioRepository.GetByIdAsync(negozio.Neg_id);
