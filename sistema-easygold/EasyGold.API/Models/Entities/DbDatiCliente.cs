@@ -1,21 +1,28 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyGold.API.Models.Entities
 {
     public class DbDatiCliente
     {
         /// <summary>
-        /// ID del cliente.
+        /// ID del record dei dati cliente.
         /// </summary>
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Dtc_IDDatiCliente { get; set; }
+
+        /// <summary>
+        /// ID del cliente.
+        /// </summary>
         public int Dtc_IDCliente { get; set; }
 
         /// <summary>
         /// Nome della gioielleria del cliente.
         /// </summary>
-        
+
         [StringLength(100)]
         public string Dtc_Gioielleria { get; set; }
 

@@ -31,9 +31,9 @@ namespace EasyGold.API.Infrastructure
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<DbCliente>().HasKey(c => c.Utw_IDClienteAuto);
             modelBuilder.Entity<DbUtente>().HasKey(u => u.Ute_IDUtente);
-            modelBuilder.Entity<DbModuloEasygoldLang>().HasKey(m => m.Mdeid_ID); // Assuming Id is the primary key
+            modelBuilder.Entity<DbModuloEasygoldLang>().HasKey(m => m.Mdeid_IDAuto); // Assuming Id is the primary key
             modelBuilder.Entity<DbModuloEasygold>().HasKey(m => m.Mde_IDAuto    ); // Assuming Id is the primary key
-            modelBuilder.Entity<DbDatiCliente>().HasKey(d => d.Dtc_IDCliente); // Assuming Id is the primary key
+            modelBuilder.Entity<DbDatiCliente>().HasKey(d => d.Dtc_IDDatiCliente); // Assuming Id is the primary key
             modelBuilder.Entity<DbNazioni>().HasKey(n => n.Naz_id);
             modelBuilder.Entity<DbValute>().HasKey(v => v.Val_id);
 
@@ -52,6 +52,12 @@ namespace EasyGold.API.Infrastructure
             .WithMany()
             .HasForeignKey(u => u.Ute_IDRuolo);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+        }
+
         public Task<int> SaveChangesAsync()
         {
             var auditEntries = new List<DbAuditLog>();
@@ -63,6 +69,7 @@ namespace EasyGold.API.Infrastructure
                 string tableName = entry.Entity.GetType().Name;
                 string recordId = GetPrimaryKeyValue(entry);
 
+                DateTime changeDate = DateTime.UtcNow;
                 foreach (var prop in entry.Properties)
                 {
                     if (entry.State == EntityState.Modified && prop.IsModified)
@@ -74,7 +81,7 @@ namespace EasyGold.API.Infrastructure
                             Log_ColumnName = prop.Metadata.Name,
                             Log_OldValue = prop.OriginalValue?.ToString(),
                             Log_NewValue = prop.CurrentValue?.ToString(),
-                            Log_ChangeDate = DateTime.UtcNow,
+                            Log_ChangeDate = changeDate,
                             Log_User = "Sistema"
                         });
                     }
@@ -87,7 +94,7 @@ namespace EasyGold.API.Infrastructure
                             Log_ColumnName = "RecordDeleted",
                             Log_OldValue = "EXISTING",
                             Log_NewValue = "DELETED",
-                            Log_ChangeDate = DateTime.UtcNow,
+                            Log_ChangeDate = changeDate,
                             Log_User = "Sistema"
                         });
                     }

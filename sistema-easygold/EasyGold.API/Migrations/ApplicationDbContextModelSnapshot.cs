@@ -150,11 +150,11 @@ namespace EasyGold.API.Migrations
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbDatiCliente", b =>
                 {
-                    b.Property<int>("Dtc_IDCliente")
+                    b.Property<int>("Dtc_IDDatiCliente")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Dtc_IDCliente"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Dtc_IDDatiCliente"));
 
                     b.Property<bool>("Dtc_Annullato")
                         .HasColumnType("bit");
@@ -178,6 +178,9 @@ namespace EasyGold.API.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Dtc_IDCliente")
+                        .HasColumnType("int");
 
                     b.Property<int?>("Dtc_IDValuta")
                         .HasColumnType("int");
@@ -240,7 +243,7 @@ namespace EasyGold.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Dtc_IDCliente");
+                    b.HasKey("Dtc_IDDatiCliente");
 
                     b.ToTable("DatiClienti");
                 });
@@ -314,8 +317,11 @@ namespace EasyGold.API.Migrations
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloEasygoldLang", b =>
                 {
-                    b.Property<int>("Mdeid_ID")
+                    b.Property<int>("Mdeid_IDAuto")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mdeid_IDAuto"));
 
                     b.Property<string>("Mdeid_DescEstesa")
                         .IsRequired()
@@ -325,13 +331,13 @@ namespace EasyGold.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Mdeid_ISONum")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("Mdeid_ID")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mdeid_ISONum"));
+                    b.Property<int>("Mdeid_ISONum")
+                        .HasColumnType("int");
 
-                    b.HasKey("Mdeid_ID");
+                    b.HasKey("Mdeid_IDAuto");
 
                     b.ToTable("ModuloEasygoldLang");
                 });

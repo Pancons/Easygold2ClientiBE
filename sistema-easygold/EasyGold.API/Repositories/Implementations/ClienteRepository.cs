@@ -132,6 +132,7 @@ namespace EasyGold.API.Repositories.Implementations
             negozi.ForEach(n => n.Neg_IDCliente = cliente.Utw_IDClienteAuto);
 
             // Aggiunta dei dati cliente
+            datiCliente.Dtc_IDCliente = cliente.Utw_IDClienteAuto;
             await _context.DatiClienti.AddAsync(datiCliente);
 
             // **Gestione Allegati tramite Repository**
