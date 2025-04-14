@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGold.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250409133532_AggiornamentoDTO")]
+    [Migration("20250411160005_AggiornamentoDTO")]
     partial class AggiornamentoDTO
     {
         /// <inheritdoc />
@@ -61,6 +61,44 @@ namespace EasyGold.API.Migrations
                     b.HasKey("All_IDAllegato");
 
                     b.ToTable("Allegati");
+                });
+
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbAuditLog", b =>
+                {
+                    b.Property<int>("Log_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Log_Id"));
+
+                    b.Property<DateTime>("Log_ChangeDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Log_ColumnName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_NewValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_OldValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_RecordId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_TableName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_User")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Log_Id");
+
+                    b.ToTable("AuditLogs");
                 });
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbCliente", b =>
@@ -125,11 +163,10 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Dtc_CAP")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<decimal>("Dtc_CapitaleSociale")
+                    b.Property<decimal?>("Dtc_CapitaleSociale")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Dtc_Citta")
@@ -137,7 +174,6 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Dtc_CodiceFiscale")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
@@ -150,7 +186,6 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Dtc_Indirizzo")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -161,21 +196,17 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_PEC")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_PartitaIVA")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Dtc_Provincia")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Dtc_REA")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
@@ -187,7 +218,7 @@ namespace EasyGold.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("Dtc_Ranking")
+                    b.Property<int?>("Dtc_Ranking")
                         .HasColumnType("int");
 
                     b.Property<string>("Dtc_ReferenteCellulare")

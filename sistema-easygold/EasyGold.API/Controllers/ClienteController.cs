@@ -78,15 +78,15 @@ namespace EasyGold.API.Controllers
                 {
                     return BadRequest(new { error = "Errore nei dati inviati" });
                 }
-
+                
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
 
-                if (clienteDto.Utw_IDClienteAuto > 0) // Se ha un ID valido, esegue l'aggiornamento
+                if (clienteDto.Utw_IDClienteAuto != null && clienteDto.Utw_IDClienteAuto > 0) // Se ha un ID valido, esegue l'aggiornamento
                 {
-                    var clienteAggiornato = await _clienteService.UpdateClienteAsync(clienteDto.Utw_IDClienteAuto, clienteDto);
+                    var clienteAggiornato = await _clienteService.UpdateClienteAsync(clienteDto.Utw_IDClienteAuto ?? 0, clienteDto);
                     if (clienteAggiornato == null)
                     {
                         return NotFound(new { error = "Cliente non trovato" });

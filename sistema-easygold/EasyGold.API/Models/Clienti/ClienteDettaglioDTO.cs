@@ -7,6 +7,7 @@ using EasyGold.API.Models.Configurazioni;
 using System.ComponentModel.DataAnnotations;
 using EasyGold.API.Models.Valute;
 using EasyGold.API.Models.StatiCliente;
+using System.Text.Json.Serialization;
 
 namespace EasyGold.API.Models.Clienti
 {
@@ -14,7 +15,7 @@ namespace EasyGold.API.Models.Clienti
     public class ClienteDettaglioDTO
     {
         [SwaggerSchema(Description = "Identificativo univoco del cliente")]
-        public int Utw_IDClienteAuto { get; set; }
+        public int? Utw_IDClienteAuto { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -27,44 +28,44 @@ namespace EasyGold.API.Models.Clienti
 
         [SwaggerSchema(Description = "Indirizzo del cliente")]
         [StringLength(100)]
-        public string Dtc_Indirizzo { get; set; }
+        public string? Dtc_Indirizzo { get; set; }
 
         [SwaggerSchema(Description = "Città del cliente")]
         [StringLength(100)]
-        public string Dtc_Citta { get; set; }
+        public string? Dtc_Citta { get; set; }
 
         [SwaggerSchema(Description = "CAP del cliente")]
         [StringLength(10)]
-        public string Dtc_CAP { get; set; }
+        public string? Dtc_CAP { get; set; }
 
         [SwaggerSchema(Description = "Provincia del cliente")]
         [StringLength(100)]
-        public string Dtc_Provincia { get; set; }
+        public string? Dtc_Provincia { get; set; }
 
         [SwaggerSchema(Description = "Stato o regione del cliente")]
         [StringLength(100)]
-        public string Dtc_StatoRegione { get; set; }
+        public string? Dtc_StatoRegione { get; set; }
 
         [SwaggerSchema(Description = "ID Nazione del cliente")]
-        public int Dtc_Nazione { get; set; }
+        public int? Dtc_Nazione { get; set; }
 
         [SwaggerSchema(Description = "Partita IVA del cliente")]
         [StringLength(30)]
-        public string Dtc_PartitaIVA { get; set; }
+        public string? Dtc_PartitaIVA { get; set; }
 
         [SwaggerSchema(Description = "Codice fiscale del cliente")]
         [StringLength(30)]
-        public string Dtc_CodiceFiscale { get; set; }
+        public string? Dtc_CodiceFiscale { get; set; }
 
         [SwaggerSchema(Description = "Codice REA del cliente")]
         [StringLength(30)]
-        public string Dtc_REA { get; set; }
+        public string? Dtc_REA { get; set; }
 
         [SwaggerSchema(Description = "Capitale sociale del cliente")]
-        public decimal Dtc_CapitaleSociale { get; set; }
+        public decimal? Dtc_CapitaleSociale { get; set; }
 
         [SwaggerSchema(Description = "PEC del cliente")]
-        public string Dtc_PEC { get; set; }
+        public string? Dtc_PEC { get; set; }
 
         [SwaggerSchema(Description = "Cognome del referente del cliente")]
         public string? Dtc_ReferenteCognome { get; set; }
@@ -85,7 +86,7 @@ namespace EasyGold.API.Models.Clienti
         public string? Dtc_ReferenteWeb { get; set; }
 
         [SwaggerSchema(Description = "Ranking del cliente")]
-        public int Dtc_Ranking { get; set; }
+        public int? Dtc_Ranking { get; set; }
 
         [SwaggerSchema(Description = "Configurazione del cliente")]
         public ConfigurazioneDTO Configurazione { get; set; }
@@ -99,8 +100,16 @@ namespace EasyGold.API.Models.Clienti
         [SwaggerSchema(Description = "Lista dei negozi del cliente")]
         public List<NegozioDTO>? Negozi { get; set; }
 
+        /// <summary>
+        /// Creo 2 oggetti Nazione, per gestirne solo la serializzazione in output
+        /// </summary>
         [SwaggerSchema(Description = "Dettaglio Nazione del cliente")]
+        [JsonIgnore]
         public NazioniDTO? Nazione { get; set; }
+
+        [SwaggerSchema(Description = "Dettaglio Nazione del cliente")]
+        [JsonPropertyName("Nazione")]
+        public NazioniDTO? NazioneOutput => Nazione;
 
     }
 

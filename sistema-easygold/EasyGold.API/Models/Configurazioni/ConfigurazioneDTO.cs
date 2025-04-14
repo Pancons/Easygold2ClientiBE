@@ -2,6 +2,7 @@ using EasyGold.API.Models.StatiCliente;
 using EasyGold.API.Models.Valute;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace EasyGold.API.Models.Configurazioni
 {
@@ -41,10 +42,26 @@ namespace EasyGold.API.Models.Configurazioni
         [SwaggerSchema(Description = "Valuta")]
         public int? Utw_IDValuta { get; set; }
 
+        /// <summary>
+        /// Creo 2 oggetti Valuta, per gestirne solo la serializzazione in output
+        /// </summary>
         [SwaggerSchema(Description = "Dettaglio Valuta del cliente")]
+        [JsonIgnore]
         public ValuteDTO? Valuta { get; set; }
 
+        [SwaggerSchema(Description = "Dettaglio Valuta del cliente")]
+        [JsonPropertyName("Valuta")]
+        public ValuteDTO? ValutaOutput => Valuta;
+
+        /// <summary>
+        /// Creo 2 oggetti StatoCliente, per gestirne solo la serializzazione in output
+        /// </summary>
         [SwaggerSchema(Description = "Dettaglio Stato del cliente")]
+        [JsonIgnore]
         public StatoClienteDTO? StatoCliente { get; set; }
+
+        [SwaggerSchema(Description = "Dettaglio Stato del cliente")]
+        [JsonPropertyName("StatoCliente")]
+        public StatoClienteDTO? StatoClienteOutput => StatoCliente;
     }
 }

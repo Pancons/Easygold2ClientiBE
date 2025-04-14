@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using EasyGold.API.Models;
 using EasyGold.API.Models.Entities;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace EasyGold.API.Infrastructure
 {
@@ -20,6 +21,9 @@ namespace EasyGold.API.Infrastructure
         public DbSet<DbNazioni> Nazioni { get; set; }
         public DbSet<DbValute> Valute { get; set; }
         public DbSet<DbStatoCliente> StatiCliente { get; set; }
+
+        // Utilizzata per tracciare tutte le modifiche ai record del DB
+        public DbSet<DbAuditLog> AuditLogs { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,6 +51,67 @@ namespace EasyGold.API.Infrastructure
             .HasOne(u => u.Ruolo)
             .WithMany()
             .HasForeignKey(u => u.Ute_IDRuolo);
+        }
+        public Task<int> SaveChangesAsync()
+        {
+            var auditEntries = new List<DbAuditLog>();
+            var changeTracker = ChangeTracker.Entries()
+                .Where(e => e.State == EntityState.Modified || e.State == EntityState.Added || e.State == EntityState.Deleted);
+
+            foreach (var entry in changeTracker)
+            {
+                string tableName = entry.Entity.GetType().Name;
+                string recordId = GetPrimaryKeyValue(entry);
+
+                foreach (var prop in entry.Properties)
+                {
+                    if (entry.State == EntityState.Modified && prop.IsModified)
+                    {
+                        auditEntries.Add(new DbAuditLog
+                        {
+                            Log_TableName = tableName,
+                            Log_RecordId = recordId,
+                            Log_ColumnName = prop.Metadata.Name,
+                            Log_OldValue = prop.OriginalValue?.ToString(),
+                            Log_NewValue = prop.CurrentValue?.ToString(),
+                            Log_ChangeDate = DateTime.UtcNow,
+                            Log_User = "Sistema"
+                        });
+                    }
+                    else if (entry.State == EntityState.Deleted)
+                    {
+                        auditEntries.Add(new DbAuditLog
+                        {
+                            Log_TableName = tableName,
+                            Log_RecordId = recordId,
+                            Log_ColumnName = "RecordDeleted",
+                            Log_OldValue = "EXISTING",
+                            Log_NewValue = "DELETED",
+                            Log_ChangeDate = DateTime.UtcNow,
+                            Log_User = "Sistema"
+                        });
+                    }
+                }
+            }
+
+            // Salva le modifiche e registra il log
+            if (auditEntries.Any())
+            {
+                AuditLogs.AddRange(auditEntries);
+            }
+
+            var result = base.SaveChangesAsync();
+            return result;
+        }
+        private string GetPrimaryKeyValue(EntityEntry entry)
+        {
+            var entityType = this.Model.FindEntityType(entry.Entity.GetType());
+            var primaryKey = entityType.FindPrimaryKey();
+            var keyValues = primaryKey.Properties
+                .Select(p => entry.OriginalValues[p.Name]?.ToString())
+                .ToArray();
+
+            return string.Join(";", keyValues);
         }
     }
 }

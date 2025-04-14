@@ -7,20 +7,20 @@ namespace EasyGold.API.Models.Valute
     {
 
         [SwaggerSchema(Description = "Identificativo univoco della valuta")]
-        public int Val_id { get; set; }
+        public int? Val_id { get; set; }
 
         [StringLength(255)]
         [SwaggerSchema(Description = "Nome completo della Valuta")]
-        public string Val_Descrizione { get; set; }
+        public string? Val_Descrizione { get; set; }
 
         [Required]
         [SwaggerSchema(Description = "Tasso di cambio rispetto all'Euro")]
-        public decimal Val_Cambio { get; set; }
+        public decimal? Val_Cambio { get; set; }
 
         [Required]
         [StringLength(3)]
         [SwaggerSchema(Description = "Simbolo della Valuta")]
-        public string Val_Simbolo { get; set; }
+        public string? Val_Simbolo { get; set; }
 
         [StringLength(3)]
         [SwaggerSchema(Description = "Simbolo della Valuta usato dai Registratori Fiscali")]
@@ -28,6 +28,6 @@ namespace EasyGold.API.Models.Valute
 
         [Required]
         [SwaggerSchema(Description = "Numero di decimali utilizzati per rappresentare gli importi con quella valuta")]
-        public int Val_NumeroDecimali { get; set; }
+        public int? Val_NumeroDecimali { get; set; }
     }
 }
