@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGold.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250409133532_AggiornamentoDTO")]
-    partial class AggiornamentoDTO
+    [Migration("20250414182141_InitializeTables")]
+    partial class InitializeTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,6 +61,44 @@ namespace EasyGold.API.Migrations
                     b.HasKey("All_IDAllegato");
 
                     b.ToTable("Allegati");
+                });
+
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbAuditLog", b =>
+                {
+                    b.Property<int>("Log_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Log_Id"));
+
+                    b.Property<DateTime>("Log_ChangeDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Log_ColumnName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_NewValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_OldValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_RecordId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_TableName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_User")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Log_Id");
+
+                    b.ToTable("AuditLogs");
                 });
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbCliente", b =>
@@ -115,21 +153,20 @@ namespace EasyGold.API.Migrations
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbDatiCliente", b =>
                 {
-                    b.Property<int>("Dtc_IDCliente")
+                    b.Property<int>("Dtc_IDDatiCliente")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Dtc_IDCliente"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Dtc_IDDatiCliente"));
 
                     b.Property<bool>("Dtc_Annullato")
                         .HasColumnType("bit");
 
                     b.Property<string>("Dtc_CAP")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<decimal>("Dtc_CapitaleSociale")
+                    b.Property<decimal?>("Dtc_CapitaleSociale")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Dtc_Citta")
@@ -137,7 +174,6 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Dtc_CodiceFiscale")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
@@ -146,11 +182,13 @@ namespace EasyGold.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("Dtc_IDCliente")
+                        .HasColumnType("int");
+
                     b.Property<int?>("Dtc_IDValuta")
                         .HasColumnType("int");
 
                     b.Property<string>("Dtc_Indirizzo")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -161,21 +199,17 @@ namespace EasyGold.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_PEC")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dtc_PartitaIVA")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Dtc_Provincia")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Dtc_REA")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
@@ -187,7 +221,7 @@ namespace EasyGold.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("Dtc_Ranking")
+                    b.Property<int?>("Dtc_Ranking")
                         .HasColumnType("int");
 
                     b.Property<string>("Dtc_ReferenteCellulare")
@@ -212,7 +246,7 @@ namespace EasyGold.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Dtc_IDCliente");
+                    b.HasKey("Dtc_IDDatiCliente");
 
                     b.ToTable("DatiClienti");
                 });
@@ -286,8 +320,11 @@ namespace EasyGold.API.Migrations
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloEasygoldLang", b =>
                 {
-                    b.Property<int>("Mdeid_ID")
+                    b.Property<int>("Mdeid_IDAuto")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mdeid_IDAuto"));
 
                     b.Property<string>("Mdeid_DescEstesa")
                         .IsRequired()
@@ -297,13 +334,13 @@ namespace EasyGold.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Mdeid_ISONum")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("Mdeid_ID")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mdeid_ISONum"));
+                    b.Property<int>("Mdeid_ISONum")
+                        .HasColumnType("int");
 
-                    b.HasKey("Mdeid_ID");
+                    b.HasKey("Mdeid_IDAuto");
 
                     b.ToTable("ModuloEasygoldLang");
                 });

@@ -1,21 +1,28 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyGold.API.Models.Entities
 {
     public class DbDatiCliente
     {
         /// <summary>
-        /// ID del cliente.
+        /// ID del record dei dati cliente.
         /// </summary>
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Dtc_IDDatiCliente { get; set; }
+
+        /// <summary>
+        /// ID del cliente.
+        /// </summary>
         public int Dtc_IDCliente { get; set; }
 
         /// <summary>
         /// Nome della gioielleria del cliente.
         /// </summary>
-        
+
         [StringLength(100)]
         public string Dtc_Gioielleria { get; set; }
 
@@ -31,14 +38,14 @@ namespace EasyGold.API.Models.Entities
         /// </summary>
         /// 
         [StringLength(100)]
-        public string Dtc_Indirizzo { get; set; }
+        public string? Dtc_Indirizzo { get; set; }
 
         /// <summary>
         /// CAP del cliente.
         /// </summary>
         /// 
         [StringLength(10)]
-        public string Dtc_CAP { get; set; }
+        public string? Dtc_CAP { get; set; }
 
         /// <summary>
         /// Città del cliente.
@@ -52,7 +59,7 @@ namespace EasyGold.API.Models.Entities
         /// </summary>
         /// 
         [StringLength(100)]
-        public string Dtc_Provincia { get; set; }
+        public string? Dtc_Provincia { get; set; }
 
         /// <summary>
         /// Stato o regione del cliente.
@@ -71,26 +78,26 @@ namespace EasyGold.API.Models.Entities
         /// </summary>
         /// 
         [StringLength(30)]
-        public string Dtc_PartitaIVA { get; set; }
+        public string? Dtc_PartitaIVA { get; set; }
 
         /// <summary>
         /// Codice fiscale del cliente.
         /// </summary>
         /// 
         [StringLength(30)]
-        public string Dtc_CodiceFiscale { get; set; }
+        public string? Dtc_CodiceFiscale { get; set; }
 
         /// <summary>
         /// Numero REA del cliente.
         /// </summary>
         /// 
         [StringLength(30)]
-        public string Dtc_REA { get; set; }
+        public string? Dtc_REA { get; set; }
 
         /// <summary>
         /// Capitale sociale del cliente.
         /// </summary>
-        public decimal Dtc_CapitaleSociale { get; set; }
+        public decimal? Dtc_CapitaleSociale { get; set; }
 
         /// <summary>
         /// Indica se la ragione sociale è principale.
@@ -105,7 +112,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// PEC del cliente.
         /// </summary>
-        public string Dtc_PEC { get; set; }
+        public string? Dtc_PEC { get; set; }
 
         /// <summary>
         /// Cognome del referente del cliente.
@@ -140,7 +147,7 @@ namespace EasyGold.API.Models.Entities
         /// <summary>
         /// Ranking del cliente.
         /// </summary>
-        public int Dtc_Ranking { get; set; }
+        public int? Dtc_Ranking { get; set; }
 
         /// <summary>
         /// Valuta corrente del cliente

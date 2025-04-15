@@ -23,11 +23,7 @@ namespace EasyGold.API.Services.Implementations
         public async Task<BaseListResponse<AllegatoDTO>> GetAllAsync()
         {
             var allegati = await _allegatoRepository.GetAllAsync();
-            return new BaseListResponse<AllegatoDTO>
-            {
-                results = _mapper.Map<IEnumerable<AllegatoDTO>>(allegati).ToList(),  // ? Mappa automaticamente senza "N/A"
-                total = allegati.Count()
-            };
+            return new BaseListResponse<AllegatoDTO>(_mapper.Map<IEnumerable<AllegatoDTO>>(allegati).ToList(), allegati.Count());
         }
 
         public async Task<AllegatoDTO> GetByIdAsync(int id)

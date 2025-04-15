@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using EasyGold.API.Models;
 using EasyGold.API.Models.Entities;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace EasyGold.API.Infrastructure
 {
@@ -22,15 +23,18 @@ namespace EasyGold.API.Infrastructure
         public DbSet<DbStatoCliente> StatiCliente { get; set; }
         public DbSet<DbValoriTabelle> ValoriTabelle { get; set; }
 
+        // Utilizzata per tracciare tutte le modifiche ai record del DB
+        public DbSet<DbAuditLog> AuditLogs { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<DbCliente>().HasKey(c => c.Utw_IDClienteAuto);
             modelBuilder.Entity<DbUtente>().HasKey(u => u.Ute_IDUtente);
-            modelBuilder.Entity<DbModuloEasygoldLang>().HasKey(m => m.Mdeid_ID); // Assuming Id is the primary key
+            modelBuilder.Entity<DbModuloEasygoldLang>().HasKey(m => m.Mdeid_IDAuto); // Assuming Id is the primary key
             modelBuilder.Entity<DbModuloEasygold>().HasKey(m => m.Mde_IDAuto    ); // Assuming Id is the primary key
-            modelBuilder.Entity<DbDatiCliente>().HasKey(d => d.Dtc_IDCliente); // Assuming Id is the primary key
+            modelBuilder.Entity<DbDatiCliente>().HasKey(d => d.Dtc_IDDatiCliente); // Assuming Id is the primary key
             modelBuilder.Entity<DbNazioni>().HasKey(n => n.Naz_id);
             modelBuilder.Entity<DbValute>().HasKey(v => v.Val_id);
 
@@ -48,6 +52,74 @@ namespace EasyGold.API.Infrastructure
             .HasOne(u => u.Ruolo)
             .WithMany()
             .HasForeignKey(u => u.Ute_IDRuolo);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+        }
+
+        public Task<int> SaveChangesAsync()
+        {
+            var auditEntries = new List<DbAuditLog>();
+            var changeTracker = ChangeTracker.Entries()
+                .Where(e => e.State == EntityState.Modified || e.State == EntityState.Added || e.State == EntityState.Deleted);
+
+            foreach (var entry in changeTracker)
+            {
+                string tableName = entry.Entity.GetType().Name;
+                string recordId = GetPrimaryKeyValue(entry);
+
+                DateTime changeDate = DateTime.UtcNow;
+                foreach (var prop in entry.Properties)
+                {
+                    if (entry.State == EntityState.Modified && prop.IsModified)
+                    {
+                        auditEntries.Add(new DbAuditLog
+                        {
+                            Log_TableName = tableName,
+                            Log_RecordId = recordId,
+                            Log_ColumnName = prop.Metadata.Name,
+                            Log_OldValue = prop.OriginalValue?.ToString(),
+                            Log_NewValue = prop.CurrentValue?.ToString(),
+                            Log_ChangeDate = changeDate,
+                            Log_User = "Sistema"
+                        });
+                    }
+                    else if (entry.State == EntityState.Deleted)
+                    {
+                        auditEntries.Add(new DbAuditLog
+                        {
+                            Log_TableName = tableName,
+                            Log_RecordId = recordId,
+                            Log_ColumnName = "RecordDeleted",
+                            Log_OldValue = "EXISTING",
+                            Log_NewValue = "DELETED",
+                            Log_ChangeDate = changeDate,
+                            Log_User = "Sistema"
+                        });
+                    }
+                }
+            }
+
+            // Salva le modifiche e registra il log
+            if (auditEntries.Any())
+            {
+                AuditLogs.AddRange(auditEntries);
+            }
+
+            var result = base.SaveChangesAsync();
+            return result;
+        }
+        private string GetPrimaryKeyValue(EntityEntry entry)
+        {
+            var entityType = this.Model.FindEntityType(entry.Entity.GetType());
+            var primaryKey = entityType.FindPrimaryKey();
+            var keyValues = primaryKey.Properties
+                .Select(p => entry.OriginalValues[p.Name]?.ToString())
+                .ToArray();
+
+            return string.Join(";", keyValues);
         }
     }
 }
