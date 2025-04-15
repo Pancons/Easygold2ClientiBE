@@ -47,7 +47,7 @@ namespace EasyGold.API.Repositories.Implementations
                         select new ClienteRecord
                         {
                             Cliente = cliente,
-                            DatiCliente = datiCliente
+                            DatiCliente = datiCliente ?? new DbDatiCliente()
                         };
 
             int total = await query.CountAsync();
@@ -275,9 +275,9 @@ namespace EasyGold.API.Repositories.Implementations
                 .Where(c => c.Utw_IDClienteAuto == id)
                 .FirstOrDefaultAsync();
 
-            var datiCliente = await _context.DatiClienti
+            var datiCliente = (await _context.DatiClienti
                 .Where(d => d.Dtc_IDCliente == id)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync()) ?? new DbDatiCliente();
 
             var moduli = (await _moduloClienteRepository.GetByClienteIdAsync(id)).ToList();
 
