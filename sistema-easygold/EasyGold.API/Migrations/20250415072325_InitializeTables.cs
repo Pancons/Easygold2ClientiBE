@@ -58,12 +58,12 @@ namespace EasyGold.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "StatiCliente",
-                columns: new[] { "Stc_id", "Stc_Descrizione" },
+                columns: new[] { "Stc_id", "Stc_Descrizione", "Stc_Colore" },
                 values: new object[,]
                 {
-                    {1, "Attivo"},
-                    {2, "Bloccato"},
-                    {3, "Sospeso"}
+                    {1, "Attivo", "#389e0d"},
+                    {2, "Bloccato", "#cf1322"},
+                    {3, "Sospeso", "#d48806"}
                 });
         }
 
