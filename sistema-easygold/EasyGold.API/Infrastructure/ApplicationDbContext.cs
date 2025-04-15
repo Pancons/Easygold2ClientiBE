@@ -22,6 +22,7 @@ namespace EasyGold.API.Infrastructure
         public DbSet<DbNazioni> Nazioni { get; set; }
         public DbSet<DbValute> Valute { get; set; }
         public DbSet<DbStatoCliente> StatiCliente { get; set; }
+        public DbSet<DbValoriTabelle> ValoriTabelle { get; set; }
 
         // Utilizzata per tracciare tutte le modifiche ai record del DB
         public DbSet<DbAuditLog> AuditLogs { get; set; }

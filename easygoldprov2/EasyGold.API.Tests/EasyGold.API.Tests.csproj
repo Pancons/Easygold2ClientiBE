@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Libreria per Mediator se serve -->
+    <PackageReference Include="MediatR" Version="12.4.1" />
+
+    <!-- Librerie di base per i test .NET -->
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+
+    <!-- Libreria di mock -->
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="System.Net.Http.Json" Version="9.0.2" />
+
+    <!-- xUnit (framework di test) -->
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+
+    <!-- Per la coverage (Coverlet) -->
+    <PackageReference Include="coverlet.collector" Version="6.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+
+    <!-- Pacchetti necessari per test di integrazione su .NET 8 -->
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.0-preview.7.*" />
+  
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Riferimento al progetto principale (EasyGold.API) -->
+    <ProjectReference Include="..\EasyGold.API\EasyGold.API.csproj" />
+  </ItemGroup>
+
+</Project>
