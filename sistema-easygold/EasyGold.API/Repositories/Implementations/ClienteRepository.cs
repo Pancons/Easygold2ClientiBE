@@ -39,7 +39,7 @@ namespace EasyGold.API.Repositories.Implementations
             var query = from cliente in _context.Clienti
                         join datiCliente in _context.DatiClienti
                             on cliente.Utw_IDClienteAuto equals datiCliente.Dtc_IDCliente into clientiGroup
-                        from datiCliente in clientiGroup.DefaultIfEmpty()
+                        from datiCliente in clientiGroup
                         where (request.Filters == null || string.IsNullOrEmpty(request.Filters.Dtc_RagioneSociale) || datiCliente.Dtc_RagioneSociale.Contains(request.Filters.Dtc_RagioneSociale))
                         && (request.Filters == null || string.IsNullOrEmpty(request.Filters.Dtc_Gioielleria) || datiCliente.Dtc_Gioielleria.Contains(request.Filters.Dtc_Gioielleria))
                         && (request.Filters == null || !request.Filters.NonAttivi.HasValue || (request.Filters.NonAttivi.Value && cliente.Utw_DataDisattivazione != null))
@@ -47,7 +47,7 @@ namespace EasyGold.API.Repositories.Implementations
                         select new ClienteRecord
                         {
                             Cliente = cliente,
-                            DatiCliente = datiCliente ?? new DbDatiCliente()
+                            DatiCliente = datiCliente
                         };
 
             int total = await query.CountAsync();
