@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyGold.API.Models.Entities
 {
-    public class DbAllegato
+    public class DbAllegato : BaseDbEntity
     {
         /// <summary>
         /// ID dell'allegato.

@@ -23,7 +23,10 @@ namespace EasyGold.API.Migrations
                     All_EntitaRiferimento = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     All_RecordId = table.Column<int>(type: "int", nullable: false),
                     All_Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    All_ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    All_ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -65,7 +68,10 @@ namespace EasyGold.API.Migrations
                     Utw_Postazioni = table.Column<int>(type: "int", nullable: false),
                     Utw_PercorsoReports = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Utw_PercorsoImmagini = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Utw_IdStatoCliente = table.Column<int>(type: "int", nullable: true)
+                    Utw_IdStatoCliente = table.Column<int>(type: "int", nullable: true),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -102,7 +108,10 @@ namespace EasyGold.API.Migrations
                     Dtc_ReferenteWeb = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Dtc_Ranking = table.Column<int>(type: "int", nullable: true),
                     Dtc_IDValuta = table.Column<int>(type: "int", nullable: true),
-                    Dtc_NumeroContratto = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Dtc_NumeroContratto = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -117,7 +126,10 @@ namespace EasyGold.API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Mde_CodEcomm = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Mde_Descrizione = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Mde_DescrizioneEstesa = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false)
+                    Mde_DescrizioneEstesa = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -133,7 +145,10 @@ namespace EasyGold.API.Migrations
                     Mdeid_ISONum = table.Column<int>(type: "int", nullable: false),
                     Mdeid_ID = table.Column<int>(type: "int", nullable: false),
                     Mdeid_Descrizione = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Mdeid_DescEstesa = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Mdeid_DescEstesa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -146,7 +161,10 @@ namespace EasyGold.API.Migrations
                 {
                     Naz_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Naz_Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                    Naz_Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -166,7 +184,10 @@ namespace EasyGold.API.Migrations
                     Neg_DataDisattivazione = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Neg_Bloccato = table.Column<bool>(type: "bit", nullable: true),
                     Neg_DataOraBlocco = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Neg_Note = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
+                    Neg_Note = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -179,7 +200,10 @@ namespace EasyGold.API.Migrations
                 {
                     Ur_IDRuolo = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Ur_Descrizione = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Ur_Descrizione = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -193,7 +217,10 @@ namespace EasyGold.API.Migrations
                     Stc_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Stc_Descrizione = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Stc_Colore = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true)
+                    Stc_Colore = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -210,7 +237,10 @@ namespace EasyGold.API.Migrations
                     Val_Cambio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Val_Simbolo = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
                     Val_SimboloRegCassa = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: true),
-                    Val_NumeroDecimali = table.Column<int>(type: "int", nullable: false)
+                    Val_NumeroDecimali = table.Column<int>(type: "int", nullable: false),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -229,7 +259,10 @@ namespace EasyGold.API.Migrations
                     Mdc_DataDisattivazione = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Mdc_BloccoModulo = table.Column<bool>(type: "bit", nullable: false),
                     Mdc_DataOraBlocco = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Mdc_Nota = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true)
+                    Mdc_Nota = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -260,7 +293,10 @@ namespace EasyGold.API.Migrations
                     Ute_IDRuolo = table.Column<int>(type: "int", nullable: false),
                     Ute_Bloccato = table.Column<bool>(type: "bit", nullable: false),
                     Ute_Nota = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Ute_Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Ute_Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    rowcreated_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    rowupdated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    rowdeleted_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

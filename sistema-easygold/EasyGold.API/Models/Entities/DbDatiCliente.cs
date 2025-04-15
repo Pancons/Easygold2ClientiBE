@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyGold.API.Models.Entities
 {
-    public class DbDatiCliente
+    public class DbDatiCliente : BaseDbEntity
     {
         /// <summary>
         /// ID del record dei dati cliente.

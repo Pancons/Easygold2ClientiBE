@@ -4,7 +4,7 @@ namespace EasyGold.API.Models.Entities
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class DbStatoCliente
+    public class DbStatoCliente : BaseDbEntity
     {   
         [Key]  // <- Definisce la chiave primaria
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

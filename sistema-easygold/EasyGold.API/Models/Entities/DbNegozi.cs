@@ -5,7 +5,7 @@ namespace EasyGold.API.Models.Entities
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class DbNegozi
+    public class DbNegozi : BaseDbEntity
     {   
         [Key]  // <- Definisce la chiave primaria
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

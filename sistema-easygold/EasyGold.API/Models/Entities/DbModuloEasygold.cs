@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EasyGold.API.Models.Entities
 {
-    public class DbModuloEasygold
+    public class DbModuloEasygold : BaseDbEntity
     {
         [Key]
         public int Mde_IDAuto { get; set; }
