@@ -50,7 +50,7 @@ namespace EasyGold.API.Models.Configurazioni
         public ValuteDTO? Valuta { get; set; }
 
         [SwaggerSchema(Description = "Dettaglio Valuta del cliente")]
-        [JsonPropertyName("Valuta")]
+        [JsonPropertyName("valuta")]
         public ValuteDTO? ValutaOutput => Valuta;
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace EasyGold.API.Models.Configurazioni
         public StatoClienteDTO? StatoCliente { get; set; }
 
         [SwaggerSchema(Description = "Dettaglio Stato del cliente")]
-        [JsonPropertyName("StatoCliente")]
+        [JsonPropertyName("statoCliente")]
         public StatoClienteDTO? StatoClienteOutput => StatoCliente;
     }
 }

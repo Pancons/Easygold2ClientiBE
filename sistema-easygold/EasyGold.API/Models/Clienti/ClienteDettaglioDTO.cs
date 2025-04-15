@@ -108,7 +108,7 @@ namespace EasyGold.API.Models.Clienti
         public NazioniDTO? Nazione { get; set; }
 
         [SwaggerSchema(Description = "Dettaglio Nazione del cliente")]
-        [JsonPropertyName("Nazione")]
+        [JsonPropertyName("nazione")]
         public NazioniDTO? NazioneOutput => Nazione;
 
     }
