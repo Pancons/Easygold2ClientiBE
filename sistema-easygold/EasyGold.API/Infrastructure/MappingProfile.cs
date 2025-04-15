@@ -10,6 +10,7 @@ using EasyGold.API.Models.Ruoli;
 using EasyGold.API.Models.StatiCliente;
 using EasyGold.API.Models.Utenti;
 using EasyGold.API.Models.Valute;
+using EasyGold.API.Models.Variabili;
 
 namespace EasyGold.API.Infrastructure
 {
@@ -23,6 +24,7 @@ namespace EasyGold.API.Infrastructure
             MappingModuli();
             MappingUtenti();
             MappingValute();
+            MappingValoriTabelle();
 
             // Reverse Mapping
             CreateMap<DbDatiCliente, ClienteDettaglioDTO>().ReverseMap();
@@ -112,7 +114,7 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Dtc_IDValuta, opt => opt.MapFrom(src => src.Configurazione != null ? src.Configurazione.Utw_IDValuta : (int?)null))
                 .ForMember(dest => dest.Dtc_NumeroContratto, opt => opt.MapFrom(src => src.Configurazione != null ? src.Configurazione.Utw_NumeroContratto : null));
 
-           
+
             CreateMap<DbDatiCliente, ClienteDettaglioDTO>()
                 .ForMember(dest => dest.Configurazione, opt => opt.MapFrom(src => new ConfigurazioneDTO
                 {
@@ -272,6 +274,22 @@ namespace EasyGold.API.Infrastructure
             CreateMap<DbValute, ValuteDTO>();
 
             CreateMap<ValuteDTO, DbValute>();
+        }
+
+        private void MappingValoriTabelle()
+        {
+            CreateMap<DbValoriTabelle, ValoriTabelleDTO>()
+            .ForMember(dest => dest.RowId, opt => opt.MapFrom(src => src.rowId))
+            .ForMember(dest => dest.LstDescription, opt => opt.MapFrom(src => src.lst_description))
+            .ForMember(dest => dest.LstItemType, opt => opt.MapFrom(src => src.lst_itemType))
+            .ReverseMap();
+
+            CreateMap<DbValoriTabelleLang, ValoriTabelleLangDTO>()
+                .ForMember(dest => dest.RowId, opt => opt.MapFrom(src => src.rowId))
+                .ForMember(dest => dest.LstlItemId, opt => opt.MapFrom(src => src.lstl_itemId))
+                .ForMember(dest => dest.LstlLanguageId, opt => opt.MapFrom(src => src.lstl_languageId))
+                .ForMember(dest => dest.LstlDescription, opt => opt.MapFrom(src => src.lstl_description))
+                .ReverseMap();
         }
 
         private void MappingUtenti()

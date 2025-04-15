@@ -1,0 +1,31 @@
+2025-03-11 10:40:14.636 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-03-11 10:40:14.756 +00:00 [INF] Creating key {42ea39a0-c9c9-48be-9bbb-942ec0eb92c4} with creation date 2025-03-11 10:40:14Z, activation date 2025-03-11 10:40:14Z, and expiration date 2025-06-09 10:40:14Z.
+2025-03-11 10:40:14.780 +00:00 [WRN] No XML encryptor configured. Key {42ea39a0-c9c9-48be-9bbb-942ec0eb92c4} may be persisted to storage in unencrypted form.
+2025-03-11 10:40:14.790 +00:00 [INF] Writing data to file '/home/ubuntu/.aspnet/DataProtection-Keys/key-42ea39a0-c9c9-48be-9bbb-942ec0eb92c4.xml'.
+2025-03-11 10:40:15.081 +00:00 [INF] Now listening on: http://localhost:5217
+2025-03-11 10:40:15.087 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-03-11 10:40:15.089 +00:00 [INF] Hosting environment: Development
+2025-03-11 10:40:15.090 +00:00 [INF] Content root path: /mnt/newdisk/home/ubuntu/workspace/easygold/sistema-easygold/EasyGold.API
+2025-03-11 10:40:21.142 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/ - null null
+2025-03-11 10:40:21.174 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-03-11 10:40:21.559 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/ - 404 0 null 415.538ms
+2025-03-11 10:40:21.588 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/, Response status code: 404
+2025-03-11 10:40:25.817 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.html - null null
+2025-03-11 10:40:25.939 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.html - 200 null text/html;charset=utf-8 122.1239ms
+2025-03-11 10:40:25.999 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui.css - null null
+2025-03-11 10:40:26.107 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.css - null null
+2025-03-11 10:40:26.120 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-standalone-preset.js - null null
+2025-03-11 10:40:26.128 +00:00 [INF] The file /index.css was not modified
+2025-03-11 10:40:26.131 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.css - 304 null text/css 23.6682ms
+2025-03-11 10:40:26.129 +00:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-03-11 10:40:26.134 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui.css - 200 152035 text/css 135.1058ms
+2025-03-11 10:40:26.139 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-bundle.js - null null
+2025-03-11 10:40:26.134 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.js - null null
+2025-03-11 10:40:26.153 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.js - 200 null application/javascript;charset=utf-8 19.4229ms
+2025-03-11 10:40:26.203 +00:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-03-11 10:40:26.207 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-standalone-preset.js - 200 230007 text/javascript 87.0722ms
+2025-03-11 10:40:26.273 +00:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-03-11 10:40:26.276 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-bundle.js - 200 1457477 text/javascript 136.8283ms
+2025-03-11 10:40:26.590 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/v1/swagger.json - null null
+2025-03-11 10:40:26.782 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 192.1002ms
+2025-03-11 10:40:34.384 +00:00 [INF] Application is shutting down...
