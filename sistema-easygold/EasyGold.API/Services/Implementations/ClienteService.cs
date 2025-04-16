@@ -36,7 +36,7 @@ namespace EasyGold.API.Services.Implementations
             // Mappa il DTO in oggetti Db
             var cliente = _mapper.Map<DbCliente>(clienteDto);
             var datiCliente = _mapper.Map<DbDatiCliente>(clienteDto);
-            var moduli = _mapper.Map<List<ModuloIntermedio>>(clienteDto.Moduli);
+            var moduli = _mapper.Map<List<(DbModuloEasygold, DbModuloCliente)>>(clienteDto.Moduli);
             var allegati = _mapper.Map<List<DbAllegato>>(clienteDto.Allegati);
             var negozi = _mapper.Map<List<DbNegozi>>(clienteDto.Negozi);
 

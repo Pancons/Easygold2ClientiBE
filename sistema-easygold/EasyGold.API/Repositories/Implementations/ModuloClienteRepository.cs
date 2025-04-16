@@ -11,10 +11,12 @@ namespace EasyGold.API.Repositories.Implementations
     public class ModuloClienteRepository : IModuloClienteRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IModuloRepository _moduloRepository;
 
-        public ModuloClienteRepository(ApplicationDbContext context)
+        public ModuloClienteRepository(ApplicationDbContext context, IModuloRepository moduloRepository)
         {
             _context = context;
+            _moduloRepository = moduloRepository;
         }
 
         public async Task<IEnumerable<DbModuloCliente>> GetAllAsync()
@@ -95,6 +97,43 @@ namespace EasyGold.API.Repositories.Implementations
                 _context.Entry(existing).CurrentValues.SetValues(moduloCliente);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task UpdateAllAsync(int idCliente, List<(DbModuloEasygold, DbModuloCliente)> moduli)
+        {
+            // Ignoro tutti i moduli che hanno entrambe le date null
+            var moduliAssociati = moduli.Where(m => (m.Item2.Mdc_DataAttivazione != null || m.Item2.Mdc_DataDisattivazione != null)).ToList();
+            foreach (var modulo in moduliAssociati)
+            {
+                var moduloEsistente = await _moduloRepository.GetByIdAsync(modulo.Item1.Mde_IDAuto);
+                if (moduloEsistente != null)
+                {
+                    // Controlla se l'associazione esiste già
+                    var associazioneEsistente = await GetByClienteAndModuloAsync(idCliente, moduloEsistente.Mde_IDAuto);
+                    if (associazioneEsistente == null)
+                    {
+                        var moduloCliente = new DbModuloCliente
+                        {
+                            Mdc_IDCliente = idCliente,
+                            Mdc_IDModulo = moduloEsistente.Mde_IDAuto,
+                            Mdc_DataAttivazione = modulo.Item2.Mdc_DataAttivazione,
+                            Mdc_DataDisattivazione = modulo.Item2.Mdc_DataDisattivazione,
+                            Mdc_BloccoModulo = modulo.Item2.Mdc_BloccoModulo,
+                            Mdc_DataOraBlocco = modulo.Item2.Mdc_DataOraBlocco,
+                            Mdc_Nota = modulo.Item2.Mdc_Nota
+                        };
+                        await AddAsync(moduloCliente);
+                    }
+                    else
+                    {
+                        modulo.Item2.Mdc_IDAuto = associazioneEsistente.Mdc_IDAuto;
+                        modulo.Item2.Mdc_IDCliente = associazioneEsistente.Mdc_IDCliente;
+                        _context.Entry(associazioneEsistente).CurrentValues.SetValues(modulo.Item2);
+                        await UpdateAsync(associazioneEsistente);
+                    }
+                }
+            }
+
         }
 
         public async Task DeleteAsync(int id)
