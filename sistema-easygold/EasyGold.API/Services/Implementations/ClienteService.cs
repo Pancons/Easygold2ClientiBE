@@ -69,7 +69,7 @@ namespace EasyGold.API.Services.Implementations
             // Aggiorna i dati tramite repository
             await _clienteRepository.UpdateClienteAsync(clienteData.Cliente, clienteData.DatiCliente, moduli, allegati, negozi);
 
-            return clienteDto;
+            return await GetByIdAsync(id);
         }
 
         public async Task<ClienteDettaglioDTO> GetByIdAsync(int id)
