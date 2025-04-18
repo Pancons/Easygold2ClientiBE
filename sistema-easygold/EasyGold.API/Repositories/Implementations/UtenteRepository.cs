@@ -99,8 +99,6 @@ namespace EasyGold.API.Repositories.Implementations
             return (utenti, total);
         }
 
-
-
         // Recupero singolo utente
         public async Task<DbUtente> GetUserByIdAsync(int id)
         {
@@ -109,7 +107,12 @@ namespace EasyGold.API.Repositories.Implementations
                 .FirstOrDefaultAsync(u => u.Ute_IDUtente == id);
         }
 
-        
+        // Verifica l'esistenza di un nome utente
+        public async Task<bool> UsernameExist(string username)
+        {
+            return _context.Utenti.Any(u => u.Ute_NomeUtente == username);
+        }
+
         /// <summary>
         /// Elimina un utente e rimuove il file associato.
         /// </summary>
@@ -122,32 +125,6 @@ namespace EasyGold.API.Repositories.Implementations
                 await _context.SaveChangesAsync();
             }
         }        
-    
-
-        /*
-
-        public async Task<IEnumerable<DbUtente>> GetAllAsync()
-        {
-            return await _context.Utenti.ToListAsync();
-        }
-
-        public async Task<DbUtente> GetByIdAsync(int id)
-        {
-            return await _context.Utenti.FindAsync(id);
-        }
-
-       
-
-        public async Task DeleteAsync(int id)
-        {
-            var utente = await GetByIdAsync(id);
-            if (utente != null)
-            {
-                _context.Utenti.Remove(utente);
-                await _context.SaveChangesAsync();
-            }
-        }
-*/
     }
 
 }

@@ -40,15 +40,24 @@ namespace EasyGold.API.Services.Implementations
 
         }
 
+        public async Task<bool> UsernameExist(UtenteDTO utenteDettaglioDto)
+        {
+            bool result = false;
+            if (utenteDettaglioDto != null)
+                result = await _utenteRepository.UsernameExist(utenteDettaglioDto.Ute_NomeUtente);
+            return result;
+        }
+
         public async Task<UtenteDTO> AddAsync(UtenteDTO utenteDettaglioDto)
         {
             var utente = _mapper.Map<DbUtente>(utenteDettaglioDto);
 
-            // 🔹 Cripta la password prima di salvare l'utente
-            utente.Ute_Password = BCrypt.Net.BCrypt.HashPassword(utenteDettaglioDto.Ute_Password);
+            // In fase di inserimento di un nuovo utente, la password viene inizializzata con "password"
+            // e criptata
+            utente.Ute_Password = BCrypt.Net.BCrypt.HashPassword("password");
 
             await _utenteRepository.AddAsync(utente);
-            return utenteDettaglioDto;
+            return await GetUserByIdAsync(utente.Ute_IDUtente);
         }
 
 
@@ -56,7 +65,7 @@ namespace EasyGold.API.Services.Implementations
         {
             var utente = _mapper.Map<DbUtente>(utenteDettaglioDto);
             await _utenteRepository.UpdateAsync(utente);
-            return utenteDettaglioDto;
+            return await GetUserByIdAsync(utente.Ute_IDUtente);
         }
 
 
