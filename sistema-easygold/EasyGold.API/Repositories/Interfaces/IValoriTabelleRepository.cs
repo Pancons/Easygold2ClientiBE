@@ -9,5 +9,6 @@ namespace EasyGold.API.Repositories.Interfaces
         Task<DbValoriTabelle> GetByIdAsync(int id);
         Task InsertAsync(DbValoriTabelle entity);
         Task UpdateAsync(DbValoriTabelle entity);
+        Task<bool> DeleteAsync(int id);
     }
 }

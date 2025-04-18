@@ -15,6 +15,7 @@ using EasyGold.API.Repositories.Implementations;
 using System.Reflection;
 using System.IdentityModel.Tokens.Jwt;
 using EasyGold.API.Infrastructure.Swagger;
+using EasyGold.API.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddHttpClient("WebhookClient", client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5218/");
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+    // eventuali autenticazioni qui
+});
 
 
 // 🔹 AutoMapper e MediatR
@@ -62,6 +69,7 @@ builder.Services.AddScoped<IModuloClienteRepository, ModuloClienteRepository>();
 builder.Services.AddScoped<INazioneRepository, NazioneRepository>();
 builder.Services.AddScoped<IValutaRepository, ValutaRepository>();
 builder.Services.AddScoped<IStatoClientiRepository, StatoClientiRepository>();
+builder.Services.AddScoped<IValoriTabelleRepository, ValoriTabelleRepository>();
 
 
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAllegatoService, EasyGold.API.Services.Implementations.AllegatoService>();
@@ -73,6 +81,7 @@ builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IRuoloService, EasyG
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.INazioneService, EasyGold.API.Services.Implementations.NazioneService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IValutaService, EasyGold.API.Services.Implementations.ValutaService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IStatiClienteService, EasyGold.API.Services.Implementations.StatiClienteService>();
+builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IValoriTabelleService, EasyGold.API.Services.Implementations.ValoriTabelleService>();
 
 // 🔹 Abilita i controller e Swagger
 builder.Services.AddControllers();
@@ -95,12 +104,12 @@ builder.Services.AddSwaggerGen(c =>
             Name = "Licenza MIT",
             Url = new Uri("https://opensource.org/licenses/MIT")
         }
-        
+
     });
     c.EnableAnnotations(); // Abilita le annotazioni Swagger
     c.OperationFilter<RestrictToJsonContentTypeFilter>();
-   
-        
+
+
     // 🔹 Legge i commenti XML per documentare Swagger
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -148,8 +157,8 @@ var app = builder.Build();
 
 // 🔹 Middleware globali
 app.UseMiddleware<ErrorHandlingMiddleware>(); // Gestione errori personalizzata
- 
-          
+
+
 
 app.UseHttpsRedirection();
 app.UseCors("AllowAll"); // Abilita CORS

@@ -45,5 +45,16 @@ namespace EasyGold.API.Repositories.Implementations
             _context.ValoriTabelle.Update(entity);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var entity = await _context.ValoriTabelle.FindAsync(id);
+            if (entity == null)
+                return false;
+
+            _context.ValoriTabelle.Remove(entity);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

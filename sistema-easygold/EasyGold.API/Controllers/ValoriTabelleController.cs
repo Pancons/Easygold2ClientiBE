@@ -25,12 +25,18 @@ namespace EasyGold.API.Controllers
         {
             _service = service;
         }
-
-        [HttpPost("find")]
+        /// <summary>
+        /// Restituisce una lista di variabili 
+        /// </summary>
+        /// <param name="request">Filtro per tipologia di varabile</param>
+        /// <returns>Lista variabili e totale</returns>
+        /// <response code="200">Lista variabili restituita</response>
+        /// <response code="500">Errore interno del server</response>
+        [HttpPost("list")]
         [Authorize]
-        [ProducesResponseType(typeof(IEnumerable<ValoriTabelleDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseListResponse<ValoriTabelleDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Find([FromBody] ValoriTabelleDTO request)
+        public async Task<IActionResult> list([FromBody] VariabiliRequestDTO request)
         {
             if (string.IsNullOrEmpty(request.LstItemType))
                 return BadRequest("Il parametro lst_itemType è obbligatorio.");
@@ -39,6 +45,15 @@ namespace EasyGold.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Salva una nuova variabile o aggiorna una variabile esistente con i dettagli forniti.
+        /// </summary>
+        /// <param name="ValoriTabelleDTO">Dati della variabile da salvare o aggiornare</param>
+        /// <returns>Variabile creato o aggiornato</returns>
+        /// <response code="200">Variabile salvato o aggiornato con successo</response>
+        /// <response code="400">Errore nei dati inviati</response>
+        /// <response code="404">Variabile non trovato (solo in caso di aggiornamento)</response>
+        /// <response code="500">Errore interno del server</response>
         [HttpPost("save")]
         [Authorize]
         [ProducesResponseType(typeof(ValoriTabelleDTO), StatusCodes.Status200OK)]
@@ -52,5 +67,30 @@ namespace EasyGold.API.Controllers
             var result = await _service.SaveAsync(dto);
             return Ok(result);
         }
+
+        /// <summary>
+        /// Elimina un valore tabella dato il suo ID.
+        /// </summary>
+        [HttpDelete("{id}")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var result = await _service.DeleteAsync(id);
+                if (!result)
+                    return NotFound();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
+            }
+        }
+
     }
 }

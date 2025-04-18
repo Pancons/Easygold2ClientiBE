@@ -8,8 +8,10 @@ namespace EasyGold.API.Services.Interfaces
 {
     public interface IValoriTabelleService
     {
-        Task<IEnumerable<ValoriTabelleDTO>> FindAsync(string lstItemType);
+        Task<BaseListResponse<ValoriTabelleDTO>> FindAsync(string lstItemType);
         Task<ValoriTabelleDTO> SaveAsync(ValoriTabelleDTO dto);
+
+        Task<bool> DeleteAsync(int id);
     }
 }
  
