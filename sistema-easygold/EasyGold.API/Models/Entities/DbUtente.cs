@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyGold.API.Models.Entities
 {
-    public class DbUtente
+    public class DbUtente : BaseDbEntity
     {
         [Key]  // <- Definisce la chiave primaria
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyGold.API.Models.Entities
 {
-    public class DbModuloCliente
+    public class DbModuloCliente : BaseDbEntity
     {
         /// <summary>
         /// ID univoco del record (chiave primaria).

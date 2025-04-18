@@ -36,7 +36,7 @@ namespace EasyGold.API.Services.Implementations
             // Mappa il DTO in oggetti Db
             var cliente = _mapper.Map<DbCliente>(clienteDto);
             var datiCliente = _mapper.Map<DbDatiCliente>(clienteDto);
-            var moduli = _mapper.Map<List<ModuloIntermedio>>(clienteDto.Moduli);
+            var moduli = _mapper.Map<List<(DbModuloEasygold, DbModuloCliente)>>(clienteDto.Moduli);
             var allegati = _mapper.Map<List<DbAllegato>>(clienteDto.Allegati);
             var negozi = _mapper.Map<List<DbNegozi>>(clienteDto.Negozi);
 
@@ -69,7 +69,7 @@ namespace EasyGold.API.Services.Implementations
             // Aggiorna i dati tramite repository
             await _clienteRepository.UpdateClienteAsync(clienteData.Cliente, clienteData.DatiCliente, moduli, allegati, negozi);
 
-            return clienteDto;
+            return await GetByIdAsync(id);
         }
 
         public async Task<ClienteDettaglioDTO> GetByIdAsync(int id)

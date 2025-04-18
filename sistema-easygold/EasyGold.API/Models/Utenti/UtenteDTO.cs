@@ -1,13 +1,15 @@
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 using EasyGold.API.Models.Ruoli;
+using EasyGold.API.Models.Nazioni;
+using System.Text.Json.Serialization;
 
 namespace EasyGold.API.Models.Utenti
 {
     public class UtenteDTO
     {
         [SwaggerSchema(Description = "Identificativo univoco dell'utente")]
-        public int Ute_IDUtente { get; set; }
+        public int? Ute_IDUtente { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -32,12 +34,21 @@ namespace EasyGold.API.Models.Utenti
         [SwaggerSchema(Description = "Note aggiuntive sull'utente")]
         public string Ute_Nota { get; set; }
 
+/*
         [Required]
         [SwaggerSchema(Description = "Password hashata dell'utente")]
         public string Ute_Password { get; set; }
+*/
 
-      
-        public RuoloDTO? Ruolo { get; set; }  
+        /// <summary>
+        /// Creo 2 oggetti Ruolo, per gestirne solo la serializzazione in output
+        /// </summary>
+        [SwaggerSchema(Description = "Dettaglio Ruolo dell'utente")]
+        [JsonIgnore]
+        public RuoloDTO? Ruolo { get; set; }
 
+        [SwaggerSchema(Description = "Dettaglio Ruolo dell'utente")]
+        [JsonPropertyName("ruolo")]
+        public RuoloDTO? RuoloOutput => Ruolo;
     }
 }

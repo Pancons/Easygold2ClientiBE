@@ -21,7 +21,7 @@ namespace EasyGold.API.Repositories.Interfaces
         Task AddClienteAsync(
             DbCliente cliente,
             DbDatiCliente datiCliente,
-            List<ModuloIntermedio> moduli,
+            List<(DbModuloEasygold, DbModuloCliente)> moduli,
             List<DbAllegato> allegati,
             List<DbNegozi> negozi);
 

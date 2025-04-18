@@ -89,6 +89,12 @@ namespace EasyGold.API.Controllers
                 }
                 else // Se non ha un ID, crea un nuovo utente
                 {
+                    var result = await _utenteService.UsernameExist(userDto);
+                    if (result)
+                    {
+                        return BadRequest(new { error = "Username già presente" });
+                    }
+
                     var newUser = await _utenteService.AddAsync(userDto);
                     return CreatedAtAction(nameof(AddOrUpdateUser), new { id = newUser.Ute_IDUtente }, newUser);
                 }

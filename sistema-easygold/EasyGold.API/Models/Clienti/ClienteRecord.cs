@@ -7,5 +7,6 @@ namespace EasyGold.API.Models.Clienti
     {
         public DbCliente Cliente { get; set; }
         public DbDatiCliente? DatiCliente { get; set; }
+        public DbModuloCliente? ModuliCliente { get; set; }
     }
 }

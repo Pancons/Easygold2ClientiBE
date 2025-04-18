@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Models.Moduli;
 using System.Security.Principal;
+using System.Linq;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 
 namespace EasyGold.API.Repositories.Implementations
@@ -37,20 +39,66 @@ namespace EasyGold.API.Repositories.Implementations
         GetClientiAsync(ClienteListRequest request)
         {
             var query = from cliente in _context.Clienti
-                        join datiCliente in _context.DatiClienti
-                            on cliente.Utw_IDClienteAuto equals datiCliente.Dtc_IDCliente into clientiGroup
-                        from datiCliente in clientiGroup.DefaultIfEmpty()
-                        where (request.Filters == null || string.IsNullOrEmpty(request.Filters.Dtc_RagioneSociale) || datiCliente.Dtc_RagioneSociale.Contains(request.Filters.Dtc_RagioneSociale))
-                        && (request.Filters == null || string.IsNullOrEmpty(request.Filters.Dtc_Gioielleria) || datiCliente.Dtc_Gioielleria.Contains(request.Filters.Dtc_Gioielleria))
-                        && (request.Filters == null || !request.Filters.NonAttivi.HasValue || (request.Filters.NonAttivi.Value && cliente.Utw_DataDisattivazione != null))
-                        && (request.Filters == null || !request.Filters.Scaduti.HasValue || (request.Filters.Scaduti.Value && cliente.Utw_DataAttivazione < DateTime.UtcNow.AddYears(-1)))
+                        join datiCliente in _context.DatiClienti on cliente.Utw_IDClienteAuto equals datiCliente.Dtc_IDCliente into datiJoin
+                            from datiCliente in datiJoin
+                        join moduliCliente in _context.ModuloClienti on cliente.Utw_IDClienteAuto equals moduliCliente.Mdc_IDCliente into moduliJoin
+                            from moduliCliente in moduliJoin
                         select new ClienteRecord
                         {
                             Cliente = cliente,
-                            DatiCliente = datiCliente
+                            DatiCliente = datiCliente,
+                            ModuliCliente = moduliCliente
                         };
 
-            int total = await query.CountAsync();
+            if (request.Filters != null)
+            {
+                if (!string.IsNullOrEmpty(request.Filters.Dtc_RagioneSociale))
+                {
+                    query = from q in query
+                            where q.DatiCliente != null && q.DatiCliente.Dtc_RagioneSociale.Contains(request.Filters.Dtc_RagioneSociale)
+                            select q;
+                }
+
+                if (!string.IsNullOrEmpty(request.Filters.Dtc_Gioielleria))
+                {
+                    query = from q in query
+                            where q.DatiCliente != null && q.DatiCliente.Dtc_Gioielleria.Contains(request.Filters.Dtc_Gioielleria)
+                            select q;
+                }
+
+                if (request.Filters.Mdc_IDModulo != null && request.Filters.Mdc_IDModulo.Any())
+                {
+                    // Filtro per almeno un modulo tra quelli elencati
+                    /*
+                    query = from q in query
+                            where q.ModuliCliente != null && request.Filters.Mdc_IDModulo.Contains(q.ModuliCliente.Mdc_IDModulo)
+                               && q.ModuliCliente.Mdc_DataAttivazione != null && (q.ModuliCliente.Mdc_DataDisattivazione == null || q.ModuliCliente.Mdc_DataDisattivazione > DateTime.Now)
+                            select q;
+                    */
+
+                    // Filtro per tutti i moduli elencati
+                    var moduloIds = request.Filters.Mdc_IDModulo.Distinct().ToList();
+
+                    var clientiConAlmenoUnModulo = from q in query
+                                                   where q.ModuliCliente != null && request.Filters.Mdc_IDModulo.Contains(q.ModuliCliente.Mdc_IDModulo)
+                                                      && q.ModuliCliente.Mdc_DataAttivazione != null && (q.ModuliCliente.Mdc_DataDisattivazione == null || q.ModuliCliente.Mdc_DataDisattivazione > DateTime.Now)
+                                                   select q.Cliente.Utw_IDClienteAuto;
+
+                    var clientiConModuliValidi =
+                        from moduliCliente in _context.ModuloClienti
+                        where moduloIds.Contains(moduliCliente.Mdc_IDModulo)
+                              && moduliCliente.Mdc_DataAttivazione != null
+                              && ((request.Filters.Scaduti.HasValue && request.Filters.Scaduti.Value) || (moduliCliente.Mdc_DataDisattivazione == null || moduliCliente.Mdc_DataDisattivazione > DateTime.Now))
+                        group moduliCliente by moduliCliente.Mdc_IDCliente into g
+                        where g.Select(m => m.Mdc_IDModulo).Distinct().Count() == moduloIds.Count
+                        select g.Key;
+
+                    query = from q in query
+                            where (((request.Filters.NonAttivi.HasValue && !request.Filters.NonAttivi.Value) || !request.Filters.NonAttivi.HasValue) && clientiConModuliValidi.Contains(q.Cliente.Utw_IDClienteAuto))
+                               || ((request.Filters.NonAttivi.HasValue && request.Filters.NonAttivi.Value) && !clientiConAlmenoUnModulo.Contains(q.Cliente.Utw_IDClienteAuto))
+                            select q;
+                }
+            }
 
             // ✅ Ordinamento multiplo tip-safe
             if (request.Sort != null && request.Sort.Any())
@@ -91,12 +139,21 @@ namespace EasyGold.API.Repositories.Implementations
             }
 
             // ✅ Paginazione
-            query = query.Skip(request.Offset).Take(request.Limit);
+            var queryFinale = query.Select(q => q.Cliente.Utw_IDClienteAuto).Distinct();
+
+            int total = await queryFinale.CountAsync();
+
+            queryFinale = queryFinale.Skip(request.Offset).Take(request.Limit);
 
             // ✅ Esecuzione e mappatura
-            var list = await query.ToListAsync();
-            var result = list.Select(x => (x.Cliente, x.DatiCliente, _context.ModuloClienti
-                .Where(mc => mc.Mdc_IDCliente == x.Cliente.Utw_IDClienteAuto)
+            var list = await queryFinale.ToListAsync();
+            var clientiResult = list.Select(x => (
+                    _context.Clienti.Where(c => c.Utw_IDClienteAuto == x).FirstOrDefaultAsync().Result,
+                    _context.DatiClienti.Where(dc => dc.Dtc_IDCliente == x).FirstOrDefaultAsync().Result)
+            ).ToList();
+
+            var result = clientiResult.Select(x => (x.Item1, x.Item2, _context.ModuloClienti
+                .Where(mc => mc.Mdc_IDCliente == x.Item1.Utw_IDClienteAuto)
                 .Join(_context.ModuloEasygold,
                     mc => mc.Mdc_IDModulo,
                     me => me.Mde_IDAuto,
@@ -105,14 +162,14 @@ namespace EasyGold.API.Repositories.Implementations
                 new List<DbAllegato>(),
                 new List<DbNegozi>(),
                 _context.Nazioni
-                .Where(n => n.Naz_id == x.DatiCliente.Dtc_Nazione)
+                .Where(n => n.Naz_id == x.Item2.Dtc_Nazione)
                 .FirstOrDefaultAsync().Result,
                 _context.Valute
-                .Where(v => v.Val_id == x.DatiCliente.Dtc_IDValuta)
+                .Where(v => v.Val_id == x.Item2.Dtc_IDValuta)
                 .FirstOrDefaultAsync().Result,
                 _context.StatiCliente
-                .Where(sc => sc.Stc_id == x.Cliente.Utw_IdStatoCliente)
-                .FirstOrDefaultAsync().Result)).ToList();
+                .Where(sc => sc.Stc_id == x.Item1.Utw_IdStatoCliente)
+                .FirstOrDefaultAsync().Result)).Distinct().ToList();
 
             return (result, total);
         }
@@ -120,7 +177,7 @@ namespace EasyGold.API.Repositories.Implementations
         public async Task AddClienteAsync(
             DbCliente cliente,
             DbDatiCliente datiCliente,
-            List<ModuloIntermedio> moduli,
+            List<(DbModuloEasygold, DbModuloCliente)> moduli,
             List<DbAllegato> allegati,
             List<DbNegozi> negozi)
         {
@@ -136,11 +193,7 @@ namespace EasyGold.API.Repositories.Implementations
             await _context.DatiClienti.AddAsync(datiCliente);
 
             // **Gestione Allegati tramite Repository**
-            foreach (var allegato in allegati)
-            {
-                allegato.All_RecordId = cliente.Utw_IDClienteAuto;
-                await _allegatoRepository.AddAsync(allegato);
-            }
+            await _allegatoRepository.UpdateAllAsync(cliente.Utw_IDClienteAuto, "Cliente", allegati);
 
             // **Gestione Negozi tramite Repository**
             foreach (var negozio in negozi)
@@ -154,32 +207,7 @@ namespace EasyGold.API.Repositories.Implementations
             }
 
             // **Gestione Moduli: Creazione e Associazione**
-            foreach (var modulo in moduli)
-            {
-                var moduloEsistente = await _moduloRepository.GetByIdAsync(modulo.Mde_IDAuto);
-                if (moduloEsistente == null)
-                {
-                    var moduloEasygold = new DbModuloEasygold
-                    {
-                        Mde_Descrizione = modulo.Mde_Descrizione,
-                        Mde_DescrizioneEstesa = modulo.Mde_DescrizioneEstesa
-                    };
-                    await _moduloRepository.AddAsync(moduloEasygold);
-                    moduloEsistente = moduloEasygold; // Aggiorna il riferimento
-                }
-
-                var moduloCliente = new DbModuloCliente
-                {
-                    Mdc_IDCliente = cliente.Utw_IDClienteAuto,
-                    Mdc_IDModulo = moduloEsistente.Mde_IDAuto,
-                    Mdc_DataAttivazione = modulo.Mdc_DataAttivazione,
-                    Mdc_DataDisattivazione = modulo.Mdc_DataDisattivazione,
-                    Mdc_BloccoModulo = modulo.Mdc_BloccoModulo,
-                    Mdc_DataOraBlocco = modulo.Mdc_DataOraBlocco,
-                    Mdc_Nota = modulo.Mdc_Nota
-                };
-                await _moduloClienteRepository.AddAsync(moduloCliente);
-            }
+            await _moduloClienteRepository.UpdateAllAsync(cliente.Utw_IDClienteAuto, moduli);
 
             // Salvataggio finale
             await _context.SaveChangesAsync();
@@ -229,39 +257,7 @@ namespace EasyGold.API.Repositories.Implementations
             }
 
             // **Gestione Moduli: Creazione e Associazione**
-
-            // Ignoro tutti i moduli che hanno entrambe le date null
-            var moduliAssociati = moduli.Where(m => (m.Item2.Mdc_DataAttivazione != null || m.Item2.Mdc_DataDisattivazione != null)).ToList();
-            foreach (var modulo in moduliAssociati)
-            {
-                var moduloEsistente = await _moduloRepository.GetByIdAsync(modulo.Item1.Mde_IDAuto);
-                if (moduloEsistente != null)
-                {
-                    // Controlla se l'associazione esiste già
-                    var associazioneEsistente = await _moduloClienteRepository.GetByClienteAndModuloAsync(cliente.Utw_IDClienteAuto, moduloEsistente.Mde_IDAuto);
-                    if (associazioneEsistente == null)
-                    {
-                        var moduloCliente = new DbModuloCliente
-                        {
-                            Mdc_IDCliente = cliente.Utw_IDClienteAuto,
-                            Mdc_IDModulo = moduloEsistente.Mde_IDAuto,
-                            Mdc_DataAttivazione = modulo.Item2.Mdc_DataAttivazione,
-                            Mdc_DataDisattivazione = modulo.Item2.Mdc_DataDisattivazione,
-                            Mdc_BloccoModulo = modulo.Item2.Mdc_BloccoModulo,
-                            Mdc_DataOraBlocco = modulo.Item2.Mdc_DataOraBlocco,
-                            Mdc_Nota = modulo.Item2.Mdc_Nota
-                        };
-                        await _moduloClienteRepository.AddAsync(moduloCliente);
-                    }
-                    else
-                    {
-                        modulo.Item2.Mdc_IDAuto = associazioneEsistente.Mdc_IDAuto;
-                        modulo.Item2.Mdc_IDCliente = associazioneEsistente.Mdc_IDCliente;
-                        _context.Entry(associazioneEsistente).CurrentValues.SetValues(modulo.Item2);
-                        await _moduloClienteRepository.UpdateAsync(associazioneEsistente);
-                    }
-                }
-            }
+            await _moduloClienteRepository.UpdateAllAsync(cliente.Utw_IDClienteAuto, moduli);
 
             // Salvataggio finale
             await _context.SaveChangesAsync();
@@ -275,9 +271,9 @@ namespace EasyGold.API.Repositories.Implementations
                 .Where(c => c.Utw_IDClienteAuto == id)
                 .FirstOrDefaultAsync();
 
-            var datiCliente = await _context.DatiClienti
+            var datiCliente = (await _context.DatiClienti
                 .Where(d => d.Dtc_IDCliente == id)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync()) ?? new DbDatiCliente();
 
             var moduli = (await _moduloClienteRepository.GetByClienteIdAsync(id)).ToList();
 
