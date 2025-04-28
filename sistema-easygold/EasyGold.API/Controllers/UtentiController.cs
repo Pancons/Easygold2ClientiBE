@@ -165,7 +165,7 @@ namespace EasyGold.API.Controllers
         /// <response code="404">Utente non trovato</response>
         /// <response code="500">Errore interno</response>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(UtenteDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseResponse<UtenteDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetUser(int id)
@@ -177,7 +177,7 @@ namespace EasyGold.API.Controllers
                 {
                     return NotFound(new { error = "Utente non trovato" });
                 }
-                return Ok(new { result });
+                return Ok(new BaseResponse<UtenteDTO>(result));
 
             }
             catch (Exception ex)
