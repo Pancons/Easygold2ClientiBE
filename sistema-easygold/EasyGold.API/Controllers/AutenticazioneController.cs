@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using EasyGold.API.Models.Entities;
 using EasyGold.API.Services.Interfaces;
 using BCrypt.Net;
+using EasyGold.API.Services.Implementations;
 
 namespace EasyGold.API.Controllers
 {
@@ -19,12 +20,12 @@ namespace EasyGold.API.Controllers
     [Route("api/[controller]")]
     public class AutenticazioneController : ControllerBase
     {
-        private readonly IAutenticazioneService _userService;
+        private readonly IUtenteService _utenteService;
         private readonly IConfiguration _configuration;
 
-        public AutenticazioneController(IAutenticazioneService userService, IConfiguration configuration)
+        public AutenticazioneController(IUtenteService utenteService, IConfiguration configuration)
         {
-            _userService = userService;
+            _utenteService = utenteService;
             _configuration = configuration;
         }
 
@@ -50,7 +51,7 @@ namespace EasyGold.API.Controllers
 
             try
             {
-                var user = await _userService.AuthenticateAsync(request.Username, request.Password);
+                var user = await _utenteService.AuthenticateAsync(request.Username, request.Password);
                 if (user == null)
                 {
                     return Unauthorized(new { error = "Credenziali non valide" });

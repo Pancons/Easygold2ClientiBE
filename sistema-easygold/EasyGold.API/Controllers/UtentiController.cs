@@ -50,7 +50,7 @@ namespace EasyGold.API.Controllers
             }
         }
 
-       /// <summary>
+        /// <summary>
         /// Crea un nuovo utente o aggiorna un utente esistente nel sistema.
         /// </summary>
         /// <param name="userDto">Dati dell'utente da creare o aggiornare</param>
@@ -97,6 +97,57 @@ namespace EasyGold.API.Controllers
 
                     var newUser = await _utenteService.AddAsync(userDto);
                     return CreatedAtAction(nameof(AddOrUpdateUser), new { id = newUser.Ute_IDUtente }, newUser);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
+            }
+        }
+
+        /// <summary>
+        /// Crea un nuovo utente o aggiorna un utente esistente nel sistema.
+        /// </summary>
+        /// <param name="userDto">Dati dell'utente da creare o aggiornare</param>
+        /// <returns>Utente creato o aggiornato</returns>
+        /// <response code="201">Utente creato con successo</response>
+        /// <response code="200">Utente aggiornato con successo</response>
+        /// <response code="400">Errore nei dati inviati</response>
+        /// <response code="404">Utente non trovato (in caso di aggiornamento)</response>
+        /// <response code="500">Errore interno del server</response>
+        [HttpPost("changepassword")]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> ChangePassword([FromBody] PasswordDTO passwordDto)
+        {
+            try
+            {
+                if (passwordDto == null)
+                {
+                    return BadRequest(new { error = "Dati non validi" });
+                }
+
+                if (passwordDto.Ute_IDUtente > 0) // Se ha un ID, verifico se l'utente esiste
+                {
+                    var result = await _utenteService.GetUserByIdAsync(passwordDto.Ute_IDUtente);
+                    if (result == null)
+                    {
+                        return NotFound(new { error = "Utente non trovato" });
+                    }
+                    if (_utenteService.AuthenticateAsync(result.Ute_NomeUtente, passwordDto.Ute_OldPassword).Result == null)
+                    {
+                        return BadRequest(new { error = "La vecchia password non è corretta" });
+                    }
+                    if (!_utenteService.ChangePassword(passwordDto).Result)
+                    {
+                        return BadRequest(new { error = "Si è verificato un errore durante l'aggiornamento della password" });
+                    }
+                    return Ok(new { result }); // Restituisce l'utente aggiornato con codice 200
+                }
+                else // Se non ha un ID, crea un nuovo utente
+                {
+                    return BadRequest(new { error = "ID Utente non valido" });
                 }
             }
             catch (Exception ex)
@@ -155,58 +206,5 @@ namespace EasyGold.API.Controllers
             await _utenteService.DeleteAsync(id);
             return NoContent();
         }
-
-
-        /*
-        [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> GetAllUsers()
-        {
-            var users = await _utenteService.GetAllAsync();
-            
-            return Ok(new { users });
-        }
-
-        [HttpGet("{id}")]
-        [Authorize]
-        public async Task<IActionResult> GetUser(int id)
-        {
-            var user = await _utenteService.GetByIdAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Ok(new { user });
-        }
-
-        [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> AddUser([FromBody] UtenteDettaglioDTO userDto)
-        {
-            await _utenteService.AddAsync(userDto);
-            return CreatedAtAction(nameof(GetUser), new { id = userDto.Utw_IDUtente }, userDto);
-        }
-
-        [HttpPut("{id}")]
-        [Authorize]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UtenteDettaglioDTO userDto)
-        {
-            if (id != userDto.Utw_IDUtente)
-            {
-                return BadRequest();
-            }
-
-            await _utenteService.UpdateAsync(userDto);
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        [Authorize]
-        public async Task<IActionResult> DeleteUser(int id)
-        {
-            await _utenteService.DeleteAsync(id);
-            return NoContent();
-        }
-        */
     }
 }

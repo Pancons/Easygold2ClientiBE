@@ -107,6 +107,11 @@ namespace EasyGold.API.Repositories.Implementations
                 .FirstOrDefaultAsync(u => u.Ute_IDUtente == id);
         }
 
+        public async Task<DbUtente> GetUserByUsernameAsync(string username)
+        {
+            return await _context.Utenti.FirstOrDefaultAsync(u => u.Ute_NomeUtente == username);
+        }
+
         // Verifica l'esistenza di un nome utente
         public async Task<bool> UsernameExist(string username)
         {

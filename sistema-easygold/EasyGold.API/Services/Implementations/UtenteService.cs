@@ -37,7 +37,6 @@ namespace EasyGold.API.Services.Implementations
         {
             var utenteDettaglioDto = await _utenteRepository.GetUserByIdAsync(id);
             return _mapper.Map<UtenteDTO>(utenteDettaglioDto);
-
         }
 
         public async Task<bool> UsernameExist(UtenteDTO utenteDettaglioDto)
@@ -54,7 +53,7 @@ namespace EasyGold.API.Services.Implementations
 
             // In fase di inserimento di un nuovo utente, la password viene inizializzata con "password"
             // e criptata
-            utente.Ute_Password = BCrypt.Net.BCrypt.HashPassword("password");
+            utente.Ute_Password = CryptPassword("password");
 
             await _utenteRepository.AddAsync(utente);
             return await GetUserByIdAsync(utente.Ute_IDUtente);
@@ -74,6 +73,39 @@ namespace EasyGold.API.Services.Implementations
             await _utenteRepository.DeleteAsync(id);
         }
 
+        public async Task<DbUtente> AuthenticateAsync(string username, string password)
+        {
+            var user = await _utenteRepository.GetUserByUsernameAsync(username);
+            if (user == null || !VerifyPassword(password, user.Ute_Password))
+                return null;
+
+            return user;
+        }
+
+        public async Task<bool> ChangePassword(PasswordDTO passwordDto)
+        {
+            bool result = false;
+
+            var utente = await _utenteRepository.GetUserByIdAsync(passwordDto.Ute_IDUtente);
+            if (utente != null)
+            {
+                utente.Ute_Password = CryptPassword(passwordDto.Ute_NewPassword);
+                await _utenteRepository.UpdateAsync(utente);
+
+                result = true;
+            }
+            return result;
+        }
+
+        private string CryptPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password);
+        }
+
+        private bool VerifyPassword(string password, string hashPassword)
+        {
+            return BCrypt.Net.BCrypt.Verify(password, hashPassword);
+        }
 
     }
 }

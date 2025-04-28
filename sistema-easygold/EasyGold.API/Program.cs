@@ -67,7 +67,6 @@ builder.Services.AddScoped<IStatoClientiRepository, StatoClientiRepository>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAllegatoService, EasyGold.API.Services.Implementations.AllegatoService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IClienteService, EasyGold.API.Services.Implementations.ClienteService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IUtenteService, EasyGold.API.Services.Implementations.UtenteService>();
-builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAutenticazioneService, EasyGold.API.Services.Implementations.AutenticazioneService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IModuloService, EasyGold.API.Services.Implementations.ModuloService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IRuoloService, EasyGold.API.Services.Implementations.RuoloService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.INazioneService, EasyGold.API.Services.Implementations.NazioneService>();

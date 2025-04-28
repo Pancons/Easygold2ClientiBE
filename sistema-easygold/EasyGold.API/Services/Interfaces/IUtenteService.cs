@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Models;
+using EasyGold.API.Models.Entities;
 using EasyGold.API.Models.Utenti;
 
 namespace EasyGold.API.Services.Interfaces
@@ -13,5 +14,7 @@ namespace EasyGold.API.Services.Interfaces
         Task<UtenteDTO> AddAsync(UtenteDTO utenteDettaglioDto);
         Task<UtenteDTO> UpdateAsync(UtenteDTO utenteDettaglioDto);
         Task DeleteAsync(int id);
+        Task<DbUtente> AuthenticateAsync(string username, string password);
+        Task<bool> ChangePassword(PasswordDTO passwordDto);
     }
 }
