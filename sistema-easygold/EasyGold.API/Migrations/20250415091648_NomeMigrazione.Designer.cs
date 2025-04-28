@@ -4,6 +4,7 @@ using EasyGold.API.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGold.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250415091648_NomeMigrazione")]
+    partial class NomeMigrazione
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,17 +57,6 @@ namespace EasyGold.API.Migrations
 
                     b.Property<int>("All_RecordId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("All_IDAllegato");
 
@@ -153,17 +145,6 @@ namespace EasyGold.API.Migrations
 
                     b.Property<int>("Utw_UtentiAttivi")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Utw_IDClienteAuto");
 
@@ -265,17 +246,6 @@ namespace EasyGold.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Dtc_IDDatiCliente");
 
                     b.ToTable("DatiClienti");
@@ -311,17 +281,6 @@ namespace EasyGold.API.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Mdc_IDAuto");
 
                     b.HasIndex("Mdc_IDCliente");
@@ -354,17 +313,6 @@ namespace EasyGold.API.Migrations
                         .HasMaxLength(400)
                         .HasColumnType("nvarchar(400)");
 
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Mde_IDAuto");
 
                     b.ToTable("ModuloEasygold");
@@ -392,17 +340,6 @@ namespace EasyGold.API.Migrations
                     b.Property<int>("Mdeid_ISONum")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Mdeid_IDAuto");
 
                     b.ToTable("ModuloEasygoldLang");
@@ -420,17 +357,6 @@ namespace EasyGold.API.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Naz_id");
 
@@ -474,17 +400,6 @@ namespace EasyGold.API.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Neg_id");
 
                     b.ToTable("Negozi");
@@ -501,17 +416,6 @@ namespace EasyGold.API.Migrations
                     b.Property<string>("Ur_Descrizione")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Ur_IDRuolo");
 
@@ -534,17 +438,6 @@ namespace EasyGold.API.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Stc_id");
 
@@ -586,17 +479,6 @@ namespace EasyGold.API.Migrations
                     b.Property<string>("Ute_Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Ute_IDUtente");
 
@@ -665,17 +547,6 @@ namespace EasyGold.API.Migrations
                     b.Property<string>("Val_SimboloRegCassa")
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
-
-                    b.Property<DateTime>("rowcreated_at")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("rowdeleted_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("rowupdated_at")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Val_id");
 

@@ -14,24 +14,33 @@ using EasyGold.API.Models.Variabili;
 namespace EasyGold.API.Services.Implementations
 {
 
-
-
     public class ValoriTabelleService : IValoriTabelleService
     {
         private readonly IValoriTabelleRepository _repo;
         private readonly IMapper _mapper;
+        private readonly HttpClient _webhookClient;
 
-        public ValoriTabelleService(IValoriTabelleRepository repo, IMapper mapper)
+        public ValoriTabelleService(
+            IValoriTabelleRepository repo,
+            IMapper mapper,
+            IHttpClientFactory httpClientFactory)
         {
             _repo = repo;
             _mapper = mapper;
+            _webhookClient = httpClientFactory.CreateClient("WebhookClient");
         }
-
-        public async Task<IEnumerable<ValoriTabelleDTO>> FindAsync(string lstItemType)
+        public async Task<BaseListResponse<ValoriTabelleDTO>> FindAsync(string lstItemType)
         {
             var data = await _repo.FindByItemTypeAsync(lstItemType);
-            return _mapper.Map<IEnumerable<ValoriTabelleDTO>>(data);
+            
+            return new BaseListResponse<ValoriTabelleDTO>
+            {
+                results = _mapper.Map<IEnumerable<ValoriTabelleDTO>>(data).ToList(),
+                total = data.Count()
+            };
+        
         }
+           
 
         public async Task<ValoriTabelleDTO> SaveAsync(ValoriTabelleDTO dto)
         {
@@ -52,7 +61,35 @@ namespace EasyGold.API.Services.Implementations
                 await _repo.InsertAsync(entity);
             }
 
+            await NotifyWebhookAsync(dto);
+            
             return _mapper.Map<ValoriTabelleDTO>(entity);
         }
+
+
+        public async Task<bool> DeleteAsync(int id)
+        {   
+            DbValoriTabelle entity = await _repo.GetByIdAsync(id);
+            ValoriTabelleDTO dto = _mapper.Map<ValoriTabelleDTO>(entity);
+            await NotifyWebhookAsync(dto);
+            return await _repo.DeleteAsync(id);
+        }
+
+        private async Task NotifyWebhookAsync(ValoriTabelleDTO dto)
+        {
+            try
+            {
+                var response = await _webhookClient.PostAsJsonAsync("api/ValoriTabelleWebhook/on-change", dto);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Webhook failed: {ex.Message}");
+            }
+        }
+
+        
+
+
     }
 }
