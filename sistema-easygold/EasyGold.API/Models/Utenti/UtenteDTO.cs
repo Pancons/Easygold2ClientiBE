@@ -24,15 +24,16 @@ namespace EasyGold.API.Models.Utenti
         [SwaggerSchema(Description = "Nome utente per l'accesso")]
         public string Ute_NomeUtente { get; set; }
 
+        [Required]
         [SwaggerSchema(Description = "Identificativo del ruolo dell'utente")]
-        public int Ute_IDRuolo { get; set; }
+        public int? Ute_IDRuolo { get; set; }
 
         [SwaggerSchema(Description = "Indica se l'utente è bloccato")]
         public bool Ute_Bloccato { get; set; }
 
         [StringLength(500)]
         [SwaggerSchema(Description = "Note aggiuntive sull'utente")]
-        public string Ute_Nota { get; set; }
+        public string? Ute_Nota { get; set; }
 
 /*
         [Required]

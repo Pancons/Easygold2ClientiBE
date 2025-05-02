@@ -42,7 +42,7 @@ namespace EasyGold.API.Models.Entities
         /// 
 
         [StringLength(200)]
-        public string Ute_Nota { get; set; }
+        public string? Ute_Nota { get; set; }
         /// <summary>
         /// Passeword dell'utente.
         /// </summary>

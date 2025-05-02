@@ -102,14 +102,26 @@ namespace EasyGold.API.Repositories.Implementations
         // Recupero singolo utente
         public async Task<DbUtente> GetUserByIdAsync(int id)
         {
-            return await _context.Utenti
+            var utente = await _context.Utenti
                 .Include(u => u.Ruolo) // ✅ include anche i dati del ruolo, se presenti
                 .FirstOrDefaultAsync(u => u.Ute_IDUtente == id);
+
+            // Lo sgancio da EF per evitare problemi in fase di aggiornamento
+            _context.Entry(utente).State = EntityState.Detached;
+
+            return utente;
         }
 
         public async Task<DbUtente> GetUserByUsernameAsync(string username)
         {
-            return await _context.Utenti.FirstOrDefaultAsync(u => u.Ute_NomeUtente == username);
+            var utente = await _context.Utenti
+                .Include(u => u.Ruolo) // ✅ include anche i dati del ruolo, se presenti
+                .FirstOrDefaultAsync(u => u.Ute_NomeUtente == username);
+
+            // Lo sgancio da EF per evitare problemi in fase di aggiornamento
+            _context.Entry(utente).State = EntityState.Detached;
+
+            return utente;
         }
 
         // Verifica l'esistenza di un nome utente

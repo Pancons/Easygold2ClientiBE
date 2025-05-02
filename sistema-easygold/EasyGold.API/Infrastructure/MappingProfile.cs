@@ -30,11 +30,11 @@ namespace EasyGold.API.Infrastructure
             CreateMap<DbDatiCliente, ClienteDettaglioDTO>().ReverseMap();
             CreateMap<(DbCliente Cliente, DbDatiCliente? DatiCliente, List<Tuple<DbModuloEasygold, DbModuloCliente>>? Moduli), ClienteDettaglioDTO>().ReverseMap();
 
-            CreateMap<DbUtente, UtenteDTO>().ReverseMap();
             CreateMap<DbModuloEasygold, ModuloClienteDTO>().ReverseMap();
             CreateMap<DbModuloCliente, ModuloClienteDTO>().ReverseMap();
             CreateMap<DbAllegato, AllegatoDTO>().ReverseMap();
             CreateMap<DbRuolo, RuoloDTO>().ReverseMap();
+            CreateMap<UtenteDTO, DbUtente>().ReverseMap();
             CreateMap<DbNazioni, NazioniDTO>().ReverseMap();
             CreateMap<DbStatoCliente, StatoClienteDTO>().ReverseMap();
 

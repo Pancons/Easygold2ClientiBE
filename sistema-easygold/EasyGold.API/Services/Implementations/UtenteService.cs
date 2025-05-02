@@ -62,9 +62,10 @@ namespace EasyGold.API.Services.Implementations
 
         public async Task<UtenteDTO> UpdateAsync(UtenteDTO utenteDettaglioDto)
         {
-            var utente = _mapper.Map<DbUtente>(utenteDettaglioDto);
+            var utente = await _utenteRepository.GetUserByIdAsync((int)utenteDettaglioDto.Ute_IDUtente);
+            utente = _mapper.Map(utenteDettaglioDto, utente);
             await _utenteRepository.UpdateAsync(utente);
-            return await GetUserByIdAsync(utente.Ute_IDUtente);
+            return await GetUserByIdAsync((int)utenteDettaglioDto.Ute_IDUtente);
         }
 
 
@@ -73,13 +74,13 @@ namespace EasyGold.API.Services.Implementations
             await _utenteRepository.DeleteAsync(id);
         }
 
-        public async Task<DbUtente> AuthenticateAsync(string username, string password)
+        public async Task<UtenteDTO> AuthenticateAsync(string username, string password)
         {
             var user = await _utenteRepository.GetUserByUsernameAsync(username);
             if (user == null || !VerifyPassword(password, user.Ute_Password))
                 return null;
 
-            return user;
+            return _mapper.Map<UtenteDTO>(user);
         }
 
         public async Task<bool> ChangePassword(PasswordDTO passwordDto)

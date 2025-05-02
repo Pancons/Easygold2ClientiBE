@@ -1,4 +1,5 @@
 using EasyGold.API.Models;
+using EasyGold.API.Models.Utenti;
 using EasyGold.API.Models.Valute;
 using EasyGold.API.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -54,7 +55,7 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpGet("{id}")]
         [Authorize]
-        [ProducesResponseType(typeof(ValuteDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseResponse<ValuteDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(int id)
@@ -64,7 +65,7 @@ namespace EasyGold.API.Controllers
             {
                 return NotFound();
             }
-            return Ok(new { result });
+            return Ok(new BaseResponse<ValuteDTO>(result));
         }
 
 

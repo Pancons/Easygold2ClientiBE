@@ -34,6 +34,7 @@ namespace EasyGold.API.Controllers
         /// <response code="200">Lista utenti restituita con successo</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
+        [Authorize]
         [ProducesResponseType(typeof(BaseListResponse<UtenteDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -55,14 +56,14 @@ namespace EasyGold.API.Controllers
         /// </summary>
         /// <param name="userDto">Dati dell'utente da creare o aggiornare</param>
         /// <returns>Utente creato o aggiornato</returns>
-        /// <response code="201">Utente creato con successo</response>
+        /// <response code="200">Utente creato con successo</response>
         /// <response code="200">Utente aggiornato con successo</response>
         /// <response code="400">Errore nei dati inviati</response>
         /// <response code="404">Utente non trovato (in caso di aggiornamento)</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("save")]
-        [AllowAnonymous]   
-        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [Authorize]
+        [ProducesResponseType(typeof(BaseResponse<UtenteDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)] 
         public async Task<IActionResult> AddOrUpdateUser([FromBody] UtenteDTO userDto)
         {
@@ -85,7 +86,7 @@ namespace EasyGold.API.Controllers
                     {
                         return NotFound(new { error = "Utente non trovato" });
                     }
-                    return Ok(new { result }); // Restituisce l'utente aggiornato con codice 200
+                    return Ok(new BaseResponse<UtenteDTO>(result));
                 }
                 else // Se non ha un ID, crea un nuovo utente
                 {
@@ -96,28 +97,27 @@ namespace EasyGold.API.Controllers
                     }
 
                     var newUser = await _utenteService.AddAsync(userDto);
-                    return CreatedAtAction(nameof(AddOrUpdateUser), new { id = newUser.Ute_IDUtente }, newUser);
+                    return Ok(new BaseResponse<UtenteDTO>(newUser));
                 }
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
+                return StatusCode(500, new { error = "Errore interno", ex = $"{ex.Message}\n{ex.InnerException?.Message}" });
             }
         }
 
         /// <summary>
-        /// Crea un nuovo utente o aggiorna un utente esistente nel sistema.
+        /// Cambia la password di un utente esistente nel sistema.
         /// </summary>
-        /// <param name="userDto">Dati dell'utente da creare o aggiornare</param>
-        /// <returns>Utente creato o aggiornato</returns>
-        /// <response code="201">Utente creato con successo</response>
+        /// <param name="passwordDto">Dati della password da cambiare</param>
+        /// <returns>Utente aggiornato</returns>
         /// <response code="200">Utente aggiornato con successo</response>
         /// <response code="400">Errore nei dati inviati</response>
         /// <response code="404">Utente non trovato (in caso di aggiornamento)</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("changepassword")]
-        [AllowAnonymous]
-        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [Authorize]
+        [ProducesResponseType(typeof(BaseResponse<UtenteDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> ChangePassword([FromBody] PasswordDTO passwordDto)
         {
@@ -143,7 +143,7 @@ namespace EasyGold.API.Controllers
                     {
                         return BadRequest(new { error = "Si è verificato un errore durante l'aggiornamento della password" });
                     }
-                    return Ok(new { result }); // Restituisce l'utente aggiornato con codice 200
+                    return Ok(new BaseResponse<UtenteDTO>(result));
                 }
                 else // Se non ha un ID, crea un nuovo utente
                 {
@@ -165,6 +165,7 @@ namespace EasyGold.API.Controllers
         /// <response code="404">Utente non trovato</response>
         /// <response code="500">Errore interno</response>
         [HttpGet("{id}")]
+        [Authorize]
         [ProducesResponseType(typeof(BaseResponse<UtenteDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

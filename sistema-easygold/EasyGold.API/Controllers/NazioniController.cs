@@ -8,6 +8,7 @@ using EasyGold.API.Models.Moduli;
 using EasyGold.API.Models.Clienti;
 using EasyGold.API.Services.Implementations;
 using EasyGold.API.Models.Nazioni;
+using EasyGold.API.Models.Utenti;
 
 namespace EasyGold.API.Controllers
 {
@@ -63,7 +64,7 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpGet("{id}")]
         [Authorize]
-        [ProducesResponseType(typeof(NazioniDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseResponse<NazioniDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetNazione(int id)
@@ -73,7 +74,7 @@ namespace EasyGold.API.Controllers
             {
                 return NotFound();
             }
-            return Ok(new { result });
+            return Ok(new BaseResponse<NazioniDTO>(result));
         }
 
 

@@ -7,6 +7,7 @@ using EasyGold.API.Services;
 using EasyGold.API.Services.Implementations;
 using EasyGold.API.Services.Interfaces;
 using EasyGold.API.Models;
+using EasyGold.API.Models.Utenti;
 
 namespace EasyGold.API.Controllers
 {
@@ -52,7 +53,7 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpGet("{id}")]
         [Authorize]
-        [ProducesResponseType(typeof(AllegatoDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BaseResponse<AllegatoDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAttachment(int id)
@@ -62,7 +63,7 @@ namespace EasyGold.API.Controllers
             {
                 return NotFound();
             }
-            return Ok(new { result });
+            return Ok(new BaseResponse<AllegatoDTO>(result));
         }
 
 

@@ -12,6 +12,8 @@ using EasyGold.API.Models.Entities;
 using EasyGold.API.Services.Interfaces;
 using BCrypt.Net;
 using EasyGold.API.Services.Implementations;
+using EasyGold.API.Models.Utenti;
+using EasyGold.API.Models;
 
 namespace EasyGold.API.Controllers
 {
@@ -40,7 +42,7 @@ namespace EasyGold.API.Controllers
         /// <response code="500">Errore interno del server</response>
         [HttpPost("login")]
         [AllowAnonymous]
-        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)] // ✅ Successo: Token JWT
+        [ProducesResponseType(typeof(BaseResponse<UtenteDTO>), StatusCodes.Status200OK)] // ✅ Successo: Token JWT
         [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)] // ✅ Username/password mancanti
         [ProducesResponseType(typeof(object), StatusCodes.Status401Unauthorized)] // ✅ Credenziali non valide
         [ProducesResponseType(typeof(object), StatusCodes.Status500InternalServerError)] // ✅ Errore interno
@@ -83,7 +85,7 @@ namespace EasyGold.API.Controllers
 
                 return Ok(new
                 {
-                    user = new { user.Ute_IDUtente, user.Ute_NomeUtente, user.Ute_IDRuolo },
+                    user = user,
                     token = tokenString
                 });
             }
