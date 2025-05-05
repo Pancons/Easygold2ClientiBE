@@ -15,6 +15,13 @@ using EasyGold.API.Repositories.Implementations;
 using System.Reflection;
 using System.IdentityModel.Tokens.Jwt;
 using EasyGold.API.Infrastructure.Swagger;
+using EasyGold.API.Services.Implementations;
+
+// --- REGISTRAZIONE REPOSITORY E SERVIZI ---
+using EasyGold.API.Repositories.Interfaces;
+using EasyGold.API.Repositories.Implementations;
+using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,32 +54,45 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddHttpClient("WebhookClient", client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5218/");
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+    // eventuali autenticazioni qui
+});
 
 
 // 🔹 AutoMapper e MediatR
 builder.Services.AddAutoMapper(typeof(Program));
-
 builder.Services.AddScoped<IUtenteRepository, UtenteRepository>();
-builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IModuloRepository, ModuloRepository>();
 builder.Services.AddScoped<IRuoloRepository, RuoloRepository>();
 builder.Services.AddScoped<IAllegatoRepository, AllegatoRepository>();
 builder.Services.AddScoped<INegozioRepository, NegozioRepository>();
-builder.Services.AddScoped<IModuloClienteRepository, ModuloClienteRepository>();
 builder.Services.AddScoped<INazioneRepository, NazioneRepository>();
 builder.Services.AddScoped<IValutaRepository, ValutaRepository>();
-builder.Services.AddScoped<IStatoClientiRepository, StatoClientiRepository>();
 
 
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAllegatoService, EasyGold.API.Services.Implementations.AllegatoService>();
-builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IClienteService, EasyGold.API.Services.Implementations.ClienteService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IUtenteService, EasyGold.API.Services.Implementations.UtenteService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAutenticazioneService, EasyGold.API.Services.Implementations.AutenticazioneService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IModuloService, EasyGold.API.Services.Implementations.ModuloService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IRuoloService, EasyGold.API.Services.Implementations.RuoloService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.INazioneService, EasyGold.API.Services.Implementations.NazioneService>();
 builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IValutaService, EasyGold.API.Services.Implementations.ValutaService>();
-builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IStatiClienteService, EasyGold.API.Services.Implementations.StatiClienteService>();
+
+// --- REGISTRAZIONE REPOSITORY E SERVIZI AGGIUNTIVI ---
+builder.Services.AddScoped<IRegistroIVARepository, RegistroIVARepository>();
+builder.Services.AddScoped<IRegistroIVAService, RegistroIVAService>();
+
+builder.Services.AddScoped<INumeriRegIVARepository, NumeriRegIVARepository>();
+builder.Services.AddScoped<INumeriRegIVAService, NumeriRegIVAService>();
+
+builder.Services.AddScoped<IConfigRepository, ConfigRepository>();
+builder.Services.AddScoped<IConfigService, ConfigService>();
+
+builder.Services.AddScoped<IConfigLagRepository, ConfigLagRepository>();
+builder.Services.AddScoped<IConfigLagService, ConfigLagService>();
 
 // 🔹 Abilita i controller e Swagger
 builder.Services.AddControllers();
@@ -95,12 +115,12 @@ builder.Services.AddSwaggerGen(c =>
             Name = "Licenza MIT",
             Url = new Uri("https://opensource.org/licenses/MIT")
         }
-        
+
     });
     c.EnableAnnotations(); // Abilita le annotazioni Swagger
     c.OperationFilter<RestrictToJsonContentTypeFilter>();
-   
-        
+
+
     // 🔹 Legge i commenti XML per documentare Swagger
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -148,8 +168,8 @@ var app = builder.Build();
 
 // 🔹 Middleware globali
 app.UseMiddleware<ErrorHandlingMiddleware>(); // Gestione errori personalizzata
- 
-          
+
+
 
 app.UseHttpsRedirection();
 app.UseCors("AllowAll"); // Abilita CORS

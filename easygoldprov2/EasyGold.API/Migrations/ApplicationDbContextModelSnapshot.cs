@@ -60,197 +60,98 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Allegati");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbCliente", b =>
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbAuditLog", b =>
                 {
-                    b.Property<int>("Utw_IDClienteAuto")
+                    b.Property<int>("Log_Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Utw_IDClienteAuto"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Log_Id"));
 
-                    b.Property<DateTime>("Utw_DataAttivazione")
+                    b.Property<DateTime>("Log_ChangeDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("Utw_DataDisattivazione")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Log_ColumnName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Utw_IdStatoCliente")
-                        .HasColumnType("int");
+                    b.Property<string>("Log_NewValue")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Utw_NegoziAttivabili")
-                        .HasColumnType("int");
+                    b.Property<string>("Log_OldValue")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Utw_NegoziVirtuali")
-                        .HasColumnType("int");
+                    b.Property<string>("Log_RecordId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Utw_NomeConnessione")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<string>("Log_TableName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Utw_PercorsoImmagini")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<string>("Log_User")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Utw_PercorsoReports")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.HasKey("Log_Id");
 
-                    b.Property<int>("Utw_Postazioni")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Utw_StringaConnessione")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<int>("Utw_UtentiAttivi")
-                        .HasColumnType("int");
-
-                    b.HasKey("Utw_IDClienteAuto");
-
-                    b.ToTable("Clienti");
+                    b.ToTable("AuditLogs");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbDatiCliente", b =>
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbConfig", b =>
                 {
-                    b.Property<int>("Dtc_IDCliente")
+                    b.Property<int>("Sys_IDAuto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Dtc_IDCliente"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Sys_IDAuto"));
 
-                    b.Property<bool>("Dtc_Annullato")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Dtc_CAP")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<decimal>("Dtc_CapitaleSociale")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Dtc_Citta")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Dtc_CodiceFiscale")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Dtc_Gioielleria")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int?>("Dtc_IDValuta")
+                    b.Property<int>("Sys_Lunghezza")
                         .HasColumnType("int");
 
-                    b.Property<string>("Dtc_Indirizzo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Dtc_Nazione")
+                    b.Property<int>("Sys_Nazione")
                         .HasColumnType("int");
 
-                    b.Property<string>("Dtc_NumeroContratto")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Dtc_PEC")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Dtc_PartitaIVA")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Dtc_Provincia")
+                    b.Property<string>("Sys_NomeCampo")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Dtc_REA")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<bool>("Dtc_RagSocialePrincipale")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Dtc_RagioneSociale")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Dtc_Ranking")
+                    b.Property<int>("Sys_Sezione")
                         .HasColumnType("int");
 
-                    b.Property<string>("Dtc_ReferenteCellulare")
+                    b.Property<int>("Sys_TipoCampo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Sys_Valore")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Dtc_ReferenteCognome")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Sys_IDAuto");
 
-                    b.Property<string>("Dtc_ReferenteEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Dtc_ReferenteNome")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Dtc_ReferenteTelefono")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Dtc_ReferenteWeb")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Dtc_StatoRegione")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Dtc_IDCliente");
-
-                    b.ToTable("DatiClienti");
+                    b.ToTable("Configurazioni");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloCliente", b =>
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbConfigLag", b =>
                 {
-                    b.Property<int>("Mdc_IDAuto")
+                    b.Property<int>("Sysid_ISONum")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Sysid_ISONum"));
+
+                    b.Property<int>("Sysid_ID")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mdc_IDAuto"));
+                    b.Property<string>("Sysid_NomeCampo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("Mdc_BloccoModulo")
-                        .HasColumnType("bit");
+                    b.HasKey("Sysid_ISONum");
 
-                    b.Property<DateTime?>("Mdc_DataAttivazione")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("Mdc_DataDisattivazione")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("Mdc_DataOraBlocco")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Mdc_IDCliente")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Mdc_IDModulo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Mdc_Nota")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("Mdc_IDAuto");
-
-                    b.HasIndex("Mdc_IDCliente");
-
-                    b.HasIndex("Mdc_IDModulo");
-
-                    b.ToTable("ModuloClienti");
+                    b.ToTable("ConfigLag");
                 });
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloEasygold", b =>
@@ -283,8 +184,11 @@ namespace EasyGold.API.Migrations
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloEasygoldLang", b =>
                 {
-                    b.Property<int>("Mdeid_ID")
+                    b.Property<int>("Mdeid_IDAuto")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mdeid_IDAuto"));
 
                     b.Property<string>("Mdeid_DescEstesa")
                         .IsRequired()
@@ -294,13 +198,13 @@ namespace EasyGold.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Mdeid_ISONum")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("Mdeid_ID")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mdeid_ISONum"));
+                    b.Property<int>("Mdeid_ISONum")
+                        .HasColumnType("int");
 
-                    b.HasKey("Mdeid_ID");
+                    b.HasKey("Mdeid_IDAuto");
 
                     b.ToTable("ModuloEasygoldLang");
                 });
@@ -365,6 +269,59 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Negozi");
                 });
 
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbNumeriRegIVA", b =>
+                {
+                    b.Property<int>("RowIDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RowIDAuto"));
+
+                    b.Property<int>("Nri_Anno")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Nri_NumFattura")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RowIDRegIVA")
+                        .HasColumnType("int");
+
+                    b.HasKey("RowIDAuto");
+
+                    b.ToTable("NumeriRegIVA");
+                });
+
+            modelBuilder.Entity("EasyGold.API.Models.Entities.DbRegistroIVA", b =>
+                {
+                    b.Property<int>("RowIdAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RowIdAuto"));
+
+                    b.Property<bool>("Rgi_Annulla")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Rgi_Descrizione")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Rgi_Prefisso")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Rgi_Suffisso")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("RowIdAuto");
+
+                    b.ToTable("RegistriIVA");
+                });
+
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbRuolo", b =>
                 {
                     b.Property<int>("Ur_IDRuolo")
@@ -380,28 +337,6 @@ namespace EasyGold.API.Migrations
                     b.HasKey("Ur_IDRuolo");
 
                     b.ToTable("Ruoli");
-                });
-
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbStatoCliente", b =>
-                {
-                    b.Property<int>("Stc_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Stc_id"));
-
-                    b.Property<string>("Stc_Colore")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("Stc_Descrizione")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("Stc_id");
-
-                    b.ToTable("StatiCliente");
                 });
 
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbUtente", b =>
@@ -480,25 +415,6 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Valute");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloCliente", b =>
-                {
-                    b.HasOne("EasyGold.API.Models.Entities.DbCliente", "Cliente")
-                        .WithMany("ModuliClienti")
-                        .HasForeignKey("Mdc_IDCliente")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EasyGold.API.Models.Entities.DbModuloEasygold", "Modulo")
-                        .WithMany("ModuliClienti")
-                        .HasForeignKey("Mdc_IDModulo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Modulo");
-                });
-
             modelBuilder.Entity("EasyGold.API.Models.Entities.DbUtente", b =>
                 {
                     b.HasOne("EasyGold.API.Models.Entities.DbRuolo", "Ruolo")
@@ -508,16 +424,6 @@ namespace EasyGold.API.Migrations
                         .IsRequired();
 
                     b.Navigation("Ruolo");
-                });
-
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbCliente", b =>
-                {
-                    b.Navigation("ModuliClienti");
-                });
-
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloEasygold", b =>
-                {
-                    b.Navigation("ModuliClienti");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,4 @@
-using EasyGold.API.Models.Clienti;
+
 using EasyGold.API.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 

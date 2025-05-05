@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
 using EasyGold.API.Models;
 using EasyGold.API.Models.Moduli;
-using EasyGold.API.Models.Clienti;
 using EasyGold.API.Services.Implementations;
 using EasyGold.API.Models.Nazioni;
 

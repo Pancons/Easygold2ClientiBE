@@ -5891,11 +5891,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/newdisk/home/ubuntu/workspace/easygold/easygoldprov2/EasyGold.API/EasyGold.API.csproj",
+      "projectUniqueName": "/home/ubuntu/workspace/easygold/easygoldprov2/EasyGold.API/EasyGold.API.csproj",
       "projectName": "EasyGold.API",
-      "projectPath": "/mnt/newdisk/home/ubuntu/workspace/easygold/easygoldprov2/EasyGold.API/EasyGold.API.csproj",
+      "projectPath": "/home/ubuntu/workspace/easygold/easygoldprov2/EasyGold.API/EasyGold.API.csproj",
       "packagesPath": "/home/ubuntu/.nuget/packages/",
-      "outputPath": "/mnt/newdisk/home/ubuntu/workspace/easygold/easygoldprov2/EasyGold.API/obj/",
+      "outputPath": "/home/ubuntu/workspace/easygold/easygoldprov2/EasyGold.API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/ubuntu/.nuget/NuGet/NuGet.Config"
@@ -6009,7 +6009,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/mnt/newdisk/usr/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

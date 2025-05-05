@@ -1,0 +1,9 @@
+2025-05-05 07:54:12.753 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-05-05 07:54:12.854 +00:00 [INF] Creating key {a5a6f239-4adb-40bc-8cd8-67025020cf22} with creation date 2025-05-05 07:54:12Z, activation date 2025-05-05 07:54:12Z, and expiration date 2025-08-03 07:54:12Z.
+2025-05-05 07:54:12.860 +00:00 [WRN] No XML encryptor configured. Key {a5a6f239-4adb-40bc-8cd8-67025020cf22} may be persisted to storage in unencrypted form.
+2025-05-05 07:54:12.862 +00:00 [INF] Writing data to file '/home/ubuntu/.aspnet/DataProtection-Keys/key-a5a6f239-4adb-40bc-8cd8-67025020cf22.xml'.
+2025-05-05 07:54:12.939 +00:00 [INF] Now listening on: http://localhost:5217
+2025-05-05 07:54:12.943 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-05 07:54:12.944 +00:00 [INF] Hosting environment: Development
+2025-05-05 07:54:12.944 +00:00 [INF] Content root path: /home/ubuntu/workspace/easygold/easygoldprov2/EasyGold.API
+2025-05-05 07:54:36.097 +00:00 [INF] Application is shutting down...

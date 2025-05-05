@@ -1,0 +1,15 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EasyGold.API.Models.Entities;
+
+namespace EasyGold.API.Repositories.Interfaces
+{
+    public interface IConfigRepository
+    {
+        Task<IEnumerable<DbConfig>> GetAllAsync();
+        Task<DbConfig> GetByIdAsync(int id);
+        Task AddAsync(DbConfig entity);
+        Task UpdateAsync(DbConfig entity);
+        Task DeleteAsync(int id);
+    }
+}

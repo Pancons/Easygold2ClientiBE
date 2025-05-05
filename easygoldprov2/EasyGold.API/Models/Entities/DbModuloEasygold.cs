@@ -26,6 +26,6 @@ namespace EasyGold.API.Models.Entities
         public string Mde_DescrizioneEstesa { get; set; }
 
         // Relazione con DbModuloCliente
-        public ICollection<DbModuloCliente> ModuliClienti { get; set; }
+       
     }
 }
