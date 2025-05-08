@@ -53,6 +53,9 @@ namespace EasyGold.API.Repositories.Implementations
             // Filtri
             if (request.Filters != null)
             {
+                if (request.Filters.IDUtente.HasValue)
+                    query = query.Where(u => u.Ute_IDUtente == request.Filters.IDUtente.Value);
+
                 if (!string.IsNullOrEmpty(request.Filters.Utw_Cognome))
                     query = query.Where(u => u.Ute_Cognome.Contains(request.Filters.Utw_Cognome));
 
