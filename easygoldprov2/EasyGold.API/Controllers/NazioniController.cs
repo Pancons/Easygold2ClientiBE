@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
 using EasyGold.API.Models;
-using EasyGold.API.Models.Moduli;
+using EasyGold.API.Models.DTO.Moduli;
 using EasyGold.API.Services.Implementations;
-using EasyGold.API.Models.Nazioni;
+using EasyGold.API.Models.DTO.Nazioni;
 
 namespace EasyGold.API.Controllers
 {

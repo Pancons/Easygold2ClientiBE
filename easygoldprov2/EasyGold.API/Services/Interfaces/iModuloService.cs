@@ -1,5 +1,5 @@
 using EasyGold.API.Models;
-using EasyGold.API.Models.Moduli;
+using EasyGold.API.Models.DTO.Moduli;
 
 namespace EasyGold.API.Services.Interfaces
 {

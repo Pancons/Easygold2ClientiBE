@@ -1,5 +1,5 @@
 using EasyGold.API.Models;
-using EasyGold.API.Models.Valute;
+using EasyGold.API.Models.DTO.Valute;
 using EasyGold.API.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

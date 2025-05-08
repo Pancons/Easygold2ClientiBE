@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Models;
-using EasyGold.API.Models.RegIVA;
+using EasyGold.API.Models.DTO.RegIVA;
 
 namespace EasyGold.API.Services.Interfaces
 {

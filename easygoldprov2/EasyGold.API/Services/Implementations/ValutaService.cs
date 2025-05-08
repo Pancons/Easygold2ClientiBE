@@ -4,11 +4,11 @@ using EasyGold.API.Repositories;
 using EasyGold.API.Models.Entities;
 using AutoMapper;
 using EasyGold.API.Repositories.Interfaces;
-using EasyGold.API.Models.Nazioni;
+using EasyGold.API.Models.DTO.Nazioni;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Models.Valute;
 using EasyGold.API.Models;
-using EasyGold.API.Models.Utenti;
+using EasyGold.API.Models.DTO.Utenti;
+using EasyGold.API.Models.DTO.Valute;
 
 namespace EasyGold.API.Services.Implementations
 {

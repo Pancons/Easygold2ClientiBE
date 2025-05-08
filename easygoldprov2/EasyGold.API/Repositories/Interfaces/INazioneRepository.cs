@@ -1,5 +1,5 @@
-using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.Nazioni;
+using EasyGold.API.Models.DTO.Nazioni;
+using EasyGold.API.Models.Entities.Nazioni;
 
 namespace EasyGold.API.Repositories.Interfaces
 {

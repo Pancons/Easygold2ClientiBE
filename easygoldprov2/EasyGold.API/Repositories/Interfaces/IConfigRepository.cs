@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models.Entities;
+using EasyGold.API.Models.Entities.Config;
 
 namespace EasyGold.API.Repositories.Interfaces
 {

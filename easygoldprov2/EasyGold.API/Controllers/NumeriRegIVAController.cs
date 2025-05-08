@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Models.NumeriRegIVA;
 using EasyGold.API.Models;
+using EasyGold.API.Models.DTO.NumeriRegIVA;
 
 namespace EasyGold.API.Controllers
 {

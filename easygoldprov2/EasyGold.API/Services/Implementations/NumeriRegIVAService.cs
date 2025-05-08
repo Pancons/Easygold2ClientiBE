@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
 using EasyGold.API.Repositories.Interfaces;
-using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.NumeriRegIVA;
 using EasyGold.API.Models;
+using EasyGold.API.Models.DTO.NumeriRegIVA;
+using EasyGold.API.Models.Entities.NumeriRegIVA;
 
 namespace EasyGold.API.Services.Implementations
 {

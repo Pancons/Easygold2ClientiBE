@@ -1,12 +1,17 @@
 using AutoMapper;
-using EasyGold.API.Models.Allegati;
-using EasyGold.API.Models.Nazioni;
-using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.Moduli;
-using EasyGold.API.Models.Ruoli;
-using EasyGold.API.Models.Utenti;
-using EasyGold.API.Models.Valute;
-using EasyGold.API.Models.Variabili;
+using EasyGold.API.Models.DTO.Allegati;
+using EasyGold.API.Models.DTO.Moduli;
+using EasyGold.API.Models.DTO.Nazioni;
+using EasyGold.API.Models.DTO.Ruoli;
+using EasyGold.API.Models.DTO.Utenti;
+using EasyGold.API.Models.DTO.Valute;
+using EasyGold.API.Models.DTO.Variabili;
+using EasyGold.API.Models.Entities.Allegati;
+using EasyGold.API.Models.Entities.Moduli;
+using EasyGold.API.Models.Entities.Nazioni;
+using EasyGold.API.Models.Entities.Ruoli;
+using EasyGold.API.Models.Entities.Utenti;
+using EasyGold.API.Models.Entities.Valute;
 
 namespace EasyGold.API.Infrastructure
 {

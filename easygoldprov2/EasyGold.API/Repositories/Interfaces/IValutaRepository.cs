@@ -1,5 +1,5 @@
-using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.Valute;
+using EasyGold.API.Models.DTO.Valute;
+using EasyGold.API.Models.Entities.Valute;
 
 namespace EasyGold.API.Repositories.Interfaces
 {

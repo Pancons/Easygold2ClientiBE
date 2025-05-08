@@ -1,6 +1,6 @@
 using EasyGold.API.Infrastructure;
-using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.Nazioni;
+using EasyGold.API.Models.DTO.Nazioni;
+using EasyGold.API.Models.Entities.Nazioni;
 using EasyGold.API.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

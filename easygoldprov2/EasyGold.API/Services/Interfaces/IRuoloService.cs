@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Models;
-using EasyGold.API.Models.Ruoli;
+using EasyGold.API.Models.DTO.Ruoli;
 
 namespace EasyGold.API.Services.Interfaces
 {

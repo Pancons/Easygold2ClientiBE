@@ -1,12 +1,12 @@
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Models.Entities;
 
-using EasyGold.API.Models.Moduli;
+using EasyGold.API.Models.DTO.Moduli;
 using AutoMapper;
 using EasyGold.API.Models;
 using EasyGold.API.Services.Interfaces;
 using EasyGold.API.Services.Clients;
-using EasyGold.API.Models.Variabili;
+using EasyGold.API.Models.DTO.Variabili;
 
 namespace EasyGold.API.Services.Implementations
 {

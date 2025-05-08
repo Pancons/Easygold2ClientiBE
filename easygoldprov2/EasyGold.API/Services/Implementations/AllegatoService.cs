@@ -1,10 +1,10 @@
 using EasyGold.API.Repositories.Interfaces;
-using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.Allegati;
 using AutoMapper;
 using EasyGold.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using EasyGold.API.Models;
+using EasyGold.API.Models.DTO.Allegati;
+using EasyGold.API.Models.Entities.Allegati;
 
 namespace EasyGold.API.Services.Implementations
 {

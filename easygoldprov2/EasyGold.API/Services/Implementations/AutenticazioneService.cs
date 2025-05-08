@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
-using EasyGold.API.Models.Entities;
 using EasyGold.API.Services;
 using EasyGold.API.Infrastructure;
 using BCrypt.Net;
 using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Models.Entities.Utenti;
 
 namespace EasyGold.API.Services.Implementations
 {

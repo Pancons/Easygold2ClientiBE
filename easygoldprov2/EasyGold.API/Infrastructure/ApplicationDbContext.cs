@@ -6,6 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EasyGold.API.Models.Entities.Allegati;
+using EasyGold.API.Models.Entities.Config;
+using EasyGold.API.Models.Entities.Moduli;
+using EasyGold.API.Models.Entities.Nazioni;
+using EasyGold.API.Models.Entities.NumeriRegIVA;
+using EasyGold.API.Models.Entities.RegIVA;
+using EasyGold.API.Models.Entities.Ruoli;
+using EasyGold.API.Models.Entities.Utenti;
+using EasyGold.API.Models.Entities.Valute;
 
 namespace EasyGold.API.Infrastructure
 {
@@ -30,7 +39,7 @@ namespace EasyGold.API.Infrastructure
         public DbSet<DbRegistroIVA> RegistriIVA { get; set; }
         public DbSet<DbNumeriRegIVA> NumeriRegIVA { get; set; }
         public DbSet<DbConfig> Configurazioni { get; set; }
-        public DbSet<DbConfigLag> ConfigLag { get; set; }
+        public DbSet<DbConfigLang> ConfigLag { get; set; }
 
         /// <summary>
         /// Configura le entità e le relazioni tra di esse.
@@ -43,7 +52,7 @@ namespace EasyGold.API.Infrastructure
             modelBuilder.Entity<DbUtente>().HasKey(u => u.Ute_IDUtente);
             modelBuilder.Entity<DbModuloEasygoldLang>().HasKey(m => m.Mdeid_IDAuto);
             modelBuilder.Entity<DbModuloEasygold>().HasKey(m => m.Mde_IDAuto);
-            modelBuilder.Entity<DbNazioni>().HasKey(n => n.Naz_id);
+            modelBuilder.Entity<DbNazioni>().HasKey(n => n.Ntn_ISO1);
             modelBuilder.Entity<DbValute>().HasKey(v => v.Val_id);
 
             modelBuilder.Entity<DbUtente>()

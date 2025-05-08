@@ -1,5 +1,5 @@
 using EasyGold.API.Models;
-using EasyGold.API.Models.Nazioni;
+using EasyGold.API.Models.DTO.Nazioni;
 
 namespace EasyGold.API.Services.Interfaces
 {

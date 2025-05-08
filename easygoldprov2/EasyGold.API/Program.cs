@@ -91,8 +91,8 @@ builder.Services.AddScoped<INumeriRegIVAService, NumeriRegIVAService>();
 builder.Services.AddScoped<IConfigRepository, ConfigRepository>();
 builder.Services.AddScoped<IConfigService, ConfigService>();
 
-builder.Services.AddScoped<IConfigLagRepository, ConfigLagRepository>();
-builder.Services.AddScoped<IConfigLagService, ConfigLagService>();
+builder.Services.AddScoped<IConfigLangRepository, ConfigLangRepository>();
+builder.Services.AddScoped<IConfigLangService, ConfigLangService>();
 
 // 🔹 Abilita i controller e Swagger
 builder.Services.AddControllers();

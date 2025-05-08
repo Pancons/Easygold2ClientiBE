@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Models.Config;
 using EasyGold.API.Models;
+using EasyGold.API.Models.DTO.Config;
 
 namespace EasyGold.API.Controllers
 {
@@ -26,6 +26,23 @@ namespace EasyGold.API.Controllers
         {
             var response = await _service.GetAllAsync(request);
             return Ok(response);
+        }
+
+        [HttpGet("config/{idNazione}")]
+        [Authorize]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetConfig(int idNazione)
+        {
+            try
+            {
+                var response = await _service.GetParametriConfigurazione(idNazione);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
+            }
         }
 
         [HttpGet("{id}")]

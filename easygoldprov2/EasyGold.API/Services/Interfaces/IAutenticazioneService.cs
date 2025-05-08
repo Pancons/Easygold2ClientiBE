@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using EasyGold.API.Models.Entities;
+using EasyGold.API.Models.Entities.Utenti;
 
 namespace EasyGold.API.Services.Interfaces
 {

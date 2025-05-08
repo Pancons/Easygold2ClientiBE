@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using EasyGold.API.Models.Entities;
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Infrastructure;
+using EasyGold.API.Models.Entities.RegIVA;
 
 namespace EasyGold.API.Repositories.Implementations
 {

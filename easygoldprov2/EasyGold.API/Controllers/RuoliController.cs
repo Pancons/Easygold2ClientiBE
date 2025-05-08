@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models.Ruoli;
 using EasyGold.API.Repositories.Implementations;
 using EasyGold.API.Services.Implementations;
 using EasyGold.API.Services.Interfaces;
 using EasyGold.API.Models;
+using EasyGold.API.Models.DTO.Ruoli;
 
 namespace EasyGold.API.Controllers
 {

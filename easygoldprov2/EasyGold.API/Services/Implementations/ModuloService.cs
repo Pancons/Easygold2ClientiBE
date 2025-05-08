@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Repositories;
-using EasyGold.API.Models.Entities;
 using AutoMapper;
 using EasyGold.API.Repositories.Interfaces;
-using EasyGold.API.Models.Moduli;
 using EasyGold.API.Services.Interfaces;
 using EasyGold.API.Models;
-using EasyGold.API.Models.Allegati;
+using EasyGold.API.Models.DTO.Allegati;
+using EasyGold.API.Models.DTO.Moduli;
+using EasyGold.API.Models.Entities.Moduli;
 
 namespace EasyGold.API.Services.Implementations
 {

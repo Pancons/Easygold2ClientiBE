@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Models.RegIVA;
 using EasyGold.API.Models;
+using EasyGold.API.Models.DTO.RegIVA;
 
 namespace EasyGold.API.Controllers
 {

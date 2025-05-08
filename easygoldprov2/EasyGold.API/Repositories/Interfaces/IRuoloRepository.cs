@@ -1,5 +1,4 @@
-
-using EasyGold.API.Models.Entities;
+using EasyGold.API.Models.Entities.Ruoli;
 namespace EasyGold.API.Repositories.Interfaces
 {
     public interface IRuoloRepository

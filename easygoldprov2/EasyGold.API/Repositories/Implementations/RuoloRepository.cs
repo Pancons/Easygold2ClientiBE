@@ -1,6 +1,6 @@
 
 using EasyGold.API.Infrastructure;
-using EasyGold.API.Models.Entities;
+using EasyGold.API.Models.Entities.Ruoli;
 using EasyGold.API.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

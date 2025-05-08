@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml;
 using EasyGold.API.Models;
-using EasyGold.API.Models.Config;
-using EasyGold.API.Models.Entities;
+using EasyGold.API.Models.DTO.Config;
+using EasyGold.API.Models.Entities.Config;
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Services.Interfaces;
 
@@ -16,6 +18,25 @@ namespace EasyGold.API.Services.Implementations
         public ConfigService(IConfigRepository repository)
         {
             _repository = repository;
+        }
+
+        public async Task<JsonDocument> GetParametriConfigurazione(int idNazione)
+        {
+            var entities = (await _repository.GetAllAsync()).AsQueryable();
+
+            var configDictionary = entities.Where(e => e.Sys_IDNazione == null || e.Sys_IDNazione == idNazione)
+                .GroupBy(e => e.Sys_Sezione)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.ToDictionary(
+                        e => e.Sys_NomeCampo,
+                        e => TryParseValue(e.Sys_Valore, e.Sys_TipoCampo)
+                    )
+                );
+
+            JsonDocument json = JsonSerializer.SerializeToDocument(configDictionary, System.Text.Json.JsonSerializerOptions.Web);
+
+            return json;
         }
 
         public async Task<BaseListResponse<ConfigDTO>> GetAllAsync(BaseListRequest request)
@@ -77,7 +98,7 @@ namespace EasyGold.API.Services.Implementations
         {
             Sys_IDAuto = e.Sys_IDAuto,
             Sys_Sezione = e.Sys_Sezione,
-            Sys_Nazione = e.Sys_Nazione,
+            Sys_IDNazione = e.Sys_IDNazione,
             Sys_NomeCampo = e.Sys_NomeCampo,
             Sys_TipoCampo = e.Sys_TipoCampo,
             Sys_Valore = e.Sys_Valore,
@@ -88,11 +109,65 @@ namespace EasyGold.API.Services.Implementations
         {
             Sys_IDAuto = dto.Sys_IDAuto ?? 0,
             Sys_Sezione = dto.Sys_Sezione,
-            Sys_Nazione = dto.Sys_Nazione,
+            Sys_IDNazione = dto.Sys_IDNazione,
             Sys_NomeCampo = dto.Sys_NomeCampo,
             Sys_TipoCampo = dto.Sys_TipoCampo,
             Sys_Valore = dto.Sys_Valore,
             Sys_Lunghezza = dto.Sys_Lunghezza
         };
+
+        private static object TryParseValue(string value, string sqlDataType)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return null;
+
+            switch (sqlDataType.ToLowerInvariant())
+            {
+                case "int":
+                case "bigint":
+                case "smallint":
+                case "tinyint":
+                    if (int.TryParse(value, out int i)) return i;
+                    break;
+
+                case "bit":
+                    if (bool.TryParse(value, out bool b)) return b;
+                    if (value == "0") return false;
+                    if (value == "1") return true;
+                    break;
+
+                case "money":
+                case "decimal":
+                case "numeric":
+                case "float":
+                case "real":
+                    if (decimal.TryParse(value, out decimal d)) return d;
+                    break;
+
+                case "datetime":
+                case "smalldatetime":
+                case "date":
+                case "datetime2":
+                    if (DateTime.TryParse(value, out DateTime dt)) return dt;
+                    break;
+
+                case "varchar":
+                case "nvarchar":
+                case "char":
+                case "nchar":
+                case "text":
+                case "ntext":
+                    return value;
+
+                default:
+                    return value;
+            }
+
+            // Se la conversione fallisce, torna comunque la stringa originale
+            return value;
+        }
+
+
+
     }
 }

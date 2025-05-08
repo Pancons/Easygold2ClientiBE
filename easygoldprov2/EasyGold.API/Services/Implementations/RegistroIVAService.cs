@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.RegIVA;
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Services.Interfaces;
 using EasyGold.API.Models;
+using EasyGold.API.Models.DTO.RegIVA;
+using EasyGold.API.Models.Entities.RegIVA;
 
 namespace EasyGold.API.Services.Implementations
 {

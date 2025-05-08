@@ -1,4 +1,4 @@
-using EasyGold.API.Models.Entities;
+using EasyGold.API.Models.Entities.Moduli;
 
 namespace EasyGold.API.Repositories.Interfaces
 {

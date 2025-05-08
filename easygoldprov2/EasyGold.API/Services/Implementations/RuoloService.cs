@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using EasyGold.API.Models;
-using EasyGold.API.Models.Allegati;
-using EasyGold.API.Models.Entities;
-using EasyGold.API.Models.Ruoli;
+using EasyGold.API.Models.DTO.Allegati;
+using EasyGold.API.Models.DTO.Ruoli;
+using EasyGold.API.Models.Entities.Ruoli;
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Services;
 using EasyGold.API.Services.Interfaces;
