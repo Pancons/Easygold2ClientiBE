@@ -27,7 +27,7 @@
             <response code="404">Allegato non trovato</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="M:EasyGold.API.Controllers.AllegatoController.AddAttachment(EasyGold.API.Models.Allegati.AllegatoDTO)">
+        <member name="M:EasyGold.API.Controllers.AllegatoController.AddAttachment(EasyGold.API.Models.DTO.Allegati.AllegatoDTO)">
             <summary>
             Aggiunge un nuovo allegato.
             </summary>
@@ -104,7 +104,7 @@
             Controller per la gestione delle Nazioni.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Controllers.NazioniController.GetNationsList(EasyGold.API.Models.Nazioni.NazioniListRequest)">
+        <member name="M:EasyGold.API.Controllers.NazioniController.GetNationsList(EasyGold.API.Models.DTO.Nazioni.NazioniListRequest)">
             <summary>
             Restituisce l'elenco delle nazioni per il dropdown.
             </summary>
@@ -145,7 +145,7 @@
             Controller per la gestione degli utenti.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Controllers.UtentiController.GetUsersList(EasyGold.API.Models.Utenti.UtentiListRequest)">
+        <member name="M:EasyGold.API.Controllers.UtentiController.GetUsersList(EasyGold.API.Models.DTO.Utenti.UtentiListRequest)">
             <summary>
             Restituisce una lista di utenti filtrati e paginati.
             </summary>
@@ -154,7 +154,7 @@
             <response code="200">Lista utenti restituita con successo</response>
             <response code="500">Errore interno del server</response>
         </member>
-        <member name="M:EasyGold.API.Controllers.UtentiController.AddOrUpdateUser(EasyGold.API.Models.Utenti.UtenteDTO)">
+        <member name="M:EasyGold.API.Controllers.UtentiController.AddOrUpdateUser(EasyGold.API.Models.DTO.Utenti.UtenteDTO)">
             <summary>
             Crea un nuovo utente o aggiorna un utente esistente nel sistema.
             </summary>
@@ -191,7 +191,7 @@
             Controller per la gestione delle Valute.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Controllers.ValuteController.GetValuteList(EasyGold.API.Models.Valute.ValuteListRequest)">
+        <member name="M:EasyGold.API.Controllers.ValuteController.GetValuteList(EasyGold.API.Models.DTO.Valute.ValuteListRequest)">
             <summary>
             Restituisce l'elenco delle valute per il dropdown.
             </summary>
@@ -257,137 +257,96 @@
         <member name="M:EasyGold.API.Migrations.InitializeTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:EasyGold.API.Migrations.NomeMigrazione">
+        <member name="T:EasyGold.API.Migrations.AggiornamentoDTO">
             <inheritdoc />
         </member>
-        <member name="M:EasyGold.API.Migrations.NomeMigrazione.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:EasyGold.API.Migrations.AggiornamentoDTO.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:EasyGold.API.Migrations.NomeMigrazione.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:EasyGold.API.Migrations.AggiornamentoDTO.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:EasyGold.API.Migrations.NomeMigrazione.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:EasyGold.API.Migrations.AggiornamentoDTO.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:EasyGold.API.Migrations.NuoveTabelle">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.NuoveTabelle.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.NuoveTabelle.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.NuoveTabelle.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:EasyGold.API.Migrations.NuoveTabelle_">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.NuoveTabelle_.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.NuoveTabelle_.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.NuoveTabelle_.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:EasyGold.API.Migrations.generateDb">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.generateDb.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.generateDb.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:EasyGold.API.Migrations.generateDb.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:EasyGold.API.Models.Config.ConfigDTO">
+        <member name="T:EasyGold.API.Models.DTO.Config.ConfigDTO">
             <summary>
             DTO per Configurazione.
             </summary>
         </member>
-        <member name="T:EasyGold.API.Models.ConfigLag.ConfigLagDTO">
+        <member name="T:EasyGold.API.Models.DTO.Config.ConfigLangDTO">
             <summary>
             DTO per Configurazione Lingua.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_IDAllegato">
+        <member name="T:EasyGold.API.Models.DTO.NumeriRegIVA.NumeriRegIVADTO">
+            <summary>
+            DTO per Numeri Registro IVA.
+            </summary>
+        </member>
+        <member name="T:EasyGold.API.Models.DTO.RegIVA.RegistroIVADTO">
+            <summary>
+            DTO per Registro IVA.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.Allegati.DbAllegato.All_IDAllegato">
             <summary>
             ID dell'allegato.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_NomeFile">
+        <member name="P:EasyGold.API.Models.Entities.Allegati.DbAllegato.All_NomeFile">
             <summary>
             Nome del file allegato.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_Estensione">
+        <member name="P:EasyGold.API.Models.Entities.Allegati.DbAllegato.All_Estensione">
             <summary>
             Estensione del file allegato.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_Dimensione">
+        <member name="P:EasyGold.API.Models.Entities.Allegati.DbAllegato.All_Dimensione">
             <summary>
             Dimensione del file allegato in byte.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_EntitaRiferimento">
+        <member name="P:EasyGold.API.Models.Entities.Allegati.DbAllegato.All_EntitaRiferimento">
             <summary>
             Entità di riferimento per l'allegato.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_RecordId">
+        <member name="P:EasyGold.API.Models.Entities.Allegati.DbAllegato.All_RecordId">
             <summary>
             ID del record a cui l'allegato è associato.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_Note">
+        <member name="P:EasyGold.API.Models.Entities.Allegati.DbAllegato.All_Note">
             <summary>
             Note aggiuntive sull'allegato.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_ImgUrl">
+        <member name="P:EasyGold.API.Models.Entities.Allegati.DbAllegato.All_ImgUrl">
             <summary>
             URL dell'immagine allegata (solo lettura).
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_FileBase64">
+        <member name="P:EasyGold.API.Models.Entities.Allegati.DbAllegato.All_FileBase64">
             <summary>
             Base64 del file allegato (non salvato nel database).
             </summary>
         </member>
-        <member name="M:EasyGold.API.Models.Entities.DbAllegato.SetImgUrl(System.String)">
+        <member name="M:EasyGold.API.Models.Entities.Allegati.DbAllegato.SetImgUrl(System.String)">
             <summary>
             Imposta l'URL dell'immagine allegata (solo internamente nel codice).
             </summary>
         </member>
-        <member name="T:EasyGold.API.Models.Entities.DbConfig">
+        <member name="T:EasyGold.API.Models.Entities.Config.DbConfig">
             <summary>
             Entità per la tabella di configurazione.
             </summary>
         </member>
-        <member name="T:EasyGold.API.Models.Entities.DbConfigLag">
+        <member name="T:EasyGold.API.Models.Entities.Config.DbConfigLang">
             <summary>
             Entità per la tabella delle traduzioni configurazione.
-            </summary>
-        </member>
-        <member name="P:EasyGold.API.Models.Entities.DbModuloEasygold.Mde_CodEcomm">
-            <summary>
-            Nome modulo su e-commerce
-            </summary>
-        </member>
-        <member name="P:EasyGold.API.Models.Entities.DbModuloEasygold.Mde_Descrizione">
-            <summary>
-            Descrizione del modulo
-            </summary>
-        </member>
-        <member name="P:EasyGold.API.Models.Entities.DbModuloEasygold.Mde_DescrizioneEstesa">
-            <summary>
-            Descrizione estesa del modulo
             </summary>
         </member>
         <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_RagioneSociale">
@@ -432,91 +391,96 @@
             </summary>
             
         </member>
-        <member name="T:EasyGold.API.Models.Entities.DbNumeriRegIVA">
+        <member name="P:EasyGold.API.Models.Entities.Moduli.DbModuloEasygold.Mde_CodEcomm">
+            <summary>
+            Nome modulo su e-commerce
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.Moduli.DbModuloEasygold.Mde_Descrizione">
+            <summary>
+            Descrizione del modulo
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.Moduli.DbModuloEasygold.Mde_DescrizioneEstesa">
+            <summary>
+            Descrizione estesa del modulo
+            </summary>
+        </member>
+        <member name="T:EasyGold.API.Models.Entities.NumeriRegIVA.DbNumeriRegIVA">
             <summary>
             Entità per la tabella dei numeri dei registri IVA.
             </summary>
         </member>
-        <member name="T:EasyGold.API.Models.Entities.DbRegistroIVA">
+        <member name="T:EasyGold.API.Models.Entities.RegIVA.DbRegistroIVA">
             <summary>
             Entità per la tabella dei registri IVA.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Nome">
+        <member name="P:EasyGold.API.Models.Entities.Utenti.DbUtente.Ute_Nome">
             <summary>
             Stringa nome dell'utente.
             </summary>
             
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Cognome">
+        <member name="P:EasyGold.API.Models.Entities.Utenti.DbUtente.Ute_Cognome">
             <summary>
             Stringa cognome dell'utente.
             </summary>
             
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_NomeUtente">
+        <member name="P:EasyGold.API.Models.Entities.Utenti.DbUtente.Ute_NomeUtente">
             <summary>
             Stringa nomeutete 
             </summary>
             
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_IDRuolo">
+        <member name="P:EasyGold.API.Models.Entities.Utenti.DbUtente.Ute_IDRuolo">
             <summary>
             Intero  Ruolo dell'utente
             </summary>
             
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Bloccato">
+        <member name="P:EasyGold.API.Models.Entities.Utenti.DbUtente.Ute_Bloccato">
             <summary>
             Indica se l'utente è bloccato.
             </summary>
             
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Nota">
+        <member name="P:EasyGold.API.Models.Entities.Utenti.DbUtente.Ute_Nota">
             <summary>
             Nota sull'utente.
             </summary>
             
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Password">
+        <member name="P:EasyGold.API.Models.Entities.Utenti.DbUtente.Ute_Password">
             <summary>
             Passeword dell'utente.
             </summary>
             
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbValute.Val_Descrizione">
+        <member name="P:EasyGold.API.Models.Entities.Valute.DbValute.Val_Descrizione">
             <summary>
             Nome completo della Valuta.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbValute.Val_Cambio">
+        <member name="P:EasyGold.API.Models.Entities.Valute.DbValute.Val_Cambio">
             <summary>
             Tasso di cambio rispetto all'Euro
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbValute.Val_Simbolo">
+        <member name="P:EasyGold.API.Models.Entities.Valute.DbValute.Val_Simbolo">
             <summary>
             Simbolo della Valuta.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbValute.Val_SimboloRegCassa">
+        <member name="P:EasyGold.API.Models.Entities.Valute.DbValute.Val_SimboloRegCassa">
             <summary>
             Simbolo della Valuta usato dai Registratori Fiscali.
             </summary>
         </member>
-        <member name="P:EasyGold.API.Models.Entities.DbValute.Val_NumeroDecimali">
+        <member name="P:EasyGold.API.Models.Entities.Valute.DbValute.Val_NumeroDecimali">
             <summary>
             Numero di decimali utilizzati per rappresentare gli importi con quella valuta
-            </summary>
-        </member>
-        <member name="T:EasyGold.API.Models.NumeriRegIVA.NumeriRegIVADTO">
-            <summary>
-            DTO per Numeri Registro IVA.
-            </summary>
-        </member>
-        <member name="T:EasyGold.API.Models.RegIVA.RegistroIVADTO">
-            <summary>
-            DTO per Registro IVA.
             </summary>
         </member>
         <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.GetAllAsync">
@@ -529,17 +493,17 @@
             Recupera un allegato per ID.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.AddAsync(EasyGold.API.Models.Entities.DbAllegato)">
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.AddAsync(EasyGold.API.Models.Entities.Allegati.DbAllegato)">
             <summary>
             Aggiunge un nuovo allegato e salva il file su disco.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.UpdateAsync(EasyGold.API.Models.Entities.DbAllegato)">
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.UpdateAsync(EasyGold.API.Models.Entities.Allegati.DbAllegato)">
             <summary>
             Aggiorna un allegato esistente e il relativo file.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.UpdateAllAsync(System.Int32,System.String,System.Collections.Generic.List{EasyGold.API.Models.Entities.DbAllegato})">
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.UpdateAllAsync(System.Int32,System.String,System.Collections.Generic.List{EasyGold.API.Models.Entities.Allegati.DbAllegato})">
             <summary>
             Aggiorna tutti gli allegati di una entità.
             </summary>
@@ -554,7 +518,7 @@
             Legge un file dal disco.
             </summary>
         </member>
-        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.SaveFileAsync(EasyGold.API.Models.Entities.DbAllegato,System.String)">
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.SaveFileAsync(EasyGold.API.Models.Entities.Allegati.DbAllegato,System.String)">
             <summary>
             Salva il file su disco e restituisce il percorso relativo.
             </summary>

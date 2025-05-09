@@ -21,11 +21,22 @@ namespace EasyGold.API.Controllers
         [HttpPost("list")]
         [Authorize]
         [ProducesResponseType(typeof(BaseListResponse<ConfigDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll([FromBody] BaseListRequest request)
         {
-            var response = await _service.GetAllAsync(request);
-            return Ok(response);
+            try
+            {
+                if (request == null)
+                    return BadRequest(new { error = "Richiesta non valida" });
+
+                var response = await _service.GetAllAsync(request);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
         [HttpGet("config/{idNazione}")]
@@ -41,7 +52,7 @@ namespace EasyGold.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { error = "Errore interno", ex = ex.Message });
+                return StatusCode(500, new { error = ex.Message });
             }
         }
 
@@ -52,34 +63,63 @@ namespace EasyGold.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _service.GetByIdAsync(id);
-            if (result == null)
-                return NotFound();
-            return Ok(new { result });
+            try
+            {
+                var result = await _service.GetByIdAsync(id);
+                if (result == null)
+                    return NotFound();
+                return Ok(new { result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
         [HttpPost("save")]
         [Authorize]
+        [ProducesResponseType(typeof(ConfigDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Save([FromBody] ConfigDTO dto)
         {
-            if (dto.Sys_IDAuto.HasValue && dto.Sys_IDAuto > 0)
+            try
             {
-                var updated = await _service.UpdateAsync(dto);
-                return Ok(new { result = updated });
+                if (dto == null)
+                    return BadRequest(new { error = "Dati non validi" });
+
+                if (dto.Sys_IDAuto.HasValue && dto.Sys_IDAuto > 0)
+                {
+                    var updated = await _service.UpdateAsync(dto);
+                    return Ok(new { result = updated });
+                }
+                else
+                {
+                    var created = await _service.AddAsync(dto);
+                    return Ok(new { result = created });
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var created = await _service.AddAsync(dto);
-                return Ok(new { result = created });
+                return StatusCode(500, new { error = ex.Message });
             }
         }
 
         [HttpDelete("{id}")]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteAsync(id);
-            return NoContent();
+            try
+            {
+                await _service.DeleteAsync(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
     }
 }
