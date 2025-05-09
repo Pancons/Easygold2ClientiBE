@@ -42,7 +42,7 @@ namespace EasyGold.API.Repositories.Implementations
                         join datiCliente in _context.DatiClienti on cliente.Utw_IDClienteAuto equals datiCliente.Dtc_IDCliente into datiJoin
                             from datiCliente in datiJoin
                         join moduliCliente in _context.ModuloClienti on cliente.Utw_IDClienteAuto equals moduliCliente.Mdc_IDCliente into moduliJoin
-                            from moduliCliente in moduliJoin
+                            from moduliCliente in moduliJoin.DefaultIfEmpty()
                         select new ClienteRecord
                         {
                             Cliente = cliente,

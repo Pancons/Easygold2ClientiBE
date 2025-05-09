@@ -57,6 +57,7 @@ namespace EasyGold.API.Infrastructure
                 .ForMember(dest => dest.Dtc_REA, opt => opt.MapFrom(src => src.DatiCliente.Dtc_REA))
                 .ForMember(dest => dest.Dtc_CapitaleSociale, opt => opt.MapFrom(src => src.DatiCliente.Dtc_CapitaleSociale))
                 .ForMember(dest => dest.Dtc_PEC, opt => opt.MapFrom(src => src.DatiCliente.Dtc_PEC))
+                .ForMember(dest => dest.Dtc_Ranking, opt => opt.MapFrom(src => src.DatiCliente.Dtc_Ranking))
                 .ForMember(dest => dest.Moduli, opt => opt.MapFrom(src => src.Moduli))
                 .ForMember(dest => dest.Allegati, opt => opt.MapFrom(src => src.Allegati ?? new List<DbAllegato>())) // Nella lista clienti gli allegati non servono, quindi restituisco un array vuoto
                 .ForMember(dest => dest.Negozi, opt => opt.MapFrom(src => src.Negozi ?? new List<DbNegozi>())) // Nella lista clienti i negozi non servono, quindi restituisco un array vuoto
