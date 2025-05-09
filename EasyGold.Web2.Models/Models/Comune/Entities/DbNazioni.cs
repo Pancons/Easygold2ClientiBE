@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EasyGold.Web2.Models.Comune.Entities
 {
     [Table("tbco_ISONazioni")]
-    public class DbNazioni
+    public class DbNazioni : BaseDbEntity
     {   
         [Key]  // <- Definisce la chiave primaria
         public int Ntn_ISO1 { get; set; }

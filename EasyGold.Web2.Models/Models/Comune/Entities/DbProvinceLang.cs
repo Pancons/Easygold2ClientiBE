@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace EasyGold.Web2.Models.Comune.Entities
 {
     [Table("tbco_province_lang")]
-    public class DbProvinceLang
+    public class DbProvinceLang : BaseDbEntity
     {
         ///<summary>
         /// È il codice ISO della lingua di cui sono stati tradotti i testi.

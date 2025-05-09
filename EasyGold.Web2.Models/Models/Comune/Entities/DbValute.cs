@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyGold.Web2.Models.Comune.Entities
 {
-    public class DbValute
+    public class DbValute : BaseDbEntity
     {   
         [Key]  // <- Definisce la chiave primaria
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

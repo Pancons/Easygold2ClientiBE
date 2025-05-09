@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace EasyGold.Web2.Models.Comune.Entities
 {
     [Table("tbco_localita")]
-    public class DbLocalita
+    public class DbLocalita : BaseDbEntity
     {
         /// <summary>
         /// È il codice della Località.  

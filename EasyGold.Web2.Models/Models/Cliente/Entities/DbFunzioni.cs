@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace EasyGold.Web2.Models.Comune.Entities
 {
     [Table("tbco_funzioni")]
-    public class dbFunzioni
+    public class DbFunzioni : BaseDbEntity
     {
         /// <summary>
         /// Campo Numerico Intero Auto.

@@ -8,13 +8,13 @@ namespace EasyGold.Web2.Models.Cliente.ACL
     public class TabelleComuniLangDTO
     {
         [SwaggerSchema(Description = "È il valore del campo tbc_IDAuto della tabella principale di cui è stata fatta la traduzione.")]
-        public int TbcId_ID { get; set; }
+        public int TbcLng_ID { get; set; }
 
         [SwaggerSchema(Description = "È il codice ISO della lingua di cui sono stati tradotti i testi.")]
-        public int? TbcId_ISONum { get; set; }
+        public int? TbcLng_ISONum { get; set; }
 
         [SwaggerSchema(Description = "È il testo inserito tradotto nella lingua della Nazione di cui al codice ISO.")]
         [StringLength(100)]
-        public string TbcId_Descrizione { get; set; }
+        public string TbcLng_Descrizione { get; set; }
     }
 }

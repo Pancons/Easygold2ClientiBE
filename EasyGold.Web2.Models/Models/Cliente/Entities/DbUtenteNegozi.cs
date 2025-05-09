@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace EasyGold.Web2.Models.Comune.Entities
 {
     [Table("tbcl_utenteNegozi")]
-    public class dbUtenteNegozi
+    public class DbUtenteNegozi : BaseDbEntity
     {
         /// <summary>
         /// È il campo ute_IDAuto della tabella dbo.tbcl_utenti

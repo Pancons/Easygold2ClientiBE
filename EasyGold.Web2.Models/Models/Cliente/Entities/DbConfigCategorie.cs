@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace EasyGold.Web2.Models.Comune.Entities
 {
     [Table("tbcl_ConfigCategorie")]
-    public class dbConfigCategorie
+    public class DbConfigCategorie : BaseDbEntity
     {
         /// <summary>
         /// È il valore del campo cat_IDAuto della tabella dbo.tbcl_categorie.

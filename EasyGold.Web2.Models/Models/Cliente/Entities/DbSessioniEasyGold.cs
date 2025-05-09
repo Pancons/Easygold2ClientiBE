@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace EasyGold.Web2.Models.Comune.Entities
 {
     [Table("tbco_SessioniEasyGold")]
-    public class dbSessioniEasyGold
+    public class DbSessioniEasyGold : BaseDbEntity
     {
         /// <summary>
         /// Campo numerico auto

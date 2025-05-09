@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EasyGold.Web2.Models.Comune.Entities
 {
     [Table("tbco_statoRegioniLang")]
-    public class DbStatoRegioneLang
+    public class DbStatoRegioneLang : BaseDbEntity
     {
         /// <summary>
         /// È il codice ISO della lingua di cui sono stati tradotti i testi.

@@ -8,14 +8,14 @@ namespace EasyGold.Web2.Models.Cliente.ACL
     public class TipoTabelleLangDTO
     {
         [SwaggerSchema(Description = "È il numero del record della tabella principale di cui è stata fatta la traduzione.")]
-        public int Titid_ID { get; set; }
+        public int TitLng_ID { get; set; }
           
         [SwaggerSchema(Description = "È il codice ISO della lingua di cui sono stati tradotti i testi.")]
-        public int? Titid_ISONum { get; set; }
+        public int? TitLng_ISONum { get; set; }
 
         [SwaggerSchema(Description = "È la descrizione del Tipo Tabella tradotto nella lingua della Nazione di cui al codice ISO.")]
         [StringLength(100)]
-        public string Titid_TipoTabella { get; set; }
+        public string TitLng_TipoTabella { get; set; }
     }
 }
 

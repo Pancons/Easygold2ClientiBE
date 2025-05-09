@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace EasyGold.Web2.Models.Comune.Entities
 {
     [Table("tbcl_tabelleSemplici")]
-    public class dbTabelleSemplici
+    public class DbTabelleSemplici : BaseDbEntity
     {
         /// <summary>
         /// Campo numerico intero Auto

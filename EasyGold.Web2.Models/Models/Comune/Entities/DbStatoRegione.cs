@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace EasyGold.Web2.Models.Comune.Entities
 {
     [Table("tbco_statoRegioni")]
-    public class DbStatoRegione
+    public class DbStatoRegione : BaseDbEntity
     {
         /// <summary>
         /// È il codice dello Stato/Regione. 

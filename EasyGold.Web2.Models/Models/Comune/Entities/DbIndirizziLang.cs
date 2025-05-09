@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace EasyGold.Web2.Models.Comune.Entities
 {
     [Table("tbco_indirizzi_lang")]
-    public class DbIndirizziLang
+    public class DbIndirizziLang : BaseDbEntity
     {
         /// <summary>
         /// È il codice ISO della lingua di cui sono stati tradotti i testi.
