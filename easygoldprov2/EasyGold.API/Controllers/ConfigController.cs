@@ -30,7 +30,7 @@ namespace EasyGold.API.Controllers
 
         [HttpGet("config/{idNazione}")]
         [Authorize]
-        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ConfigResponseDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetConfig(int idNazione)
         {

@@ -38,4 +38,9 @@
   </ItemGroup>
 
 
+  <ItemGroup>
+    <Folder Include="Models\Entities\Variabili\" />
+  </ItemGroup>
+
+
 </Project>
