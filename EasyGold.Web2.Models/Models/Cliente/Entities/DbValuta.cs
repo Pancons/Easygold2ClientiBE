@@ -1,7 +1,9 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace EasyGold.Web2.Models.Cliente.Entities
 {
-    
-
     public class DbValuta
     {
         [Key]

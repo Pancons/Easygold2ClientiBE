@@ -1,6 +1,7 @@
-namespace EasyGold.Web2.Models.Cliente.Entities
-    using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
+namespace EasyGold.Web2.Models.Cliente.Entities
+{
     public class DbTagProdotto
     {
         [Key]
