@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EasyGold.Web2.Models.Comune.Entities
+namespace EasyGold.Web2.Models.Comune.Entities.GEO
 {
     /// <summary>
     /// Entità per la tabella dbo.tbco_statoRegioni (Stati/Regioni).

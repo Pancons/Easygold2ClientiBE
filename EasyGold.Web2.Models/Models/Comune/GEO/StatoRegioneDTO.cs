@@ -1,7 +1,7 @@
 ﻿using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 
-namespace EasyGold.Web2.Models.Comune.GEO.StatoRegioni
+namespace EasyGold.Web2.Models.Comune.GEO
 {
     public class StatoRegioneDTO
     {
@@ -10,7 +10,7 @@ namespace EasyGold.Web2.Models.Comune.GEO.StatoRegioni
 
         [SwaggerSchema(Description = "È il numero ISO 3166 1 della Nazione")]
         public int? Str_ISO1 { get; set; }
-        
+
         [StringLength(200)]
         [SwaggerSchema(Description = "È lo Stato/Nazione")]
         public string Str_Descrizione { get; set; }

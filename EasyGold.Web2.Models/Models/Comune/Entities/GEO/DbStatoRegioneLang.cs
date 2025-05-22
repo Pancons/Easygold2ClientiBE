@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EasyGold.Web2.Models.Comune.Entities
+namespace EasyGold.Web2.Models.Comune.Entities.GEO
 {
     [Table("tbco_statoRegioniLang")]
     public class DbStatoRegioneLang : BaseDbEntity
@@ -20,5 +20,5 @@ namespace EasyGold.Web2.Models.Comune.Entities
         /// </summary>
         [StringLength(200)]
         public string? StrLng_Descrizione { get; set; }
-    } 
+    }
 }

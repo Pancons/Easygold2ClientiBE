@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EasyGold.Web2.Models.Comune.Entities
+namespace EasyGold.Web2.Models.Comune.Entities.GEO
 {
     /// <summary>
-    /// Entità per la tabella dbo.tbco_indirizzi (Indirizzi).
+    /// Entità per la tabella dbo.tbco_province (Province).
     /// </summary>
-    [Table("tbco_indirizzi")]
-    public class DbIndirizzi : BaseDbEntity
+    [Table("tbco_province")]
+    public class DbProvince : BaseDbEntity
     {
         /// <summary>
         /// Numero ISO 3166-1 della Nazione (ntn_ISO1).
@@ -16,26 +16,26 @@ namespace EasyGold.Web2.Models.Comune.Entities
         public int StrIso1 { get; set; }
 
         /// <summary>
-        /// Codice Indirizzo (PK).
+        /// Codice Provincia (PK).
         /// </summary>
         [Key]
         public int StrIdAuto { get; set; }
 
         /// <summary>
-        /// Indirizzo della Città.
+        /// Nome della Provincia.
         /// </summary>
-        [StringLength(300)]
+        [StringLength(200)]
         public string StrDescrizione { get; set; }
 
         /// <summary>
-        /// Codice della Località a cui appartiene l’indirizzo.
+        /// Sigla della Provincia sulla targa dell’automobile.
         /// </summary>
-        public int StrCodLocalita { get; set; }
+        [StringLength(20)]
+        public string StrSiglaTargaAuto { get; set; }
 
         /// <summary>
-        /// CAP dell’indirizzo (max 10 caratteri).
+        /// Codice dello Stato/Regione a cui appartiene la Provincia.
         /// </summary>
-        [StringLength(10)]
-        public string StrCAP { get; set; }
+        public int StrCodStatoRegione { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace EasyGold.Web2.Models.Cliente.Entities.ConfigData
+namespace EasyGold.Web2.Models.Comune.Entities.ConfigData
 {
     [Table("tbco_TabelleComuni")]
     public class DbTabelleComuni : BaseDbEntity

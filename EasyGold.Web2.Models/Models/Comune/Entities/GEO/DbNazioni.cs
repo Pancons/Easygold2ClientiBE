@@ -2,11 +2,11 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EasyGold.Web2.Models.Comune.Entities
+namespace EasyGold.Web2.Models.Comune.Entities.GEO
 {
     [Table("tbco_ISONazioni")]
     public class DbNazioni : BaseDbEntity
-    {   
+    {
         [Key]  // <- Definisce la chiave primaria
         public int Ntn_ISO1 { get; set; }
 

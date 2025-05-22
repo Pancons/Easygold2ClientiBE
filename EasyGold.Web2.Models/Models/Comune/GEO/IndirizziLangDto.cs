@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Security.Principal;
 
-namespace EasyGold.Web2.Models.Comune.GEO.Indirizzi
+namespace EasyGold.Web2.Models.Comune.GEO
 {
     public class IndirizziLangDTO
     {

@@ -1,7 +1,7 @@
 ﻿using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 
-namespace EasyGold.Web2.Models.Comune.GEO.StatoRegioni
+namespace EasyGold.Web2.Models.Comune.GEO
 {
     public class StatoRegioneLangDTO
     {
