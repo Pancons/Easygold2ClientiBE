@@ -66,22 +66,7 @@ namespace EasyGold.API.Controllers
                     return StatusCode(500, new { error = "Errore interno: Secret JWT non configurato" });
                 }
 
-                // Generazione del token JWT
-                var key = Encoding.UTF8.GetBytes(secretKey);
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new[]
-                    {
-                        new Claim(ClaimTypes.Name, user.Ute_NomeUtente),
-                        new Claim(ClaimTypes.Role, user.Ute_IDRuolo.ToString())
-                    }),
-                    Expires = DateTime.UtcNow.AddHours(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                };
-
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                var tokenString = tokenHandler.WriteToken(token);
+                var tokenString = await _utenteService.CreateToken(user, secretKey);
 
                 return Ok(new
                 {
@@ -98,12 +83,59 @@ namespace EasyGold.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Endpoint per il refresh del token JWT (quando l'utente clicca "Continua con Easygold").
+        /// </summary>
+        /// <returns>Nuovo token JWT</returns>
+        /// <response code="200">Token rinnovato con successo</response>
+        /// <response code="401">Utente non autenticato o accesso non consentito</response>
+        /// <response code="500">Errore interno del server</response>
+        [HttpPost("refresh")]
+        [Authorize]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest refreshTokenRequest)
+        {
+            try
+            {
+                var username = User.Identity?.Name;
+                var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+                if (string.IsNullOrEmpty(username))
+                    return Unauthorized(new { error = "Utente non autenticato" });
+
+                var user = await _utenteService.UsernameExist(username);
+                if (user == null)
+                    return Unauthorized(new { error = "Utente non trovato" });
+
+                var secretKey = _configuration["Jwt:Secret"];
+                if (string.IsNullOrEmpty(secretKey))
+                    return StatusCode(500, new { error = "Errore interno: Secret JWT non configurato" });
+
+                var tokenString = await _utenteService.CreateToken(username, userRole, secretKey, refreshTokenRequest.LanguageId);
+
+                return Ok(new
+                {
+                    token = tokenString
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Errore durante il refresh token: {ex.Message}");
+                return StatusCode(500, new { error = "Errore interno del server", details = ex.Message });
+            }
+        }
 
 
         public class LoginRequest
         {
             public required string Username { get; set; }
             public required string Password { get; set; }
+        }
+
+        public class RefreshTokenRequest
+        {
+            public string? LanguageId { get; set; }
         }
     }
 }
