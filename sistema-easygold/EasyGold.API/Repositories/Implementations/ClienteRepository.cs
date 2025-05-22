@@ -139,14 +139,14 @@ namespace EasyGold.API.Repositories.Implementations
             }
 
             // ✅ Paginazione
-            var queryFinale = query.Select(q => q.Cliente.Utw_IDClienteAuto).Distinct();
+            var queryFinale = query.Select(q => q.Cliente.Utw_IDClienteAuto).ToList().Distinct();
 
-            int total = await queryFinale.CountAsync();
+            int total = queryFinale.Count();
 
             queryFinale = queryFinale.Skip(request.Offset).Take(request.Limit);
 
             // ✅ Esecuzione e mappatura
-            var list = await queryFinale.ToListAsync();
+            var list = queryFinale.ToList();
             var clientiResult = list.Select(x => (
                     _context.Clienti.Where(c => c.Utw_IDClienteAuto == x).FirstOrDefaultAsync().Result,
                     _context.DatiClienti.Where(dc => dc.Dtc_IDCliente == x).FirstOrDefaultAsync().Result)
@@ -270,6 +270,9 @@ namespace EasyGold.API.Repositories.Implementations
             var cliente = await _context.Clienti
                 .Where(c => c.Utw_IDClienteAuto == id)
                 .FirstOrDefaultAsync();
+
+            if (cliente == null)
+                return (null, null, null, null, null, null, null, null);
 
             var datiCliente = (await _context.DatiClienti
                 .Where(d => d.Dtc_IDCliente == id)
