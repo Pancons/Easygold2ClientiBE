@@ -1,7 +1,7 @@
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 
-namespace EasyGold.Web2.Models.Cliente.DTO
+namespace EasyGold.Web2.Models.Cliente.ACL
 {
     public class DocumentiClienteDTO
     {

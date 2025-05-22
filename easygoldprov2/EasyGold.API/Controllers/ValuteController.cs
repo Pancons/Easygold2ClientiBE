@@ -1,41 +1,27 @@
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Valute;
-using EasyGold.API.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Models.Valute;
 
 namespace EasyGold.API.Controllers
 {
-    /// <summary>
-    /// Controller per la gestione delle Valute.
-    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class ValuteController : ControllerBase
     {
-        private readonly IValutaService _valutaService; // 🔹 Usa il servizio invece del repository
+        private readonly IValuteService _service;
 
-        public ValuteController(IValutaService valutaService)
+        public ValuteController(IValuteService service)
         {
-            _valutaService = valutaService;
+            _service = service;
         }
 
-        /// <summary>
-        /// Restituisce l'elenco delle valute per il dropdown.
-        /// </summary>
-        /// <returns>Lista delle valute</returns>
-        /// <response code="200">Valute con successo</response>
-        /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
-        [Authorize]
-        [ProducesResponseType(typeof(BaseListResponse<ValuteDTO>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetValuteList([FromBody] ValuteListRequest request)
+        public async Task<IActionResult> GetAll()
         {
             try
             {
-                var results = await _valutaService.GetAllAsync(request);
+                var results = await _service.GetAllAsync();
                 return Ok(results);
             }
             catch (Exception ex)
@@ -44,29 +30,60 @@ namespace EasyGold.API.Controllers
             }
         }
 
-        /// <summary>
-        /// Restituisce i dettagli di una Valuta specifica.
-        /// </summary>
-        /// <param name="id">ID della Valuta</param>
-        /// <returns>Dettagli della Valuta</returns>
-        /// <response code="200">Dettagli Valuta restituiti</response>
-        /// <response code="404">Valuta non trovata</response>
-        /// <response code="500">Errore interno del server</response>
         [HttpGet("{id}")]
-        [Authorize]
-        [ProducesResponseType(typeof(ValuteDTO), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(int id)
         {
-            var result = await _valutaService.GetByIdAsync(id);
-            if (result == null)
+            try
             {
-                return NotFound();
+                var result = await _service.GetByIdAsync(id);
+                if (result == null)
+                    return NotFound(new { message = "Valuta non trovata" });
+                return Ok(result);
             }
-            return Ok(new { result });
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
+        [HttpPost("save")]
+        public async Task<IActionResult> Save([FromBody] ValutaDTO dto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
+            try
+            {
+                ValutaDTO result;
+                if (dto.Val_IdAuto > 0)
+                    result = await _service.UpdateAsync(dto);
+                else
+                    result = await _service.AddAsync(dto);
+                
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _service.DeleteAsync(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(new { message = "Valuta non trovata" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
+        }
     }
 }

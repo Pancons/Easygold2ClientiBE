@@ -1,36 +1,41 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasyGold.Web2.Models.Comune.Entities
 {
+    /// <summary>
+    /// Entità per la tabella dbo.tbco_indirizzi (Indirizzi).
+    /// </summary>
     [Table("tbco_indirizzi")]
     public class DbIndirizzi : BaseDbEntity
     {
         /// <summary>
-        /// È il codice della Località.  
+        /// Numero ISO 3166-1 della Nazione (ntn_ISO1).
         /// </summary>
-        [Key]  // <- Definisce la chiave primaria
-        public int Str_IDAuto { get; set; }
+        [Required]
+        public int StrIso1 { get; set; }
+
         /// <summary>
-        /// È il numero ISO 3166 1 della Nazione. È il campo ntn_ISO1 della tabella dbo.tbco_ISONazioni. 
+        /// Codice Indirizzo (PK).
         /// </summary>
-        public int? Str_ISO1 { get; set; }
+        [Key]
+        public int StrIdAuto { get; set; }
+
         /// <summary>
-        /// È l’indirizzo della Città.
+        /// Indirizzo della Città.
         /// </summary>
         [StringLength(300)]
-        public string Str_Descrizione { get; set; }
+        public string StrDescrizione { get; set; }
+
         /// <summary>
-        /// È il codice della Località a cui appartiene l’indirizzo.
+        /// Codice della Località a cui appartiene l’indirizzo.
         /// </summary>
-        public int? Str_CodLocalita { get; set; }
+        public int StrCodLocalita { get; set; }
+
         /// <summary>
-        /// È il CAP dell’indirizzo se diverso da quello della Località.
+        /// CAP dell’indirizzo (max 10 caratteri).
         /// </summary>
         [StringLength(10)]
-        public string? Str_Cap { get; set; }   
-
+        public string StrCAP { get; set; }
     }
 }

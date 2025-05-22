@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+
 using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.Web2.Models;
-using EasyGold.Web2.Models.Cliente.DTO;
 
+
+
+using EasyGold.API.Models.CodPagamento;
 namespace EasyGold.API.Controllers
 {
     [ApiController]
@@ -19,19 +20,22 @@ namespace EasyGold.API.Controllers
         }
 
         [HttpPost("list")]
-        [Authorize]
-        [ProducesResponseType(typeof(BaseListResponse<CodPagamentoDTO>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAll([FromBody] BaseListRequest request)
+
+
+
+
+
+        public async Task<IActionResult> GetAll()
         {
             try
             {
-                if (request == null)
-                    return BadRequest(new { error = "Richiesta non valida" });
 
-                var response = await _service.GetAllAsync(request);
-                return Ok(response);
+
+
+
+
+                var results = await _service.GetAllAsync();
+                return Ok(results);
             }
             catch (Exception ex)
             {
@@ -40,18 +44,21 @@ namespace EasyGold.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
-        [ProducesResponseType(typeof(CodPagamentoDTO), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Get(int id)
+
+
+
+
+
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
                 var result = await _service.GetByIdAsync(id);
                 if (result == null)
-                    return NotFound();
-                return Ok(new { result });
+
+
+                    return NotFound(new { message = "Condizione di pagamento non trovata" });
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -60,27 +67,38 @@ namespace EasyGold.API.Controllers
         }
 
         [HttpPost("save")]
-        [Authorize]
-        [ProducesResponseType(typeof(CodPagamentoDTO), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Save([FromBody] CodPagamentoDTO dto)
+
+
+
+
+
+        public async Task<IActionResult> Save([FromBody] CondizionePagamentoDTO dto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             try
             {
-                if (dto == null)
-                    return BadRequest(new { error = "Dati non validi" });
 
-                if (dto.Cpa_IDAuto.HasValue && dto.Cpa_IDAuto > 0)
-                {
-                    var updated = await _service.UpdateAsync(dto);
-                    return Ok(new { result = updated });
-                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                CondizionePagamentoDTO result;
+                if (dto.Cpa_IdAuto > 0)
+                    result = await _service.UpdateAsync(dto);
                 else
-                {
-                    var created = await _service.AddAsync(dto);
-                    return Ok(new { result = created });
-                }
+                    result = await _service.AddAsync(dto);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -89,15 +107,21 @@ namespace EasyGold.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
+
+
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
                 await _service.DeleteAsync(id);
                 return NoContent();
+            }
+
+            catch (KeyNotFoundException)
+            {
+
+                return NotFound(new { message = "Condizione di pagamento non trovata" });
             }
             catch (Exception ex)
             {

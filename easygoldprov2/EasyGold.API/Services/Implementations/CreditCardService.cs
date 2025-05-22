@@ -1,11 +1,14 @@
-using System.Collections.Generic;
+
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using EasyGold.API.Repositories.Interfaces;
-using EasyGold.Web2.Models;
-using EasyGold.Web2.Models.Cliente.DTO;
-using EasyGold.Web2.Models.Cliente.Entities;
+
+
+
 using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Models.CreditCard;
+using EasyGold.API.Models.Entities;
 
 namespace EasyGold.API.Services.Implementations
 {
@@ -18,48 +21,64 @@ namespace EasyGold.API.Services.Implementations
             _repository = repository;
         }
 
-        public async Task<BaseListResponse<CreditCardDTO>> GetAllAsync(BaseListRequest request)
+
+        public async Task<IEnumerable<CreditCardDTO>> GetAllAsync()
         {
-            var entities = (await _repository.GetAllAsync()).AsQueryable();
 
-            if (request.Sort != null && request.Sort.Any())
-            {
-                foreach (var sort in request.Sort)
-                {
-                    if (sort.Field == nameof(CreditCardDTO.Crc_Card))
-                    {
-                        entities = sort.Order.ToLower() == "desc"
-                            ? entities.OrderByDescending(e => e.Crc_Card)
-                            : entities.OrderBy(e => e.Crc_Card);
-                    }
-                }
-            }
-
-            var total = entities.Count();
-            var paged = entities.Skip(request.Offset).Take(request.Limit).ToList();
-            var dtos = paged.Select(ToDTO).ToList();
-
-            return new BaseListResponse<CreditCardDTO>(dtos, total);
+            var entities = await _repository.GetAllAsync();
+            return entities.Select(MapToDto);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public async Task<CreditCardDTO> GetByIdAsync(int id)
         {
             var entity = await _repository.GetByIdAsync(id);
-            return entity == null ? null : ToDTO(entity);
+
+            return entity == null ? null : MapToDto(entity);
         }
 
         public async Task<CreditCardDTO> AddAsync(CreditCardDTO dto)
         {
-            var entity = ToEntity(dto);
+
+            var entity = MapToEntity(dto);
             await _repository.AddAsync(entity);
-            return ToDTO(entity);
+
+            return MapToDto(entity);
         }
 
         public async Task<CreditCardDTO> UpdateAsync(CreditCardDTO dto)
         {
-            var entity = ToEntity(dto);
+
+            var entity = await _repository.GetByIdAsync(dto.Crc_IdAuto);
+            if (entity == null) return null;
+
+            entity.Crc_Card = dto.Crc_Card;
+            entity.Crc_Fee = dto.Crc_Fee;
+            entity.Crc_Ordinamento = dto.Crc_Ordinamento;
+            entity.Crc_Annulla = dto.Crc_Annulla;
+
             await _repository.UpdateAsync(entity);
-            return ToDTO(entity);
+
+            return MapToDto(entity);
         }
 
         public async Task DeleteAsync(int id)
@@ -67,22 +86,29 @@ namespace EasyGold.API.Services.Implementations
             await _repository.DeleteAsync(id);
         }
 
-        private static CreditCardDTO ToDTO(DbCreditCard e) => new CreditCardDTO
-        {
-            Crc_IDAuto = e.Crc_IDAuto,
-            Crc_Card = e.Crc_Card,
-            Crc_Fee = e.Crc_Fee,
-            Crc_Ordinamento = e.Crc_Ordinamento,
-            Crc_Annulla = e.Crc_Annulla
-        };
 
-        private static DbCreditCard ToEntity(CreditCardDTO dto) => new DbCreditCard
+        private CreditCardDTO MapToDto(DbCreditCard entity)
         {
-            Crc_IDAuto = dto.Crc_IDAuto ?? 0,
-            Crc_Card = dto.Crc_Card,
-            Crc_Fee = dto.Crc_Fee,
-            Crc_Ordinamento = dto.Crc_Ordinamento,
-            Crc_Annulla = dto.Crc_Annulla
-        };
+            return new CreditCardDTO
+            {
+                Crc_IdAuto = entity.Crc_IdAuto,
+                Crc_Card = entity.Crc_Card,
+                Crc_Fee = entity.Crc_Fee,
+                Crc_Ordinamento = entity.Crc_Ordinamento,
+                Crc_Annulla = entity.Crc_Annulla
+            };
+        }
+
+        private DbCreditCard MapToEntity(CreditCardDTO dto)
+        {
+            return new DbCreditCard
+            {
+                Crc_IdAuto = dto.Crc_IdAuto,
+                Crc_Card = dto.Crc_Card,
+                Crc_Fee = dto.Crc_Fee,
+                Crc_Ordinamento = dto.Crc_Ordinamento,
+                Crc_Annulla = dto.Crc_Annulla
+            };
+        }
     }
 }

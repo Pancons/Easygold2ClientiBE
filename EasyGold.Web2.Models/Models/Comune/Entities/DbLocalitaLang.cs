@@ -1,25 +1,30 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasyGold.Web2.Models.Comune.Entities
 {
+    /// <summary>
+    /// Entità per la tabella dbo.tbco_localita_lang (traduzioni Località).
+    /// </summary>
     [Table("tbco_localita_lang")]
     public class DbLocalitaLang : BaseDbEntity
     {
         /// <summary>
-        /// È il codice ISO della lingua di cui sono stati tradotti i testi.
+        /// Codice ISO della lingua di cui sono stati tradotti i testi.
         /// </summary>
-        public int? StrLng_ISONum { get; set; }
+        [Required]
+        public int StridISONum { get; set; }
+
         /// <summary>
-        /// È il numero del record della tabella principale di cui è stata fatta la traduzione.
+        /// Numero del record della tabella principale di cui è stata fatta la traduzione.
         /// </summary>
-        public int? StrLng_ID { get; set; }
+        [Required]
+        public int StridID { get; set; }
+
         /// <summary>
-        /// È il nome della Località tradotto nella lingua della Nazione di cui al codice ISO.
+        /// Nome della Località tradotto nella lingua della Nazione di cui al codice ISO.
         /// </summary>
         [StringLength(200)]
-        public string? StrLng_Descrizione { get; set; }
+        public string StridDescrizione { get; set; }
     }
 }

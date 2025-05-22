@@ -5,15 +5,18 @@ using System.Security.Principal;
 
 namespace EasyGold.Web2.Models.Cliente.ACL
 {
-    public class UtentiNegoziDTO
+    /// <summary>
+    /// DTO per UtenteNegozi.
+    /// </summary>
+    public class UtenteNegoziDTO
     {
-        [SwaggerSchema(Description = "È il campo ute_IDAuto della tabella dbo.tbcl_utenti")]
+        [SwaggerSchema(Description = "ID auto-incrementale utente negozio.")]
         public int Utn_ID { get; set; }
 
-        [SwaggerSchema(Description = "È il campo neg_IDAuto della tabella dbo.tbcl_negozi.")]
+        [SwaggerSchema(Description = "ID negozio.")]
         public int Utn_IDNegozio { get; set; }
 
-        [SwaggerSchema(Description = " Se a True l’Utente NON ha più accesso al Negozio.")]
-        public bool? Utn_Annullato { get; set; }
+        [SwaggerSchema(Description = "Se true, utente non ha più accesso al negozio.")]
+        public bool Utn_Annullato { get; set; }
     }
 }

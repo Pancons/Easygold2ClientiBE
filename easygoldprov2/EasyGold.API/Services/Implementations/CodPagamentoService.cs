@@ -1,11 +1,14 @@
-using System.Collections.Generic;
+
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using EasyGold.API.Repositories.Interfaces;
-using EasyGold.Web2.Models;
-using EasyGold.Web2.Models.Cliente.DTO;
-using EasyGold.Web2.Models.Cliente.Entities;
+
+
+
 using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Models.CodPagamento;
+using EasyGold.API.Models.Entities;
 
 namespace EasyGold.API.Services.Implementations
 {
@@ -18,48 +21,69 @@ namespace EasyGold.API.Services.Implementations
             _repository = repository;
         }
 
-        public async Task<BaseListResponse<CodPagamentoDTO>> GetAllAsync(BaseListRequest request)
+
+        public async Task<IEnumerable<CondizionePagamentoDTO>> GetAllAsync()
         {
-            var entities = (await _repository.GetAllAsync()).AsQueryable();
 
-            if (request.Sort != null && request.Sort.Any())
-            {
-                foreach (var sort in request.Sort)
-                {
-                    if (sort.Field == nameof(CodPagamentoDTO.Cpa_Descrizione))
-                    {
-                        entities = sort.Order.ToLower() == "desc"
-                            ? entities.OrderByDescending(e => e.Cpa_Descrizione)
-                            : entities.OrderBy(e => e.Cpa_Descrizione);
-                    }
-                }
-            }
-
-            var total = entities.Count();
-            var paged = entities.Skip(request.Offset).Take(request.Limit).ToList();
-            var dtos = paged.Select(ToDTO).ToList();
-
-            return new BaseListResponse<CodPagamentoDTO>(dtos, total);
+            var entities = await _repository.GetAllAsync();
+            return entities.Select(MapToDto);
         }
 
-        public async Task<CodPagamentoDTO> GetByIdAsync(int id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public async Task<CondizionePagamentoDTO> GetByIdAsync(int id)
         {
             var entity = await _repository.GetByIdAsync(id);
-            return entity == null ? null : ToDTO(entity);
+
+            return entity == null ? null : MapToDto(entity);
         }
 
-        public async Task<CodPagamentoDTO> AddAsync(CodPagamentoDTO dto)
+
+        public async Task<CondizionePagamentoDTO> AddAsync(CondizionePagamentoDTO dto)
         {
-            var entity = ToEntity(dto);
+
+            var entity = MapToEntity(dto);
             await _repository.AddAsync(entity);
-            return ToDTO(entity);
+
+            return MapToDto(entity);
         }
 
-        public async Task<CodPagamentoDTO> UpdateAsync(CodPagamentoDTO dto)
+
+        public async Task<CondizionePagamentoDTO> UpdateAsync(CondizionePagamentoDTO dto)
         {
-            var entity = ToEntity(dto);
+
+            var entity = await _repository.GetByIdAsync(dto.Cpa_IdAuto);
+            if (entity == null) return null;
+
+            entity.Cpa_Descrizione = dto.Cpa_Descrizione;
+            entity.Cpa_PartenzaMese = dto.Cpa_PartenzaMese;
+            entity.Cpa_NumMesi = dto.Cpa_NumMesi;
+            entity.Cpa_MeseCommerciale = dto.Cpa_MeseCommerciale;
+            entity.Cpa_Annullato = dto.Cpa_Annullato;
+
             await _repository.UpdateAsync(entity);
-            return ToDTO(entity);
+
+            return MapToDto(entity);
         }
 
         public async Task DeleteAsync(int id)
@@ -67,18 +91,31 @@ namespace EasyGold.API.Services.Implementations
             await _repository.DeleteAsync(id);
         }
 
-        private static CodPagamentoDTO ToDTO(DbCodPagamento e) => new CodPagamentoDTO
-        {
-            Cpa_IDAuto = e.Cpa_IDAuto,
-            Cpa_Descrizione = e.Cpa_Descrizione,
-            Cpa_Annullato = e.Cpa_Annullato
-        };
 
-        private static DbCodPagamento ToEntity(CodPagamentoDTO dto) => new DbCodPagamento
+        private CondizionePagamentoDTO MapToDto(DbCondizionePagamento entity)
         {
-            Cpa_IDAuto = dto.Cpa_IDAuto ?? 0,
-            Cpa_Descrizione = dto.Cpa_Descrizione,
-            Cpa_Annullato = dto.Cpa_Annullato
-        };
+            return new CondizionePagamentoDTO
+            {
+                Cpa_IdAuto = entity.Cpa_IdAuto,
+                Cpa_Descrizione = entity.Cpa_Descrizione,
+                Cpa_PartenzaMese = entity.Cpa_PartenzaMese,
+                Cpa_NumMesi = entity.Cpa_NumMesi,
+                Cpa_MeseCommerciale = entity.Cpa_MeseCommerciale,
+                Cpa_Annullato = entity.Cpa_Annullato
+            };
+        }
+
+        private DbCondizionePagamento MapToEntity(CondizionePagamentoDTO dto)
+        {
+            return new DbCondizionePagamento
+            {
+                Cpa_IdAuto = dto.Cpa_IdAuto,
+                Cpa_Descrizione = dto.Cpa_Descrizione,
+                Cpa_PartenzaMese = dto.Cpa_PartenzaMese,
+                Cpa_NumMesi = dto.Cpa_NumMesi,
+                Cpa_MeseCommerciale = dto.Cpa_MeseCommerciale,
+                Cpa_Annullato = dto.Cpa_Annullato
+            };
+        }
     }
 }

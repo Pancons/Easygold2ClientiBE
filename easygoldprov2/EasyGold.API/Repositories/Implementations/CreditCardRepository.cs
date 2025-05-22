@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using EasyGold.Web2.Models.Cliente.Entities;
+using EasyGold.API.Models.Entities;
 using EasyGold.API.Repositories.Interfaces;
-using EasyGold.API.Infrastructure;
 
 namespace EasyGold.API.Repositories.Implementations
 {
@@ -18,12 +17,16 @@ namespace EasyGold.API.Repositories.Implementations
 
         public async Task<IEnumerable<DbCreditCard>> GetAllAsync()
         {
-            return await _context.CreditCards.AsNoTracking().ToListAsync();
+            return await _context.CreditCards
+                                 .AsNoTracking()
+                                 .OrderBy(x => x.Crc_Ordinamento)
+                                 .ToListAsync();
         }
 
         public async Task<DbCreditCard> GetByIdAsync(int id)
         {
-            return await _context.CreditCards.AsNoTracking().FirstOrDefaultAsync(x => x.Crc_IDAuto == id);
+            return await _context.CreditCards.AsNoTracking()
+                                             .FirstOrDefaultAsync(x => x.Crc_IdAuto == id);
         }
 
         public async Task AddAsync(DbCreditCard entity)
@@ -34,12 +37,8 @@ namespace EasyGold.API.Repositories.Implementations
 
         public async Task UpdateAsync(DbCreditCard entity)
         {
-            var existing = await _context.CreditCards.FindAsync(entity.Crc_IDAuto);
-            if (existing != null)
-            {
-                _context.Entry(existing).CurrentValues.SetValues(entity);
-                await _context.SaveChangesAsync();
-            }
+            _context.CreditCards.Update(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)

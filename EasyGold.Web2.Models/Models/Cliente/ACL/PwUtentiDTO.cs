@@ -5,18 +5,21 @@ using System.Security.Principal;
 
 namespace EasyGold.Web2.Models.Cliente.ACL
 {
+    /// <summary>
+    /// DTO per Password Utenti.
+    /// </summary>
     public class PwUtentiDTO
     {
-        [SwaggerSchema(Description = "Campo numero intero auto.")]
+        [SwaggerSchema(Description = "ID auto-incrementale password.")]
         public int Utp_IDAuto { get; set; }
 
-        [SwaggerSchema(Description = "È il campo ute_IDAuto della tabella dbo.tbcl_utenti.")]
+        [SwaggerSchema(Description = "ID utente.")]
         public int Utp_IDUtente { get; set; }
 
-        [SwaggerSchema(Description = "È il campo tpp_IDAuto della tabella dbo.tbco_tipoPw.")]
+        [SwaggerSchema(Description = "Tipo password.")]
         public int Utp_TipoPw { get; set; }
 
-        [SwaggerSchema(Description = "è La password dell'utente")]
+        [SwaggerSchema(Description = "Password utente (criptata).")]
         [StringLength(100)]
         public string Utp_PwUtente { get; set; }
     }

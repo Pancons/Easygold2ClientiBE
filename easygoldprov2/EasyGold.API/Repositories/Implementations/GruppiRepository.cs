@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using EasyGold.Web2.Models.Cliente.Entities;
 using EasyGold.API.Repositories.Interfaces;
-using EasyGold.API.Infrastructure;
+using EasyGold.Web2.Models.Cliente.Entities;
 
 namespace EasyGold.API.Repositories.Implementations
 {
@@ -23,7 +22,7 @@ namespace EasyGold.API.Repositories.Implementations
 
         public async Task<DbGruppi> GetByIdAsync(int id)
         {
-            return await _context.Gruppi.AsNoTracking().FirstOrDefaultAsync(x => x.Gru_IDGruppo == id);
+            return await _context.Gruppi.AsNoTracking().FirstOrDefaultAsync(x => x.Grp_IDAuto == id);
         }
 
         public async Task AddAsync(DbGruppi entity)
@@ -34,12 +33,8 @@ namespace EasyGold.API.Repositories.Implementations
 
         public async Task UpdateAsync(DbGruppi entity)
         {
-            var existing = await _context.Gruppi.FindAsync(entity.Gru_IDGruppo);
-            if (existing != null)
-            {
-                _context.Entry(existing).CurrentValues.SetValues(entity);
-                await _context.SaveChangesAsync();
-            }
+            _context.Gruppi.Update(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)

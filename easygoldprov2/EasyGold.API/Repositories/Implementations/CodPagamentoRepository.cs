@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using EasyGold.Web2.Models.Cliente.Entities;
+using EasyGold.API.Models.Entities;
 using EasyGold.API.Repositories.Interfaces;
-using EasyGold.API.Infrastructure;
 
 namespace EasyGold.API.Repositories.Implementations
 {
@@ -16,38 +15,35 @@ namespace EasyGold.API.Repositories.Implementations
             _context = context;
         }
 
-        public async Task<IEnumerable<DbCodPagamento>> GetAllAsync()
+        public async Task<IEnumerable<DbCondizionePagamento>> GetAllAsync()
         {
-            return await _context.CodPagamenti.AsNoTracking().ToListAsync();
+            return await _context.CondizioniPagamento.AsNoTracking().ToListAsync();
         }
 
-        public async Task<DbCodPagamento> GetByIdAsync(int id)
+        public async Task<DbCondizionePagamento> GetByIdAsync(int id)
         {
-            return await _context.CodPagamenti.AsNoTracking().FirstOrDefaultAsync(x => x.Cpa_IDAuto == id);
+            return await _context.CondizioniPagamento.AsNoTracking()
+                                                     .FirstOrDefaultAsync(x => x.Cpa_IdAuto == id);
         }
 
-        public async Task AddAsync(DbCodPagamento entity)
+        public async Task AddAsync(DbCondizionePagamento entity)
         {
-            await _context.CodPagamenti.AddAsync(entity);
+            await _context.CondizioniPagamento.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(DbCodPagamento entity)
+        public async Task UpdateAsync(DbCondizionePagamento entity)
         {
-            var existing = await _context.CodPagamenti.FindAsync(entity.Cpa_IDAuto);
-            if (existing != null)
-            {
-                _context.Entry(existing).CurrentValues.SetValues(entity);
-                await _context.SaveChangesAsync();
-            }
+            _context.CondizioniPagamento.Update(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var entity = await _context.CodPagamenti.FindAsync(id);
+            var entity = await _context.CondizioniPagamento.FindAsync(id);
             if (entity != null)
             {
-                _context.CodPagamenti.Remove(entity);
+                _context.CondizioniPagamento.Remove(entity);
                 await _context.SaveChangesAsync();
             }
         }
