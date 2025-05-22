@@ -1,39 +1,46 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasyGold.Web2.Models.Comune.Entities
 {
+    /// <summary>
+    /// Entità per la tabella dbo.tbco_localita (Località).
+    /// </summary>
     [Table("tbco_localita")]
     public class DbLocalita : BaseDbEntity
     {
         /// <summary>
-        /// È il codice della Località.  
+        /// Numero ISO 3166-1 della Nazione (ntn_ISO1).
         /// </summary>
-        [Key]  // <- Definisce la chiave primaria
-        public int Str_IDAuto { get; set; }
+        [Required]
+        public int StrIso1 { get; set; }
+
         /// <summary>
-        /// È il numero ISO 3166 1 della Nazione. È il campo ntn_ISO1 della tabella dbo.tbco_ISONazioni
+        /// Codice Località (PK).
         /// </summary>
-        public int? Str_ISO1 { get; set; }
+        [Key]
+        public int StrIdAuto { get; set; }
+
         /// <summary>
-        /// È la Località.
+        /// Nome della Località.
         /// </summary>
         [StringLength(200)]
-        public string Str_Descrizione { get; set; }
+        public string StrDescrizione { get; set; }
+
         /// <summary>
-        /// È il codice dello Stato/Regione a cui appartiene la Provincia. 
+        /// Codice dello Stato/Regione a cui appartiene la Località.
         /// </summary>
-        public int? Str_CodStatoRegione { get; set; }
+        public int StrCodStatoRegione { get; set; }
+
         /// <summary>
-        /// Questo campo è inserito solo se la Nazione ha le Province altrimenti sarà a NULL
+        /// Codice della Provincia a cui appartiene la Località (nullable).
         /// </summary>
-        public int? Str_CodProvincia { get; set; }
+        public int? StrCodProvincia { get; set; }
+
         /// <summary>
-        /// È il CAP della Località se unico per tutti gli indirizzi.
+        /// CAP della Località (max 10 caratteri).
         /// </summary>
         [StringLength(10)]
-        public string? Str_Cap { get; set; }
+        public string StrCAP { get; set; }
     }
 }

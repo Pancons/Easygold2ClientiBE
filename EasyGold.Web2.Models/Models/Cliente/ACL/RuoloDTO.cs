@@ -1,0 +1,18 @@
+using Swashbuckle.AspNetCore.Annotations;
+using System.ComponentModel.DataAnnotations;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Security.Principal;
+
+namespace EasyGold.Web2.Models.Cliente.ACL
+{
+    public class RuoloDTO
+    {
+        [SwaggerSchema(Description = "Identificativo univoco del ruolo")]
+        public int Ur_IDRuolo { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [SwaggerSchema(Description = "Descrizione del ruolo")]
+        public string Ur_Descrizione { get; set; }
+    }
+}
