@@ -46,3 +46,5 @@ damiani/
 /EasyGold.Web2.Models/Models/bin/Debug/net8.0
 /EasyGold.Web2.Models/Models/obj
 /EasyGold.Web2.Models/.vs
+/EasyGold.Web2.CommonAPI/CommonAPI/bin/Debug/net8.0
+/EasyGold.Web2.CommonAPI/CommonAPI/obj

@@ -148,40 +148,19 @@ namespace EasyGold.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteCliente(int id)
         {
-            await _clienteService.DeleteAsync(id);
-            return NoContent();
-        }
-
-        /*
-        [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> AddClient([FromBody] ClienteDettaglioDTO clientDto)
-        {
-            await _clienteService.AddAsync(clientDto);
-            return CreatedAtAction(nameof(GetClient), new { id = clientDto.Utw_IDClienteAuto }, clientDto);
-        }
-
-        [HttpPut("{id}")]
-        [Authorize]
-        public async Task<IActionResult> UpdateClient(int id, [FromBody] ClienteDettaglioDTO clientDto)
-        {
-            if (id != clientDto.Utw_IDClienteAuto)
+            try
             {
-                return BadRequest();
+                await _clienteService.DeleteAsync(id);
+                return NoContent();
             }
-
-            await _clienteService.UpdateAsync(clientDto);
-            return NoContent();
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Errore interno", ex = $"{ex.Message}\n{ex.InnerException?.Message}" });
+            }
         }
-
-        [HttpDelete("{id}")]
-        [Authorize]
-        public async Task<IActionResult> DeleteClient(int id)
-        {
-            await _clienteService.DeleteAsync(id);
-            return NoContent();
-        }
-        */
-
     }
 }
