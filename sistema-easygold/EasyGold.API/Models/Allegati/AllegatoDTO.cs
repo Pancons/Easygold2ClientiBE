@@ -27,7 +27,7 @@ namespace EasyGold.API.Models.Allegati
         public string All_EntitaRiferimento { get; set; }
 
         [SwaggerSchema(Description = "ID del record di riferimento dell'allegato")]
-        public int All_RecordId { get; set; }
+        public int? All_RecordId { get; set; }
 
         [StringLength(500)]
         [SwaggerSchema(Description = "Note aggiuntive sull'allegato")]

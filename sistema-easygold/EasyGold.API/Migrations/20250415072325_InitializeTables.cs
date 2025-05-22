@@ -61,9 +61,9 @@ namespace EasyGold.API.Migrations
                 columns: new[] { "Stc_id", "Stc_Descrizione", "Stc_Colore" },
                 values: new object[,]
                 {
-                    {1, "Attivo", "#389e0d"},
-                    {2, "Bloccato", "#cf1322"},
-                    {3, "Sospeso", "#d48806"}
+                    {1, "Attivo", "#B9DBC0"},
+                    {2, "Bloccato", "#EBA3A3"},
+                    {3, "Sospeso", "#F8DDA7"}
                 });
         }
 
