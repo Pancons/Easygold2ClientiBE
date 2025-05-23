@@ -5,23 +5,41 @@ using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using EasyGold.API.Infrastructure;
 using EasyGold.API.Services;
-using EasyGold.API.Services.Interfaces;
 using MediatR;
 using Microsoft.OpenApi.Models;
 using EasyGold.API.Middleware;
-using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Repositories;
-using EasyGold.API.Repositories.Implementations;
 using System.Reflection;
 using System.IdentityModel.Tokens.Jwt;
 using EasyGold.API.Infrastructure.Swagger;
-using EasyGold.API.Services.Implementations;
 
 // --- REGISTRAZIONE REPOSITORY E SERVIZI ---
-using EasyGold.API.Repositories.Interfaces;
-using EasyGold.API.Repositories.Implementations;
-using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Services.Implementations;
+using EasyGold.API.Services.Implementations.ACL;
+using EasyGold.API.Services.Implementations.Allegati;
+using EasyGold.API.Services.Implementations.ConfigProgramma;
+using EasyGold.API.Services.Implementations.GEO;
+using EasyGold.API.Services.Implementations.Contabilita;
+using EasyGold.API.Services.Implementations.ConfigData;
+using EasyGold.API.Services.Interfaces.Allegati;
+using EasyGold.API.Services.Interfaces.ACL;
+using EasyGold.API.Services.Interfaces.ConfigProgramma;
+using EasyGold.API.Services.Interfaces.Contabilita;
+using EasyGold.API.Services.Interfaces.GEO;
+using EasyGold.API.Services.Interfaces.ConfigData;
+using EasyGold.API.Repositories.Implementations.Allegati;
+using EasyGold.API.Repositories.Implementations.ConfigProgramma;
+using EasyGold.API.Repositories.Implementations.GEO;
+using EasyGold.API.Repositories.Implementations.Anagrafiche;
+using EasyGold.API.Repositories.Implementations.Contabilita;
+using EasyGold.API.Repositories.Implementations.ACL;
+using EasyGold.API.Repositories.Implementations.ConfigData;
+using EasyGold.API.Repositories.Interfaces.Allegati;
+using EasyGold.API.Repositories.Interfaces.ConfigProgramma;
+using EasyGold.API.Repositories.Interfaces.ACL;
+using EasyGold.API.Repositories.Interfaces.GEO;
+using EasyGold.API.Repositories.Interfaces.Anagrafiche;
+using EasyGold.API.Repositories.Interfaces.Contabilita;
+using EasyGold.API.Repositories.Interfaces.ConfigData;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,13 +91,13 @@ builder.Services.AddScoped<INazioneRepository, NazioneRepository>();
 builder.Services.AddScoped<IValutaRepository, ValutaRepository>();
 
 
-builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAllegatoService, EasyGold.API.Services.Implementations.AllegatoService>();
-builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IUtenteService, EasyGold.API.Services.Implementations.UtenteService>();
-builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IAutenticazioneService, EasyGold.API.Services.Implementations.AutenticazioneService>();
-builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IModuloService, EasyGold.API.Services.Implementations.ModuloService>();
-builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IRuoloService, EasyGold.API.Services.Implementations.RuoloService>();
-builder.Services.AddScoped<EasyGold.API.Services.Interfaces.INazioneService, EasyGold.API.Services.Implementations.NazioneService>();
-builder.Services.AddScoped<EasyGold.API.Services.Interfaces.IValutaService, EasyGold.API.Services.Implementations.ValutaService>();
+builder.Services.AddScoped<IAllegatoService, AllegatoService>();
+builder.Services.AddScoped<IUtenteService, UtenteService>();
+builder.Services.AddScoped<IAutenticazioneService, AutenticazioneService>();
+builder.Services.AddScoped<IModuloService, ModuloService>();
+builder.Services.AddScoped<IRuoloService, RuoloService>();
+builder.Services.AddScoped<INazioneService, NazioneService>();
+builder.Services.AddScoped<IValutaService, ValutaService>();
 
 // --- REGISTRAZIONE REPOSITORY E SERVIZI AGGIUNTIVI ---
 builder.Services.AddScoped<IRegistroIVARepository, RegistroIVARepository>();
