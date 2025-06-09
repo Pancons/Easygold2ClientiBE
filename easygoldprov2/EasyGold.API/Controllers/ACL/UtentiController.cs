@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Services;
 using EasyGold.API.Services.Implementations;
-using EasyGold.API.Models.DTO.Nazioni;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Utenti;
+using EasyGold.Web2.Models.Comune.GEO;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ACL;
 using EasyGold.API.Services.Interfaces.ACL;
 
 namespace EasyGold.API.Controllers.ACL

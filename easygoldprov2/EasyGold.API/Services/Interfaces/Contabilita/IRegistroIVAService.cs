@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.RegIVA;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.Contabilita;
 
 namespace EasyGold.API.Services.Interfaces.Contabilita
 {

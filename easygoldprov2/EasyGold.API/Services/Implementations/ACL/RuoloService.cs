@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Allegati;
-using EasyGold.API.Models.DTO.Ruoli;
-using EasyGold.API.Models.Entities.Ruoli;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.Allegati;
+using EasyGold.Web2.Models.Cliente.ACL;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
 using EasyGold.API.Repositories.Interfaces.ACL;
 using EasyGold.API.Services.Interfaces.ACL;
 using System.Collections.Generic;

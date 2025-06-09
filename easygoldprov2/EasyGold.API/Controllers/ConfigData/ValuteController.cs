@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Models.Valute;
+using EasyGold.Web2.Models.Comune.Valute;
 
 namespace EasyGold.API.Controllers.ConfigData
 {

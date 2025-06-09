@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using EasyGold.API.Models;
+using EasyGold.Web2.Models;
 using EasyGold.Web2.Models.Comune.ACL;
 using EasyGold.Web2.Models.Comune.Entities;
 using EasyGold.API.Services.Interfaces.GEO;

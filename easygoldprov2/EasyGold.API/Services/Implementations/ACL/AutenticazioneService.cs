@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
 using EasyGold.API.Infrastructure;
 using BCrypt.Net;
-using EasyGold.API.Models.Entities.Utenti;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
 using EasyGold.API.Services.Interfaces.ACL;
 
 namespace EasyGold.API.Services.Implementations.ACL

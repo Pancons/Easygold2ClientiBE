@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
-using EasyGold.API.Models;
+using EasyGold.Web2.Models;
 using EasyGold.Web2.Models.Comune.ACL;
 using EasyGold.API.Services.Interfaces.ConfigData;
 

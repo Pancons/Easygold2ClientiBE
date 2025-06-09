@@ -1,8 +1,8 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Allegati;
-using EasyGold.API.Models.Entities.Allegati;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.Allegati;
+using EasyGold.Web2.Models.Cliente.Entities.Allegati;
 using EasyGold.API.Services.Interfaces.Allegati;
 using EasyGold.API.Repositories.Interfaces.Allegati;
 

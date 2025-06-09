@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Config;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ConfigProgramma;
 
 namespace EasyGold.API.Services.Interfaces.ConfigProgramma
 {

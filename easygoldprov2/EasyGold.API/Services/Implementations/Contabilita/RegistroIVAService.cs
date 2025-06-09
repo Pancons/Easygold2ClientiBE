@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.RegIVA;
-using EasyGold.API.Models.Entities.RegIVA;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.Contabilita;
+using EasyGold.Web2.Models.Cliente.Entities.Contabilita;
 using EasyGold.API.Services.Interfaces.Contabilita;
 using EasyGold.API.Repositories.Interfaces.Contabilita;
 

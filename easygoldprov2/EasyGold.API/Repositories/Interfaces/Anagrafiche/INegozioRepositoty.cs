@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models.Entities;
+using EasyGold.Web2.Models.Cliente.Entities;
 
 namespace EasyGold.API.Repositories.Interfaces.Anagrafiche
 {

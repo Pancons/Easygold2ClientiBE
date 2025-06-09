@@ -1,4 +1,4 @@
-using EasyGold.API.Models.Entities.Ruoli;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
 namespace EasyGold.API.Repositories.Interfaces.ACL
 {
     public interface IRuoloRepository

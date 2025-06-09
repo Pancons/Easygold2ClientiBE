@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Models.OneriRivalutazione;
-using EasyGold.API.Models.Entities;
+using EasyGold.Web2.Models.Cliente.ConfigData;
+using EasyGold.Web2.Models.Cliente.Entities;
 
 namespace EasyGold.API.Services.Implementations.ConfigData
 {

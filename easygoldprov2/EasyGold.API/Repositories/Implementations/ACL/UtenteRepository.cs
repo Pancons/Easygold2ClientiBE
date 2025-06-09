@@ -1,7 +1,7 @@
 using EasyGold.API.Infrastructure;
-using EasyGold.API.Models.DTO.Utenti;
-using EasyGold.API.Models.Entities.Ruoli;
-using EasyGold.API.Models.Entities.Utenti;
+using EasyGold.Web2.Models.Cliente.ACL;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
 using EasyGold.API.Repositories.Interfaces.ACL;
 using Microsoft.EntityFrameworkCore;
 

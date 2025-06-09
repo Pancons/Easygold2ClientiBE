@@ -1,6 +1,6 @@
 using EasyGold.API.Infrastructure;
-using EasyGold.API.Models.DTO.Valute;
-using EasyGold.API.Models.Entities.Valute;
+using EasyGold.Web2.Models.Comune.Valute;
+using EasyGold.Web2.Models.Comune.Entities;
 using EasyGold.API.Repositories.Interfaces.ConfigData;
 using Microsoft.EntityFrameworkCore;
 
