@@ -49,12 +49,3 @@ namespace EasyGold.API.Repositories.Implementations.Anagrafiche
         }
     }
 }
-var entity = await _context.DocumentiCliente.FindAsync(id);
-if (entity != null)
-{
-    _context.DocumentiCliente.Remove(entity);
-    await _context.SaveChangesAsync();
-}
-        }
-    }
-}

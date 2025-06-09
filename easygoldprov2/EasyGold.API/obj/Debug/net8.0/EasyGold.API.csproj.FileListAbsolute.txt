@@ -594,3 +594,15 @@
 /home/ubuntu/workspace/easygold/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.5024E2A4.Up2Date
 /home/ubuntu/workspace/easygold/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.genruntimeconfig.cache
 /home/ubuntu/workspace/easygold/easygoldprov2/EasyGold.API/obj/Debug/net8.0/ref/EasyGold.API.dll
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.csproj.AssemblyReference.cache
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.GeneratedMSBuildEditorConfig.editorconfig
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.AssemblyInfoInputs.cache
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.AssemblyInfo.cs
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.csproj.CoreCompileInputs.cache
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.MvcApplicationPartsAssemblyInfo.cs
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.MvcApplicationPartsAssemblyInfo.cache
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.sourcelink.json
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.dll
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/refint/EasyGold.API.dll
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.xml
+/home/ubuntu/workspace/easygold_my/Easygold2BE/easygoldprov2/EasyGold.API/obj/Debug/net8.0/EasyGold.API.pdb

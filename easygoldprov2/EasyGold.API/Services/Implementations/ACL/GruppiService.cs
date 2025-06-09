@@ -1,3 +1,25 @@
+using AutoMapper;
+using EasyGold.API.Models;
+using EasyGold.API.Models.DTO.Gruppi;
+using EasyGold.API.Models.Entities.Gruppi;
+using EasyGold.API.Repositories.Interfaces.ACL;
+using EasyGold.API.Services.Interfaces.ACL;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace EasyGold.API.Services.Implementations.ACL
+{
+    public class GruppiService : IGruppiService
+    {
+        private readonly IGruppiRepository _gruppiRepository;
+        private readonly IMapper _mapper;
+
+        public GruppiService(IGruppiRepository gruppiRepository, IMapper mapper)
+        {
+            _gruppiRepository = gruppiRepository;
+            _mapper = mapper;
+        }
 
 
 
@@ -18,39 +40,38 @@
 
 
 
----
 
-### Key Differences
 
-| Aspect                | First Version                                                                 | Second Version                                                                 |
-|-----------------------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| **DTO/Entity Names**  | Uses `GruppiDTO`, `DbGruppi` with properties like `Gru_IDGruppo`              | Uses `GruppiDTO`, `DbGruppi` with properties like `Grp_IDAuto`                 |
-| **GetAllAsync**       | Supports sorting and pagination via `BaseListRequest`                         | Returns all items, no sorting or pagination                                    |
-| **Mapping**           | `ToDTO`/`ToEntity` static methods                                             | `MapToDto`/`MapToEntity` instance methods                                      |
-| **AddAsync**          | Returns the mapped DTO after add                                              | Sets the ID on the DTO after add                                               |
-| **UpdateAsync**       | Updates all fields, no check for existence                                    | Checks for existence before update, updates only if found                      |
-| **Request/Response**  | Uses `BaseListRequest` and `BaseListResponse`                                 | Uses only `BaseListResponse`                                                   |
-| **Field Names**       | `Gru_IDGruppo`, `Gru_NomeGruppo`, etc.                                        | `Grp_IDAuto`, `Grp_NomeGruppo`, etc.                                           |
 
----
 
-### Recommendations
 
-- **Field Naming:** Use the field names that match your database and DTOs. If your models use `Gru_` prefix, stick with that; if `Grp_`, use that consistently.
-- **Sorting & Pagination:** If you need sorting and pagination, keep the logic from the first version.
-- **Null Checks:** The second version’s null check in `UpdateAsync` is a good practice.
-- **Mapping:** Both mapping approaches are fine; static methods are slightly more testable.
 
----
 
-### Example: Merged Best Practices
 
-Here’s a merged version using the best practices from both, assuming you want sorting/pagination and null checks, and you use the `Gru_` prefix:
 
-```csharp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public async Task<BaseListResponse<GruppiDTO>> GetAllAsync(BaseListRequest request)
         {
-            var entities = (await _repository.GetAllAsync()).AsQueryable();
+
+            var gruppi = (await _gruppiRepository.GetAllAsync()).AsQueryable();
 
     // Sorting
             if (request.Sort != null && request.Sort.Any())
@@ -59,44 +80,76 @@ Here’s a merged version using the best practices from both, assuming you want 
                 {
                     if (sort.Field == nameof(GruppiDTO.Gru_NomeGruppo))
                     {
-                        entities = sort.Order.ToLower() == "desc"
-                            ? entities.OrderByDescending(e => e.Gru_NomeGruppo)
-                            : entities.OrderBy(e => e.Gru_NomeGruppo);
+
+
+
+                        gruppi = sort.Order.ToLower() == "desc"
+                            ? gruppi.OrderByDescending(e => e.Gru_NomeGruppo)
+                            : gruppi.OrderBy(e => e.Gru_NomeGruppo);
                     }
                 }
             }
 
-            var total = entities.Count();
-            var paged = entities.Skip(request.Offset).Take(request.Limit).ToList();
-            var dtos = paged.Select(ToDTO).ToList();
+
+
+
+            var total = gruppi.Count();
+            var paged = gruppi.Skip(request.Offset).Take(request.Limit).ToList();
+            var dtos = _mapper.Map<IEnumerable<GruppiDTO>>(paged).ToList();
 
             return new BaseListResponse<GruppiDTO>(dtos, total);
         }
 
-
-public async Task<GruppiDTO> UpdateAsync(GruppiDTO dto)
+        public async Task<GruppiDTO> GetGroupByIdAsync(int id)
         {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    var entity = await _repository.GetByIdAsync(dto.Gru_IDGruppo ?? 0);
-    if (entity == null) return null;
-
-    entity.Gru_NomeGruppo = dto.Gru_NomeGruppo;
-    entity.Gru_DescrizioneGruppo = dto.Gru_DescrizioneGruppo;
-    entity.Gru_SuperAmministratore = dto.Gru_SuperAmministratore;
-    entity.Gru_Bloccato = dto.Gru_Bloccato;
-            await _repository.UpdateAsync(entity);
-            return ToDTO(entity);
+            var gruppo = await _gruppiRepository.GetByIdAsync(id);
+            return _mapper.Map<GruppiDTO>(gruppo);
         }
+
+
+        public async Task AddGroupAsync(GruppiDTO gruppiDTO)
+        {
+            var gruppo = _mapper.Map<DbGruppi>(gruppiDTO);
+            await _gruppiRepository.AddAsync(gruppo);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public async Task<GruppiDTO> UpdateAsync(GruppiDTO dto)
+        {
+            var existingGroup = await _gruppiRepository.GetByIdAsync(dto.Gru_IDGruppo ?? 0);
+            if (existingGroup != null)
+            {
+                _mapper.Map(dto, existingGroup);
+                await _gruppiRepository.UpdateAsync(existingGroup);
+                return _mapper.Map<GruppiDTO>(existingGroup);
+            }
+            return null;
+        }
+
+        public async Task DeleteGroupAsync(int id)
+        {
+            await _gruppiRepository.DeleteAsync(id);
+        }
+    }
+}
