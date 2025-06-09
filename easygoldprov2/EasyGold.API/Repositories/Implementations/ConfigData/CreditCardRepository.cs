@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using EasyGold.API.Models.Entities;
+using EasyGold.Web2.Models.Cliente.Entities;
 using EasyGold.API.Repositories.Interfaces.ConfigData;
 
 namespace EasyGold.API.Repositories.Implementations.ConfigData

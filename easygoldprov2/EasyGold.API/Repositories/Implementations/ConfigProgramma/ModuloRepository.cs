@@ -1,5 +1,5 @@
 using EasyGold.API.Infrastructure;
-using EasyGold.API.Models.Entities.Moduli;
+using EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma;
 using EasyGold.API.Repositories.Interfaces.ConfigProgramma;
 using Microsoft.EntityFrameworkCore;
 

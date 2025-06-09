@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Moduli;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ConfigProgramma;
 using EasyGold.API.Services.Interfaces.ConfigProgramma;
 
 namespace EasyGold.API.Controllers.ConfigProgramma

@@ -1,6 +1,6 @@
 using EasyGold.API.Infrastructure;
-using EasyGold.API.Models.DTO.Nazioni;
-using EasyGold.API.Models.Entities.Nazioni;
+using EasyGold.Web2.Models.Comune.GEO;
+using EasyGold.Web2.Models.Comune.Entities.GEO;
 using EasyGold.API.Repositories.Interfaces.GEO;
 using Microsoft.EntityFrameworkCore;
 

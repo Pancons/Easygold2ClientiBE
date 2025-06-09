@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Models.TipoPagamento;
+using EasyGold.Web2.Models.Cliente.ConfigData;
 
 namespace EasyGold.API.Controllers.ConfigData
 {

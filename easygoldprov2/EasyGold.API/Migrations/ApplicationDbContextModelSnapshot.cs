@@ -22,7 +22,7 @@ namespace EasyGold.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.Allegati.DbAllegato", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.Allegati.DbAllegato", b =>
                 {
                     b.Property<int>("All_IDAllegato")
                         .ValueGeneratedOnAdd()
@@ -60,7 +60,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Allegati");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.Config.DbConfig", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma.DbConfig", b =>
                 {
                     b.Property<int>("Sys_IDAuto")
                         .ValueGeneratedOnAdd()
@@ -95,7 +95,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("syscl_config");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.Config.DbConfigLang", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma.DbConfigLang", b =>
                 {
                     b.Property<int>("SysLng_ISONum")
                         .ValueGeneratedOnAdd()
@@ -117,7 +117,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("syscl_configLang");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbAuditLog", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbAuditLog", b =>
                 {
                     b.Property<int>("Log_Id")
                         .ValueGeneratedOnAdd()
@@ -155,7 +155,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("AuditLogs");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbNegozi", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbNegozi", b =>
                 {
                     b.Property<int>("Neg_id")
                         .ValueGeneratedOnAdd()
@@ -197,7 +197,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Negozi");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.Moduli.DbModuloEasygold", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma.DbModuloEasygold", b =>
                 {
                     b.Property<int>("Mde_IDAuto")
                         .ValueGeneratedOnAdd()
@@ -225,7 +225,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("ModuloEasygold");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.Moduli.DbModuloEasygoldLang", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma.DbModuloEasygoldLang", b =>
                 {
                     b.Property<int>("Mdeid_IDAuto")
                         .ValueGeneratedOnAdd()
@@ -252,7 +252,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("ModuloEasygoldLang");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.Nazioni.DbNazioni", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Comune.Entities.GEO.DbNazioni", b =>
                 {
                     b.Property<int>("Ntn_ISO1")
                         .ValueGeneratedOnAdd()
@@ -270,7 +270,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("tbco_ISONazioni");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.NumeriRegIVA.DbNumeriRegIVA", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.Contabilita.DbNumeriRegIVA", b =>
                 {
                     b.Property<int>("RowIDAuto")
                         .ValueGeneratedOnAdd()
@@ -292,7 +292,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("NumeriRegIVA");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.RegIVA.DbRegistroIVA", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.Contabilita.DbRegistroIVA", b =>
                 {
                     b.Property<int>("RowIdAuto")
                         .ValueGeneratedOnAdd()
@@ -323,7 +323,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("RegistriIVA");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.Ruoli.DbRuolo", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbRuolo", b =>
                 {
                     b.Property<int>("Ur_IDRuolo")
                         .ValueGeneratedOnAdd()
@@ -340,7 +340,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Ruoli");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.Utenti.DbUtente", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", b =>
                 {
                     b.Property<int>("Ute_IDUtente")
                         .ValueGeneratedOnAdd()
@@ -383,7 +383,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Utenti");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.Valute.DbValute", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Comune.Entities.DbValute", b =>
                 {
                     b.Property<int>("Val_id")
                         .ValueGeneratedOnAdd()
@@ -416,9 +416,9 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Valute");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.Utenti.DbUtente", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", b =>
                 {
-                    b.HasOne("EasyGold.API.Models.Entities.Ruoli.DbRuolo", "Ruolo")
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbRuolo", "Ruolo")
                         .WithMany()
                         .HasForeignKey("Ute_IDRuolo")
                         .OnDelete(DeleteBehavior.Cascade)

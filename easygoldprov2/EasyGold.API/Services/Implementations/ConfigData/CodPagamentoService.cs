@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using EasyGold.API.Models.CodPagamento;
-using EasyGold.API.Models.Entities;
+using EasyGold.Web2.Models.Cliente.ConfigData;
+using EasyGold.Web2.Models.Cliente.Entities;
 using EasyGold.API.Services.Interfaces.ConfigData;
 using EasyGold.API.Repositories.Interfaces.ConfigData;
 

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Models;
+using EasyGold.Web2.Models;
 using EasyGold.Web2.Models.Comune.ACL;
 using EasyGold.Web2.Models.Comune.Entities;
 

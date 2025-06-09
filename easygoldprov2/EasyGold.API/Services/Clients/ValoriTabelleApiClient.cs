@@ -2,7 +2,7 @@
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
-using EasyGold.API.Models.DTO.Variabili;
+using EasyGold.Web2.Models.Variabili;
 
 namespace EasyGold.API.Services.Clients
 {

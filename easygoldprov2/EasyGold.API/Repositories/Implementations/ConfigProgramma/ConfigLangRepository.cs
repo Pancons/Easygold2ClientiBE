@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyGold.API.Infrastructure;
-using EasyGold.API.Models.Entities.Config;
+using EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma;
 using EasyGold.API.Repositories.Interfaces.ConfigProgramma;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;

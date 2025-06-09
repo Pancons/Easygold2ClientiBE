@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Models.PietrePreziose;
+using EasyGold.Web2.Models.Cliente.ConfigProdotto;
 
 namespace EasyGold.API.Controllers.ConfigProdotto
 {

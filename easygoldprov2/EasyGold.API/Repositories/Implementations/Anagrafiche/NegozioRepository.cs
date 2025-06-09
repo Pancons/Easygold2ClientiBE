@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyGold.API.Infrastructure;
-using EasyGold.API.Models.Entities;
+using EasyGold.Web2.Models.Cliente.Entities;
 using EasyGold.API.Repositories.Interfaces.Anagrafiche;
 using Microsoft.EntityFrameworkCore;
 

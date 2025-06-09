@@ -1,5 +1,5 @@
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Moduli;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ConfigProgramma;
 
 namespace EasyGold.API.Services.Interfaces.ConfigProgramma
 {

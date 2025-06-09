@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.NumeriRegIVA;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.Contabilita;
 using EasyGold.API.Services.Interfaces.Contabilita;
 
 namespace EasyGold.API.Controllers.Contabilita

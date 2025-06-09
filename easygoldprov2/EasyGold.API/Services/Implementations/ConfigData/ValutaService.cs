@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Repositories;
-using EasyGold.API.Models.Entities;
+using EasyGold.Web2.Models.Cliente.Entities;
 using AutoMapper;
-using EasyGold.API.Models.DTO.Nazioni;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Utenti;
-using EasyGold.API.Models.DTO.Valute;
+using EasyGold.Web2.Models.Comune.GEO;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ACL;
+using EasyGold.Web2.Models.Comune.Valute;
 using EasyGold.API.Services.Interfaces.ConfigData;
 using EasyGold.API.Repositories.Interfaces.ConfigData;
 

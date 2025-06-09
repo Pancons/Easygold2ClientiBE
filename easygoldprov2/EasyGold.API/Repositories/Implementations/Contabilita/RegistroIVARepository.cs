@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EasyGold.API.Infrastructure;
-using EasyGold.API.Models.Entities.RegIVA;
+using EasyGold.Web2.Models.Cliente.Entities.Contabilita;
 using EasyGold.API.Repositories.Interfaces.Contabilita;
 
 namespace EasyGold.API.Repositories.Implementations.Contabilita

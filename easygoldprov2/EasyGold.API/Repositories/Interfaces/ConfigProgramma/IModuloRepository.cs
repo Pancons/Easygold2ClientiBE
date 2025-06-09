@@ -1,4 +1,4 @@
-using EasyGold.API.Models.Entities.Moduli;
+using EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma;
 
 namespace EasyGold.API.Repositories.Interfaces.ConfigProgramma
 {
