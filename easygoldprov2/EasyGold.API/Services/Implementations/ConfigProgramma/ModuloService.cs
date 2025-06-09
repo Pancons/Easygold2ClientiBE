@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using EasyGold.API.Repositories;
 using AutoMapper;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Allegati;
-using EasyGold.API.Models.DTO.Moduli;
-using EasyGold.API.Models.Entities.Moduli;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.Allegati;
+using EasyGold.Web2.Models.Cliente.ConfigProgramma;
+using EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma;
 using EasyGold.API.Services.Interfaces.ConfigProgramma;
 using EasyGold.API.Repositories.Interfaces.ConfigProgramma;
 

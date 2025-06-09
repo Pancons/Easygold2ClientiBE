@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using EasyGold.API.Repositories.Interfaces;
 using EasyGold.API.Services.Interfaces;
-using EasyGold.API.Models.TagProdotto;
-using EasyGold.API.Models.Entities;
+using EasyGold.Web2.Models.Cliente.Prodotti;
+using EasyGold.Web2.Models.Cliente.Entities;
 
 namespace EasyGold.API.Services.Implementations.Prodotti
 {

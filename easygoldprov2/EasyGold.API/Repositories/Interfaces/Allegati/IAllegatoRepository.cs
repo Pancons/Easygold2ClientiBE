@@ -1,4 +1,4 @@
-using EasyGold.API.Models.Entities.Allegati;
+using EasyGold.Web2.Models.Cliente.Entities.Allegati;
 using Microsoft.AspNetCore.Mvc;
 
 

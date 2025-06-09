@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Moduli;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ConfigProgramma;
 using EasyGold.API.Services.Implementations;
-using EasyGold.API.Models.DTO.Nazioni;
+using EasyGold.Web2.Models.Comune.GEO;
 using EasyGold.API.Services.Interfaces.GEO;
 
 namespace EasyGold.API.Controllers.GEO

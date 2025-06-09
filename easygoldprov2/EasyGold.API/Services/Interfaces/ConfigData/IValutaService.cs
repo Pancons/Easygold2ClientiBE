@@ -1,5 +1,5 @@
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Valute;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Comune.Valute;
 
 namespace EasyGold.API.Services.Interfaces.ConfigData
 {

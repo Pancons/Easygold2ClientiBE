@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 
 
-using EasyGold.API.Models.CodPagamento;
+using EasyGold.Web2.Models.Cliente.ConfigData;
 using EasyGold.API.Services.Interfaces.ConfigData;
 namespace EasyGold.API.Controllers.ConfigData
 {

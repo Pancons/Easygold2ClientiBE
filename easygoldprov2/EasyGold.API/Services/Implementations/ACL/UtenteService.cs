@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Repositories;
-using EasyGold.API.Models;
+using EasyGold.Web2.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using EasyGold.API.Models.DTO.Allegati;
-using EasyGold.API.Models.DTO.Utenti;
-using EasyGold.API.Models.Entities.Utenti;
+using EasyGold.Web2.Models.Cliente.Allegati;
+using EasyGold.Web2.Models.Cliente.ACL;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
 using EasyGold.API.Services.Interfaces.ACL;
 using EasyGold.API.Repositories.Interfaces.ACL;
 

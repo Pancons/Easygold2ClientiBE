@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyGold.API.Infrastructure;
-using EasyGold.API.Models.Entities.NumeriRegIVA;
+using EasyGold.Web2.Models.Cliente.Entities.Contabilita;
 using EasyGold.API.Repositories.Interfaces.Contabilita;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;

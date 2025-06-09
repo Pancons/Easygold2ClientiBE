@@ -25,7 +25,7 @@ namespace EasyGold.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbAllegato", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbAllegato", b =>
                 {
                     b.Property<int>("All_IDAllegato")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Allegati");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbAuditLog", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbAuditLog", b =>
                 {
                     b.Property<int>("Log_Id")
                         .ValueGeneratedOnAdd()
@@ -101,7 +101,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("AuditLogs");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbCliente", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbCliente", b =>
                 {
                     b.Property<int>("Utw_IDClienteAuto")
                         .ValueGeneratedOnAdd()
@@ -151,7 +151,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Clienti");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbDatiCliente", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbDatiCliente", b =>
                 {
                     b.Property<int>("Dtc_IDDatiCliente")
                         .ValueGeneratedOnAdd()
@@ -251,7 +251,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("DatiClienti");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloCliente", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbModuloCliente", b =>
                 {
                     b.Property<int>("Mdc_IDAuto")
                         .ValueGeneratedOnAdd()
@@ -290,7 +290,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("ModuloClienti");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloEasygold", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbModuloEasygold", b =>
                 {
                     b.Property<int>("Mde_IDAuto")
                         .ValueGeneratedOnAdd()
@@ -318,7 +318,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("ModuloEasygold");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloEasygoldLang", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbModuloEasygoldLang", b =>
                 {
                     b.Property<int>("Mdeid_IDAuto")
                         .ValueGeneratedOnAdd()
@@ -345,7 +345,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("ModuloEasygoldLang");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbNazioni", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbNazioni", b =>
                 {
                     b.Property<int>("Naz_id")
                         .ValueGeneratedOnAdd()
@@ -363,7 +363,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Nazioni");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbNegozi", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbNegozi", b =>
                 {
                     b.Property<int>("Neg_id")
                         .ValueGeneratedOnAdd()
@@ -405,7 +405,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Negozi");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbRuolo", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbRuolo", b =>
                 {
                     b.Property<int>("Ur_IDRuolo")
                         .ValueGeneratedOnAdd()
@@ -422,7 +422,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Ruoli");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbStatoCliente", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbStatoCliente", b =>
                 {
                     b.Property<int>("Stc_id")
                         .ValueGeneratedOnAdd()
@@ -444,7 +444,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("StatiCliente");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbUtente", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbUtente", b =>
                 {
                     b.Property<int>("Ute_IDUtente")
                         .ValueGeneratedOnAdd()
@@ -487,7 +487,7 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Utenti");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbValute", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbValute", b =>
                 {
                     b.Property<int>("Val_id")
                         .ValueGeneratedOnAdd()
@@ -520,15 +520,15 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Valute");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloCliente", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbModuloCliente", b =>
                 {
-                    b.HasOne("EasyGold.API.Models.Entities.DbCliente", "Cliente")
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.DbCliente", "Cliente")
                         .WithMany("ModuliClienti")
                         .HasForeignKey("Mdc_IDCliente")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EasyGold.API.Models.Entities.DbModuloEasygold", "Modulo")
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.DbModuloEasygold", "Modulo")
                         .WithMany("ModuliClienti")
                         .HasForeignKey("Mdc_IDModulo")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -539,9 +539,9 @@ namespace EasyGold.API.Migrations
                     b.Navigation("Modulo");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbUtente", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbUtente", b =>
                 {
-                    b.HasOne("EasyGold.API.Models.Entities.DbRuolo", "Ruolo")
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.DbRuolo", "Ruolo")
                         .WithMany()
                         .HasForeignKey("Ute_IDRuolo")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -550,12 +550,12 @@ namespace EasyGold.API.Migrations
                     b.Navigation("Ruolo");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbCliente", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbCliente", b =>
                 {
                     b.Navigation("ModuliClienti");
                 });
 
-            modelBuilder.Entity("EasyGold.API.Models.Entities.DbModuloEasygold", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbModuloEasygold", b =>
                 {
                     b.Navigation("ModuliClienti");
                 });

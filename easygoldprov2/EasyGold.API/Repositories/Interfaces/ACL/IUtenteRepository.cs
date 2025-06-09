@@ -1,5 +1,5 @@
-using EasyGold.API.Models.DTO.Utenti;
-using EasyGold.API.Models.Entities.Utenti;
+using EasyGold.Web2.Models.Cliente.ACL;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
 namespace EasyGold.API.Repositories.Interfaces.ACL
 {
     public interface IUtenteRepository

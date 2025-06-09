@@ -1,5 +1,5 @@
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Nazioni;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Comune.GEO;
 
 namespace EasyGold.API.Services.Interfaces.GEO
 {

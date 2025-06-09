@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using EasyGold.API.Models.Entities.Utenti;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
 
 namespace EasyGold.API.Services.Interfaces.ACL
 {

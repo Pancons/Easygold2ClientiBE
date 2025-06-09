@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using EasyGold.API.Models.CreditCard;
+using EasyGold.Web2.Models.Cliente.ConfigData;
 using EasyGold.API.Services.Interfaces.ConfigData;
 namespace EasyGold.API.Controllers.ConfigData
 {

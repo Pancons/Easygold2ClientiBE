@@ -1,20 +1,20 @@
 using Microsoft.EntityFrameworkCore;
-using EasyGold.API.Models;
-using EasyGold.API.Models.Entities;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.Entities;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EasyGold.API.Models.Entities.Allegati;
-using EasyGold.API.Models.Entities.Config;
-using EasyGold.API.Models.Entities.Moduli;
-using EasyGold.API.Models.Entities.Nazioni;
-using EasyGold.API.Models.Entities.NumeriRegIVA;
-using EasyGold.API.Models.Entities.RegIVA;
-using EasyGold.API.Models.Entities.Ruoli;
-using EasyGold.API.Models.Entities.Utenti;
-using EasyGold.API.Models.Entities.Valute;
+using EasyGold.Web2.Models.Cliente.Entities.Allegati;
+using EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma;
+using EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma;
+using EasyGold.Web2.Models.Comune.Entities.GEO;
+using EasyGold.Web2.Models.Cliente.Entities.Contabilita;
+using EasyGold.Web2.Models.Cliente.Entities.Contabilita;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
+using EasyGold.Web2.Models.Comune.Entities;
 
 namespace EasyGold.API.Infrastructure
 {

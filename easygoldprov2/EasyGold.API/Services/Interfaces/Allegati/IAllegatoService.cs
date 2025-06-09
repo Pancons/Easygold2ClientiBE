@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Allegati;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.Allegati;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasyGold.API.Services.Interfaces.Allegati

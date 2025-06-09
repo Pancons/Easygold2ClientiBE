@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyGold.API.Models.Entities.NumeriRegIVA;
+using EasyGold.Web2.Models.Cliente.Entities.Contabilita;
 
 namespace EasyGold.API.Repositories.Interfaces.Contabilita
 {

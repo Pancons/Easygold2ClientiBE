@@ -1,9 +1,9 @@
 using System.Linq; // Ensure this is present for LINQ
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using EasyGold.API.Models;
-using EasyGold.API.Models.DTO.Config;
-using EasyGold.API.Models.Entities.Config;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ConfigProgramma;
+using EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma;
 using EasyGold.API.Services.Interfaces.ConfigProgramma;
 using EasyGold.API.Repositories.Interfaces.ConfigProgramma;
 
