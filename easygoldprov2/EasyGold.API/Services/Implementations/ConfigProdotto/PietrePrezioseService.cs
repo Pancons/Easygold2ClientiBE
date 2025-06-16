@@ -2,7 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using EasyGold.API.Repositories.Interfaces;
-using EasyGold.API.Services.Interfaces;
+using EasyGold.API.Services.Interfaces.ConfigProdotto;
 using EasyGold.Web2.Models.Cliente.ConfigProdotto;
 using EasyGold.Web2.Models.Cliente.Entities;
 
