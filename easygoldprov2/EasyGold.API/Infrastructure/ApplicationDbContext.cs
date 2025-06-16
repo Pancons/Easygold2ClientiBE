@@ -14,6 +14,7 @@ using EasyGold.Web2.Models.Cliente.Entities.Contabilita;
 using EasyGold.Web2.Models.Cliente.Entities.Contabilita;
 using EasyGold.Web2.Models.Cliente.Entities.ACL;
 using EasyGold.Web2.Models.Cliente.Entities.ACL;
+using EasyGold.Web2.Models.Cliente.Entities.Anagrafiche;
 using EasyGold.Web2.Models.Comune.Entities;
 using EasyGold.Web2.Models.Cliente.Entities.Anagrafiche;
 using EasyGold.Web2.Models.Cliente.Entities.ConfigData;
@@ -42,6 +43,10 @@ namespace EasyGold.API.Infrastructure
         public DbSet<DbNumeriRegIVA> NumeriRegIVA { get; set; }
         public DbSet<DbConfig> Configurazioni { get; set; }
         public DbSet<DbConfigLang> ConfigLag { get; set; }
+<<<<<<< codex/add-dbset-properties-to-applicationdbcontext
+        public DbSet<DbDocumentoCliente> DocumentiCliente { get; set; }
+        public DbSet<DbImpresaFinanziaria> ImpreseFinanziarie { get; set; }
+=======
         public DbSet<DbUtenteNegozi> UtenteNegozi { get; set; }
         public DbSet<DbNazioneNegozio> NazioneNegozio { get; set; }
         public DbSet<DbNegoziAltro> NegoziAltro { get; set; }
@@ -49,6 +54,7 @@ namespace EasyGold.API.Infrastructure
         public DbSet<DbCreditCardLang> CreditCardLangs { get; set; }
         public DbSet<DbTipoPagamento> TipoPagamenti { get; set; }
         public DbSet<DbCauOrdinamento> CauOrdinamento { get; set; }
+>>>>>>> main
 
         /// <summary>
         /// Configura le entità e le relazioni tra di esse.
@@ -63,6 +69,8 @@ namespace EasyGold.API.Infrastructure
             modelBuilder.Entity<DbModuloEasygold>().HasKey(m => m.Mde_IDAuto);
             modelBuilder.Entity<DbNazioni>().HasKey(n => n.Ntn_ISO1);
             modelBuilder.Entity<DbValute>().HasKey(v => v.Val_id);
+            modelBuilder.Entity<DbDocumentoCliente>().HasKey(d => d.Doc_IdAuto);
+            modelBuilder.Entity<DbImpresaFinanziaria>().HasKey(i => i.Imf_IdAuto);
 
             modelBuilder.Entity<DbUtente>()
             .HasOne(u => u.Ruolo)
