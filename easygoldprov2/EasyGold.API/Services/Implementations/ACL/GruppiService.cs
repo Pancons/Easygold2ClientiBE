@@ -1,102 +1,87 @@
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ACL;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
+using EasyGold.API.Services.Interfaces.ACL;
+using EasyGold.API.Repositories.Interfaces.ACL;
 
+namespace EasyGold.API.Services.Implementations.ACL
+{
+    public class GruppiService : IGruppiService
+    {
+        private readonly IGruppiRepository _repository;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-### Key Differences
-
-| Aspect                | First Version                                                                 | Second Version                                                                 |
-|-----------------------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| **DTO/Entity Names**  | Uses `GruppiDTO`, `DbGruppi` with properties like `Gru_IDGruppo`              | Uses `GruppiDTO`, `DbGruppi` with properties like `Grp_IDAuto`                 |
-| **GetAllAsync**       | Supports sorting and pagination via `BaseListRequest`                         | Returns all items, no sorting or pagination                                    |
-| **Mapping**           | `ToDTO`/`ToEntity` static methods                                             | `MapToDto`/`MapToEntity` instance methods                                      |
-| **AddAsync**          | Returns the mapped DTO after add                                              | Sets the ID on the DTO after add                                               |
-| **UpdateAsync**       | Updates all fields, no check for existence                                    | Checks for existence before update, updates only if found                      |
-| **Request/Response**  | Uses `BaseListRequest` and `BaseListResponse`                                 | Uses only `BaseListResponse`                                                   |
-| **Field Names**       | `Gru_IDGruppo`, `Gru_NomeGruppo`, etc.                                        | `Grp_IDAuto`, `Grp_NomeGruppo`, etc.                                           |
-
----
-
-### Recommendations
-
-- **Field Naming:** Use the field names that match your database and DTOs. If your models use `Gru_` prefix, stick with that; if `Grp_`, use that consistently.
-- **Sorting & Pagination:** If you need sorting and pagination, keep the logic from the first version.
-- **Null Checks:** The second version’s null check in `UpdateAsync` is a good practice.
-- **Mapping:** Both mapping approaches are fine; static methods are slightly more testable.
-
----
-
-### Example: Merged Best Practices
-
-Here’s a merged version using the best practices from both, assuming you want sorting/pagination and null checks, and you use the `Gru_` prefix:
-
-```csharp
-        public async Task<BaseListResponse<GruppiDTO>> GetAllAsync(BaseListRequest request)
+        public GruppiService(IGruppiRepository repository)
         {
-            var entities = (await _repository.GetAllAsync()).AsQueryable();
-
-    // Sorting
-            if (request.Sort != null && request.Sort.Any())
-            {
-                foreach (var sort in request.Sort)
-                {
-                    if (sort.Field == nameof(GruppiDTO.Gru_NomeGruppo))
-                    {
-                        entities = sort.Order.ToLower() == "desc"
-                            ? entities.OrderByDescending(e => e.Gru_NomeGruppo)
-                            : entities.OrderBy(e => e.Gru_NomeGruppo);
-                    }
-                }
-            }
-
-            var total = entities.Count();
-            var paged = entities.Skip(request.Offset).Take(request.Limit).ToList();
-            var dtos = paged.Select(ToDTO).ToList();
-
-            return new BaseListResponse<GruppiDTO>(dtos, total);
+            _repository = repository;
         }
 
-
-public async Task<GruppiDTO> UpdateAsync(GruppiDTO dto)
+        public async Task<BaseListResponse<GruppiDTO>> GetAllAsync()
         {
+            var entities = await _repository.GetAllAsync();
+            var list = entities.Select(MapToDto).ToList();
+            return new BaseListResponse<GruppiDTO>(list, list.Count);
+        }
 
+        public async Task<GruppiDTO> GetByIdAsync(int id)
+        {
+            var entity = await _repository.GetByIdAsync(id);
+            return entity == null ? null : MapToDto(entity);
+        }
 
+        public async Task<GruppiDTO> AddAsync(GruppiDTO dto)
+        {
+            var entity = MapToEntity(dto);
+            await _repository.AddAsync(entity);
+            dto.Grp_IDAuto = entity.Grp_IDAuto;
+            return dto;
+        }
 
+        public async Task<GruppiDTO> UpdateAsync(GruppiDTO dto)
+        {
+            var entity = await _repository.GetByIdAsync(dto.Grp_IDAuto);
+            if (entity == null) return null;
 
+            entity.Grp_NomeGruppo = dto.Grp_NomeGruppo;
+            entity.Grp_DesGruppo = dto.Grp_DesGruppo;
+            entity.Grp_SuperAdmin = dto.Grp_SuperAdmin;
+            entity.Grp_Bloccato = dto.Grp_Bloccato;
 
-
-
-
-
-
-
-
-
-
-    var entity = await _repository.GetByIdAsync(dto.Gru_IDGruppo ?? 0);
-    if (entity == null) return null;
-
-    entity.Gru_NomeGruppo = dto.Gru_NomeGruppo;
-    entity.Gru_DescrizioneGruppo = dto.Gru_DescrizioneGruppo;
-    entity.Gru_SuperAmministratore = dto.Gru_SuperAmministratore;
-    entity.Gru_Bloccato = dto.Gru_Bloccato;
             await _repository.UpdateAsync(entity);
-            return ToDTO(entity);
+            return MapToDto(entity);
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            await _repository.DeleteAsync(id);
+        }
+
+        private GruppiDTO MapToDto(DbGruppi entity)
+        {
+            if (entity == null) return null;
+            return new GruppiDTO
+            {
+                Grp_IDAuto = entity.Grp_IDAuto,
+                Grp_NomeGruppo = entity.Grp_NomeGruppo,
+                Grp_DesGruppo = entity.Grp_DesGruppo ?? string.Empty,
+                Grp_SuperAdmin = entity.Grp_SuperAdmin ?? false,
+                Grp_Bloccato = entity.Grp_Bloccato ?? false
+            };
+        }
+
+        private DbGruppi MapToEntity(GruppiDTO dto)
+        {
+            if (dto == null) return null;
+            return new DbGruppi
+            {
+                Grp_IDAuto = dto.Grp_IDAuto,
+                Grp_NomeGruppo = dto.Grp_NomeGruppo,
+                Grp_DesGruppo = dto.Grp_DesGruppo,
+                Grp_SuperAdmin = dto.Grp_SuperAdmin,
+                Grp_Bloccato = dto.Grp_Bloccato
+            };
+        }
+    }
+}
