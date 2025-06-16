@@ -32,11 +32,14 @@
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.0" />
      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.10" />
-     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="8.1.1" />
      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.3.0" />
      <PackageReference Include="System.Text.Json" Version="9.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\EasyGold.Web2.Models\Models\Models.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\Entities\Variabili\" />
