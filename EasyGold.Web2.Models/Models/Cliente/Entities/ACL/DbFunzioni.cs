@@ -5,7 +5,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasyGold.Web2.Models.Cliente.Entities.ACL
 {
-    [Table("tbco_funzioni")]
+    [Table("tbco_funzioni")] //
     public class DbFunzioni : BaseDbEntity
     {
         /// <summary>
@@ -35,5 +35,8 @@ namespace EasyGold.Web2.Models.Cliente.Entities.ACL
         /// Check per vedere se è stato annullato
         /// </summary>
         public bool? Abl_Annullato { get; set; }
+
+        public virtual ICollection<DbPermessiGruppo> PermessiGruppo { get; set; } = new List<DbPermessiGruppo>();
+        public virtual ICollection<DbFunzioniLang> FunzioniLang { get; set; }= new List<DbFunzioniLang>();
     }
 }

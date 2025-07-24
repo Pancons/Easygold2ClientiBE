@@ -22,140 +22,823 @@ namespace EasyGold.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.Allegati.DbAllegato", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbFiscalePostazioni", b =>
                 {
-                    b.Property<int>("All_IDAllegato")
+                    b.Property<int>("Fpo_IDAuto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("All_IDAllegato"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Fpo_IDAuto"));
 
-                    b.Property<int>("All_Dimensione")
+                    b.Property<bool>("Fpo_Annullato")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Fpo_Attivo")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Fpo_IDPostazione")
                         .HasColumnType("int");
 
-                    b.Property<string>("All_EntitaRiferimento")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("All_Estensione")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("All_ImgUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("All_NomeFile")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("All_Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("All_RecordId")
+                    b.Property<int>("Fpo_IDRegFiscale")
                         .HasColumnType("int");
 
-                    b.HasKey("All_IDAllegato");
+                    b.Property<string>("Fpo_IPPath")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.ToTable("Allegati");
+                    b.HasKey("Fpo_IDAuto");
+
+                    b.HasIndex("Fpo_IDPostazione");
+
+                    b.HasIndex("Fpo_IDRegFiscale");
+
+                    b.ToTable("tbcl_fiscalePostazioni");
                 });
 
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma.DbConfig", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbFunzioni", b =>
                 {
-                    b.Property<int>("Sys_IDAuto")
+                    b.Property<int>("Abl_IDAuto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Sys_IDAuto"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Abl_IDAuto"));
 
-                    b.Property<int?>("Sys_IDNazione")
+                    b.Property<bool?>("Abl_Annullato")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Abl_DescFunzione")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Abl_DescFunzioneEstesa")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("Abl_IDPadre")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Sys_Lunghezza")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Sys_NomeCampo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Sys_Sezione")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sys_TipoCampo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sys_Valore")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Sys_IDAuto");
-
-                    b.ToTable("syscl_config");
-                });
-
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma.DbConfigLang", b =>
-                {
-                    b.Property<int>("SysLng_ISONum")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnOrder(0);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SysLng_ISONum"));
-
-                    b.Property<int>("SysLng_ID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SysLng_NomeCampo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("SysLng_ISONum");
-
-                    b.ToTable("syscl_configLang");
-                });
-
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbAuditLog", b =>
-                {
-                    b.Property<int>("Log_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Log_Id"));
-
-                    b.Property<DateTime>("Log_ChangeDate")
+                    b.Property<DateTime>("rowcreated_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Log_ColumnName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Log_NewValue")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Log_OldValue")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Abl_IDAuto");
 
-                    b.Property<string>("Log_RecordId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Log_TableName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Log_User")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Log_Id");
-
-                    b.ToTable("AuditLogs");
+                    b.ToTable("tbco_funzioni");
                 });
 
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbNegozi", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbFunzioniLang", b =>
+                {
+                    b.Property<int>("Ablid_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ablid_ISONum")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ablid_DescFunzione")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Ablid_descFunzioneEstesa")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Ablid_ID", "Ablid_ISONum");
+
+                    b.ToTable("tbco_funzioni_lang");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbGruppi", b =>
+                {
+                    b.Property<int>("Grp_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Grp_IDAuto"));
+
+                    b.Property<bool?>("Grp_Bloccato")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Grp_DesGruppo")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Grp_NomeGruppo")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool?>("Grp_SuperAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Grp_IDAuto");
+
+                    b.ToTable("tbcl_gruppi");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbGruppiLang", b =>
+                {
+                    b.Property<int>("grpid_ISONum")
+                        .HasColumnType("int");
+
+                    b.Property<int>("grpid_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DbGruppiGrp_IDAuto")
+                        .HasColumnType("int");
+
+                    b.Property<string>("grpid_desGruppo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("grpid_nomeGruppo")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("grpid_ISONum", "grpid_ID");
+
+                    b.HasIndex("DbGruppiGrp_IDAuto");
+
+                    b.HasIndex("grpid_ID");
+
+                    b.ToTable("tbcl_gruppi_lang");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbLettorePostazioni", b =>
+                {
+                    b.Property<int>("Lpo_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Lpo_IDAuto"));
+
+                    b.Property<bool>("Lpo_Annullato")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Lpo_DevLettore")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Lpo_IDLettore")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Lpo_IDPostazione")
+                        .HasColumnType("int");
+
+                    b.HasKey("Lpo_IDAuto");
+
+                    b.HasIndex("Lpo_IDPostazione");
+
+                    b.ToTable("tbcl_lettorePostazioni");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbModuliStampe", b =>
+                {
+                    b.Property<int>("Mst_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mst_IDAuto"));
+
+                    b.Property<bool>("Mst_Annullato")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Mst_Descrizione")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Mst_NomeModulo")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Mst_TipoModulo")
+                        .HasColumnType("int");
+
+                    b.HasKey("Mst_IDAuto");
+
+                    b.ToTable("tbco_moduliStampe");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbPermessiGruppo", b =>
+                {
+                    b.Property<int>("Abg_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Abg_IDAuto"));
+
+                    b.Property<int>("Abg_IDFunzione")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Abg_IDGruppo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Abg_IDTipoPermesso")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DbTipoPermessoTpa_IDAuto")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Abg_IDAuto");
+
+                    b.HasIndex("Abg_IDFunzione");
+
+                    b.HasIndex("Abg_IDGruppo");
+
+                    b.HasIndex("DbTipoPermessoTpa_IDAuto");
+
+                    b.ToTable("tbcl_PermessiGruppo");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbPwUtenti", b =>
+                {
+                    b.Property<int>("Utp_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Utp_IDAuto"));
+
+                    b.Property<int>("Utp_IDUtente")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Utp_PwUtente")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Utp_TipoPw")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Utp_IDAuto");
+
+                    b.HasIndex("Utp_IDUtente");
+
+                    b.HasIndex("Utp_TipoPw");
+
+                    b.ToTable("tbcl_pwUtenti");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbRefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Expires")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("StoreId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("tbcl_refresh_token");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbRegFiscale", b =>
+                {
+                    b.Property<int>("Rfi_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Rfi_IDAuto"));
+
+                    b.Property<bool>("Rfi_Annullato")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Rfi_CodNegozio")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Rfi_Descrizione")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Rfi_Matricola")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Rfi_NumeroChiusure")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rfi_TipoRegFiscale")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Rfi_UltimaDataChiusura")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Rfi_IDAuto");
+
+                    b.HasIndex("Rfi_CodNegozio");
+
+                    b.ToTable("tbcl_regFiscale");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbSessioniEasyGold", b =>
+                {
+                    b.Property<int>("Sse_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Sse_IDAuto"));
+
+                    b.Property<int?>("DbUtenteUte_IDAuto")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Sse_DataLogin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Sse_DataLogout")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Sse_DataLogoutForzato")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Sse_IDCliente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Sse_IDUtente")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Sse_SesScaduta")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("Sse_sesForzata")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Sse_IDAuto");
+
+                    b.HasIndex("DbUtenteUte_IDAuto");
+
+                    b.ToTable("tbco_SessioniEasyGold");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbStampePostazioni", b =>
+                {
+                    b.Property<int>("Tpo_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Tpo_IDAuto"));
+
+                    b.Property<bool>("Tpo_Annullato")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Tpo_Device")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("Tpo_Diretta")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Tpo_IDPostazione")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Tpo_IDStampa")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Tpo_IPDevice")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Tpo_IDAuto");
+
+                    b.HasIndex("Tpo_IDPostazione");
+
+                    b.HasIndex("Tpo_IDStampa");
+
+                    b.ToTable("tbcl_stampePostazioni");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTestataPostazioni", b =>
+                {
+                    b.Property<int>("tpo_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("tpo_IDAuto"));
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("tpo_annullato")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("tpo_card")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("tpo_descizione")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("tpo_registratore")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("tpo_stampanti")
+                        .HasColumnType("bit");
+
+                    b.HasKey("tpo_IDAuto");
+
+                    b.ToTable("tbcl_testataPostazioni");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTestataPostazioniLang", b =>
+                {
+                    b.Property<int>("tpoid_ISONum")
+                        .HasColumnType("int");
+
+                    b.Property<int>("tpoid_ID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("tpoid_Descrizione")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("tpoid_ISONum", "tpoid_ID");
+
+                    b.ToTable("tbco_testataPostazioni_lang");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTipoPermesso", b =>
+                {
+                    b.Property<int>("Tpa_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Tpa_IDAuto"));
+
+                    b.Property<int?>("Tpa_LivelloPermesso")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Tpa_TipoPermesso")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Tpa_IDAuto");
+
+                    b.ToTable("tbco_tipoPermesso");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTipoPermessoLang", b =>
+                {
+                    b.Property<int>("Tpaid_ISONum")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Tpaid_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Tpaid_TipoAbilitazione")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Tpaid_ISONum", "Tpaid_ID");
+
+                    b.ToTable("tbco_tipoPermesso_lang");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTipoPw", b =>
+                {
+                    b.Property<int>("Tpp_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Tpp_IDAuto"));
+
+                    b.Property<string>("Tpp_TipoPw")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Tpp_IDAuto");
+
+                    b.ToTable("tbcl_tipoPw");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTipoPwLang", b =>
+                {
+                    b.Property<int>("Tppid_ISONum")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Tppid_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Tppid_TipiPw")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Tppid_ISONum", "Tppid_ID");
+
+                    b.ToTable("tbcl_tipopw_Lang");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", b =>
+                {
+                    b.Property<int>("Ute_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Ute_IDAuto"));
+
+                    b.Property<bool>("Ute_AbilitaCassa")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Ute_AbilitaEliminaProd")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Ute_AbilitaTuttiNegozi")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Ute_Bloccato")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Ute_Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ute_IDGruppo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ute_IDIdioma")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ute_IDUtente")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Ute_NomeUtente")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Ute_PasswordResetToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Ute_ResetTokenExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Ute_IDAuto");
+
+                    b.HasIndex("Ute_IDGruppo");
+
+                    b.ToTable("tbcl_utenti");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtenteNegozi", b =>
+                {
+                    b.Property<int>("Utn_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Utn_IDAuto"));
+
+                    b.Property<bool>("Utn_Annullato")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Utn_Default")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Utn_IDNegozio")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Utn_IDUtente")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Utn_IDAuto");
+
+                    b.HasIndex("Utn_IDNegozio");
+
+                    b.HasIndex("Utn_IDUtente");
+
+                    b.ToTable("tbcl_utenteNegozi");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtentePostazione", b =>
+                {
+                    b.Property<int>("Upo_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Upo_IDAuto"));
+
+                    b.Property<bool>("Upo_Annullato")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Upo_IDNegozio")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Upo_IDPostazione")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Upo_IDUtente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Upo_IdUtente_IDNegozio")
+                        .HasColumnType("int");
+
+                    b.HasKey("Upo_IDAuto");
+
+                    b.HasIndex("Upo_IDNegozio");
+
+                    b.HasIndex("Upo_IDPostazione");
+
+                    b.HasIndex("Upo_IDUtente");
+
+                    b.ToTable("tbcl_utentePostazioni");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.Anagrafiche.DbNazioneNegozio", b =>
+                {
+                    b.Property<int>("Nne_IDAuto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Nne_IDAuto"));
+
+                    b.Property<int>("Nne_IDNegozio")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Nne_IDTipoCampo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nne_Valore")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Nne_IDAuto");
+
+                    b.ToTable("tbcl_nazioneNegozio");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.Anagrafiche.DbNegozi", b =>
                 {
                     b.Property<int>("Neg_id")
                         .ValueGeneratedOnAdd()
@@ -197,234 +880,336 @@ namespace EasyGold.API.Migrations
                     b.ToTable("Negozi");
                 });
 
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma.DbModuloEasygold", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.Anagrafiche.DbNegoziAltro", b =>
                 {
-                    b.Property<int>("Mde_IDAuto")
+                    b.Property<int>("Nea_IDAuto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mde_IDAuto"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Nea_IDAuto"));
 
-                    b.Property<string>("Mde_CodEcomm")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("Nea_IDAliquotaIVA")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Mde_Descrizione")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("Nea_IDListino")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Mde_DescrizioneEstesa")
-                        .IsRequired()
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
+                    b.Property<int>("Nea_IDNazione")
+                        .HasColumnType("int");
 
-                    b.HasKey("Mde_IDAuto");
+                    b.Property<int>("Nea_IDValuta")
+                        .HasColumnType("int");
 
-                    b.ToTable("ModuloEasygold");
+                    b.Property<DateTime>("rowcreated_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowdeleted_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("rowupdated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Nea_IDAuto");
+
+                    b.ToTable("tbcl_negoziAltro");
                 });
 
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma.DbModuloEasygoldLang", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.DbAuditLog", b =>
                 {
-                    b.Property<int>("Mdeid_IDAuto")
+                    b.Property<int>("Log_Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Mdeid_IDAuto"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Log_Id"));
 
-                    b.Property<string>("Mdeid_DescEstesa")
+                    b.Property<DateTime>("Log_ChangeDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Log_ColumnName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Mdeid_Descrizione")
+                    b.Property<string>("Log_NewValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_OldValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Log_RecordId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Mdeid_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Mdeid_ISONum")
-                        .HasColumnType("int");
-
-                    b.HasKey("Mdeid_IDAuto");
-
-                    b.ToTable("ModuloEasygoldLang");
-                });
-
-            modelBuilder.Entity("EasyGold.Web2.Models.Comune.Entities.GEO.DbNazioni", b =>
-                {
-                    b.Property<int>("Ntn_ISO1")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Ntn_ISO1"));
-
-                    b.Property<string>("Ntn_Descrizione")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("Ntn_ISO1");
-
-                    b.ToTable("tbco_ISONazioni");
-                });
-
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.Contabilita.DbNumeriRegIVA", b =>
-                {
-                    b.Property<int>("RowIDAuto")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RowIDAuto"));
-
-                    b.Property<int>("Nri_Anno")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Nri_NumFattura")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RowIDRegIVA")
-                        .HasColumnType("int");
-
-                    b.HasKey("RowIDAuto");
-
-                    b.ToTable("NumeriRegIVA");
-                });
-
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.Contabilita.DbRegistroIVA", b =>
-                {
-                    b.Property<int>("RowIdAuto")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RowIdAuto"));
-
-                    b.Property<bool>("Rgi_Annulla")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Rgi_Descrizione")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Rgi_Prefisso")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("Rgi_Suffisso")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.HasKey("RowIdAuto");
-
-                    b.ToTable("RegistriIVA");
-                });
-
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbRuolo", b =>
-                {
-                    b.Property<int>("Ur_IDRuolo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Ur_IDRuolo"));
-
-                    b.Property<string>("Ur_Descrizione")
+                    b.Property<string>("Log_TableName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Ur_IDRuolo");
-
-                    b.ToTable("Ruoli");
-                });
-
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", b =>
-                {
-                    b.Property<int>("Ute_IDUtente")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Ute_IDUtente"));
-
-                    b.Property<bool>("Ute_Bloccato")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Ute_Cognome")
+                    b.Property<string>("Log_User")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Ute_IDRuolo")
-                        .HasColumnType("int");
+                    b.HasKey("Log_Id");
 
-                    b.Property<string>("Ute_Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Ute_NomeUtente")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Ute_Nota")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Ute_Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Ute_IDUtente");
-
-                    b.HasIndex("Ute_IDRuolo");
-
-                    b.ToTable("Utenti");
+                    b.ToTable("AuditLogs");
                 });
 
-            modelBuilder.Entity("EasyGold.Web2.Models.Comune.Entities.DbValute", b =>
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbFiscalePostazioni", b =>
                 {
-                    b.Property<int>("Val_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Val_id"));
-
-                    b.Property<decimal>("Val_Cambio")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Val_Descrizione")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("Val_NumeroDecimali")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Val_Simbolo")
-                        .IsRequired()
-                        .HasMaxLength(3)
-                        .HasColumnType("nvarchar(3)");
-
-                    b.Property<string>("Val_SimboloRegCassa")
-                        .HasMaxLength(3)
-                        .HasColumnType("nvarchar(3)");
-
-                    b.HasKey("Val_id");
-
-                    b.ToTable("Valute");
-                });
-
-            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", b =>
-                {
-                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbRuolo", "Ruolo")
-                        .WithMany()
-                        .HasForeignKey("Ute_IDRuolo")
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTestataPostazioni", "TestataPostazioni")
+                        .WithMany("FiscalePostazioni")
+                        .HasForeignKey("Fpo_IDPostazione")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Ruolo");
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbRegFiscale", "RegFiscale")
+                        .WithMany()
+                        .HasForeignKey("Fpo_IDRegFiscale")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RegFiscale");
+
+                    b.Navigation("TestataPostazioni");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbFunzioniLang", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbFunzioni", "Funzione")
+                        .WithMany("FunzioniLang")
+                        .HasForeignKey("Ablid_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Funzione");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbGruppiLang", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbGruppi", null)
+                        .WithMany("GruppiLang")
+                        .HasForeignKey("DbGruppiGrp_IDAuto");
+
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbGruppi", "Gruppi")
+                        .WithMany()
+                        .HasForeignKey("grpid_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Gruppi");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbLettorePostazioni", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTestataPostazioni", "TestataPostazioni")
+                        .WithMany("LettorePostazioni")
+                        .HasForeignKey("Lpo_IDPostazione")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TestataPostazioni");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbPermessiGruppo", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbFunzioni", "Funzioni")
+                        .WithMany("PermessiGruppo")
+                        .HasForeignKey("Abg_IDFunzione")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbGruppi", "Gruppi")
+                        .WithMany("PermessiGruppo")
+                        .HasForeignKey("Abg_IDGruppo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTipoPermesso", "DbTipoPermesso")
+                        .WithMany("PermessiGruppo")
+                        .HasForeignKey("DbTipoPermessoTpa_IDAuto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DbTipoPermesso");
+
+                    b.Navigation("Funzioni");
+
+                    b.Navigation("Gruppi");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbPwUtenti", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", "Utente")
+                        .WithMany("PwUtenti")
+                        .HasForeignKey("Utp_IDUtente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTipoPw", "TipoPw")
+                        .WithMany("PwUtenti")
+                        .HasForeignKey("Utp_TipoPw")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TipoPw");
+
+                    b.Navigation("Utente");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbRefreshToken", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", "User")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbRegFiscale", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.Anagrafiche.DbNegozi", "Negozio")
+                        .WithMany()
+                        .HasForeignKey("Rfi_CodNegozio")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Negozio");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbSessioniEasyGold", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", null)
+                        .WithMany("Sessioni")
+                        .HasForeignKey("DbUtenteUte_IDAuto");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbStampePostazioni", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTestataPostazioni", "TestataPostazioni")
+                        .WithMany("StampePostazioni")
+                        .HasForeignKey("Tpo_IDPostazione")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbModuliStampe", "ModuliStampe")
+                        .WithMany()
+                        .HasForeignKey("Tpo_IDStampa")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ModuliStampe");
+
+                    b.Navigation("TestataPostazioni");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbGruppi", "Gruppo")
+                        .WithMany("Utenti")
+                        .HasForeignKey("Ute_IDGruppo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Gruppo");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtenteNegozi", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.Anagrafiche.DbNegozi", "Negozio")
+                        .WithMany("Utenti")
+                        .HasForeignKey("Utn_IDNegozio")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", "Utente")
+                        .WithMany("UtenteNegozi")
+                        .HasForeignKey("Utn_IDUtente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Negozio");
+
+                    b.Navigation("Utente");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtentePostazione", b =>
+                {
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.Anagrafiche.DbNegozi", "Negozio")
+                        .WithMany()
+                        .HasForeignKey("Upo_IDNegozio")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTestataPostazioni", "Postazione")
+                        .WithMany()
+                        .HasForeignKey("Upo_IDPostazione")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", "Utente")
+                        .WithMany("UtentePostazioni")
+                        .HasForeignKey("Upo_IDUtente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Negozio");
+
+                    b.Navigation("Postazione");
+
+                    b.Navigation("Utente");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbFunzioni", b =>
+                {
+                    b.Navigation("FunzioniLang");
+
+                    b.Navigation("PermessiGruppo");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbGruppi", b =>
+                {
+                    b.Navigation("GruppiLang");
+
+                    b.Navigation("PermessiGruppo");
+
+                    b.Navigation("Utenti");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTestataPostazioni", b =>
+                {
+                    b.Navigation("FiscalePostazioni");
+
+                    b.Navigation("LettorePostazioni");
+
+                    b.Navigation("StampePostazioni");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTipoPermesso", b =>
+                {
+                    b.Navigation("PermessiGruppo");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbTipoPw", b =>
+                {
+                    b.Navigation("PwUtenti");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente", b =>
+                {
+                    b.Navigation("PwUtenti");
+
+                    b.Navigation("RefreshTokens");
+
+                    b.Navigation("Sessioni");
+
+                    b.Navigation("UtenteNegozi");
+
+                    b.Navigation("UtentePostazioni");
+                });
+
+            modelBuilder.Entity("EasyGold.Web2.Models.Cliente.Entities.Anagrafiche.DbNegozi", b =>
+                {
+                    b.Navigation("Utenti");
                 });
 #pragma warning restore 612, 618
         }

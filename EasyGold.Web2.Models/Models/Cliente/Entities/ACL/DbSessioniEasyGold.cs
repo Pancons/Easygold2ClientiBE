@@ -5,7 +5,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasyGold.Web2.Models.Cliente.Entities.ACL
 {
-    [Table("tbco_SessioniEasyGold")]
+    [Table("tbco_SessioniEasyGold")]//
     public class DbSessioniEasyGold : BaseDbEntity
     {
         /// <summary>
@@ -32,7 +32,7 @@ namespace EasyGold.Web2.Models.Cliente.Entities.ACL
         /// <summary>
         /// Se a True la sessione è terminata.
         /// </summary>
-        public bool? Sse_SesScaduta { get; set; }
+        public bool Sse_SesScaduta { get; set; }
 
         /// <summary>
         ///  È la Data e l’Ora del Logout da Easygold.
@@ -47,5 +47,8 @@ namespace EasyGold.Web2.Models.Cliente.Entities.ACL
         /// È la Data e l’Ora del Logout forzato.
         /// </summary>
         public DateTime? Sse_DataLogoutForzato { get; set; }
+
+
+
     }
 }

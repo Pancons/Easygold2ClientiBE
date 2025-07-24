@@ -6,38 +6,54 @@ namespace EasyGold.Web2.Models.Cliente.ACL
 {
     public class UtenteDTO
     {
-        [SwaggerSchema(Description = "Identificativo univoco dell'utente")]
-        public int Ute_IDUtente { get; set; }
+        [SwaggerSchema(Description = "Campo Numerico Intero Auto.")]
+        public int Ute_IDAuto { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        [SwaggerSchema(Description = "Nome dell'utente")]
-        public string Ute_Nome { get; set; }
+        [SwaggerSchema(Description = "Codice alfanumerico per il Login ad Easygold.")]
+        [Required, StringLength(30)]
+        public string Ute_IDUtente { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        [SwaggerSchema(Description = "Cognome dell'utente")]
-        public string Ute_Cognome { get; set; }
-
-        [SwaggerSchema(Description = "Nome utente per l'accesso")]
+        [SwaggerSchema(Description = "Nome completo dell'Utente.")]
+        [Required, StringLength(100)]
         public string Ute_NomeUtente { get; set; }
 
-        [SwaggerSchema(Description = "Identificativo del ruolo dell'utente")]
-        public int Ute_IDRuolo { get; set; }
+        [SwaggerSchema(Description = "Gruppo a cui l'Utente appartiene.")]
+        [Required]
+        public int Ute_IDGruppo { get; set; }
 
-        [SwaggerSchema(Description = "Indica se l'utente è bloccato")]
+        [SwaggerSchema(Description = "Codice ISO della lingua scelta.")]
+        [Required]
+        public int Ute_IDIdioma { get; set; }
+
+        [SwaggerSchema(Description = "Abilita l'accesso a tutti i negozi.")]
+        public bool Ute_AbilitaTuttiNegozi { get; set; }
+
+        [SwaggerSchema(Description = "Abilita l'accesso a CassaII, solo per Admin o SuperAmministratore.")]
+        public bool Ute_AbilitaCassa { get; set; }
+
+        [SwaggerSchema(Description = "Abilita l'eliminazione di prodotti, solo per Admin o SuperAmministratore.")]
+        public bool Ute_AbilitaEliminaProd { get; set; }
+
+        [SwaggerSchema(Description = "Blocca l'accesso dell'Utente.")]
         public bool Ute_Bloccato { get; set; }
 
-        [StringLength(500)]
-        [SwaggerSchema(Description = "Note aggiuntive sull'utente")]
-        public string Ute_Nota { get; set; }
+        [SwaggerSchema(Description = "Blocca l'accesso dell'Utente.")]
+        public string? Ute_PasswordResetToken { get; set; }
 
-        [Required]
-        [SwaggerSchema(Description = "Password hashata dell'utente")]
-        public string Ute_Password { get; set; }
+        [SwaggerSchema(Description = "Blocca l'accesso dell'Utente.")]
+        public DateTime? Ute_ResetTokenExpiry { get; set; }
 
+        [SwaggerSchema(Description = "Blocca l'accesso dell'Utente.")]
+        public string? Ute_Email { get; set; }
 
-        public RuoloDTO? Ruolo { get; set; }
+            // Relazione con Negozi
+        [SwaggerSchema(Description = "Lista dei negozi accessibili.")]
+        public List<UtenteNegoziDTO> NegoziAccessibili { get; set; } = new List<UtenteNegoziDTO>();
 
+        [SwaggerSchema(Description = "lista di pw utenti")]
+        public List<PwUtentiDTO> PwUtenti { get; set; } = new List<PwUtentiDTO>();
+
+        [SwaggerSchema(Description = "lista delle sessioni")]
+        public List<SessioniEasyGoldDTO> Sessioni { get; set; } = new List<SessioniEasyGoldDTO>();      
     }
 }

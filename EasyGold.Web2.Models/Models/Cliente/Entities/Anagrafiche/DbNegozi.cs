@@ -2,9 +2,11 @@ using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
 
 namespace EasyGold.Web2.Models.Cliente.Entities.Anagrafiche
 {
+
     public class DbNegozi
     {
         [Key]  // <- Definisce la chiave primaria
@@ -66,5 +68,7 @@ namespace EasyGold.Web2.Models.Cliente.Entities.Anagrafiche
         /// 
         [StringLength(500)]
         public string? Neg_Note { get; set; }
+
+        public virtual ICollection<DbUtenteNegozi> Utenti { get; set; } = new List<DbUtenteNegozi>();
     }
 }

@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using EasyGold.Web2.Models;
-using EasyGold.Web2.Models.Cliente.ACL;
-using EasyGold.Web2.Models.Cliente.Entities;
-using EasyGold.API.Services.Interfaces.Anagrafiche;
 using EasyGold.API.Repositories.Interfaces.Anagrafiche;
+using EasyGold.Web2.Models.Cliente.Anagrafiche;
+using EasyGold.Web2.Models.Cliente.Entities.Anagrafiche;
+using EasyGold.Web2.Models.Cliente.ACL.Filters;
+using EasyGold.Web2.Models;
+using EasyGold.API.Services.Interfaces.Anagrafiche;
 
 namespace EasyGold.API.Services.Implementations.Anagrafiche
 {
@@ -18,36 +19,36 @@ namespace EasyGold.API.Services.Implementations.Anagrafiche
             _repository = repository;
         }
 
-        public async Task<BaseListResponse<NegoziAltroDTO>> GetAllAsync()
+        public async Task<BaseListResponse<NegozioAltroDTO>> GetAllAsync(NegozioAltroListRequest filter)
         {
-            var entities = await _repository.GetAllAsync();
+            var (entities, total) = await _repository.GetAllAsync(filter);
             var list = entities.Select(MapToDto).ToList();
-            return new BaseListResponse<NegoziAltroDTO>(list, list.Count);
+            return new BaseListResponse<NegozioAltroDTO>(list, total);
         }
 
-        public async Task<NegoziAltroDTO> GetByIdAsync(int id)
+        public async Task<NegozioAltroDTO> GetByIdAsync(int id)
         {
             var entity = await _repository.GetByIdAsync(id);
             return entity == null ? null : MapToDto(entity);
         }
 
-        public async Task<NegoziAltroDTO> AddAsync(NegoziAltroDTO dto)
+        public async Task<NegozioAltroDTO> AddAsync(NegozioAltroDTO dto)
         {
             var entity = MapToEntity(dto);
             await _repository.AddAsync(entity);
-            dto.Nea_IDAuto = entity.Nea_IDAuto;
+            dto.Id = entity.Nea_IDAuto;
             return dto;
         }
 
-        public async Task<NegoziAltroDTO> UpdateAsync(NegoziAltroDTO dto)
+        public async Task<NegozioAltroDTO> UpdateAsync(NegozioAltroDTO dto)
         {
-            var entity = await _repository.GetByIdAsync(dto.Nea_IDAuto);
+            var entity = await _repository.GetByIdAsync(dto.Id);
             if (entity == null) return null;
 
-            entity.Nea_IDNazione = dto.Nea_IDNazione;
-            entity.Nea_IDValuta = dto.Nea_IDValuta;
-            entity.Nea_IDListino = dto.Nea_IDListino;
-            entity.Nea_IDAliquotaIVA = dto.Nea_IDAliquotaIVA;
+            entity.Nea_IDNazione = dto.NazioneId;
+            entity.Nea_IDValuta = dto.ValutaId;
+            entity.Nea_IDListino = dto.ListinoId;
+            entity.Nea_IDAliquotaIVA = dto.AliquotaIVAId;
 
             await _repository.UpdateAsync(entity);
             return MapToDto(entity);
@@ -58,29 +59,27 @@ namespace EasyGold.API.Services.Implementations.Anagrafiche
             await _repository.DeleteAsync(id);
         }
 
-        private NegoziAltroDTO MapToDto(DbNegoziAltro entity)
+        private NegozioAltroDTO MapToDto(DbNegoziAltro entity)
         {
-            if (entity == null) return null;
-            return new NegoziAltroDTO
+            return new NegozioAltroDTO
             {
-                Nea_IDAuto = entity.Nea_IDAuto,
-                Nea_IDNazione = entity.Nea_IDNazione,
-                Nea_IDValuta = entity.Nea_IDValuta,
-                Nea_IDListino = entity.Nea_IDListino,
-                Nea_IDAliquotaIVA = entity.Nea_IDAliquotaIVA
+                Id = entity.Nea_IDAuto,
+                NazioneId = entity.Nea_IDNazione,
+                ValutaId = entity.Nea_IDValuta,
+                ListinoId = entity.Nea_IDListino,
+                AliquotaIVAId = entity.Nea_IDAliquotaIVA
             };
         }
 
-        private DbNegoziAltro MapToEntity(NegoziAltroDTO dto)
+        private DbNegoziAltro MapToEntity(NegozioAltroDTO dto)
         {
-            if (dto == null) return null;
             return new DbNegoziAltro
             {
-                Nea_IDAuto = dto.Nea_IDAuto,
-                Nea_IDNazione = dto.Nea_IDNazione,
-                Nea_IDValuta = dto.Nea_IDValuta,
-                Nea_IDListino = dto.Nea_IDListino,
-                Nea_IDAliquotaIVA = dto.Nea_IDAliquotaIVA
+                Nea_IDAuto = dto.Id,
+                Nea_IDNazione = dto.NazioneId,
+                Nea_IDValuta = dto.ValutaId,
+                Nea_IDListino = dto.ListinoId,
+                Nea_IDAliquotaIVA = dto.AliquotaIVAId
             };
         }
     }

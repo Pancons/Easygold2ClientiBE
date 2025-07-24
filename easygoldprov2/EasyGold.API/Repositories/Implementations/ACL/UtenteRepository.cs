@@ -1,10 +1,10 @@
 using EasyGold.API.Infrastructure;
 using EasyGold.Web2.Models.Cliente.ACL;
 using EasyGold.Web2.Models.Cliente.Entities.ACL;
-using EasyGold.Web2.Models.Cliente.Entities.ACL;
 using EasyGold.API.Repositories.Interfaces.ACL;
 using Microsoft.EntityFrameworkCore;
-
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ACL.Filters;
 
 namespace EasyGold.API.Repositories.Implementations.ACL
 {
@@ -29,36 +29,21 @@ namespace EasyGold.API.Repositories.Implementations.ACL
             await _context.SaveChangesAsync();
         }
 
-        public async Task<(IEnumerable<DbUtente> Users, int Total)> GetUsersListAsync(UtentiListRequest request)
+        public async Task<(IEnumerable<DbUtente> Users, int Total)> GetAllAsync(BaseListRequest request)
         {
             var query = from u in _context.Utenti
-                        join r in _context.Ruoli on u.Ute_IDRuolo equals r.Ur_IDRuolo
                         select new DbUtente
                         {
+                            Ute_IDAuto = u.Ute_IDAuto,
                             Ute_IDUtente = u.Ute_IDUtente,
-                            Ute_Nome = u.Ute_Nome,
-                            Ute_Cognome = u.Ute_Cognome,
                             Ute_NomeUtente = u.Ute_NomeUtente,
-                            Ute_IDRuolo = u.Ute_IDRuolo,
-                            Ute_Bloccato = u.Ute_Bloccato,
-                            Ute_Nota = u.Ute_Nota,
-                            Ute_Password = u.Ute_Password,
-                            Ruolo = new DbRuolo
-                            {
-                                Ur_IDRuolo = r.Ur_IDRuolo,
-                                Ur_Descrizione = r.Ur_Descrizione
-                            }
+                            Ute_IDGruppo = u.Ute_IDGruppo,
+                            Ute_IDIdioma = u.Ute_IDIdioma,
+                            Ute_AbilitaTuttiNegozi = u.Ute_AbilitaTuttiNegozi,
+                            Ute_AbilitaCassa = u.Ute_AbilitaCassa,
+                            Ute_AbilitaEliminaProd = u.Ute_AbilitaEliminaProd,
+                            Ute_Bloccato = u.Ute_Bloccato
                         };
-
-            // Filtri
-            if (request.Filters != null)
-            {
-                if (!string.IsNullOrEmpty(request.Filters.Utw_Cognome))
-                    query = query.Where(u => u.Ute_Cognome.Contains(request.Filters.Utw_Cognome));
-
-                if (request.Filters.Utw_IDRuolo.HasValue)
-                    query = query.Where(u => u.Ute_IDRuolo == request.Filters.Utw_IDRuolo.Value);
-            }
 
             int total = await query.CountAsync();
 
@@ -99,20 +84,12 @@ namespace EasyGold.API.Repositories.Implementations.ACL
             return (utenti, total);
         }
 
-
-
-        // Recupero singolo utente
-        public async Task<DbUtente> GetUserByIdAsync(int id)
+        public async Task<DbUtente> GetByIdAsync(int id)
         {
             return await _context.Utenti
-                .Include(u => u.Ruolo) // ✅ include anche i dati del ruolo, se presenti
-                .FirstOrDefaultAsync(u => u.Ute_IDUtente == id);
+                .FirstOrDefaultAsync(u => u.Ute_IDAuto == id);
         }
 
-
-        /// <summary>
-        /// Elimina un utente e rimuove il file associato.
-        /// </summary>
         public async Task DeleteAsync(int id)
         {
             var utente = await _context.Utenti.FindAsync(id);
@@ -122,32 +99,5 @@ namespace EasyGold.API.Repositories.Implementations.ACL
                 await _context.SaveChangesAsync();
             }
         }
-
-
-        /*
-
-        public async Task<IEnumerable<DbUtente>> GetAllAsync()
-        {
-            return await _context.Utenti.ToListAsync();
-        }
-
-        public async Task<DbUtente> GetByIdAsync(int id)
-        {
-            return await _context.Utenti.FindAsync(id);
-        }
-
-       
-
-        public async Task DeleteAsync(int id)
-        {
-            var utente = await GetByIdAsync(id);
-            if (utente != null)
-            {
-                _context.Utenti.Remove(utente);
-                await _context.SaveChangesAsync();
-            }
-        }
-*/
     }
-
 }

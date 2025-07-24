@@ -5,7 +5,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasyGold.Web2.Models.Cliente.Entities.ACL
 {
-    [Table("tbcl_pwUtenti")]
+    [Table("tbcl_pwUtenti")]//
     public class DbPwUtenti : BaseDbEntity
     {
         /// <summary>
@@ -15,18 +15,25 @@ namespace EasyGold.Web2.Models.Cliente.Entities.ACL
         public int Utp_IDAuto { get; set; }
 
         /// <summary>
-        /// È il campo ute_IDAuto della tabella dbo.tbcl_utenti.
+        /// Campo Numerico Intero
         /// </summary>
         public int Utp_IDUtente { get; set; }
+
         /// <summary>
-        /// È il campo tpp_IDAuto della tabella dbo.tbco_tipoPw.
+        /// Campo Numerico Intero. È il campo tpp_IDAuto della tabella dbo.tbco_tipoPw. Nella Form è un campo Combo a Scelta Singola della tabella dbo.tbco_tipoPw.
         /// </summary>
         public int Utp_TipoPw { get; set; }
 
         /// <summary>
-        /// è La password dell'utente
+        /// Campo Alfa 100 numeri. è La password dell'utente
         /// </summary>
         [StringLength(100)]
         public string Utp_PwUtente { get; set; }
+
+        public virtual DbUtente Utente { get; set; } = new DbUtente();
+        public virtual DbTipoPw TipoPw  { get; set; } = new DbTipoPw();
+
+
+
     }
 }

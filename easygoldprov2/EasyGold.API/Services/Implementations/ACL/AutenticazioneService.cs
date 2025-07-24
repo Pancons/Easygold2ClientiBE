@@ -1,97 +1,297 @@
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Http;
-using EasyGold.API.Infrastructure;
+using Microsoft.IdentityModel.Tokens;
 using BCrypt.Net;
-using EasyGold.Web2.Models.Cliente.Entities.ACL;
 using EasyGold.API.Services.Interfaces.ACL;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
+using EasyGold.Web2.Models;
+using EasyGold.API.Utility;
+using EasyGold.Web2.Models.Cliente.ACL;
 
 namespace EasyGold.API.Services.Implementations.ACL
 {
-    /// <summary>
-    /// Servizio per autenticazione e gestione utenti.
-    /// </summary>
     public class AutenticazioneService : IAutenticazioneService
     {
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly ISessioniEasyGoldService _sessionService; 
 
-        public AutenticazioneService(ApplicationDbContext context, IConfiguration configuration)
+        public AutenticazioneService(ApplicationDbContext context, IConfiguration configuration,ISessioniEasyGoldService sessionService )
         {
             _context = context;
             _configuration = configuration;
+            _sessionService = sessionService;
         }
 
-        /// <summary>
-        /// Autentica un utente tramite username e password.
-        /// </summary>
-        /// <param name="username">Nome utente</param>
-        /// <param name="password">Password in chiaro</param>
-        /// <returns>Utente autenticato o null</returns>
-        public async Task<DbUtente> AuthenticateAsync(string username, string password)
+        public async Task<ObjectResult> LoginAsync(string username, string password, string subdomain)
         {
-            var user = await _context.Utenti.FirstOrDefaultAsync(u => u.Ute_NomeUtente == username);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.Ute_Password))
-                return null;
+            var connectionString = await GetConnectionStringForSubdomainAsync(subdomain);
+            _context.Database.SetConnectionString(connectionString);
 
-            return user;
-        }
+            var user = await _context.Utenti
+                .Include(u => u.PwUtenti)
+                .FirstOrDefaultAsync(u => u.Ute_NomeUtente == username);
 
-        /// <summary>
-        /// Registra un nuovo utente.
-        /// </summary>
-        /// <param name="username">Nome utente</param>
-        /// <param name="password">Password in chiaro</param>
-        /// <param name="tipoAbilitazione">ID ruolo</param>
-        /// <returns>True se registrazione avvenuta, false se utente già esistente</returns>
-        public async Task<bool> RegisterUserAsync(string username, string password, int tipoAbilitazione)
-        {
-            if (await _context.Utenti.AnyAsync(u => u.Ute_NomeUtente == username))
-                return false; // L'utente esiste già
+            var passwordHash = user?.PwUtenti.FirstOrDefault()?.Utp_PwUtente;
 
-            var newUser = new DbUtente
+            if (user == null || string.IsNullOrEmpty(passwordHash) || !BCrypt.Net.BCrypt.Verify(password, passwordHash))
+                return new ObjectResult(new { error = "Credenziali non valide" }) { StatusCode = 401 };
+
+            var claims = new List<Claim>
             {
-                Ute_NomeUtente = username,
-                Ute_Password = BCrypt.Net.BCrypt.HashPassword(password),
-                Ute_IDRuolo = tipoAbilitazione,
-                Ute_Bloccato = false,
-                Ute_Nota = "Nuovo utente"
+                new Claim(ClaimTypes.NameIdentifier, user.Ute_IDUtente.ToString()),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            _context.Utenti.Add(newUser);
+            var jwt = GenerateJwtToken(claims, _configuration, SecurityAlgorithms.RsaSha256);
+            var refreshToken = GenerateSecureToken();
+
+            user.RefreshTokens.Add(new DbRefreshToken
+            {
+                Token = refreshToken,
+                Expires = DateTime.UtcNow.AddDays(30)
+            });
+
+                // Crea una nuova sessione al login
+            var sessionDto = new SessioniEasyGoldDTO
+            {
+                // Sse_IDCliente = user.Ute_IDCliente, chiedere a Fabio come comportarsi
+                Sse_IDUtente = user.Ute_IDAuto,
+                Sse_DataLogin = DateTime.UtcNow,
+                Sse_SesScaduta = false
+            };
+
+            await _sessionService.AddAsync(sessionDto);
+
+            await _context.SaveChangesAsync();
+
+            return new ObjectResult(new { accessToken = jwt, refreshToken })
+            {
+                StatusCode = StatusCodes.Status200OK
+            };
+        }
+
+        public async Task<ObjectResult> RefreshTokenAsync(string refreshToken)
+        {
+            var storedToken = await _context.RefreshTokens.FirstOrDefaultAsync(rt => rt.Token == refreshToken && rt.IsActive);
+            if (storedToken == null)
+                return new ObjectResult(new { error = "Token non valido" }) { StatusCode = 401 };
+
+            var userId = storedToken.UserId;
+
+            var user = await _context.Utenti
+                .FirstOrDefaultAsync(u => u.Ute_IDAuto == userId);
+
+            if (user == null)
+                return new ObjectResult(new { error = "Utente non trovato" }) { StatusCode = 404 };
+
+            storedToken.Revoke();
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Ute_IDUtente.ToString()),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            var newJwt = GenerateJwtToken(claims, _configuration, SecurityAlgorithms.RsaSha256);
+            var newRefreshToken = GenerateSecureToken();
+
+            await _context.RefreshTokens.AddAsync(new DbRefreshToken
+            {
+                UserId = userId,
+                Token = newRefreshToken,
+                Expires = DateTime.UtcNow.AddDays(30)
+            });
+
+            await _context.SaveChangesAsync();
+
+            return new ObjectResult(new { accessToken = newJwt, refreshToken = newRefreshToken })
+            {
+                StatusCode = StatusCodes.Status200OK
+            };
+        }
+
+        public async Task LogoutAsync(int userId)
+        {
+
+            // Distruggi la sessione al logout
+            var session = await _context.SessioniEasyGold
+                .FirstOrDefaultAsync(s => s.Sse_IDUtente == userId && !s.Sse_SesScaduta);
+
+            if (session != null)
+            {
+                await _sessionService.EndSessionAsync(session.Sse_IDAuto);
+            }
+
+            var tokens = _context.RefreshTokens.Where(rt => rt.UserId == userId && rt.IsActive);
+            foreach (var token in tokens)
+            {
+                token.Revoke();
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> ChangePasswordAsync(int userId, string oldPassword, string newPassword)
+        {
+            var user = await _context.Utenti
+                .Include(u => u.PwUtenti)
+                .FirstOrDefaultAsync(u => u.Ute_IDAuto == userId);
+
+            var currentHash = user?.PwUtenti.FirstOrDefault()?.Utp_PwUtente;
+
+            if (user == null || string.IsNullOrEmpty(currentHash) || !BCrypt.Net.BCrypt.Verify(oldPassword, currentHash))
+                return false;
+
+            var pwEntity = user.PwUtenti.FirstOrDefault();
+            if (pwEntity != null)
+            {
+                pwEntity.Utp_PwUtente = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            }
+
+            await RevokeUserTokensAsync(userId);
             await _context.SaveChangesAsync();
             return true;
         }
 
-        /// <summary>
-        /// Recupera la durata del token JWT (in minuti) dalla configurazione.
-        /// Prima cerca in DB, poi in appsettings, infine default 60.
-        /// </summary>
-        public async Task<int> GetTokenExpiryMinutesAsync()
+        public async Task<ObjectResult> ForgotPasswordAsync(string email)
         {
-            var config = await _context.Configurazioni
-                .AsNoTracking()
-                .FirstOrDefaultAsync(c => c.Sys_NomeCampo == "JwtTokenExpiryMinutes");
-            if (config != null && int.TryParse(config.Sys_Valore, out int minutes) && minutes > 0)
-                return minutes;
+            var user = await _context.Utenti.FirstOrDefaultAsync(u => u.Ute_Email == email);
+            if (user == null)
+            {
+                return new ObjectResult(new { message = "Se l'account esiste, riceverai un'email per resettare la password." })
+                {
+                    StatusCode = StatusCodes.Status200OK
+                };
+            }
 
-            if (int.TryParse(_configuration["Jwt:ExpiryMinutes"], out int configMinutes) && configMinutes > 0)
-                return configMinutes;
+            var resetToken = GenerateSecureToken();
+            user.Ute_PasswordResetToken = resetToken;
+            user.Ute_ResetTokenExpiry = DateTime.UtcNow.AddHours(1);
+            await _context.SaveChangesAsync();
 
-            return 60;
+            var resetLink = $"{_configuration["AppSettings:FrontendUrl"]}/reset-password?token={resetToken}";
+            EmailUtility.SendPasswordResetEmail(user.Ute_Email, resetLink);
+
+            return new ObjectResult(new { message = "Se l'account esiste, riceverai un'email per resettare la password." })
+            {
+                StatusCode = StatusCodes.Status200OK
+            };
         }
 
-        /// <summary>
-        /// Verifica che la richiesta provenga dal Front End Easygold Web 2.0.
-        /// </summary>
-        /// <param name="request">HttpRequest</param>
-        /// <returns>True se la richiesta proviene dal frontend Easygold Web 2.0</returns>
-        public bool IsRequestFromEasygoldFrontend(HttpRequest request)
+        public async Task<ObjectResult> ResetPasswordAsync(string token, string newPassword)
         {
-            var clientHeader = request.Headers["X-Easygold-Client"].FirstOrDefault();
-            return clientHeader == "Web2.0";
+            var user = await _context.Utenti.FirstOrDefaultAsync(u =>
+                u.Ute_PasswordResetToken == token &&
+                u.Ute_ResetTokenExpiry > DateTime.UtcNow);
+
+            if (user == null)
+            {
+                return new ObjectResult(new { error = "Token non valido o scaduto" })
+                {
+                    StatusCode = StatusCodes.Status400BadRequest
+                };
+            }
+
+            var pwEntity = user.PwUtenti.FirstOrDefault();
+            if (pwEntity != null)
+            {
+                pwEntity.Utp_PwUtente = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            }
+
+            user.Ute_PasswordResetToken = null;
+            user.Ute_ResetTokenExpiry = null;
+
+            await RevokeUserTokensAsync(user.Ute_IDAuto);
+            await _context.SaveChangesAsync();
+
+            return new ObjectResult(new { message = "Password resettata con successo" })
+            {
+                StatusCode = StatusCodes.Status200OK
+            };
         }
+
+        public static string GenerateJwtToken(IEnumerable<Claim> claims, IConfiguration configuration, string algorithm)
+        {
+            var key = Convert.FromBase64String(configuration["Jwt:Key"]);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddMinutes(15),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), algorithm)
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+
+        private static string GenerateSecureToken(int length = 64)
+        {
+            var byteLength = length / 2;
+            var randomBytes = new byte[byteLength];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomBytes);
+            }
+            return BitConverter.ToString(randomBytes).Replace("-", "").ToLowerInvariant();
+        }
+
+        private async Task<string> GetConnectionStringForSubdomainAsync(string subdomain)
+        {
+            // TODO: Recupera la connessione dal subdominio
+            return await Task.FromResult("your-connection-string");
+        }
+
+        private async Task RevokeUserTokensAsync(int userId)
+        {
+            var tokens = _context.RefreshTokens.Where(t => t.UserId == userId && t.IsActive);
+            foreach (var token in tokens)
+            {
+                token.Revoke();
+            }
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> SetLanguageInRefreshTokenAsync(string token, string language)
+        {
+            var storedToken = await _context.RefreshTokens.FirstOrDefaultAsync(rt => rt.Token == token && rt.IsActive);
+            if (storedToken == null)
+            {
+                return false;
+            }
+
+            storedToken.Language = language;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> SetStoreInRefreshTokenAsync(string token, int storeId)
+        {
+            var storedToken = await _context.RefreshTokens.FirstOrDefaultAsync(rt => rt.Token == token && rt.IsActive);
+            if (storedToken == null)
+            {
+                return false;
+            }
+
+            storedToken.StoreId = storeId;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task EndSessionOnTokenExpiryAsync(int userId)
+        {
+            await _sessionService.EndSessionOnTokenExpiryAsync(userId);
+        }
+        
     }
 }

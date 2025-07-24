@@ -5,7 +5,7 @@ namespace EasyGold.API.Repositories.Interfaces
 {
     public interface IValutaRepository
     {
-        Task<IEnumerable<DbValute>> GetAllAsync(ValuteListRequest request);
-        Task<DbValute> GetByIdAsync(int id);
+        Task<IEnumerable<DbValuta>> GetAllAsync(ValuteListRequest request);
+        Task<DbValuta> GetByIdAsync(int id);
     }
 }

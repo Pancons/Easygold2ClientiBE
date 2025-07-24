@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using EasyGold.Web2.Models;
-using EasyGold.Web2.Models.Cliente.ACL;
-using EasyGold.Web2.Models.Cliente.Entities;
-using EasyGold.API.Services.Interfaces.ACL;
 using EasyGold.API.Repositories.Interfaces.ACL;
+using EasyGold.API.Services.Interfaces.ACL;
+using EasyGold.Web2.Models.Cliente.ACL;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ACL.Filters;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
 
 namespace EasyGold.API.Services.Implementations.ACL
 {
@@ -18,11 +19,11 @@ namespace EasyGold.API.Services.Implementations.ACL
             _repository = repository;
         }
 
-        public async Task<BaseListResponse<PwUtentiDTO>> GetAllAsync()
+        public async Task<BaseListResponse<PwUtentiDTO>> GetAllAsync(PwUtentiListRequest filter)
         {
-            var entities = await _repository.GetAllAsync();
-            var list = entities.Select(MapToDto).ToList();
-            return new BaseListResponse<PwUtentiDTO>(list, list.Count);
+            var (entities, total) = await _repository.GetAllAsync(filter);
+            var dtos = entities.Select(MapToDto).ToList();
+            return new BaseListResponse<PwUtentiDTO>(dtos, total);
         }
 
         public async Task<PwUtentiDTO> GetByIdAsync(int id)
@@ -34,10 +35,8 @@ namespace EasyGold.API.Services.Implementations.ACL
         public async Task<PwUtentiDTO> AddAsync(PwUtentiDTO dto)
         {
             var entity = MapToEntity(dto);
-            // TODO: Crittografare la password qui prima di salvare
             await _repository.AddAsync(entity);
-            dto.Utp_IDAuto = entity.Utp_IDAuto;
-            return dto;
+            return MapToDto(entity);
         }
 
         public async Task<PwUtentiDTO> UpdateAsync(PwUtentiDTO dto)
@@ -47,7 +46,6 @@ namespace EasyGold.API.Services.Implementations.ACL
 
             entity.Utp_IDUtente = dto.Utp_IDUtente;
             entity.Utp_TipoPw = dto.Utp_TipoPw;
-            // TODO: Crittografare la password qui prima di salvare
             entity.Utp_PwUtente = dto.Utp_PwUtente;
 
             await _repository.UpdateAsync(entity);
@@ -59,29 +57,25 @@ namespace EasyGold.API.Services.Implementations.ACL
             await _repository.DeleteAsync(id);
         }
 
-        // --- Mapping manuale ---
-
         private PwUtentiDTO MapToDto(DbPwUtenti entity)
         {
-            if (entity == null) return null;
             return new PwUtentiDTO
             {
                 Utp_IDAuto = entity.Utp_IDAuto,
                 Utp_IDUtente = entity.Utp_IDUtente,
                 Utp_TipoPw = entity.Utp_TipoPw,
-                Utp_PwUtente = entity.Utp_PwUtente // In produzione, non restituire la password in chiaro!
+                Utp_PwUtente = entity.Utp_PwUtente
             };
         }
 
         private DbPwUtenti MapToEntity(PwUtentiDTO dto)
         {
-            if (dto == null) return null;
             return new DbPwUtenti
             {
                 Utp_IDAuto = dto.Utp_IDAuto,
                 Utp_IDUtente = dto.Utp_IDUtente,
                 Utp_TipoPw = dto.Utp_TipoPw,
-                Utp_PwUtente = dto.Utp_PwUtente // In produzione, crittografare qui!
+                Utp_PwUtente = dto.Utp_PwUtente
             };
         }
     }

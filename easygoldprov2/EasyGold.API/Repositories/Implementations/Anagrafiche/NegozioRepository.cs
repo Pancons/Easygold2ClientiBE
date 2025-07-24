@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EasyGold.API.Infrastructure;
-using EasyGold.Web2.Models.Cliente.Entities;
-using EasyGold.API.Repositories.Interfaces.Anagrafiche;
 using Microsoft.EntityFrameworkCore;
+using EasyGold.Web2.Models.Cliente.Entities.Anagrafiche;
+using EasyGold.API.Repositories.Interfaces.Anagrafiche;
+using EasyGold.Web2.Models.Cliente.ACL.Filters;
 
 namespace EasyGold.API.Repositories.Implementations.Anagrafiche
 {
@@ -17,9 +17,17 @@ namespace EasyGold.API.Repositories.Implementations.Anagrafiche
             _context = context;
         }
 
-        public async Task<IEnumerable<DbNegozi>> GetAllAsync()
+        public async Task<(IEnumerable<DbNegozi>, int)> GetAllAsync(NegozioListRequest filter)
         {
-            return await _context.Negozi.ToListAsync();
+            var query = _context.Negozi.AsQueryable();
+
+            int total = await query.CountAsync();
+            var results = await query
+                .Skip(filter.Offset)
+                .Take(filter.Limit)
+                .ToListAsync();
+
+            return (results, total);
         }
 
         public async Task<DbNegozi> GetByIdAsync(int id)
@@ -35,23 +43,18 @@ namespace EasyGold.API.Repositories.Implementations.Anagrafiche
 
         public async Task UpdateAsync(DbNegozi negozio)
         {
-            var negozioEsistente = await _context.Negozi.FindAsync(negozio.Neg_id);
-            if (negozioEsistente != null)
-            {
-                _context.Entry(negozioEsistente).CurrentValues.SetValues(negozio);
-                await _context.SaveChangesAsync();
-            }
+            _context.Negozi.Update(negozio);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var negozio = await GetByIdAsync(id);
+            var negozio = await _context.Negozi.FindAsync(id);
             if (negozio != null)
             {
                 _context.Negozi.Remove(negozio);
                 await _context.SaveChangesAsync();
             }
         }
-
     }
 }

@@ -13,5 +13,8 @@ namespace EasyGold.Web2.Models.Cliente.ACL
         [SwaggerSchema(Description = "È il tipo di password che è inserita nella tabella delle password degli utenti.")]
         [StringLength(50)]
         public string Tpp_TipoPw { get; set; } 
+
+        [SwaggerSchema(Description = "Lista dei permessi dei gruppi")]
+        public List<PwUtentiDTO> PermessiGruppo { get; set; } = new List<PwUtentiDTO>();
     }
 }

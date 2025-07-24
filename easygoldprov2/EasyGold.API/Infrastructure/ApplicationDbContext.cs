@@ -1,23 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using EasyGold.Web2.Models;
 using EasyGold.Web2.Models.Cliente.Entities;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EasyGold.Web2.Models.Cliente.Entities.Allegati;
-using EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma;
-using EasyGold.Web2.Models.Cliente.Entities.ConfigProgramma;
-using EasyGold.Web2.Models.Comune.Entities.GEO;
-using EasyGold.Web2.Models.Cliente.Entities.Contabilita;
-using EasyGold.Web2.Models.Cliente.Entities.Contabilita;
-using EasyGold.Web2.Models.Cliente.Entities.ACL;
 using EasyGold.Web2.Models.Cliente.Entities.ACL;
 using EasyGold.Web2.Models.Cliente.Entities.Anagrafiche;
-using EasyGold.Web2.Models.Comune.Entities;
-using EasyGold.Web2.Models.Cliente.Entities.Anagrafiche;
-using EasyGold.Web2.Models.Cliente.Entities.ConfigData;
+using EasyGold.Web2.Models.Cliente.Entities;
+
+
 
 namespace EasyGold.API.Infrastructure
 {
@@ -29,55 +17,155 @@ namespace EasyGold.API.Infrastructure
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<DbUtente> Utenti { get; set; }
-        public DbSet<DbModuloEasygoldLang> ModuloEasygoldLang { get; set; }
-        public DbSet<DbModuloEasygold> ModuloEasygold { get; set; }
-        public DbSet<DbRuolo> Ruoli { get; set; }
-        public DbSet<DbAllegato> Allegati { get; set; }
+        public DbSet<DbPwUtenti> PwUtenti { get; set; }
+        public DbSet<DbGruppi> Gruppi { get; set; }
         public DbSet<DbNegozi> Negozi { get; set; }
-        public DbSet<DbNazioni> Nazioni { get; set; }
-        public DbSet<DbValute> Valute { get; set; }
-        public DbSet<DbAuditLog> AuditLogs { get; set; }
-
-        // --- AGGIUNTA: Nuovi DbSet richiesti ---
-        public DbSet<DbRegistroIVA> RegistriIVA { get; set; }
-        public DbSet<DbNumeriRegIVA> NumeriRegIVA { get; set; }
-        public DbSet<DbConfig> Configurazioni { get; set; }
-        public DbSet<DbConfigLang> ConfigLag { get; set; }
-<<<<<<< codex/add-dbset-properties-to-applicationdbcontext
-        public DbSet<DbDocumentoCliente> DocumentiCliente { get; set; }
-        public DbSet<DbImpresaFinanziaria> ImpreseFinanziarie { get; set; }
-=======
-        public DbSet<DbUtenteNegozi> UtenteNegozi { get; set; }
+        public DbSet<DbFiscalePostazioni> FiscalePostazioni { get; set; }
+        public DbSet<DbFunzioni> Funzioni { get; set; }
+        public DbSet<DbLettorePostazioni> LettorePostazioni { get; set; }
+        public DbSet<DbModuliStampe> ModuliStampe { get; set; }
+        public DbSet<DbPermessiGruppo> PermessiGruppo { get; set; }
+        public DbSet<DbRegFiscale> RegFiscali { get; set; }
+        public DbSet<DbSessioniEasyGold> SessioniEasyGold { get; set; }
+        public DbSet<DbStampePostazioni> StampePostazioni { get; set; }
+        public DbSet<DbTestataPostazioni> TestataPostazioni { get; set; }
+        public DbSet<DbTipoPermesso> TipoPermesso { get; set; }
+        public DbSet<DbTipoPw> TipoPw { get; set; }
+        public DbSet<DbUtentePostazione> UtentePostazioni { get; set; }
+        public DbSet<DbFunzioniLang> FunzioniLang { get; set; }
+        public DbSet<DbGruppiLang> GruppiLang { get; set; }
+        public DbSet<DbTestataPostazioniLang> TestataPostazioniLang { get; set; }
+        public DbSet<DbTipoPermessoLang> TipoPermessoLang { get; set; }
+        public DbSet<DbTipoPwLang> TipoPwLang { get; set; }
+        public DbSet<DbUtenteNegozi> UtentiNegozi { get; set; }
         public DbSet<DbNazioneNegozio> NazioneNegozio { get; set; }
         public DbSet<DbNegoziAltro> NegoziAltro { get; set; }
-        public DbSet<DbStatoRegioniLang> StatoRegioniLang { get; set; }
-        public DbSet<DbCreditCardLang> CreditCardLangs { get; set; }
-        public DbSet<DbTipoPagamento> TipoPagamenti { get; set; }
-        public DbSet<DbCauOrdinamento> CauOrdinamento { get; set; }
->>>>>>> main
+        public DbSet<DbRefreshToken> RefreshTokens { get; set; }
+        public DbSet<DbAuditLog> AuditLogs { get; set; }
+
+        
+
 
         /// <summary>
         /// Configura le entità e le relazioni tra di esse.
         /// </summary>
         /// <param name="modelBuilder"></param>
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+       protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<DbTestataPostazioniLang>().HasKey(e => new { e.tpoid_ISONum, e.tpoid_ID });
+            modelBuilder.Entity<DbFunzioniLang>().HasKey(e => new { e.Ablid_ID, e.Ablid_ISONum });
+            modelBuilder.Entity<DbGruppiLang>().HasKey(e => new { e.grpid_ISONum, e.grpid_ID });
+            modelBuilder.Entity<DbTipoPermessoLang>().HasKey(e => new { e.Tpaid_ISONum, e.Tpaid_ID });
+            modelBuilder.Entity<DbTipoPwLang>().HasKey(e => new { e.Tppid_ISONum, e.Tppid_ID });
            
-            modelBuilder.Entity<DbUtente>().HasKey(u => u.Ute_IDUtente);
-            modelBuilder.Entity<DbModuloEasygoldLang>().HasKey(m => m.Mdeid_IDAuto);
-            modelBuilder.Entity<DbModuloEasygold>().HasKey(m => m.Mde_IDAuto);
-            modelBuilder.Entity<DbNazioni>().HasKey(n => n.Ntn_ISO1);
-            modelBuilder.Entity<DbValute>().HasKey(v => v.Val_id);
-            modelBuilder.Entity<DbDocumentoCliente>().HasKey(d => d.Doc_IdAuto);
-            modelBuilder.Entity<DbImpresaFinanziaria>().HasKey(i => i.Imf_IdAuto);
+
+            // Relazioni per DbUtente
+            modelBuilder.Entity<DbUtente>()
+                .HasKey(u => u.Ute_IDAuto);
 
             modelBuilder.Entity<DbUtente>()
-            .HasOne(u => u.Ruolo)
-            .WithMany()
-            .HasForeignKey(u => u.Ute_IDRuolo);
-        }
+                .HasOne(u => u.Gruppo)
+                .WithMany(g => g.Utenti)
+                .HasForeignKey(u => u.Ute_IDGruppo);
 
+            modelBuilder.Entity<DbUtente>()
+                .HasMany(u => u.PwUtenti)
+                .WithOne(pw => pw.Utente)
+                .HasForeignKey(pw => pw.Utp_IDUtente);
+
+            modelBuilder.Entity<DbUtente>()
+                .HasMany(u => u.RefreshTokens)
+                .WithOne(rt => rt.User)
+                .HasForeignKey(rt => rt.UserId);
+
+            // Relazioni per DbUtenteNegozi
+           
+            modelBuilder.Entity<DbUtenteNegozi>()
+                .HasOne(un => un.Utente)
+                .WithMany(u => u.UtenteNegozi)
+                .HasForeignKey(un => un.Utn_IDUtente);
+
+            modelBuilder.Entity<DbUtenteNegozi>()
+                .HasOne(un => un.Negozio)
+                .WithMany()
+                .HasForeignKey(un => un.Utn_IDNegozio);
+
+            // Relazioni per DbLettorePostazioni
+            modelBuilder.Entity<DbLettorePostazioni>()
+                .HasOne(lp => lp.TestataPostazioni)
+                .WithMany(tp => tp.LettorePostazioni)
+                .HasForeignKey(lp => lp.Lpo_IDPostazione);
+
+            // Relazioni per DbFiscalePostazioni
+            modelBuilder.Entity<DbFiscalePostazioni>()
+                .HasOne(fp => fp.TestataPostazioni)
+                .WithMany(tp => tp.FiscalePostazioni)
+                .HasForeignKey(fp => fp.Fpo_IDPostazione);
+
+            modelBuilder.Entity<DbFiscalePostazioni>()
+                .HasOne(fp => fp.RegFiscale)
+                .WithMany()
+                .HasForeignKey(fp => fp.Fpo_IDRegFiscale);
+
+            // Relazioni per DbTestataPostazioni
+            modelBuilder.Entity<DbTestataPostazioni>()
+                .HasMany(tp => tp.StampePostazioni)
+                .WithOne(sp => sp.TestataPostazioni)
+                .HasForeignKey(sp => sp.Tpo_IDPostazione);
+
+            // Relazioni per DbStampePostazioni
+            modelBuilder.Entity<DbStampePostazioni>()
+                .HasOne(sp => sp.ModuliStampe)
+                .WithMany()
+                .HasForeignKey(sp => sp.Tpo_IDStampa);
+
+            // Relazioni per DbPwUtenti
+            modelBuilder.Entity<DbPwUtenti>()
+                .HasOne(pw => pw.TipoPw)
+                .WithMany(tp => tp.PwUtenti)
+                .HasForeignKey(pw => pw.Utp_TipoPw);
+
+            // Relazioni per DbPermessiGruppo
+            modelBuilder.Entity<DbPermessiGruppo>()
+                .HasOne(pg => pg.Gruppi)
+                .WithMany(g => g.PermessiGruppo)
+                .HasForeignKey(pg => pg.Abg_IDGruppo);
+
+            modelBuilder.Entity<DbPermessiGruppo>()
+                .HasOne(pg => pg.Funzioni)
+                .WithMany(f => f.PermessiGruppo)
+                .HasForeignKey(pg => pg.Abg_IDFunzione);
+
+            // Relazioni per DbFunzioniLang
+            modelBuilder.Entity<DbFunzioniLang>()
+                .HasOne(fl => fl.Funzione)
+                .WithMany(f => f.FunzioniLang)
+                .HasForeignKey(fl => fl.Ablid_ID);
+
+            // Relazioni per DbGruppiLang
+            modelBuilder.Entity<DbGruppiLang>()
+                .HasOne(gl => gl.Gruppi)
+                .WithMany()
+                .HasForeignKey(gl => gl.grpid_ID);
+
+            
+            modelBuilder.Entity<DbNegozi>()
+                .HasKey(negozio => negozio.Neg_id);
+
+            modelBuilder.Entity<DbNegozi>()
+                .HasMany(negozio => negozio.Utenti)
+                .WithOne(utenteNegozio => utenteNegozio.Negozio)
+                .HasForeignKey(utenteNegozio => utenteNegozio.Utn_IDNegozio);
+
+            // Relazioni per DbNegoziAltro
+            modelBuilder.Entity<DbNegoziAltro>()
+                .HasKey(negoziAltro => negoziAltro.Nea_IDAuto);
+
+            
+            
+        }
         /// <summary>
         /// Configura le opzioni del contesto, come il logging dei dati sensibili.
         /// </summary>

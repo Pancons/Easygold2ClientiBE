@@ -25,8 +25,8 @@ namespace EasyGold.API.Services.Clients
             using var json = await JsonDocument.ParseAsync(contentStream);
             var token = json.RootElement.GetProperty("token").GetString();
 
-            Console.WriteLine("QUAAAAAAAAA");
-            Console.WriteLine(token);
+         
+          
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             return true;

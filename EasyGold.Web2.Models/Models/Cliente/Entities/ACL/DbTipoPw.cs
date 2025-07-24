@@ -5,7 +5,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EasyGold.Web2.Models.Cliente.Entities.ACL
 {
-    [Table("tbcl_tipoPw")]
+    [Table("tbcl_tipoPw")]//
     public class DbTipoPw : BaseDbEntity
     {
         /// <summary>
@@ -19,5 +19,8 @@ namespace EasyGold.Web2.Models.Cliente.Entities.ACL
         /// </summary>
         [StringLength(50)]
         public string Tpp_TipoPw { get; set; }
+
+
+        public virtual ICollection<DbPwUtenti> PwUtenti { get; set; } = new List<DbPwUtenti>();
     }
 }

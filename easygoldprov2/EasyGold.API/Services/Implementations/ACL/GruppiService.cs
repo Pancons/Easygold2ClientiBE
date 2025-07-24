@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using EasyGold.Web2.Models;
+using EasyGold.API.Repositories.Interfaces.ACL;
 using EasyGold.Web2.Models.Cliente.ACL;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ACL.Filters;
 using EasyGold.Web2.Models.Cliente.Entities.ACL;
 using EasyGold.API.Services.Interfaces.ACL;
-using EasyGold.API.Repositories.Interfaces.ACL;
 
 namespace EasyGold.API.Services.Implementations.ACL
 {
@@ -18,30 +19,30 @@ namespace EasyGold.API.Services.Implementations.ACL
             _repository = repository;
         }
 
-        public async Task<BaseListResponse<GruppiDTO>> GetAllAsync()
+        public async Task<BaseListResponse<GruppiDTO>> GetAllAsync(GruppiListRequest filter, string language)
         {
-            var entities = await _repository.GetAllAsync();
-            var list = entities.Select(MapToDto).ToList();
-            return new BaseListResponse<GruppiDTO>(list, list.Count);
+            var (entities, total) = await _repository.GetAllAsync(filter, language);
+            var dtos = entities.Select(MapToDto).ToList();
+            
+            return new BaseListResponse<GruppiDTO>(dtos, total);
         }
 
-        public async Task<GruppiDTO> GetByIdAsync(int id)
+        public async Task<GruppiDTO> GetByIdAsync(int id, string language)
         {
-            var entity = await _repository.GetByIdAsync(id);
+            var entity = await _repository.GetByIdAsync(id, language);
             return entity == null ? null : MapToDto(entity);
         }
 
-        public async Task<GruppiDTO> AddAsync(GruppiDTO dto)
+        public async Task<GruppiDTO> AddAsync(GruppiDTO dto,string language)
         {
             var entity = MapToEntity(dto);
-            await _repository.AddAsync(entity);
-            dto.Grp_IDAuto = entity.Grp_IDAuto;
-            return dto;
+            await _repository.AddAsync(entity,language);
+            return MapToDto(entity);
         }
 
-        public async Task<GruppiDTO> UpdateAsync(GruppiDTO dto)
+        public async Task<GruppiDTO> UpdateAsync(GruppiDTO dto,string language)
         {
-            var entity = await _repository.GetByIdAsync(dto.Grp_IDAuto);
+            var entity = await _repository.GetByIdAsync(dto.Grp_IDAuto,language);
             if (entity == null) return null;
 
             entity.Grp_NomeGruppo = dto.Grp_NomeGruppo;
@@ -49,7 +50,7 @@ namespace EasyGold.API.Services.Implementations.ACL
             entity.Grp_SuperAdmin = dto.Grp_SuperAdmin;
             entity.Grp_Bloccato = dto.Grp_Bloccato;
 
-            await _repository.UpdateAsync(entity);
+            await _repository.UpdateAsync(entity,language);
             return MapToDto(entity);
         }
 
@@ -60,27 +61,27 @@ namespace EasyGold.API.Services.Implementations.ACL
 
         private GruppiDTO MapToDto(DbGruppi entity)
         {
-            if (entity == null) return null;
             return new GruppiDTO
             {
                 Grp_IDAuto = entity.Grp_IDAuto,
                 Grp_NomeGruppo = entity.Grp_NomeGruppo,
-                Grp_DesGruppo = entity.Grp_DesGruppo ?? string.Empty,
-                Grp_SuperAdmin = entity.Grp_SuperAdmin ?? false,
-                Grp_Bloccato = entity.Grp_Bloccato ?? false
+                Grp_DesGruppo = entity.Grp_DesGruppo,
+                Grp_SuperAdmin = entity.Grp_SuperAdmin,
+                Grp_Bloccato = (bool)entity.Grp_Bloccato,
+                // Map language-specific fields from GruppiLang
             };
         }
 
         private DbGruppi MapToEntity(GruppiDTO dto)
         {
-            if (dto == null) return null;
             return new DbGruppi
             {
                 Grp_IDAuto = dto.Grp_IDAuto,
                 Grp_NomeGruppo = dto.Grp_NomeGruppo,
                 Grp_DesGruppo = dto.Grp_DesGruppo,
                 Grp_SuperAdmin = dto.Grp_SuperAdmin,
-                Grp_Bloccato = dto.Grp_Bloccato
+                Grp_Bloccato = dto.Grp_Bloccato,
+                // Map any necessary relationships
             };
         }
     }

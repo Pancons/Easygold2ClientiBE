@@ -16,5 +16,8 @@ namespace EasyGold.Web2.Models.Cliente.ACL
 
         [SwaggerSchema(Description = "È il livello del permesso può assumere 4 valori")]
         public int? Tpa_LivelloPermesso { get; set; }
+
+        [SwaggerSchema(Description = "Lista dei permessi dei gruppi")]
+        public List<PermessiGruppoDTO> PermessiGruppo { get; set; } = new List<PermessiGruppoDTO>();
     }
 }

@@ -1,0 +1,439 @@
+2025-07-24 12:12:55.144 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-24 12:14:47.199 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-24 12:16:01.002 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-24 12:16:58.377 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-24 12:17:57.947 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-24 12:18:36.847 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-24 12:18:38.108 +00:00 [INF] Executed DbCommand (386ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [EasyGoldProV2Clienti];
+2025-07-24 12:18:38.278 +00:00 [INF] Executed DbCommand (163ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [EasyGoldProV2Clienti] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-07-24 12:18:38.313 +00:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-24 12:18:38.318 +00:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-24 12:18:38.351 +00:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-24 12:18:38.420 +00:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-24 12:18:38.434 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-24 12:18:38.436 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-24 12:18:38.452 +00:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-24 12:18:38.466 +00:00 [INF] Applying migration '20250724121759_InitialCreate'.
+2025-07-24 12:18:38.605 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [AuditLogs] (
+    [Log_Id] int NOT NULL IDENTITY,
+    [Log_TableName] nvarchar(max) NOT NULL,
+    [Log_RecordId] nvarchar(max) NOT NULL,
+    [Log_ColumnName] nvarchar(max) NOT NULL,
+    [Log_OldValue] nvarchar(max) NULL,
+    [Log_NewValue] nvarchar(max) NULL,
+    [Log_ChangeDate] datetime2 NOT NULL,
+    [Log_User] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_AuditLogs] PRIMARY KEY ([Log_Id])
+);
+2025-07-24 12:18:38.608 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Negozi] (
+    [Neg_id] int NOT NULL IDENTITY,
+    [Neg_IDCliente] int NOT NULL,
+    [Neg_RagioneSociale] nvarchar(255) NOT NULL,
+    [Neg_NomeNegozio] nvarchar(255) NOT NULL,
+    [Neg_DataAttivazione] datetime2 NOT NULL,
+    [Neg_DataDisattivazione] datetime2 NULL,
+    [Neg_Bloccato] bit NULL,
+    [Neg_DataOraBlocco] datetime2 NULL,
+    [Neg_Note] nvarchar(500) NULL,
+    CONSTRAINT [PK_Negozi] PRIMARY KEY ([Neg_id])
+);
+2025-07-24 12:18:38.613 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_gruppi] (
+    [Grp_IDAuto] int NOT NULL IDENTITY,
+    [Grp_NomeGruppo] nvarchar(50) NOT NULL,
+    [Grp_DesGruppo] nvarchar(100) NULL,
+    [Grp_SuperAdmin] bit NULL,
+    [Grp_Bloccato] bit NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_gruppi] PRIMARY KEY ([Grp_IDAuto])
+);
+2025-07-24 12:18:38.616 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_nazioneNegozio] (
+    [Nne_IDAuto] int NOT NULL IDENTITY,
+    [Nne_IDNegozio] int NOT NULL,
+    [Nne_IDTipoCampo] int NOT NULL,
+    [Nne_Valore] nvarchar(200) NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_nazioneNegozio] PRIMARY KEY ([Nne_IDAuto])
+);
+2025-07-24 12:18:38.618 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_negoziAltro] (
+    [Nea_IDAuto] int NOT NULL IDENTITY,
+    [Nea_IDNazione] int NOT NULL,
+    [Nea_IDValuta] int NOT NULL,
+    [Nea_IDListino] int NOT NULL,
+    [Nea_IDAliquotaIVA] int NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_negoziAltro] PRIMARY KEY ([Nea_IDAuto])
+);
+2025-07-24 12:18:38.623 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_testataPostazioni] (
+    [tpo_IDAuto] int NOT NULL IDENTITY,
+    [tpo_descizione] nvarchar(50) NOT NULL,
+    [tpo_registratore] bit NOT NULL,
+    [tpo_stampanti] bit NOT NULL,
+    [tpo_card] bit NOT NULL,
+    [tpo_annullato] bit NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_testataPostazioni] PRIMARY KEY ([tpo_IDAuto])
+);
+2025-07-24 12:18:38.626 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_tipoPw] (
+    [Tpp_IDAuto] int NOT NULL IDENTITY,
+    [Tpp_TipoPw] nvarchar(50) NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_tipoPw] PRIMARY KEY ([Tpp_IDAuto])
+);
+2025-07-24 12:18:38.629 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_tipopw_Lang] (
+    [Tppid_ISONum] int NOT NULL,
+    [Tppid_ID] int NOT NULL,
+    [Tppid_TipiPw] nvarchar(100) NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_tipopw_Lang] PRIMARY KEY ([Tppid_ISONum], [Tppid_ID])
+);
+2025-07-24 12:18:38.632 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_funzioni] (
+    [Abl_IDAuto] int NOT NULL IDENTITY,
+    [Abl_IDPadre] int NOT NULL,
+    [Abl_DescFunzione] nvarchar(50) NOT NULL,
+    [Abl_DescFunzioneEstesa] nvarchar(150) NOT NULL,
+    [Abl_Annullato] bit NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbco_funzioni] PRIMARY KEY ([Abl_IDAuto])
+);
+2025-07-24 12:18:38.635 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_moduliStampe] (
+    [Mst_IDAuto] int NOT NULL IDENTITY,
+    [Mst_Descrizione] nvarchar(100) NOT NULL,
+    [Mst_NomeModulo] nvarchar(50) NOT NULL,
+    [Mst_TipoModulo] int NOT NULL,
+    [Mst_Annullato] bit NOT NULL,
+    CONSTRAINT [PK_tbco_moduliStampe] PRIMARY KEY ([Mst_IDAuto])
+);
+2025-07-24 12:18:38.639 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_testataPostazioni_lang] (
+    [tpoid_ISONum] int NOT NULL,
+    [tpoid_ID] int NOT NULL,
+    [tpoid_Descrizione] nvarchar(50) NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbco_testataPostazioni_lang] PRIMARY KEY ([tpoid_ISONum], [tpoid_ID])
+);
+2025-07-24 12:18:38.644 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_tipoPermesso] (
+    [Tpa_IDAuto] int NOT NULL IDENTITY,
+    [Tpa_TipoPermesso] nvarchar(50) NOT NULL,
+    [Tpa_LivelloPermesso] int NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbco_tipoPermesso] PRIMARY KEY ([Tpa_IDAuto])
+);
+2025-07-24 12:18:38.648 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_tipoPermesso_lang] (
+    [Tpaid_ISONum] int NOT NULL,
+    [Tpaid_ID] int NOT NULL,
+    [Tpaid_TipoAbilitazione] nvarchar(50) NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbco_tipoPermesso_lang] PRIMARY KEY ([Tpaid_ISONum], [Tpaid_ID])
+);
+2025-07-24 12:18:38.653 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_regFiscale] (
+    [Rfi_IDAuto] int NOT NULL IDENTITY,
+    [Rfi_Descrizione] nvarchar(50) NOT NULL,
+    [Rfi_TipoRegFiscale] int NOT NULL,
+    [Rfi_CodNegozio] int NOT NULL,
+    [Rfi_Matricola] nvarchar(50) NOT NULL,
+    [Rfi_NumeroChiusure] int NOT NULL,
+    [Rfi_UltimaDataChiusura] datetime2 NOT NULL,
+    [Rfi_Annullato] bit NOT NULL,
+    CONSTRAINT [PK_tbcl_regFiscale] PRIMARY KEY ([Rfi_IDAuto]),
+    CONSTRAINT [FK_tbcl_regFiscale_Negozi_Rfi_CodNegozio] FOREIGN KEY ([Rfi_CodNegozio]) REFERENCES [Negozi] ([Neg_id]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.656 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_gruppi_lang] (
+    [grpid_ISONum] int NOT NULL,
+    [grpid_ID] int NOT NULL,
+    [grpid_nomeGruppo] nvarchar(50) NOT NULL,
+    [grpid_desGruppo] nvarchar(100) NOT NULL,
+    [DbGruppiGrp_IDAuto] int NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_gruppi_lang] PRIMARY KEY ([grpid_ISONum], [grpid_ID]),
+    CONSTRAINT [FK_tbcl_gruppi_lang_tbcl_gruppi_DbGruppiGrp_IDAuto] FOREIGN KEY ([DbGruppiGrp_IDAuto]) REFERENCES [tbcl_gruppi] ([Grp_IDAuto]),
+    CONSTRAINT [FK_tbcl_gruppi_lang_tbcl_gruppi_grpid_ID] FOREIGN KEY ([grpid_ID]) REFERENCES [tbcl_gruppi] ([Grp_IDAuto]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.660 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_utenti] (
+    [Ute_IDAuto] int NOT NULL IDENTITY,
+    [Ute_IDUtente] nvarchar(30) NOT NULL,
+    [Ute_NomeUtente] nvarchar(100) NOT NULL,
+    [Ute_IDGruppo] int NOT NULL,
+    [Ute_IDIdioma] int NOT NULL,
+    [Ute_AbilitaTuttiNegozi] bit NOT NULL,
+    [Ute_AbilitaCassa] bit NOT NULL,
+    [Ute_AbilitaEliminaProd] bit NOT NULL,
+    [Ute_Bloccato] bit NOT NULL,
+    [Ute_PasswordResetToken] nvarchar(max) NULL,
+    [Ute_ResetTokenExpiry] datetime2 NULL,
+    [Ute_Email] nvarchar(max) NULL,
+    CONSTRAINT [PK_tbcl_utenti] PRIMARY KEY ([Ute_IDAuto]),
+    CONSTRAINT [FK_tbcl_utenti_tbcl_gruppi_Ute_IDGruppo] FOREIGN KEY ([Ute_IDGruppo]) REFERENCES [tbcl_gruppi] ([Grp_IDAuto]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.663 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_lettorePostazioni] (
+    [Lpo_IDAuto] int NOT NULL IDENTITY,
+    [Lpo_IDPostazione] int NOT NULL,
+    [Lpo_IDLettore] nvarchar(50) NOT NULL,
+    [Lpo_DevLettore] nvarchar(50) NOT NULL,
+    [Lpo_Annullato] bit NOT NULL,
+    CONSTRAINT [PK_tbcl_lettorePostazioni] PRIMARY KEY ([Lpo_IDAuto]),
+    CONSTRAINT [FK_tbcl_lettorePostazioni_tbcl_testataPostazioni_Lpo_IDPostazione] FOREIGN KEY ([Lpo_IDPostazione]) REFERENCES [tbcl_testataPostazioni] ([tpo_IDAuto]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.667 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_funzioni_lang] (
+    [Ablid_ID] int NOT NULL,
+    [Ablid_ISONum] int NOT NULL,
+    [Ablid_DescFunzione] nvarchar(50) NOT NULL,
+    [Ablid_descFunzioneEstesa] nvarchar(150) NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbco_funzioni_lang] PRIMARY KEY ([Ablid_ID], [Ablid_ISONum]),
+    CONSTRAINT [FK_tbco_funzioni_lang_tbco_funzioni_Ablid_ID] FOREIGN KEY ([Ablid_ID]) REFERENCES [tbco_funzioni] ([Abl_IDAuto]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.670 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_stampePostazioni] (
+    [Tpo_IDAuto] int NOT NULL IDENTITY,
+    [Tpo_IDPostazione] int NOT NULL,
+    [Tpo_IDStampa] int NOT NULL,
+    [Tpo_IPDevice] nvarchar(50) NOT NULL,
+    [Tpo_Device] nvarchar(100) NOT NULL,
+    [Tpo_Diretta] bit NOT NULL,
+    [Tpo_Annullato] bit NOT NULL,
+    CONSTRAINT [PK_tbcl_stampePostazioni] PRIMARY KEY ([Tpo_IDAuto]),
+    CONSTRAINT [FK_tbcl_stampePostazioni_tbcl_testataPostazioni_Tpo_IDPostazione] FOREIGN KEY ([Tpo_IDPostazione]) REFERENCES [tbcl_testataPostazioni] ([tpo_IDAuto]) ON DELETE CASCADE,
+    CONSTRAINT [FK_tbcl_stampePostazioni_tbco_moduliStampe_Tpo_IDStampa] FOREIGN KEY ([Tpo_IDStampa]) REFERENCES [tbco_moduliStampe] ([Mst_IDAuto]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.675 +00:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_PermessiGruppo] (
+    [Abg_IDAuto] int NOT NULL IDENTITY,
+    [Abg_IDGruppo] int NOT NULL,
+    [Abg_IDFunzione] int NOT NULL,
+    [Abg_IDTipoPermesso] int NOT NULL,
+    [DbTipoPermessoTpa_IDAuto] int NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_PermessiGruppo] PRIMARY KEY ([Abg_IDAuto]),
+    CONSTRAINT [FK_tbcl_PermessiGruppo_tbcl_gruppi_Abg_IDGruppo] FOREIGN KEY ([Abg_IDGruppo]) REFERENCES [tbcl_gruppi] ([Grp_IDAuto]) ON DELETE CASCADE,
+    CONSTRAINT [FK_tbcl_PermessiGruppo_tbco_funzioni_Abg_IDFunzione] FOREIGN KEY ([Abg_IDFunzione]) REFERENCES [tbco_funzioni] ([Abl_IDAuto]) ON DELETE CASCADE,
+    CONSTRAINT [FK_tbcl_PermessiGruppo_tbco_tipoPermesso_DbTipoPermessoTpa_IDAuto] FOREIGN KEY ([DbTipoPermessoTpa_IDAuto]) REFERENCES [tbco_tipoPermesso] ([Tpa_IDAuto]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.679 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_fiscalePostazioni] (
+    [Fpo_IDAuto] int NOT NULL IDENTITY,
+    [Fpo_IDPostazione] int NOT NULL,
+    [Fpo_IDRegFiscale] int NOT NULL,
+    [Fpo_IPPath] nvarchar(50) NOT NULL,
+    [Fpo_Attivo] bit NOT NULL,
+    [Fpo_Annullato] bit NOT NULL,
+    CONSTRAINT [PK_tbcl_fiscalePostazioni] PRIMARY KEY ([Fpo_IDAuto]),
+    CONSTRAINT [FK_tbcl_fiscalePostazioni_tbcl_regFiscale_Fpo_IDRegFiscale] FOREIGN KEY ([Fpo_IDRegFiscale]) REFERENCES [tbcl_regFiscale] ([Rfi_IDAuto]) ON DELETE CASCADE,
+    CONSTRAINT [FK_tbcl_fiscalePostazioni_tbcl_testataPostazioni_Fpo_IDPostazione] FOREIGN KEY ([Fpo_IDPostazione]) REFERENCES [tbcl_testataPostazioni] ([tpo_IDAuto]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.683 +00:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_pwUtenti] (
+    [Utp_IDAuto] int NOT NULL IDENTITY,
+    [Utp_IDUtente] int NOT NULL,
+    [Utp_TipoPw] int NOT NULL,
+    [Utp_PwUtente] nvarchar(100) NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_pwUtenti] PRIMARY KEY ([Utp_IDAuto]),
+    CONSTRAINT [FK_tbcl_pwUtenti_tbcl_tipoPw_Utp_TipoPw] FOREIGN KEY ([Utp_TipoPw]) REFERENCES [tbcl_tipoPw] ([Tpp_IDAuto]) ON DELETE CASCADE,
+    CONSTRAINT [FK_tbcl_pwUtenti_tbcl_utenti_Utp_IDUtente] FOREIGN KEY ([Utp_IDUtente]) REFERENCES [tbcl_utenti] ([Ute_IDAuto]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.686 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_refresh_token] (
+    [Id] int NOT NULL IDENTITY,
+    [Token] nvarchar(max) NOT NULL,
+    [Expires] datetime2 NOT NULL,
+    [Language] nvarchar(max) NULL,
+    [StoreId] int NULL,
+    [UserId] int NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_refresh_token] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_tbcl_refresh_token_tbcl_utenti_UserId] FOREIGN KEY ([UserId]) REFERENCES [tbcl_utenti] ([Ute_IDAuto]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.690 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_utenteNegozi] (
+    [Utn_IDAuto] int NOT NULL IDENTITY,
+    [Utn_IDUtente] int NOT NULL,
+    [Utn_IDNegozio] int NOT NULL,
+    [Utn_Annullato] bit NOT NULL,
+    [Utn_Default] bit NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_utenteNegozi] PRIMARY KEY ([Utn_IDAuto]),
+    CONSTRAINT [FK_tbcl_utenteNegozi_Negozi_Utn_IDNegozio] FOREIGN KEY ([Utn_IDNegozio]) REFERENCES [Negozi] ([Neg_id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_tbcl_utenteNegozi_tbcl_utenti_Utn_IDUtente] FOREIGN KEY ([Utn_IDUtente]) REFERENCES [tbcl_utenti] ([Ute_IDAuto]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.696 +00:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_utentePostazioni] (
+    [Upo_IDAuto] int NOT NULL IDENTITY,
+    [Upo_IdUtente_IDNegozio] int NOT NULL,
+    [Upo_IDPostazione] int NOT NULL,
+    [Upo_Annullato] bit NOT NULL,
+    [Upo_IDUtente] int NOT NULL,
+    [Upo_IDNegozio] int NOT NULL,
+    CONSTRAINT [PK_tbcl_utentePostazioni] PRIMARY KEY ([Upo_IDAuto]),
+    CONSTRAINT [FK_tbcl_utentePostazioni_Negozi_Upo_IDNegozio] FOREIGN KEY ([Upo_IDNegozio]) REFERENCES [Negozi] ([Neg_id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_tbcl_utentePostazioni_tbcl_testataPostazioni_Upo_IDPostazione] FOREIGN KEY ([Upo_IDPostazione]) REFERENCES [tbcl_testataPostazioni] ([tpo_IDAuto]) ON DELETE CASCADE,
+    CONSTRAINT [FK_tbcl_utentePostazioni_tbcl_utenti_Upo_IDUtente] FOREIGN KEY ([Upo_IDUtente]) REFERENCES [tbcl_utenti] ([Ute_IDAuto]) ON DELETE CASCADE
+);
+2025-07-24 12:18:38.702 +00:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_SessioniEasyGold] (
+    [Sse_IDAuto] int NOT NULL IDENTITY,
+    [Sse_IDCliente] int NOT NULL,
+    [Sse_IDUtente] int NOT NULL,
+    [Sse_DataLogin] datetime2 NULL,
+    [Sse_SesScaduta] bit NOT NULL,
+    [Sse_DataLogout] datetime2 NULL,
+    [Sse_sesForzata] bit NULL,
+    [Sse_DataLogoutForzato] datetime2 NULL,
+    [DbUtenteUte_IDAuto] int NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbco_SessioniEasyGold] PRIMARY KEY ([Sse_IDAuto]),
+    CONSTRAINT [FK_tbco_SessioniEasyGold_tbcl_utenti_DbUtenteUte_IDAuto] FOREIGN KEY ([DbUtenteUte_IDAuto]) REFERENCES [tbcl_utenti] ([Ute_IDAuto])
+);
+2025-07-24 12:18:38.705 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_fiscalePostazioni_Fpo_IDPostazione] ON [tbcl_fiscalePostazioni] ([Fpo_IDPostazione]);
+2025-07-24 12:18:38.707 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_fiscalePostazioni_Fpo_IDRegFiscale] ON [tbcl_fiscalePostazioni] ([Fpo_IDRegFiscale]);
+2025-07-24 12:18:38.710 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_gruppi_lang_DbGruppiGrp_IDAuto] ON [tbcl_gruppi_lang] ([DbGruppiGrp_IDAuto]);
+2025-07-24 12:18:38.712 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_gruppi_lang_grpid_ID] ON [tbcl_gruppi_lang] ([grpid_ID]);
+2025-07-24 12:18:38.714 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_lettorePostazioni_Lpo_IDPostazione] ON [tbcl_lettorePostazioni] ([Lpo_IDPostazione]);
+2025-07-24 12:18:38.717 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_PermessiGruppo_Abg_IDFunzione] ON [tbcl_PermessiGruppo] ([Abg_IDFunzione]);
+2025-07-24 12:18:38.719 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_PermessiGruppo_Abg_IDGruppo] ON [tbcl_PermessiGruppo] ([Abg_IDGruppo]);
+2025-07-24 12:18:38.721 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_PermessiGruppo_DbTipoPermessoTpa_IDAuto] ON [tbcl_PermessiGruppo] ([DbTipoPermessoTpa_IDAuto]);
+2025-07-24 12:18:38.723 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_pwUtenti_Utp_IDUtente] ON [tbcl_pwUtenti] ([Utp_IDUtente]);
+2025-07-24 12:18:38.726 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_pwUtenti_Utp_TipoPw] ON [tbcl_pwUtenti] ([Utp_TipoPw]);
+2025-07-24 12:18:38.728 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_refresh_token_UserId] ON [tbcl_refresh_token] ([UserId]);
+2025-07-24 12:18:38.730 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_regFiscale_Rfi_CodNegozio] ON [tbcl_regFiscale] ([Rfi_CodNegozio]);
+2025-07-24 12:18:38.732 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_stampePostazioni_Tpo_IDPostazione] ON [tbcl_stampePostazioni] ([Tpo_IDPostazione]);
+2025-07-24 12:18:38.735 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_stampePostazioni_Tpo_IDStampa] ON [tbcl_stampePostazioni] ([Tpo_IDStampa]);
+2025-07-24 12:18:38.737 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_utenteNegozi_Utn_IDNegozio] ON [tbcl_utenteNegozi] ([Utn_IDNegozio]);
+2025-07-24 12:18:38.739 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_utenteNegozi_Utn_IDUtente] ON [tbcl_utenteNegozi] ([Utn_IDUtente]);
+2025-07-24 12:18:38.742 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_utentePostazioni_Upo_IDNegozio] ON [tbcl_utentePostazioni] ([Upo_IDNegozio]);
+2025-07-24 12:18:38.744 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_utentePostazioni_Upo_IDPostazione] ON [tbcl_utentePostazioni] ([Upo_IDPostazione]);
+2025-07-24 12:18:38.746 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_utentePostazioni_Upo_IDUtente] ON [tbcl_utentePostazioni] ([Upo_IDUtente]);
+2025-07-24 12:18:38.748 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_utenti_Ute_IDGruppo] ON [tbcl_utenti] ([Ute_IDGruppo]);
+2025-07-24 12:18:38.750 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbco_SessioniEasyGold_DbUtenteUte_IDAuto] ON [tbco_SessioniEasyGold] ([DbUtenteUte_IDAuto]);
+2025-07-24 12:18:38.762 +00:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250724121759_InitialCreate', N'9.0.2');
+2025-07-24 12:18:38.777 +00:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-07-24 12:18:48.844 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-24 12:18:48.993 +00:00 [INF] Now listening on: http://localhost:5217
+2025-07-24 12:18:48.997 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-24 12:18:48.999 +00:00 [INF] Hosting environment: Development
+2025-07-24 12:18:49.000 +00:00 [INF] Content root path: /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API
+2025-07-24 12:18:56.009 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/ - null null
+2025-07-24 12:18:56.043 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-07-24 12:18:56.103 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/ - 404 0 null 95.0299ms
+2025-07-24 12:18:56.109 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/, Response status code: 404
+2025-07-24 12:19:01.794 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger - null null
+2025-07-24 12:19:01.799 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger - 301 0 null 5.6517ms
+2025-07-24 12:19:01.899 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.html - null null
+2025-07-24 12:19:01.963 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.html - 200 null text/html;charset=utf-8 64.3269ms
+2025-07-24 12:19:02.082 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui.css - null null
+2025-07-24 12:19:02.083 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.css - null null
+2025-07-24 12:19:02.100 +00:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-07-24 12:19:02.102 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.css - 200 202 text/css 17.6423ms
+2025-07-24 12:19:02.108 +00:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-07-24 12:19:02.111 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui.css - 200 152035 text/css 29.1845ms
+2025-07-24 12:19:02.274 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-standalone-preset.js - null null
+2025-07-24 12:19:02.274 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-bundle.js - null null
+2025-07-24 12:19:02.277 +00:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-07-24 12:19:02.277 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-standalone-preset.js - 200 230007 text/javascript 3.6084ms
+2025-07-24 12:19:02.279 +00:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-07-24 12:19:02.280 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-bundle.js - 200 1457477 text/javascript 6.4624ms
+2025-07-24 12:19:02.339 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.js - null null
+2025-07-24 12:19:02.341 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.js - 200 null application/javascript;charset=utf-8 1.4222ms
+2025-07-24 12:19:02.852 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/favicon-32x32.png - null null
+2025-07-24 12:19:02.852 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/v1/swagger.json - null null
+2025-07-24 12:19:02.853 +00:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-07-24 12:19:02.853 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/favicon-32x32.png - 200 628 image/png 1.1152ms
+2025-07-24 12:19:03.167 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 315.646ms

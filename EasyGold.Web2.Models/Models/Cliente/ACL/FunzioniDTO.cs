@@ -23,5 +23,8 @@ namespace EasyGold.Web2.Models.Cliente.ACL
 
         [SwaggerSchema(Description = "Check per vedere se è stato annullato")]
         public bool? Abl_Annullato { get; set; }
+
+        [SwaggerSchema(Description = "Lista dei permessi associati alle funzioni.")]
+        public List<PermessiGruppoDTO> PermessiGruppo { get; set; } = new List<PermessiGruppoDTO>();
     }
 }

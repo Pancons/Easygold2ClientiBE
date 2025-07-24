@@ -15,20 +15,20 @@ namespace EasyGold.API.Repositories.Implementations
             _context = context;
         }
 
-        public async Task<IEnumerable<DbValute>> GetAllAsync(ValuteListRequest request)
+        public async Task<IEnumerable<DbValuta>> GetAllAsync(ValuteListRequest request)
         {
             var query = from valute in _context.Valute select valute;
 
             // Ordinamento
             if (request.Sort != null && request.Sort.Any())
             {
-                IOrderedQueryable<DbValute>? orderedQuery = null;
+                IOrderedQueryable<DbValuta>? orderedQuery = null;
 
                 foreach (var sort in request.Sort)
                 {
-                    bool isValid = typeof(DbValute).GetProperty(sort.Field, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance) != null;
+                    bool isValid = typeof(DbValuta).GetProperty(sort.Field, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance) != null;
                     if (!isValid) continue;
-                    sort.Field = typeof(DbValute).GetProperty(sort.Field, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Name;
+                    sort.Field = typeof(DbValuta).GetProperty(sort.Field, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Name;
 
                     if (orderedQuery == null)
                     {
@@ -56,7 +56,7 @@ namespace EasyGold.API.Repositories.Implementations
             return result;
         }
 
-        public async Task<DbValute> GetByIdAsync(int id)
+        public async Task<DbValuta> GetByIdAsync(int id)
         {
             return await _context.Valute.FindAsync(id);
         }

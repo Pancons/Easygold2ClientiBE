@@ -1,13 +1,15 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyGold.API.Services;
 using EasyGold.API.Services.Implementations;
-using EasyGold.Web2.Models.Comune.GEO;
 using EasyGold.Web2.Models;
 using EasyGold.Web2.Models.Cliente.ACL;
 using EasyGold.API.Services.Interfaces.ACL;
+using EasyGold.Web2.Models.Cliente.ACL.Filters;
 
 namespace EasyGold.API.Controllers.ACL
 {
@@ -34,6 +36,7 @@ namespace EasyGold.API.Controllers.ACL
         /// <response code="200">Lista utenti restituita con successo</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("list")]
+        [Authorize]
         [ProducesResponseType(typeof(BaseListResponse<UtenteDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -41,7 +44,7 @@ namespace EasyGold.API.Controllers.ACL
         {
             try
             {
-                var results = await _utenteService.GetUsersListAsync(filter);
+                var results = await _utenteService.GetAllAsync(filter);
                 return Ok(results);
             }
             catch (Exception ex)
@@ -61,7 +64,7 @@ namespace EasyGold.API.Controllers.ACL
         /// <response code="404">Utente non trovato (in caso di aggiornamento)</response>
         /// <response code="500">Errore interno del server</response>
         [HttpPost("save")]
-        [AllowAnonymous]
+        [Authorize]
         [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddOrUpdateUser([FromBody] UtenteDTO userDto)
@@ -78,7 +81,7 @@ namespace EasyGold.API.Controllers.ACL
                     return BadRequest(new { error = "Dati non validi" });
                 }
 
-                if (userDto.Ute_IDUtente > 0) // Se ha un ID, esegue l'aggiornamento
+                if (userDto.Ute_IDUtente!=null) // Se ha un ID, esegue l'aggiornamento
                 {
                     var result = await _utenteService.UpdateAsync(userDto);
                     if (result == null)
@@ -108,19 +111,20 @@ namespace EasyGold.API.Controllers.ACL
         /// <response code="404">Utente non trovato</response>
         /// <response code="500">Errore interno</response>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(UtenteDTO), StatusCodes.Status200OK)]
+        [Authorize]
+        [ProducesResponseType(typeof(BaseResponse<UtenteDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetUser(int id)
         {
             try
             {
-                var result = await _utenteService.GetUserByIdAsync(id);
+                var result = await _utenteService.GetByIdAsync(id);
                 if (result == null)
                 {
                     return NotFound(new { error = "Utente non trovato" });
                 }
-                return Ok(new { result });
+                return Ok(new BaseResponse<UtenteDTO>(result));
 
             }
             catch (Exception ex)

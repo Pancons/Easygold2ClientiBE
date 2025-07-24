@@ -1,11 +1,11 @@
-using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using EasyGold.Web2.Models;
-using EasyGold.Web2.Models.Cliente.ACL;
-using EasyGold.Web2.Models.Cliente.Entities;
 using EasyGold.API.Services.Interfaces.ACL;
 using EasyGold.API.Repositories.Interfaces.ACL;
+using EasyGold.Web2.Models.Cliente.ACL;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ACL.Filters;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
 
 namespace EasyGold.API.Services.Implementations.ACL
 {
@@ -18,14 +18,14 @@ namespace EasyGold.API.Services.Implementations.ACL
             _repository = repository;
         }
 
-        public async Task<BaseListResponse<UtenteNegoziDTO>> GetAllAsync()
+        public async Task<BaseListResponse<UtenteNegoziDTO>> GetAllAsync(UtenteNegoziListRequest request)
         {
-            var entities = await _repository.GetAllAsync();
-            var list = entities.Select(MapToDto).ToList();
-            return new BaseListResponse<UtenteNegoziDTO>(list, list.Count);
+            var (sessions, total) = await _repository.GetAllAsync(request);
+            var items = sessions.Select(MapToDto).ToList();
+            return new BaseListResponse<UtenteNegoziDTO>(items, total);
         }
 
-        public async Task<UtenteNegoziDTO> GetByIdAsync(int id)
+          public async Task<UtenteNegoziDTO> GetByIdAsync(int id)
         {
             var entity = await _repository.GetByIdAsync(id);
             return entity == null ? null : MapToDto(entity);
@@ -35,47 +35,49 @@ namespace EasyGold.API.Services.Implementations.ACL
         {
             var entity = MapToEntity(dto);
             await _repository.AddAsync(entity);
-            dto.Utn_ID = entity.Utn_ID;
-            return dto;
+            return MapToDto(entity);
         }
 
         public async Task<UtenteNegoziDTO> UpdateAsync(UtenteNegoziDTO dto)
         {
-            var entity = await _repository.GetByIdAsync(dto.Utn_ID);
+            var entity = await _repository.GetByIdAsync(dto.Utn_IDAuto);
             if (entity == null) return null;
-
+     
+         
+            entity.Utn_IDUtente = dto.Utn_IDUtente;
             entity.Utn_IDNegozio = dto.Utn_IDNegozio;
+            entity.Utn_Default = dto.Utn_Default;
             entity.Utn_Annullato = dto.Utn_Annullato;
 
             await _repository.UpdateAsync(entity);
             return MapToDto(entity);
         }
-
         public async Task DeleteAsync(int id)
         {
             await _repository.DeleteAsync(id);
         }
 
-        // --- Mapping manuale ---
-
+           //QUESTO
         private UtenteNegoziDTO MapToDto(DbUtenteNegozi entity)
         {
-            if (entity == null) return null;
             return new UtenteNegoziDTO
             {
-                Utn_ID = entity.Utn_ID,
+                Utn_IDAuto = entity.Utn_IDAuto,
+                Utn_IDUtente = entity.Utn_IDUtente,
                 Utn_IDNegozio = entity.Utn_IDNegozio,
+                Utn_Default = entity.Utn_Default,
                 Utn_Annullato = entity.Utn_Annullato
             };
         }
 
         private DbUtenteNegozi MapToEntity(UtenteNegoziDTO dto)
         {
-            if (dto == null) return null;
             return new DbUtenteNegozi
             {
-                Utn_ID = dto.Utn_ID,
+                Utn_IDAuto = dto.Utn_IDAuto,
+                Utn_IDUtente = dto.Utn_IDUtente,
                 Utn_IDNegozio = dto.Utn_IDNegozio,
+                Utn_Default = dto.Utn_Default,
                 Utn_Annullato = dto.Utn_Annullato
             };
         }

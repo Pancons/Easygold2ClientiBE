@@ -15,31 +15,14 @@ using EasyGold.API.Infrastructure.Swagger;
 
 // --- REGISTRAZIONE REPOSITORY E SERVIZI ---
 using EasyGold.API.Services.Implementations.ACL;
-using EasyGold.API.Services.Implementations.Allegati;
-using EasyGold.API.Services.Implementations.ConfigProgramma;
-using EasyGold.API.Services.Implementations.GEO;
-using EasyGold.API.Services.Implementations.Contabilita;
-using EasyGold.API.Services.Implementations.ConfigData;
-using EasyGold.API.Services.Interfaces.Allegati;
 using EasyGold.API.Services.Interfaces.ACL;
-using EasyGold.API.Services.Interfaces.ConfigProgramma;
-using EasyGold.API.Services.Interfaces.Contabilita;
-using EasyGold.API.Services.Interfaces.GEO;
-using EasyGold.API.Services.Interfaces.ConfigData;
-using EasyGold.API.Repositories.Implementations.Allegati;
-using EasyGold.API.Repositories.Implementations.ConfigProgramma;
-using EasyGold.API.Repositories.Implementations.GEO;
-using EasyGold.API.Repositories.Implementations.Anagrafiche;
-using EasyGold.API.Repositories.Implementations.Contabilita;
 using EasyGold.API.Repositories.Implementations.ACL;
-using EasyGold.API.Repositories.Implementations.ConfigData;
-using EasyGold.API.Repositories.Interfaces.Allegati;
-using EasyGold.API.Repositories.Interfaces.ConfigProgramma;
 using EasyGold.API.Repositories.Interfaces.ACL;
-using EasyGold.API.Repositories.Interfaces.GEO;
+using EasyGold.API.Services.Implementations.Anagrafiche;
+using EasyGold.API.Services.Interfaces.Anagrafiche;
+using EasyGold.API.Repositories.Implementations.Anagrafiche;
 using EasyGold.API.Repositories.Interfaces.Anagrafiche;
-using EasyGold.API.Repositories.Interfaces.Contabilita;
-using EasyGold.API.Repositories.Interfaces.ConfigData;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -82,36 +65,46 @@ builder.Services.AddHttpClient("WebhookClient", client =>
 
 // 🔹 AutoMapper e MediatR
 builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddScoped<IUtenteRepository, UtenteRepository>();
-builder.Services.AddScoped<IModuloRepository, ModuloRepository>();
-builder.Services.AddScoped<IRuoloRepository, RuoloRepository>();
-builder.Services.AddScoped<IAllegatoRepository, AllegatoRepository>();
-builder.Services.AddScoped<INegozioRepository, NegozioRepository>();
-builder.Services.AddScoped<INazioneRepository, NazioneRepository>();
-builder.Services.AddScoped<IValutaRepository, ValutaRepository>();
 
-
-builder.Services.AddScoped<IAllegatoService, AllegatoService>();
-builder.Services.AddScoped<IUtenteService, UtenteService>();
 builder.Services.AddScoped<IAutenticazioneService, AutenticazioneService>();
-builder.Services.AddScoped<IModuloService, ModuloService>();
-builder.Services.AddScoped<IRuoloService, RuoloService>();
-builder.Services.AddScoped<INazioneService, NazioneService>();
-builder.Services.AddScoped<IValutaService, ValutaService>();
+builder.Services.AddScoped<IUtenteService, UtenteService>();
+builder.Services.AddScoped<IFiscalePostazioniService, FiscalePostazioniService>();
+builder.Services.AddScoped<IFunzioniService, FunzioniService>();
+builder.Services.AddScoped<IGruppiService, GruppiService>();
+builder.Services.AddScoped<ILettorePostazioniService, LettorePostazioniService>();
+builder.Services.AddScoped<IModuliStampeService, ModuliStampeService>();
+builder.Services.AddScoped<IPermessiGruppoService, PermessiGruppoService>();
+builder.Services.AddScoped<IPwUtentiService, PwUtentiService>();
+builder.Services.AddScoped<IRegFiscaleService, RegFiscaleService>();
+builder.Services.AddScoped<ISessioniEasyGoldService, SessioniEasyGoldService>();
+builder.Services.AddScoped<IStampePostazioniService, StampePostazioniService>();
+builder.Services.AddScoped<ITestataPostazioniService, TestataPostazioniService>();
+builder.Services.AddScoped<ITipoPermessoService, TipoPermessoService>();
+builder.Services.AddScoped<ITipoPwService, TipoPwService>();
+builder.Services.AddScoped<IUtenteNegoziService, UtenteNegoziService>();
+builder.Services.AddScoped<IUtentePostazioneService, UtentePostazioneService>();
 
-// --- REGISTRAZIONE REPOSITORY E SERVIZI AGGIUNTIVI ---
-builder.Services.AddScoped<IRegistroIVARepository, RegistroIVARepository>();
-builder.Services.AddScoped<IRegistroIVAService, RegistroIVAService>();
 
-builder.Services.AddScoped<INumeriRegIVARepository, NumeriRegIVARepository>();
-builder.Services.AddScoped<INumeriRegIVAService, NumeriRegIVAService>();
+builder.Services.AddScoped<IUtenteRepository, UtenteRepository>();
+builder.Services.AddScoped<IFiscalePostazioniRepository, FiscalePostazioniRepository>();
+builder.Services.AddScoped<IFunzioniRepository, FunzioniRepository>();
+builder.Services.AddScoped<IGruppiRepository, GruppiRepository>();
+builder.Services.AddScoped<ILettorePostazioniRepository, LettorePostazioniRepository>();
+builder.Services.AddScoped<IModuliStampeRepository, ModuliStampeRepository>();
+builder.Services.AddScoped<IPermessiGruppoRepository, PermessiGruppoRepository>();
+builder.Services.AddScoped<IPwUtentiRepository, PwUtentiRepository>();
+builder.Services.AddScoped<IRegFiscaleRepository, RegFiscaleRepository>();
+builder.Services.AddScoped<ISessioniEasyGoldRepository, SessioniEasyGoldRepository>();
+builder.Services.AddScoped<IStampePostazioniRepository, StampePostazioniRepository>();
+builder.Services.AddScoped<ITestataPostazioniRepository, TestataPostazioniRepository>();
+builder.Services.AddScoped<ITipoPermessoRepository, TipoPermessoRepository>();
+builder.Services.AddScoped<ITipoPwRepository, TipoPwRepository>();
+builder.Services.AddScoped<IUtenteNegoziRepository, UtenteNegoziRepository>();
+builder.Services.AddScoped<IUtentePostazioneRepository, UtentePostazioneRepository>();
 
-builder.Services.AddScoped<IConfigRepository, ConfigRepository>();
-builder.Services.AddScoped<IConfigService, ConfigService>();
 
-builder.Services.AddScoped<IConfigLangRepository, ConfigLangRepository>();
-builder.Services.AddScoped<IConfigLangService, ConfigLangService>();
 
+//
 // 🔹 Abilita i controller e Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

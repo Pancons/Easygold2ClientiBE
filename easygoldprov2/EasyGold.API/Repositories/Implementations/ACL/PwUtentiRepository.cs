@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
 using Microsoft.EntityFrameworkCore;
-using EasyGold.Web2.Models.Cliente.Entities;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ACL.Filters;
 using EasyGold.API.Repositories.Interfaces.ACL;
 
 namespace EasyGold.API.Repositories.Implementations.ACL
@@ -15,14 +18,23 @@ namespace EasyGold.API.Repositories.Implementations.ACL
             _context = context;
         }
 
-        public async Task<IEnumerable<DbPwUtenti>> GetAllAsync()
+        public async Task<(IEnumerable<DbPwUtenti>, int total)> GetAllAsync(PwUtentiListRequest filter)
         {
-            return await _context.PwUtenti.AsNoTracking().ToListAsync();
+            var query = _context.PwUtenti.AsQueryable();
+
+            int total = await query.CountAsync();
+
+            var results = await query
+                .Skip(filter.Offset)
+                .Take(filter.Limit)
+                .ToListAsync();
+
+            return (results, total);
         }
 
         public async Task<DbPwUtenti> GetByIdAsync(int id)
         {
-            return await _context.PwUtenti.AsNoTracking().FirstOrDefaultAsync(x => x.Utp_IDAuto == id);
+            return await _context.PwUtenti.FindAsync(id);
         }
 
         public async Task AddAsync(DbPwUtenti entity)

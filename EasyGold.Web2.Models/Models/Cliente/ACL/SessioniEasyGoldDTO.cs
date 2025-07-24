@@ -20,7 +20,7 @@ namespace EasyGold.Web2.Models.Cliente.ACL
         public DateTime? Sse_DataLogin { get; set; }
 
         [SwaggerSchema(Description = "Se a True la sessione è terminata.")]
-        public bool? Sse_SesScaduta { get; set; }
+        public bool Sse_SesScaduta { get; set; }
 
         [SwaggerSchema(Description = "È la Data e l’Ora del Logout da Easygold.")]
         public DateTime? Sse_DataLogout { get; set; }
