@@ -1,0 +1,346 @@
+2025-07-29 15:00:12.188 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-29 15:00:12.381 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-29 15:00:12.385 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-29 15:23:09.845 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-29 15:23:10.021 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-29 15:23:10.025 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-29 15:23:44.761 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-29 15:23:44.875 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-29 15:23:44.878 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-29 15:23:45.822 +00:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-29 15:23:45.834 +00:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-29 15:23:45.869 +00:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-29 15:23:45.943 +00:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-29 15:23:45.954 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-29 15:23:45.955 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-29 15:23:45.968 +00:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-29 15:23:45.981 +00:00 [INF] Applying migration '20250729150014_SecondoMigrationEasyGoldApi'.
+2025-07-29 15:23:46.134 +00:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Cliente] (
+    [Utw_IDClienteAuto] int NOT NULL IDENTITY,
+    [Utw_NomeConnessione] nvarchar(100) NULL,
+    [Utw_StringaConnessione] nvarchar(200) NULL,
+    [Utw_DataAttivazione] datetime2 NOT NULL,
+    [Utw_DataDisattivazione] datetime2 NULL,
+    [Utw_NegoziAttivabili] int NOT NULL,
+    [Utw_NegoziVirtuali] int NOT NULL,
+    [Utw_UtentiAttivi] int NOT NULL,
+    [Utw_Postazioni] int NOT NULL,
+    [Utw_PercorsoReports] nvarchar(100) NULL,
+    [Utw_PercorsoImmagini] nvarchar(100) NULL,
+    [Utw_IdStatoCliente] int NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_Cliente] PRIMARY KEY ([Utw_IDClienteAuto])
+);
+2025-07-29 15:23:46.138 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [RegIVA] (
+    [RowIdAuto] int NOT NULL IDENTITY,
+    [RgiDescrizione] nvarchar(50) NOT NULL,
+    [RgiPrefisso] nvarchar(10) NOT NULL,
+    [RgiSuffisso] nvarchar(10) NOT NULL,
+    [RgiAnnulla] bit NOT NULL,
+    CONSTRAINT [PK_RegIVA] PRIMARY KEY ([RowIdAuto])
+);
+2025-07-29 15:23:46.144 +00:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [syscl_config] (
+    [Sys_IDAuto] int NOT NULL IDENTITY,
+    [Sys_Sezione] int NOT NULL,
+    [Sys_Nazione] int NOT NULL,
+    [Sys_NomeCampo] nvarchar(100) NOT NULL,
+    [Sys_TipoCampo] int NOT NULL,
+    [Sys_Valore] nvarchar(max) NOT NULL,
+    [Sys_Lunghezza] int NOT NULL,
+    CONSTRAINT [PK_syscl_config] PRIMARY KEY ([Sys_IDAuto])
+);
+2025-07-29 15:23:46.146 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_aliquoteIVA] (
+    [Iva_IDAuto] int NOT NULL IDENTITY,
+    [Iva_Descrizione] nvarchar(100) NOT NULL,
+    [Iva_Aliquota] decimal(18,2) NOT NULL,
+    [Iva_Esenzione] bit NOT NULL,
+    [Iva_Scorporata] bit NOT NULL,
+    [Iva_Annullato] bit NOT NULL,
+    [Iva_Estero] bit NOT NULL,
+    [Iva_NaturaFE] int NOT NULL,
+    [Iva_NaturaSC] int NOT NULL,
+    CONSTRAINT [PK_tbcl_aliquoteIVA] PRIMARY KEY ([Iva_IDAuto])
+);
+2025-07-29 15:23:46.148 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_causali] (
+    [Cal_IDAuto] int NOT NULL IDENTITY,
+    [Cal_Descrizione] nvarchar(100) NOT NULL,
+    [Cal_IDDoveUso] int NOT NULL,
+    [Cal_IDProgressivo] int NOT NULL,
+    [Cal_IDTipoAnagrafica] int NOT NULL,
+    [Cal_IDTipoIVA] int NOT NULL,
+    [Cal_Annulla] bit NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_causali] PRIMARY KEY ([Cal_IDAuto])
+);
+2025-07-29 15:23:46.151 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_valute] (
+    [Val_IDAuto] int NOT NULL IDENTITY,
+    [Val_Descrizione] nvarchar(100) NOT NULL,
+    [Val_Cambio] decimal(18,2) NOT NULL,
+    [Val_NumDecimali] int NOT NULL,
+    [Val_SimboloValuta] nvarchar(3) NOT NULL,
+    [Val_SiglaValuta] nvarchar(3) NOT NULL,
+    [Val_Annullato] bit NOT NULL,
+    CONSTRAINT [PK_tbcl_valute] PRIMARY KEY ([Val_IDAuto])
+);
+2025-07-29 15:23:46.153 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_cauProgressivi] (
+    [Cpr_IDAuto] int NOT NULL IDENTITY,
+    [Cpr_Descrizione] nvarchar(50) NOT NULL,
+    [Cpr_CalcGiacenza] int NOT NULL,
+    [Prc_CalcDisponibilita] int NOT NULL,
+    [Cpr_Annullato] bit NOT NULL,
+    CONSTRAINT [PK_tbco_cauProgressivi] PRIMARY KEY ([Cpr_IDAuto])
+);
+2025-07-29 15:23:46.156 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_causali] (
+    [Cac_IDAuto] int NOT NULL IDENTITY,
+    [Cac_Descrizione] nvarchar(100) NOT NULL,
+    [Cac_IDDoveUso] int NOT NULL,
+    [Cac_IDProgressivo] int NOT NULL,
+    [Cac_IDTipoAnagrafica] int NOT NULL,
+    [Cac_IDTipoIVA] int NOT NULL,
+    [Cac_Annulla] bit NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbco_causali] PRIMARY KEY ([Cac_IDAuto])
+);
+2025-07-29 15:23:46.158 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_idiomiEasygold] (
+    [Idm_IDAuto] int NOT NULL IDENTITY,
+    [Idm_ISONum] int NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbco_idiomiEasygold] PRIMARY KEY ([Idm_IDAuto])
+);
+2025-07-29 15:23:46.161 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_ISONazioni] (
+    [Ntn_ISO1] int NOT NULL IDENTITY,
+    [Ntn_Descrizione] nvarchar(200) NOT NULL,
+    [Ntn_ISO1A2] nvarchar(2) NOT NULL,
+    [Ntn_ISO1A3] nvarchar(3) NOT NULL,
+    [Ntn_PrefTelef] nvarchar(10) NOT NULL,
+    [Ntn_Continente] int NOT NULL,
+    [Ntn_ContinenteLegale] int NOT NULL,
+    [Ntn_Appartiene] int NOT NULL,
+    [Ntn_Capitale] nvarchar(100) NOT NULL,
+    [Ntn_CapitaleDeFacto] nvarchar(100) NOT NULL,
+    [Ntn_CapitaleAmm] nvarchar(100) NOT NULL,
+    [Ntn_CapitaleIdioma] nvarchar(100) NOT NULL,
+    [Ntn_IDValuta] int NOT NULL,
+    [Ntn_LunghezzaCAP] int NOT NULL,
+    [Ntn_NomePI] nvarchar(50) NOT NULL,
+    [Ntn_TipoPI] int NOT NULL,
+    [Ntn_LunghezzaPI] int NOT NULL,
+    [Ntn_NomeCF] nvarchar(50) NOT NULL,
+    [Ntn_TipoCF] int NOT NULL,
+    [Ntn_LunghezzaCF] int NOT NULL,
+    [Ntn_DescStatoRegione] nvarchar(100) NOT NULL,
+    [Ntn_StatoRegione] bit NOT NULL,
+    [Ntn_LungSiglaProv] int NOT NULL,
+    [Ntn_ProvSiNo] bit NOT NULL,
+    [Ntn_Province] bit NOT NULL,
+    [Ntn_Localita] bit NOT NULL,
+    [Ntn_Indirizzi] bit NOT NULL,
+    CONSTRAINT [PK_tbco_ISONazioni] PRIMARY KEY ([Ntn_ISO1])
+);
+2025-07-29 15:23:46.163 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_nazioniMondo] (
+    [Nzm_IDAuto] int NOT NULL IDENTITY,
+    [Nzm_Nazione] nvarchar(100) NOT NULL,
+    [Nzm_ISOAlfa2] nvarchar(2) NOT NULL,
+    [Nzm_ISOAlfa3] nvarchar(3) NOT NULL,
+    [Nzm_ISONum] int NOT NULL,
+    [Nzm_PrefTelefonico] nvarchar(10) NOT NULL,
+    [Nzm_CapitaleIure] nvarchar(100) NOT NULL,
+    [Nzm_CapitaleFatto] nvarchar(100) NOT NULL,
+    [Nzm_CapitaleAmm] nvarchar(100) NOT NULL,
+    [Nzm_CapitaleIdioma] nvarchar(200) NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbco_nazioniMondo] PRIMARY KEY ([Nzm_IDAuto])
+);
+2025-07-29 15:23:46.166 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_statoRegioni] (
+    [Str_IDAuto] int NOT NULL IDENTITY,
+    [Str_ISO1] int NOT NULL,
+    [Str_Descrizione] nvarchar(200) NOT NULL,
+    [Str_CodCapoluogo] int NOT NULL,
+    CONSTRAINT [PK_tbco_statoRegioni] PRIMARY KEY ([Str_IDAuto])
+);
+2025-07-29 15:23:46.169 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [NumeriRegIVA] (
+    [RowIDAuto] int NOT NULL IDENTITY,
+    [RowIDRegIVA] int NOT NULL,
+    [NriAnno] int NOT NULL,
+    [NriNumFattura] int NOT NULL,
+    CONSTRAINT [PK_NumeriRegIVA] PRIMARY KEY ([RowIDAuto]),
+    CONSTRAINT [FK_NumeriRegIVA_RegIVA_RowIDRegIVA] FOREIGN KEY ([RowIDRegIVA]) REFERENCES [RegIVA] ([RowIdAuto]) ON DELETE CASCADE
+);
+2025-07-29 15:23:46.172 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [syscl_config_lag] (
+    [Sysid_ISONum] int NOT NULL IDENTITY,
+    [Sysid_ID] int NOT NULL,
+    [Sysid_NomeCampo] nvarchar(100) NOT NULL,
+    CONSTRAINT [PK_syscl_config_lag] PRIMARY KEY ([Sysid_ISONum]),
+    CONSTRAINT [FK_syscl_config_lag_syscl_config_Sysid_ID] FOREIGN KEY ([Sysid_ID]) REFERENCES [syscl_config] ([Sys_IDAuto]) ON DELETE CASCADE
+);
+2025-07-29 15:23:46.175 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_aliquoteIVA_lang] (
+    [Ivaid_ISONum] int NOT NULL,
+    [Ivaid_ID] int NOT NULL,
+    [Ivaid_Descrizione] nvarchar(100) NOT NULL,
+    CONSTRAINT [PK_tbcl_aliquoteIVA_lang] PRIMARY KEY ([Ivaid_ISONum], [Ivaid_ID]),
+    CONSTRAINT [FK_tbcl_aliquoteIVA_lang_tbcl_aliquoteIVA_Ivaid_ID] FOREIGN KEY ([Ivaid_ID]) REFERENCES [tbcl_aliquoteIVA] ([Iva_IDAuto]) ON DELETE CASCADE
+);
+2025-07-29 15:23:46.179 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_causali_lang] (
+    [Cal_ISONum] int NOT NULL,
+    [Cal_ID] int NOT NULL,
+    [Cal_Descrizione] nvarchar(100) NOT NULL,
+    [Cal_IDAuto] int NOT NULL,
+    CONSTRAINT [PK_tbcl_causali_lang] PRIMARY KEY ([Cal_ISONum], [Cal_ID]),
+    CONSTRAINT [FK_tbcl_causali_lang_tbcl_causali_Cal_ID] FOREIGN KEY ([Cal_ID]) REFERENCES [tbcl_causali] ([Cal_IDAuto]) ON DELETE CASCADE
+);
+2025-07-29 15:23:46.181 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_valute_lang] (
+    [Valid_ISONum] int NOT NULL,
+    [Valid_ID] int NOT NULL,
+    [Valid_Descrizione] nvarchar(100) NOT NULL,
+    CONSTRAINT [PK_tbcl_valute_lang] PRIMARY KEY ([Valid_ISONum], [Valid_ID]),
+    CONSTRAINT [FK_tbcl_valute_lang_tbcl_valute_Valid_ID] FOREIGN KEY ([Valid_ID]) REFERENCES [tbcl_valute] ([Val_IDAuto]) ON DELETE CASCADE
+);
+2025-07-29 15:23:46.184 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_cauProgressivi_lang] (
+    [Prcid_ISONum] int NOT NULL,
+    [Prcid_ID] int NOT NULL,
+    [Prcid_Descrizione] nvarchar(50) NOT NULL,
+    CONSTRAINT [PK_tbco_cauProgressivi_lang] PRIMARY KEY ([Prcid_ISONum], [Prcid_ID]),
+    CONSTRAINT [FK_tbco_cauProgressivi_lang_tbco_cauProgressivi_Prcid_ID] FOREIGN KEY ([Prcid_ID]) REFERENCES [tbco_cauProgressivi] ([Cpr_IDAuto]) ON DELETE CASCADE
+);
+2025-07-29 15:23:46.187 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_cauOrdinamento] (
+    [Cao_IDAuto] int NOT NULL IDENTITY,
+    [Cao_ID] int NOT NULL,
+    [Cao_Ordinamento] int NOT NULL,
+    [DbCausaliComuneCac_IDAuto] int NULL,
+    CONSTRAINT [PK_tbco_cauOrdinamento] PRIMARY KEY ([Cao_IDAuto]),
+    CONSTRAINT [FK_tbco_cauOrdinamento_tbco_causali_Cao_ID] FOREIGN KEY ([Cao_ID]) REFERENCES [tbco_causali] ([Cac_IDAuto]) ON DELETE CASCADE,
+    CONSTRAINT [FK_tbco_cauOrdinamento_tbco_causali_DbCausaliComuneCac_IDAuto] FOREIGN KEY ([DbCausaliComuneCac_IDAuto]) REFERENCES [tbco_causali] ([Cac_IDAuto])
+);
+2025-07-29 15:23:46.190 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_causali_lang] (
+    [Cac_ISONum] int NOT NULL,
+    [Cac_ID] int NOT NULL,
+    [Cac_Descrizione] nvarchar(100) NOT NULL,
+    [Cac_IDAuto] int NOT NULL,
+    CONSTRAINT [PK_tbco_causali_lang] PRIMARY KEY ([Cac_ISONum], [Cac_ID]),
+    CONSTRAINT [FK_tbco_causali_lang_tbco_causali_Cac_ID] FOREIGN KEY ([Cac_ID]) REFERENCES [tbco_causali] ([Cac_IDAuto]) ON DELETE CASCADE
+);
+2025-07-29 15:23:46.193 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbcl_idiomiScelti] (
+    [Idm_IDAuto] int NOT NULL IDENTITY,
+    [Idm_IDCliente] int NOT NULL,
+    [Idm_IDIdioma] int NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbcl_idiomiScelti] PRIMARY KEY ([Idm_IDAuto]),
+    CONSTRAINT [FK_tbcl_idiomiScelti_Cliente_Idm_IDCliente] FOREIGN KEY ([Idm_IDCliente]) REFERENCES [Cliente] ([Utw_IDClienteAuto]) ON DELETE CASCADE,
+    CONSTRAINT [FK_tbcl_idiomiScelti_tbco_idiomiEasygold_Idm_IDIdioma] FOREIGN KEY ([Idm_IDIdioma]) REFERENCES [tbco_idiomiEasygold] ([Idm_IDAuto]) ON DELETE CASCADE
+);
+2025-07-29 15:23:46.195 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_id_ISONazioni] (
+    [Ntnid_ISONum] int NOT NULL,
+    [Ntnid_ID] int NOT NULL,
+    [Ntnid_Nazione] nvarchar(100) NOT NULL,
+    [Ntnid_Capitale] nvarchar(100) NOT NULL,
+    [Ntn_CapitaleDeFacto] nvarchar(100) NOT NULL,
+    [Ntn_CapitaleAmm] nvarchar(100) NOT NULL,
+    CONSTRAINT [PK_tbco_id_ISONazioni] PRIMARY KEY ([Ntnid_ISONum], [Ntnid_ID]),
+    CONSTRAINT [FK_tbco_id_ISONazioni_tbco_ISONazioni_Ntnid_ID] FOREIGN KEY ([Ntnid_ID]) REFERENCES [tbco_ISONazioni] ([Ntn_ISO1]) ON DELETE CASCADE
+);
+2025-07-29 15:23:46.199 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_nazioniMondo_lang] (
+    [Nzmid_ISONum] int NOT NULL,
+    [Nzmid_ID] int NOT NULL,
+    [Nzmid_Nazione] nvarchar(100) NOT NULL,
+    [Nzmid_CapitaleIure] nvarchar(100) NOT NULL,
+    [Nzmid_CapitaleFatto] nvarchar(100) NOT NULL,
+    [Nzmid_CapitaleAmm] nvarchar(100) NOT NULL,
+    [rowcreated_at] datetime2 NOT NULL,
+    [rowupdated_at] datetime2 NULL,
+    [rowdeleted_at] datetime2 NULL,
+    CONSTRAINT [PK_tbco_nazioniMondo_lang] PRIMARY KEY ([Nzmid_ID], [Nzmid_ISONum]),
+    CONSTRAINT [FK_tbco_nazioniMondo_lang_tbco_nazioniMondo_Nzmid_ID] FOREIGN KEY ([Nzmid_ID]) REFERENCES [tbco_nazioniMondo] ([Nzm_IDAuto]) ON DELETE CASCADE
+);
+2025-07-29 15:23:46.201 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tbco_id_statoRegioni] (
+    [Strid_ISONum] int NOT NULL,
+    [Strid_ID] int NOT NULL,
+    [Strid_Descrizione] nvarchar(200) NOT NULL,
+    CONSTRAINT [PK_tbco_id_statoRegioni] PRIMARY KEY ([Strid_ISONum], [Strid_ID]),
+    CONSTRAINT [FK_tbco_id_statoRegioni_tbco_statoRegioni_Strid_ID] FOREIGN KEY ([Strid_ID]) REFERENCES [tbco_statoRegioni] ([Str_IDAuto]) ON DELETE CASCADE
+);
+2025-07-29 15:23:46.209 +00:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_NumeriRegIVA_RowIDRegIVA] ON [NumeriRegIVA] ([RowIDRegIVA]);
+2025-07-29 15:23:46.212 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_syscl_config_lag_Sysid_ID] ON [syscl_config_lag] ([Sysid_ID]);
+2025-07-29 15:23:46.214 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_aliquoteIVA_lang_Ivaid_ID] ON [tbcl_aliquoteIVA_lang] ([Ivaid_ID]);
+2025-07-29 15:23:46.216 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_causali_lang_Cal_ID] ON [tbcl_causali_lang] ([Cal_ID]);
+2025-07-29 15:23:46.218 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_idiomiScelti_Idm_IDCliente] ON [tbcl_idiomiScelti] ([Idm_IDCliente]);
+2025-07-29 15:23:46.219 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_idiomiScelti_Idm_IDIdioma] ON [tbcl_idiomiScelti] ([Idm_IDIdioma]);
+2025-07-29 15:23:46.221 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbcl_valute_lang_Valid_ID] ON [tbcl_valute_lang] ([Valid_ID]);
+2025-07-29 15:23:46.223 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbco_cauOrdinamento_Cao_ID] ON [tbco_cauOrdinamento] ([Cao_ID]);
+2025-07-29 15:23:46.224 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbco_cauOrdinamento_DbCausaliComuneCac_IDAuto] ON [tbco_cauOrdinamento] ([DbCausaliComuneCac_IDAuto]);
+2025-07-29 15:23:46.226 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbco_cauProgressivi_lang_Prcid_ID] ON [tbco_cauProgressivi_lang] ([Prcid_ID]);
+2025-07-29 15:23:46.228 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbco_causali_lang_Cac_ID] ON [tbco_causali_lang] ([Cac_ID]);
+2025-07-29 15:23:46.229 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbco_id_ISONazioni_Ntnid_ID] ON [tbco_id_ISONazioni] ([Ntnid_ID]);
+2025-07-29 15:23:46.232 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_tbco_id_statoRegioni_Strid_ID] ON [tbco_id_statoRegioni] ([Strid_ID]);
+2025-07-29 15:23:46.239 +00:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250729150014_SecondoMigrationEasyGoldApi', N'9.0.2');
+2025-07-29 15:23:46.247 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result

@@ -1,0 +1,1031 @@
+2025-08-01 09:05:35.417 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-01 09:05:35.508 +00:00 [INF] Creating key {1862194f-4b9a-4f66-9191-ee3fd1d8d61c} with creation date 2025-08-01 09:05:35Z, activation date 2025-08-03 07:54:12Z, and expiration date 2025-10-30 09:05:35Z.
+2025-08-01 09:05:35.514 +00:00 [WRN] No XML encryptor configured. Key {1862194f-4b9a-4f66-9191-ee3fd1d8d61c} may be persisted to storage in unencrypted form.
+2025-08-01 09:05:35.516 +00:00 [INF] Writing data to file '/home/ubuntu/.aspnet/DataProtection-Keys/key-1862194f-4b9a-4f66-9191-ee3fd1d8d61c.xml'.
+2025-08-01 09:05:35.571 +00:00 [WRN] Overriding address(es) 'http://localhost:5217'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-08-01 09:05:35.594 +00:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://[::]:5000: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (98): Address already in use
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.AnyIPListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.EndpointsStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2025-08-01 09:06:12.461 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-01 09:06:12.587 +00:00 [WRN] Overriding address(es) 'http://localhost:5217'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-08-01 09:06:12.606 +00:00 [INF] Now listening on: http://[::]:5000
+2025-08-01 09:06:12.606 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-01 09:06:12.607 +00:00 [INF] Hosting environment: Development
+2025-08-01 09:06:12.607 +00:00 [INF] Content root path: /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-01 09:06:21.147 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.html - null null
+2025-08-01 09:06:21.183 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-01 09:06:21.302 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.html - 200 null text/html;charset=utf-8 155.7588ms
+2025-08-01 09:06:21.351 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.js - null null
+2025-08-01 09:06:21.356 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.js - 200 null application/javascript;charset=utf-8 5.0236ms
+2025-08-01 09:06:21.509 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/v1/swagger.json - null null
+2025-08-01 09:06:22.027 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 517.1178ms
+2025-08-01 09:06:39.607 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - application/json 76
+2025-08-01 09:06:39.612 +00:00 [INF] CORS policy execution successful.
+2025-08-01 09:06:39.617 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 09:06:39.641 +00:00 [INF] Route matched with {action = "Login", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.Web2.Models.Cliente.ACL.Requests.LoginRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-01 09:06:40.607 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-01 09:06:40.713 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:06:40.714 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:06:40.714 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:06:40.714 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:06:40.715 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:06:40.715 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:06:40.715 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:06:41.258 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-08-01 09:06:41.835 +00:00 [INF] Executed DbCommand (77ms) [Parameters=[@__username_0='Admin' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Ute_IDAuto], [s].[Ute_AbilitaCassa], [s].[Ute_AbilitaEliminaProd], [s].[Ute_AbilitaTuttiNegozi], [s].[Ute_Bloccato], [s].[Ute_Email], [s].[Ute_IDGruppo], [s].[Ute_IDIdioma], [s].[Ute_IDUtente], [s].[Ute_NomeUtente], [s].[Ute_PasswordResetToken], [s].[Ute_ResetTokenExpiry], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [t1].[Utp_IDUtente], [t1].[Utp_PwUtente], [t1].[Utp_TipoPw], [t1].[rowcreated_at], [t1].[rowdeleted_at], [t1].[rowupdated_at], [s].[Grp_Bloccato], [s].[Grp_DesGruppo], [s].[Grp_NomeGruppo], [s].[Grp_SuperAdmin], [s].[rowcreated_at], [s].[rowdeleted_at], [s].[rowupdated_at], [s0].[Utn_IDAuto], [s0].[Utn_Annullato], [s0].[Utn_Default], [s0].[Utn_IDNegozio], [s0].[Utn_IDUtente], [s0].[rowcreated_at], [s0].[rowdeleted_at], [s0].[rowupdated_at], [s0].[Neg_id], [s0].[Neg_Bloccato], [s0].[Neg_DataAttivazione], [s0].[Neg_DataDisattivazione], [s0].[Neg_DataOraBlocco], [s0].[Neg_IDCliente], [s0].[Neg_NomeNegozio], [s0].[Neg_Note], [s0].[Neg_RagioneSociale], [t4].[Id], [t4].[Expires], [t4].[Language], [t4].[StoreId], [t4].[Token], [t4].[UserId], [t4].[rowcreated_at], [t4].[rowdeleted_at], [t4].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry], [t0].[Grp_IDAuto], [t0].[Grp_Bloccato], [t0].[Grp_DesGruppo], [t0].[Grp_NomeGruppo], [t0].[Grp_SuperAdmin], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+    FROM [tbcl_utenti] AS [t]
+    INNER JOIN [tbcl_gruppi] AS [t0] ON [t].[Ute_IDGruppo] = [t0].[Grp_IDAuto]
+    WHERE [t].[Ute_NomeUtente] = @__username_0
+) AS [s]
+LEFT JOIN [tbcl_pwUtenti] AS [t1] ON [s].[Ute_IDAuto] = [t1].[Utp_IDUtente]
+LEFT JOIN (
+    SELECT [t2].[Utn_IDAuto], [t2].[Utn_Annullato], [t2].[Utn_Default], [t2].[Utn_IDNegozio], [t2].[Utn_IDUtente], [t2].[rowcreated_at], [t2].[rowdeleted_at], [t2].[rowupdated_at], [t3].[Neg_id], [t3].[Neg_Bloccato], [t3].[Neg_DataAttivazione], [t3].[Neg_DataDisattivazione], [t3].[Neg_DataOraBlocco], [t3].[Neg_IDCliente], [t3].[Neg_NomeNegozio], [t3].[Neg_Note], [t3].[Neg_RagioneSociale]
+    FROM [tbcl_utenteNegozi] AS [t2]
+    INNER JOIN [tbcl_negozi] AS [t3] ON [t2].[Utn_IDNegozio] = [t3].[Neg_id]
+) AS [s0] ON [s].[Ute_IDAuto] = [s0].[Utn_IDUtente]
+LEFT JOIN [tbcl_refresh_token] AS [t4] ON [s].[Ute_IDAuto] = [t4].[UserId]
+ORDER BY [s].[Ute_IDAuto], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [s0].[Utn_IDAuto], [s0].[Neg_id]
+2025-08-01 09:06:42.838 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='2025-08-31T09:06:42.6294700Z', @p1=NULL (Size = 4000), @p2=NULL (DbType = Int32), @p3='90e959dea67df5fe126f48ca257b8a821074fc6e85b063b011d5ccc7e043fc21' (Nullable = false) (Size = 4000), @p4='2', @p5='0001-01-01T00:00:00.0000000', @p6=NULL (DbType = DateTime2), @p7=NULL (DbType = DateTime2), @p8=NULL (DbType = Int32), @p9='2025-08-01T09:06:42.6296086Z' (Nullable = true), @p10=NULL (DbType = DateTime2), @p11=NULL (DbType = DateTime2), @p12='0', @p13='2', @p14='False', @p15=NULL (DbType = Boolean), @p16='0001-01-01T00:00:00.0000000', @p17=NULL (DbType = DateTime2), @p18=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [tbcl_refresh_token] ([Expires], [Language], [StoreId], [Token], [UserId], [rowcreated_at], [rowdeleted_at], [rowupdated_at])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+INSERT INTO [tbco_SessioniEasyGold] ([DbUtenteUte_IDAuto], [Sse_DataLogin], [Sse_DataLogout], [Sse_DataLogoutForzato], [Sse_IDCliente], [Sse_IDUtente], [Sse_SesScaduta], [Sse_sesForzata], [rowcreated_at], [rowdeleted_at], [rowupdated_at])
+OUTPUT INSERTED.[Sse_IDAuto]
+VALUES (@p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18);
+2025-08-01 09:06:42.880 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType76`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-01 09:06:42.938 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API) in 3294.3327ms
+2025-08-01 09:06:42.939 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 09:06:42.941 +00:00 [ERR] An unhandled exception occurred.
+System.Text.Json.JsonException: A possible object cycle was detected. This can either be due to a cycle or if the object depth is larger than the maximum allowed depth of 32. Consider using ReferenceHandler.Preserve on JsonSerializerOptions to support cycles. Path: $.user.Gruppo.Utenti.Gruppo.Utenti.Gruppo.Utenti.Gruppo.Utenti.Gruppo.Utenti.Gruppo.Utenti.Gruppo.Utenti.Gruppo.Utenti.Gruppo.Utenti.Gruppo.Utenti.Ute_IDAuto.
+   at System.Text.Json.ThrowHelper.ThrowJsonException_SerializerCycleDetected(Int32 maxDepth)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-08-01 09:06:42.969 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - 500 null application/json 3361.7033ms
+2025-08-01 09:08:43.145 +00:00 [INF] Application is shutting down...
+2025-08-01 09:09:32.787 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-01 09:09:32.979 +00:00 [WRN] Overriding address(es) 'http://localhost:5217'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-08-01 09:09:33.008 +00:00 [INF] Now listening on: http://[::]:5000
+2025-08-01 09:09:33.008 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-01 09:09:33.009 +00:00 [INF] Hosting environment: Development
+2025-08-01 09:09:33.009 +00:00 [INF] Content root path: /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-01 09:09:39.480 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.html - null null
+2025-08-01 09:09:39.517 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-01 09:09:39.644 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.html - 200 null text/html;charset=utf-8 165.0397ms
+2025-08-01 09:09:39.718 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.js - null null
+2025-08-01 09:09:39.722 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.js - 200 null application/javascript;charset=utf-8 5.031ms
+2025-08-01 09:09:39.859 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/v1/swagger.json - null null
+2025-08-01 09:09:40.488 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 628.7511ms
+2025-08-01 09:09:58.601 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - application/json 76
+2025-08-01 09:09:58.604 +00:00 [INF] CORS policy execution successful.
+2025-08-01 09:09:58.607 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 09:09:58.627 +00:00 [INF] Route matched with {action = "Login", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.Web2.Models.Cliente.ACL.Requests.LoginRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-01 09:09:59.533 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-01 09:09:59.628 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:09:59.629 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:09:59.629 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:09:59.629 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:09:59.630 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:09:59.630 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:09:59.630 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:10:00.150 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-08-01 09:10:00.674 +00:00 [INF] Executed DbCommand (50ms) [Parameters=[@__username_0='Admin' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Ute_IDAuto], [s].[Ute_AbilitaCassa], [s].[Ute_AbilitaEliminaProd], [s].[Ute_AbilitaTuttiNegozi], [s].[Ute_Bloccato], [s].[Ute_Email], [s].[Ute_IDGruppo], [s].[Ute_IDIdioma], [s].[Ute_IDUtente], [s].[Ute_NomeUtente], [s].[Ute_PasswordResetToken], [s].[Ute_ResetTokenExpiry], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [t1].[Utp_IDUtente], [t1].[Utp_PwUtente], [t1].[Utp_TipoPw], [t1].[rowcreated_at], [t1].[rowdeleted_at], [t1].[rowupdated_at], [s].[Grp_Bloccato], [s].[Grp_DesGruppo], [s].[Grp_NomeGruppo], [s].[Grp_SuperAdmin], [s].[rowcreated_at], [s].[rowdeleted_at], [s].[rowupdated_at], [s0].[Utn_IDAuto], [s0].[Utn_Annullato], [s0].[Utn_Default], [s0].[Utn_IDNegozio], [s0].[Utn_IDUtente], [s0].[rowcreated_at], [s0].[rowdeleted_at], [s0].[rowupdated_at], [s0].[Neg_id], [s0].[Neg_Bloccato], [s0].[Neg_DataAttivazione], [s0].[Neg_DataDisattivazione], [s0].[Neg_DataOraBlocco], [s0].[Neg_IDCliente], [s0].[Neg_NomeNegozio], [s0].[Neg_Note], [s0].[Neg_RagioneSociale], [t4].[Id], [t4].[Expires], [t4].[Language], [t4].[StoreId], [t4].[Token], [t4].[UserId], [t4].[rowcreated_at], [t4].[rowdeleted_at], [t4].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry], [t0].[Grp_IDAuto], [t0].[Grp_Bloccato], [t0].[Grp_DesGruppo], [t0].[Grp_NomeGruppo], [t0].[Grp_SuperAdmin], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+    FROM [tbcl_utenti] AS [t]
+    INNER JOIN [tbcl_gruppi] AS [t0] ON [t].[Ute_IDGruppo] = [t0].[Grp_IDAuto]
+    WHERE [t].[Ute_NomeUtente] = @__username_0
+) AS [s]
+LEFT JOIN [tbcl_pwUtenti] AS [t1] ON [s].[Ute_IDAuto] = [t1].[Utp_IDUtente]
+LEFT JOIN (
+    SELECT [t2].[Utn_IDAuto], [t2].[Utn_Annullato], [t2].[Utn_Default], [t2].[Utn_IDNegozio], [t2].[Utn_IDUtente], [t2].[rowcreated_at], [t2].[rowdeleted_at], [t2].[rowupdated_at], [t3].[Neg_id], [t3].[Neg_Bloccato], [t3].[Neg_DataAttivazione], [t3].[Neg_DataDisattivazione], [t3].[Neg_DataOraBlocco], [t3].[Neg_IDCliente], [t3].[Neg_NomeNegozio], [t3].[Neg_Note], [t3].[Neg_RagioneSociale]
+    FROM [tbcl_utenteNegozi] AS [t2]
+    INNER JOIN [tbcl_negozi] AS [t3] ON [t2].[Utn_IDNegozio] = [t3].[Neg_id]
+) AS [s0] ON [s].[Ute_IDAuto] = [s0].[Utn_IDUtente]
+LEFT JOIN [tbcl_refresh_token] AS [t4] ON [s].[Ute_IDAuto] = [t4].[UserId]
+ORDER BY [s].[Ute_IDAuto], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [s0].[Utn_IDAuto], [s0].[Neg_id]
+2025-08-01 09:10:01.805 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='2025-08-31T09:10:01.5379414Z', @p1=NULL (Size = 4000), @p2=NULL (DbType = Int32), @p3='289923de84f4ecd5afdd83351e5ab806dd28e46000b319cab5a2584f92eb4d88' (Nullable = false) (Size = 4000), @p4='2', @p5='0001-01-01T00:00:00.0000000', @p6=NULL (DbType = DateTime2), @p7=NULL (DbType = DateTime2), @p8=NULL (DbType = Int32), @p9='2025-08-01T09:10:01.5380521Z' (Nullable = true), @p10=NULL (DbType = DateTime2), @p11=NULL (DbType = DateTime2), @p12='0', @p13='2', @p14='False', @p15=NULL (DbType = Boolean), @p16='0001-01-01T00:00:00.0000000', @p17=NULL (DbType = DateTime2), @p18=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [tbcl_refresh_token] ([Expires], [Language], [StoreId], [Token], [UserId], [rowcreated_at], [rowdeleted_at], [rowupdated_at])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+INSERT INTO [tbco_SessioniEasyGold] ([DbUtenteUte_IDAuto], [Sse_DataLogin], [Sse_DataLogout], [Sse_DataLogoutForzato], [Sse_IDCliente], [Sse_IDUtente], [Sse_SesScaduta], [Sse_sesForzata], [rowcreated_at], [rowdeleted_at], [rowupdated_at])
+OUTPUT INSERTED.[Sse_IDAuto]
+VALUES (@p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18);
+2025-08-01 09:10:01.851 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType76`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-01 09:10:01.928 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API) in 3296.8246ms
+2025-08-01 09:10:01.929 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 09:10:01.936 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - 200 null application/json; charset=utf-8 3335.569ms
+2025-08-01 09:10:33.769 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/refresh - null 0
+2025-08-01 09:10:33.775 +00:00 [INF] CORS policy execution successful.
+2025-08-01 09:10:33.780 +00:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-08-01 09:10:33.783 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-08-01 09:10:33.784 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/refresh - 401 0 null 14.7373ms
+2025-08-01 09:11:06.115 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/refresh - null 0
+2025-08-01 09:11:06.116 +00:00 [INF] CORS policy execution successful.
+2025-08-01 09:11:06.150 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API)'
+2025-08-01 09:11:06.155 +00:00 [INF] Route matched with {action = "RefreshToken", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RefreshToken() on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-01 09:11:06.165 +00:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-01 09:11:06.167 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API) in 12.2771ms
+2025-08-01 09:11:06.168 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API)'
+2025-08-01 09:11:06.168 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/refresh - 401 null application/json; charset=utf-8 52.9081ms
+2025-08-01 09:12:03.832 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/logout - null 0
+2025-08-01 09:12:03.833 +00:00 [INF] CORS policy execution successful.
+2025-08-01 09:12:03.836 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API)'
+2025-08-01 09:12:03.841 +00:00 [INF] Route matched with {action = "Logout", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Logout() on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-01 09:12:03.903 +00:00 [INF] Executed DbCommand (17ms) [Parameters=[@__userId_0='1'], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Sse_IDAuto], [t].[DbUtenteUte_IDAuto], [t].[Sse_DataLogin], [t].[Sse_DataLogout], [t].[Sse_DataLogoutForzato], [t].[Sse_IDCliente], [t].[Sse_IDUtente], [t].[Sse_SesScaduta], [t].[Sse_sesForzata], [t].[rowcreated_at], [t].[rowdeleted_at], [t].[rowupdated_at]
+FROM [tbco_SessioniEasyGold] AS [t]
+WHERE [t].[Sse_IDUtente] = @__userId_0 AND [t].[Sse_SesScaduta] = CAST(0 AS bit)
+2025-08-01 09:12:03.914 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API) in 72.1956ms
+2025-08-01 09:12:03.914 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API)'
+2025-08-01 09:12:03.916 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: The LINQ expression 'DbSet<DbRefreshToken>()
+    .Where(d => d.UserId == __userId_0 && d.IsActive)' could not be translated. Additional information: Translation of member 'IsActive' on entity type 'DbRefreshToken' failed. This commonly occurs when the specified member is unmapped. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetEnumerator()
+   at EasyGold.API.Services.Implementations.ACL.AutenticazioneService.LogoutAsync(Int32 userId) in /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API/Services/Implementations/ACL/AutenticazioneService.cs:line 145
+   at EasyGold.API.Controllers.ACL.AutenticazioneController.Logout() in /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API/Controllers/ACL/AutenticazioneController.cs:line 97
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-08-01 09:12:03.932 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/logout - 500 null application/json 100.3039ms
+2025-08-01 09:16:41.035 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.html - null null
+2025-08-01 09:16:41.037 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.html - 200 null text/html;charset=utf-8 1.8895ms
+2025-08-01 09:16:41.064 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/swagger-ui.css - null null
+2025-08-01 09:16:41.066 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.css - null null
+2025-08-01 09:16:41.074 +00:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-08-01 09:16:41.075 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.css - 200 202 text/css 9.2992ms
+2025-08-01 09:16:41.079 +00:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-08-01 09:16:41.080 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/swagger-ui.css - 200 152035 text/css 15.4172ms
+2025-08-01 09:16:41.082 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/swagger-ui-bundle.js - null null
+2025-08-01 09:16:41.083 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/swagger-ui-standalone-preset.js - null null
+2025-08-01 09:16:41.084 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.js - null null
+2025-08-01 09:16:41.085 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/index.js - 200 null application/javascript;charset=utf-8 1.1218ms
+2025-08-01 09:16:41.121 +00:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-08-01 09:16:41.122 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/swagger-ui-standalone-preset.js - 200 230007 text/javascript 39.0525ms
+2025-08-01 09:16:41.174 +00:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-08-01 09:16:41.174 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/swagger-ui-bundle.js - 200 1457477 text/javascript 92.2508ms
+2025-08-01 09:16:41.354 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/v1/swagger.json - null null
+2025-08-01 09:16:41.362 +00:00 [INF] Request starting HTTP/1.1 GET http://15.161.237.148:5000/swagger/favicon-32x32.png - null null
+2025-08-01 09:16:41.364 +00:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-08-01 09:16:41.366 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/favicon-32x32.png - 200 628 image/png 4.1989ms
+2025-08-01 09:16:41.618 +00:00 [INF] Request finished HTTP/1.1 GET http://15.161.237.148:5000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 263.2714ms
+2025-08-01 09:16:55.160 +00:00 [INF] Application is shutting down...
+2025-08-01 09:17:04.047 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-01 09:17:04.244 +00:00 [WRN] Overriding address(es) 'http://localhost:5217'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-08-01 09:17:04.273 +00:00 [INF] Now listening on: http://[::]:5000
+2025-08-01 09:17:04.274 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-01 09:17:04.275 +00:00 [INF] Hosting environment: Development
+2025-08-01 09:17:04.276 +00:00 [INF] Content root path: /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-01 09:17:09.262 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/logout - null 0
+2025-08-01 09:17:09.304 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-01 09:17:09.308 +00:00 [INF] CORS policy execution successful.
+2025-08-01 09:17:09.401 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API)'
+2025-08-01 09:17:09.420 +00:00 [INF] Route matched with {action = "Logout", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Logout() on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-01 09:17:10.318 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-01 09:17:10.403 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:17:10.405 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:17:10.405 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:17:10.405 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:17:10.406 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:17:10.406 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:17:10.406 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 09:17:11.301 +00:00 [INF] Executed DbCommand (44ms) [Parameters=[@__userId_0='1'], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Sse_IDAuto], [t].[DbUtenteUte_IDAuto], [t].[Sse_DataLogin], [t].[Sse_DataLogout], [t].[Sse_DataLogoutForzato], [t].[Sse_IDCliente], [t].[Sse_IDUtente], [t].[Sse_SesScaduta], [t].[Sse_sesForzata], [t].[rowcreated_at], [t].[rowdeleted_at], [t].[rowupdated_at]
+FROM [tbco_SessioniEasyGold] AS [t]
+WHERE [t].[Sse_IDUtente] = @__userId_0 AND [t].[Sse_SesScaduta] = CAST(0 AS bit)
+2025-08-01 09:17:11.347 +00:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='1'], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Expires], [t].[Language], [t].[StoreId], [t].[Token], [t].[UserId], [t].[rowcreated_at], [t].[rowdeleted_at], [t].[rowupdated_at]
+FROM [tbcl_refresh_token] AS [t]
+WHERE [t].[UserId] = @__userId_0
+2025-08-01 09:17:11.368 +00:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-01 09:17:11.423 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API) in 1999.3374ms
+2025-08-01 09:17:11.425 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API)'
+2025-08-01 09:17:11.435 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/logout - 200 null application/json; charset=utf-8 2173.9721ms
+2025-08-01 09:17:42.673 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - application/json 76
+2025-08-01 09:17:42.679 +00:00 [INF] CORS policy execution successful.
+2025-08-01 09:17:42.681 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 09:17:42.691 +00:00 [INF] Route matched with {action = "Login", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.Web2.Models.Cliente.ACL.Requests.LoginRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-01 09:17:42.896 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-08-01 09:17:42.942 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[@__username_0='Admin' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Ute_IDAuto], [s].[Ute_AbilitaCassa], [s].[Ute_AbilitaEliminaProd], [s].[Ute_AbilitaTuttiNegozi], [s].[Ute_Bloccato], [s].[Ute_Email], [s].[Ute_IDGruppo], [s].[Ute_IDIdioma], [s].[Ute_IDUtente], [s].[Ute_NomeUtente], [s].[Ute_PasswordResetToken], [s].[Ute_ResetTokenExpiry], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [t1].[Utp_IDUtente], [t1].[Utp_PwUtente], [t1].[Utp_TipoPw], [t1].[rowcreated_at], [t1].[rowdeleted_at], [t1].[rowupdated_at], [s].[Grp_Bloccato], [s].[Grp_DesGruppo], [s].[Grp_NomeGruppo], [s].[Grp_SuperAdmin], [s].[rowcreated_at], [s].[rowdeleted_at], [s].[rowupdated_at], [s0].[Utn_IDAuto], [s0].[Utn_Annullato], [s0].[Utn_Default], [s0].[Utn_IDNegozio], [s0].[Utn_IDUtente], [s0].[rowcreated_at], [s0].[rowdeleted_at], [s0].[rowupdated_at], [s0].[Neg_id], [s0].[Neg_Bloccato], [s0].[Neg_DataAttivazione], [s0].[Neg_DataDisattivazione], [s0].[Neg_DataOraBlocco], [s0].[Neg_IDCliente], [s0].[Neg_NomeNegozio], [s0].[Neg_Note], [s0].[Neg_RagioneSociale], [t4].[Id], [t4].[Expires], [t4].[Language], [t4].[StoreId], [t4].[Token], [t4].[UserId], [t4].[rowcreated_at], [t4].[rowdeleted_at], [t4].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry], [t0].[Grp_IDAuto], [t0].[Grp_Bloccato], [t0].[Grp_DesGruppo], [t0].[Grp_NomeGruppo], [t0].[Grp_SuperAdmin], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+    FROM [tbcl_utenti] AS [t]
+    INNER JOIN [tbcl_gruppi] AS [t0] ON [t].[Ute_IDGruppo] = [t0].[Grp_IDAuto]
+    WHERE [t].[Ute_NomeUtente] = @__username_0
+) AS [s]
+LEFT JOIN [tbcl_pwUtenti] AS [t1] ON [s].[Ute_IDAuto] = [t1].[Utp_IDUtente]
+LEFT JOIN (
+    SELECT [t2].[Utn_IDAuto], [t2].[Utn_Annullato], [t2].[Utn_Default], [t2].[Utn_IDNegozio], [t2].[Utn_IDUtente], [t2].[rowcreated_at], [t2].[rowdeleted_at], [t2].[rowupdated_at], [t3].[Neg_id], [t3].[Neg_Bloccato], [t3].[Neg_DataAttivazione], [t3].[Neg_DataDisattivazione], [t3].[Neg_DataOraBlocco], [t3].[Neg_IDCliente], [t3].[Neg_NomeNegozio], [t3].[Neg_Note], [t3].[Neg_RagioneSociale]
+    FROM [tbcl_utenteNegozi] AS [t2]
+    INNER JOIN [tbcl_negozi] AS [t3] ON [t2].[Utn_IDNegozio] = [t3].[Neg_id]
+) AS [s0] ON [s].[Ute_IDAuto] = [s0].[Utn_IDUtente]
+LEFT JOIN [tbcl_refresh_token] AS [t4] ON [s].[Ute_IDAuto] = [t4].[UserId]
+ORDER BY [s].[Ute_IDAuto], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [s0].[Utn_IDAuto], [s0].[Neg_id]
+2025-08-01 09:17:43.917 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='2025-08-31T09:17:43.7231829Z', @p1=NULL (Size = 4000), @p2=NULL (DbType = Int32), @p3='b0c6e2859a1641110598f21597cac19586ae582972a1fd5634cc0d0c493569b7' (Nullable = false) (Size = 4000), @p4='2', @p5='0001-01-01T00:00:00.0000000', @p6=NULL (DbType = DateTime2), @p7=NULL (DbType = DateTime2), @p8=NULL (DbType = Int32), @p9='2025-08-01T09:17:43.7233564Z' (Nullable = true), @p10=NULL (DbType = DateTime2), @p11=NULL (DbType = DateTime2), @p12='0', @p13='2', @p14='False', @p15=NULL (DbType = Boolean), @p16='0001-01-01T00:00:00.0000000', @p17=NULL (DbType = DateTime2), @p18=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [tbcl_refresh_token] ([Expires], [Language], [StoreId], [Token], [UserId], [rowcreated_at], [rowdeleted_at], [rowupdated_at])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+INSERT INTO [tbco_SessioniEasyGold] ([DbUtenteUte_IDAuto], [Sse_DataLogin], [Sse_DataLogout], [Sse_DataLogoutForzato], [Sse_IDCliente], [Sse_IDUtente], [Sse_SesScaduta], [Sse_sesForzata], [rowcreated_at], [rowdeleted_at], [rowupdated_at])
+OUTPUT INSERTED.[Sse_IDAuto]
+VALUES (@p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18);
+2025-08-01 09:17:43.956 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType76`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-01 09:17:44.009 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API) in 1317.7896ms
+2025-08-01 09:17:44.010 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 09:17:44.011 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - 200 null application/json; charset=utf-8 1337.9702ms
+2025-08-01 09:20:02.285 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/AliQuoteIVA/list - application/json 176
+2025-08-01 09:20:02.288 +00:00 [INF] CORS policy execution successful.
+2025-08-01 09:20:02.306 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AliQuoteIVAController.GetAliQuoteIVAList (EasyGold.API)'
+2025-08-01 09:20:02.312 +00:00 [INF] Route matched with {action = "GetAliQuoteIVAList", controller = "AliQuoteIVA"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAliQuoteIVAList(EasyGold.Web2.Models.Cliente.ACL.Filters.AliQuoteIVAListRequest) on controller EasyGold.API.Controllers.ACL.AliQuoteIVAController (EasyGold.API).
+2025-08-01 09:20:02.313 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AliQuoteIVAController.GetAliQuoteIVAList (EasyGold.API) in 1.5079ms
+2025-08-01 09:20:02.314 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AliQuoteIVAController.GetAliQuoteIVAList (EasyGold.API)'
+2025-08-01 09:20:02.315 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.ACL.IAliQuoteIVAService' while attempting to activate 'EasyGold.API.Controllers.ACL.AliQuoteIVAController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method1045(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-08-01 09:20:02.330 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/AliQuoteIVA/list - 500 null application/json 44.9922ms
+2025-08-01 09:24:57.290 +00:00 [INF] Application is shutting down...
+2025-08-01 10:39:37.798 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-01 10:39:38.260 +00:00 [WRN] Overriding address(es) 'http://localhost:5217'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-08-01 10:39:38.331 +00:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://[::]:5000: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (98): Address already in use
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.AnyIPListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.EndpointsStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2025-08-01 10:40:22.757 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-01 10:40:22.888 +00:00 [WRN] Overriding address(es) 'http://localhost:5217'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-08-01 10:40:22.906 +00:00 [INF] Now listening on: http://[::]:5000
+2025-08-01 10:40:22.907 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-01 10:40:22.907 +00:00 [INF] Hosting environment: Development
+2025-08-01 10:40:22.907 +00:00 [INF] Content root path: /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-01 10:40:30.920 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - application/json 72
+2025-08-01 10:40:30.963 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-01 10:40:30.967 +00:00 [INF] CORS policy execution successful.
+2025-08-01 10:40:31.026 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 10:40:31.047 +00:00 [INF] Route matched with {action = "Login", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.Web2.Models.Cliente.ACL.Requests.LoginRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-01 10:40:32.008 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-01 10:40:32.093 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:40:32.094 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:40:32.095 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:40:32.095 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:40:32.095 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:40:32.095 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:40:32.096 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:40:47.754 +00:00 [ERR] An error occurred using the connection to database 'EasyGoldProV2Clienti' on server '172.17.0.2,1433'.
+2025-08-01 10:40:47.770 +00:00 [ERR] An exception occurred while iterating over the results of a query for context type 'EasyGold.API.Infrastructure.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 40 - Could not open a connection to SQL Server)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 40 - Could not open a connection to SQL Server)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+2025-08-01 10:40:47.781 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API) in 16729.0716ms
+2025-08-01 10:40:47.785 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 10:40:47.787 +00:00 [ERR] An unhandled exception occurred.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 40 - Could not open a connection to SQL Server)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at EasyGold.API.Services.Implementations.ACL.AutenticazioneService.LoginAsync(String username, String password, String subdomain) in /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API/Services/Implementations/ACL/AutenticazioneService.cs:line 48
+   at EasyGold.API.Controllers.ACL.AutenticazioneController.Login(LoginRequest request) in /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API/Controllers/ACL/AutenticazioneController.cs:line 43
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+2025-08-01 10:40:47.814 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - 500 null application/json 16895.2101ms
+2025-08-01 10:40:58.205 +00:00 [INF] Application is shutting down...
+2025-08-01 10:41:24.725 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-01 10:41:25.107 +00:00 [WRN] Overriding address(es) 'http://localhost:5217'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-08-01 10:41:25.178 +00:00 [INF] Now listening on: http://[::]:5000
+2025-08-01 10:41:25.181 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-01 10:41:25.182 +00:00 [INF] Hosting environment: Development
+2025-08-01 10:41:25.183 +00:00 [INF] Content root path: /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-01 10:41:40.671 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - application/json 76
+2025-08-01 10:41:40.714 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-01 10:41:40.718 +00:00 [INF] CORS policy execution successful.
+2025-08-01 10:41:40.768 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 10:41:40.791 +00:00 [INF] Route matched with {action = "Login", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.Web2.Models.Cliente.ACL.Requests.LoginRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-01 10:41:41.720 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-01 10:41:41.806 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:41:41.807 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:41:41.807 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:41:41.808 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:41:41.809 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:41:41.809 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:41:41.810 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:41:42.867 +00:00 [INF] Executed DbCommand (71ms) [Parameters=[@__username_0='Admin' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t1].[Ute_IDAuto], [t1].[Ute_AbilitaCassa], [t1].[Ute_AbilitaEliminaProd], [t1].[Ute_AbilitaTuttiNegozi], [t1].[Ute_Bloccato], [t1].[Ute_Email], [t1].[Ute_IDGruppo], [t1].[Ute_IDIdioma], [t1].[Ute_IDUtente], [t1].[Ute_NomeUtente], [t1].[Ute_PasswordResetToken], [t1].[Ute_ResetTokenExpiry], [t0].[Utp_IDAuto], [t0].[Utp_IDUtente], [t0].[Utp_PwUtente], [t0].[Utp_TipoPw], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry]
+    FROM [tbcl_utenti] AS [t]
+    WHERE [t].[Ute_NomeUtente] = @__username_0
+) AS [t1]
+LEFT JOIN [tbcl_pwUtenti] AS [t0] ON [t1].[Ute_IDAuto] = [t0].[Utp_IDUtente]
+ORDER BY [t1].[Ute_IDAuto]
+2025-08-01 10:41:43.757 +00:00 [INF] Executed DbCommand (19ms) [Parameters=[@p0=NULL (DbType = Int32), @p1='2025-08-01T10:41:43.5781826Z' (Nullable = true), @p2=NULL (DbType = DateTime2), @p3=NULL (DbType = DateTime2), @p4='0', @p5='2', @p6='False', @p7=NULL (DbType = Boolean), @p8='0001-01-01T00:00:00.0000000', @p9=NULL (DbType = DateTime2), @p10=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [tbco_SessioniEasyGold] ([DbUtenteUte_IDAuto], [Sse_DataLogin], [Sse_DataLogout], [Sse_DataLogoutForzato], [Sse_IDCliente], [Sse_IDUtente], [Sse_SesScaduta], [Sse_sesForzata], [rowcreated_at], [rowdeleted_at], [rowupdated_at])
+OUTPUT INSERTED.[Sse_IDAuto]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2025-08-01 10:41:43.785 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType77`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-01 10:41:43.858 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API) in 3062.7553ms
+2025-08-01 10:41:43.860 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 10:41:43.871 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - 200 null application/json; charset=utf-8 3201.0058ms
+2025-08-01 10:42:53.434 +00:00 [INF] Application is shutting down...
+2025-08-01 10:43:03.569 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-01 10:43:03.994 +00:00 [WRN] Overriding address(es) 'http://localhost:5217'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-08-01 10:43:04.059 +00:00 [INF] Now listening on: http://[::]:5000
+2025-08-01 10:43:04.067 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-01 10:43:04.069 +00:00 [INF] Hosting environment: Development
+2025-08-01 10:43:04.071 +00:00 [INF] Content root path: /home/ubuntu/workspace/new_easygold/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-01 10:43:07.581 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - application/json 76
+2025-08-01 10:43:07.623 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-01 10:43:07.627 +00:00 [INF] CORS policy execution successful.
+2025-08-01 10:43:07.676 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 10:43:07.698 +00:00 [INF] Route matched with {action = "Login", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.Web2.Models.Cliente.ACL.Requests.LoginRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-01 10:43:08.603 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-01 10:43:08.686 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:43:08.687 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:43:08.687 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:43:08.688 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:43:08.688 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:43:08.689 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:43:08.690 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-01 10:43:09.195 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-08-01 10:43:09.810 +00:00 [INF] Executed DbCommand (92ms) [Parameters=[@__username_0='Admin' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Ute_IDAuto], [s].[Ute_AbilitaCassa], [s].[Ute_AbilitaEliminaProd], [s].[Ute_AbilitaTuttiNegozi], [s].[Ute_Bloccato], [s].[Ute_Email], [s].[Ute_IDGruppo], [s].[Ute_IDIdioma], [s].[Ute_IDUtente], [s].[Ute_NomeUtente], [s].[Ute_PasswordResetToken], [s].[Ute_ResetTokenExpiry], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [t1].[Utp_IDUtente], [t1].[Utp_PwUtente], [t1].[Utp_TipoPw], [t1].[rowcreated_at], [t1].[rowdeleted_at], [t1].[rowupdated_at], [s].[Grp_Bloccato], [s].[Grp_DesGruppo], [s].[Grp_NomeGruppo], [s].[Grp_SuperAdmin], [s].[rowcreated_at], [s].[rowdeleted_at], [s].[rowupdated_at], [s0].[Utn_IDAuto], [s0].[Utn_Annullato], [s0].[Utn_Default], [s0].[Utn_IDNegozio], [s0].[Utn_IDUtente], [s0].[rowcreated_at], [s0].[rowdeleted_at], [s0].[rowupdated_at], [s0].[Neg_id], [s0].[Neg_Bloccato], [s0].[Neg_DataAttivazione], [s0].[Neg_DataDisattivazione], [s0].[Neg_DataOraBlocco], [s0].[Neg_IDCliente], [s0].[Neg_NomeNegozio], [s0].[Neg_Note], [s0].[Neg_RagioneSociale], [t4].[Id], [t4].[Expires], [t4].[Language], [t4].[StoreId], [t4].[Token], [t4].[UserId], [t4].[rowcreated_at], [t4].[rowdeleted_at], [t4].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry], [t0].[Grp_IDAuto], [t0].[Grp_Bloccato], [t0].[Grp_DesGruppo], [t0].[Grp_NomeGruppo], [t0].[Grp_SuperAdmin], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+    FROM [tbcl_utenti] AS [t]
+    INNER JOIN [tbcl_gruppi] AS [t0] ON [t].[Ute_IDGruppo] = [t0].[Grp_IDAuto]
+    WHERE [t].[Ute_NomeUtente] = @__username_0
+) AS [s]
+LEFT JOIN [tbcl_pwUtenti] AS [t1] ON [s].[Ute_IDAuto] = [t1].[Utp_IDUtente]
+LEFT JOIN (
+    SELECT [t2].[Utn_IDAuto], [t2].[Utn_Annullato], [t2].[Utn_Default], [t2].[Utn_IDNegozio], [t2].[Utn_IDUtente], [t2].[rowcreated_at], [t2].[rowdeleted_at], [t2].[rowupdated_at], [t3].[Neg_id], [t3].[Neg_Bloccato], [t3].[Neg_DataAttivazione], [t3].[Neg_DataDisattivazione], [t3].[Neg_DataOraBlocco], [t3].[Neg_IDCliente], [t3].[Neg_NomeNegozio], [t3].[Neg_Note], [t3].[Neg_RagioneSociale]
+    FROM [tbcl_utenteNegozi] AS [t2]
+    INNER JOIN [tbcl_negozi] AS [t3] ON [t2].[Utn_IDNegozio] = [t3].[Neg_id]
+) AS [s0] ON [s].[Ute_IDAuto] = [s0].[Utn_IDUtente]
+LEFT JOIN [tbcl_refresh_token] AS [t4] ON [s].[Ute_IDAuto] = [t4].[UserId]
+ORDER BY [s].[Ute_IDAuto], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [s0].[Utn_IDAuto], [s0].[Neg_id]
+2025-08-01 10:43:10.853 +00:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0=NULL (DbType = Int32), @p1='2025-08-01T10:43:10.6594840Z' (Nullable = true), @p2=NULL (DbType = DateTime2), @p3=NULL (DbType = DateTime2), @p4='0', @p5='2', @p6='False', @p7=NULL (DbType = Boolean), @p8='0001-01-01T00:00:00.0000000', @p9=NULL (DbType = DateTime2), @p10=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [tbco_SessioniEasyGold] ([DbUtenteUte_IDAuto], [Sse_DataLogin], [Sse_DataLogout], [Sse_DataLogoutForzato], [Sse_IDCliente], [Sse_IDUtente], [Sse_SesScaduta], [Sse_sesForzata], [rowcreated_at], [rowdeleted_at], [rowupdated_at])
+OUTPUT INSERTED.[Sse_IDAuto]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2025-08-01 10:43:10.883 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType77`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-01 10:43:10.963 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API) in 3262.1211ms
+2025-08-01 10:43:10.966 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-01 10:43:10.976 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/login - 200 null application/json; charset=utf-8 3397.11ms
+2025-08-01 10:43:22.894 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/logout - null 0
+2025-08-01 10:43:22.901 +00:00 [INF] CORS policy execution successful.
+2025-08-01 10:43:22.906 +00:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-08-01 10:43:22.910 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-08-01 10:43:22.911 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/logout - 401 0 null 16.4051ms
+2025-08-01 10:43:28.831 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/logout - null 0
+2025-08-01 10:43:28.833 +00:00 [INF] CORS policy execution successful.
+2025-08-01 10:43:28.836 +00:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-08-01 10:43:28.838 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-08-01 10:43:28.839 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/logout - 401 0 null 7.4249ms
+2025-08-01 10:43:46.476 +00:00 [INF] Request starting HTTP/1.1 POST http://15.161.237.148:5000/api/auth/logout - null 0
+2025-08-01 10:43:46.478 +00:00 [INF] CORS policy execution successful.
+2025-08-01 10:43:46.510 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API)'
+2025-08-01 10:43:46.517 +00:00 [INF] Route matched with {action = "Logout", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Logout() on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-01 10:43:46.580 +00:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [tbco_SessioniEasyGold] AS [t]
+2025-08-01 10:43:46.591 +00:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-08-01 10:43:46.592 +00:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-08-01 10:43:46.605 +00:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='0', @__p_1='20'], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Sse_IDAuto], [t].[Sse_IDCliente], [t].[Sse_IDUtente], [t].[Sse_DataLogin], [t].[Sse_SesScaduta], [t].[Sse_DataLogout], [t].[Sse_sesForzata], [t].[Sse_DataLogoutForzato]
+FROM [tbco_SessioniEasyGold] AS [t]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-08-01 10:43:46.678 +00:00 [INF] Executed DbCommand (20ms) [Parameters=[@p0='2025-08-01T10:43:46.6122951Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='07/30/2025 15:48:44' (Size = 4000), @p3='07/30/2025 15:48:44' (Size = 4000), @p4='1' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.6122951Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='1' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.6122951Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='1' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.6122951Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='1' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.6122951Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='1' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.6122951Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='1' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.6122951Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='1' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.6122951Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='1' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.6122951Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='1' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.6122951Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='1' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='1', @p70='2025-07-30T15:48:44.4298742' (Nullable = true), @p71='2025-08-01T10:43:46.6082985Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.702 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='2025-08-01T10:43:46.6975953Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='07/31/2025 07:23:00' (Size = 4000), @p3='07/31/2025 07:23:00' (Size = 4000), @p4='2' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.6975953Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='2' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.6975953Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='2' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.6975953Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='2' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.6975953Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='2' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.6975953Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='2' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.6975953Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='2' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.6975953Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='2' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.6975953Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='2' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.6975953Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='2' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='2', @p70='2025-07-31T07:23:00.5946135' (Nullable = true), @p71='2025-08-01T10:43:46.6967604Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.711 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='2025-08-01T10:43:46.7078801Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='07/31/2025 07:48:32' (Size = 4000), @p3='07/31/2025 07:48:32' (Size = 4000), @p4='3' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.7078801Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='3' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.7078801Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='3' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.7078801Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='3' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.7078801Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='3' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.7078801Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='3' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.7078801Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='3' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.7078801Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='3' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.7078801Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='3' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.7078801Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='3' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='3', @p70='2025-07-31T07:48:32.8706339' (Nullable = true), @p71='2025-08-01T10:43:46.7074133Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.722 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='2025-08-01T10:43:46.7182294Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='07/31/2025 10:14:52' (Size = 4000), @p3='07/31/2025 10:14:52' (Size = 4000), @p4='4' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.7182294Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='4' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.7182294Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='4' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.7182294Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='4' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.7182294Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='4' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.7182294Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='4' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.7182294Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='4' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.7182294Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='4' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.7182294Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='4' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.7182294Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='4' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='4', @p70='2025-07-31T10:14:52.4879493' (Nullable = true), @p71='2025-08-01T10:43:46.7176756Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.736 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='2025-08-01T10:43:46.7298009Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='07/31/2025 10:19:33' (Size = 4000), @p3='07/31/2025 10:19:33' (Size = 4000), @p4='5' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.7298009Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='5' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.7298009Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='5' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.7298009Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='5' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.7298009Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='5' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.7298009Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='5' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.7298009Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='5' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.7298009Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='5' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.7298009Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='5' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.7298009Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='5' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='5', @p70='2025-07-31T10:19:33.5726338' (Nullable = true), @p71='2025-08-01T10:43:46.7287999Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.748 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='2025-08-01T10:43:46.7439051Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='07/31/2025 10:22:57' (Size = 4000), @p3='07/31/2025 10:22:57' (Size = 4000), @p4='6' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.7439051Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='6' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.7439051Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='6' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.7439051Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='6' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.7439051Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='6' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.7439051Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='6' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.7439051Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='6' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.7439051Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='6' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.7439051Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='6' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.7439051Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='6' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='6', @p70='2025-07-31T10:22:57.4996742' (Nullable = true), @p71='2025-08-01T10:43:46.7427358Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.759 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='2025-08-01T10:43:46.7548588Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='08/01/2025 08:36:39' (Size = 4000), @p3='08/01/2025 08:36:39' (Size = 4000), @p4='7' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.7548588Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='7' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.7548588Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='7' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.7548588Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='7' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.7548588Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='7' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.7548588Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='7' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.7548588Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='7' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.7548588Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='7' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.7548588Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='7' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.7548588Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='7' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='7', @p70='2025-08-01T08:36:39.3866370' (Nullable = true), @p71='2025-08-01T10:43:46.7536894Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.772 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='2025-08-01T10:43:46.7667589Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='08/01/2025 08:48:06' (Size = 4000), @p3='08/01/2025 08:48:06' (Size = 4000), @p4='8' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.7667589Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='8' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.7667589Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='8' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.7667589Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='8' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.7667589Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='8' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.7667589Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='8' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.7667589Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='8' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.7667589Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='8' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.7667589Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='8' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.7667589Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='8' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='8', @p70='2025-08-01T08:48:06.0398581' (Nullable = true), @p71='2025-08-01T10:43:46.7658174Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.784 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='2025-08-01T10:43:46.7789348Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='08/01/2025 09:00:31' (Size = 4000), @p3='08/01/2025 09:00:31' (Size = 4000), @p4='9' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.7789348Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='9' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.7789348Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='9' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.7789348Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='9' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.7789348Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='9' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.7789348Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='9' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.7789348Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='9' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.7789348Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='9' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.7789348Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='9' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.7789348Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='9' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='9', @p70='2025-08-01T09:00:31.7666049' (Nullable = true), @p71='2025-08-01T10:43:46.7773168Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.797 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='2025-08-01T10:43:46.7925695Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='08/01/2025 09:05:50' (Size = 4000), @p3='08/01/2025 09:05:50' (Size = 4000), @p4='10' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.7925695Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='10' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.7925695Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='10' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.7925695Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='10' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.7925695Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='10' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.7925695Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='10' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.7925695Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='10' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.7925695Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='10' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.7925695Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='10' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.7925695Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='10' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='10', @p70='2025-08-01T09:05:50.4231086' (Nullable = true), @p71='2025-08-01T10:43:46.7909464Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.810 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='2025-08-01T10:43:46.8047783Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='08/01/2025 09:06:42' (Size = 4000), @p3='08/01/2025 09:06:42' (Size = 4000), @p4='11' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.8047783Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='11' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.8047783Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='11' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.8047783Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='11' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.8047783Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='11' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.8047783Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='11' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.8047783Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='11' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.8047783Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='11' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.8047783Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='11' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.8047783Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='11' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='11', @p70='2025-08-01T09:06:42.6296086' (Nullable = true), @p71='2025-08-01T10:43:46.8027041Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.822 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='2025-08-01T10:43:46.8175123Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='08/01/2025 09:10:01' (Size = 4000), @p3='08/01/2025 09:10:01' (Size = 4000), @p4='12' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.8175123Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='12' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.8175123Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='12' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.8175123Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='12' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.8175123Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='12' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.8175123Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='12' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.8175123Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='12' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.8175123Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='12' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.8175123Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='12' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.8175123Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='12' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='12', @p70='2025-08-01T09:10:01.5380521' (Nullable = true), @p71='2025-08-01T10:43:46.8159796Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.835 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='2025-08-01T10:43:46.8299218Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='08/01/2025 09:17:43' (Size = 4000), @p3='08/01/2025 09:17:43' (Size = 4000), @p4='13' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.8299218Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='13' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.8299218Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='13' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.8299218Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='13' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.8299218Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='13' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.8299218Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='13' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.8299218Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='13' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.8299218Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='13' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.8299218Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='13' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.8299218Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='13' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='13', @p70='2025-08-01T09:17:43.7233564' (Nullable = true), @p71='2025-08-01T10:43:46.8283431Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.848 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='2025-08-01T10:43:46.8424231Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='08/01/2025 10:41:43' (Size = 4000), @p3='08/01/2025 10:41:43' (Size = 4000), @p4='1007' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.8424231Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='1007' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.8424231Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='1007' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.8424231Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='1007' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.8424231Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='1007' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.8424231Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='1007' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.8424231Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='1007' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.8424231Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='1007' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.8424231Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='1007' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.8424231Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='1007' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='1007', @p70='2025-08-01T10:41:43.5781826' (Nullable = true), @p71='2025-08-01T10:43:46.8407595Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.860 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='2025-08-01T10:43:46.8550423Z', @p1='Sse_DataLogin' (Nullable = false) (Size = 4000), @p2='08/01/2025 10:43:10' (Size = 4000), @p3='08/01/2025 10:43:10' (Size = 4000), @p4='1008' (Nullable = false) (Size = 4000), @p5='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-01T10:43:46.8550423Z', @p8='Sse_DataLogout' (Nullable = false) (Size = 4000), @p9='08/01/2025 10:43:46' (Size = 4000), @p10='08/01/2025 10:43:46' (Size = 4000), @p11='1008' (Nullable = false) (Size = 4000), @p12='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p14='2025-08-01T10:43:46.8550423Z', @p15='Sse_DataLogoutForzato' (Nullable = false) (Size = 4000), @p16=NULL (Size = 4000), @p17=NULL (Size = 4000), @p18='1008' (Nullable = false) (Size = 4000), @p19='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p20='Sistema' (Nullable = false) (Size = 4000), @p21='2025-08-01T10:43:46.8550423Z', @p22='Sse_IDCliente' (Nullable = false) (Size = 4000), @p23='0' (Size = 4000), @p24='0' (Size = 4000), @p25='1008' (Nullable = false) (Size = 4000), @p26='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p27='Sistema' (Nullable = false) (Size = 4000), @p28='2025-08-01T10:43:46.8550423Z', @p29='Sse_IDUtente' (Nullable = false) (Size = 4000), @p30='2' (Size = 4000), @p31='2' (Size = 4000), @p32='1008' (Nullable = false) (Size = 4000), @p33='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p34='Sistema' (Nullable = false) (Size = 4000), @p35='2025-08-01T10:43:46.8550423Z', @p36='Sse_SesScaduta' (Nullable = false) (Size = 4000), @p37='True' (Size = 4000), @p38='True' (Size = 4000), @p39='1008' (Nullable = false) (Size = 4000), @p40='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p41='Sistema' (Nullable = false) (Size = 4000), @p42='2025-08-01T10:43:46.8550423Z', @p43='Sse_sesForzata' (Nullable = false) (Size = 4000), @p44=NULL (Size = 4000), @p45=NULL (Size = 4000), @p46='1008' (Nullable = false) (Size = 4000), @p47='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p48='Sistema' (Nullable = false) (Size = 4000), @p49='2025-08-01T10:43:46.8550423Z', @p50='rowcreated_at' (Nullable = false) (Size = 4000), @p51='01/01/0001 00:00:00' (Size = 4000), @p52='01/01/0001 00:00:00' (Size = 4000), @p53='1008' (Nullable = false) (Size = 4000), @p54='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p55='Sistema' (Nullable = false) (Size = 4000), @p56='2025-08-01T10:43:46.8550423Z', @p57='rowdeleted_at' (Nullable = false) (Size = 4000), @p58=NULL (Size = 4000), @p59=NULL (Size = 4000), @p60='1008' (Nullable = false) (Size = 4000), @p61='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p62='Sistema' (Nullable = false) (Size = 4000), @p63='2025-08-01T10:43:46.8550423Z', @p64='rowupdated_at' (Nullable = false) (Size = 4000), @p65=NULL (Size = 4000), @p66=NULL (Size = 4000), @p67='1008' (Nullable = false) (Size = 4000), @p68='DbSessioniEasyGold' (Nullable = false) (Size = 4000), @p69='Sistema' (Nullable = false) (Size = 4000), @p80='1008', @p70='2025-08-01T10:43:10.6594840' (Nullable = true), @p71='2025-08-01T10:43:46.8533075Z' (Nullable = true), @p72=NULL (DbType = DateTime2), @p73='0', @p74='2', @p75='True', @p76=NULL (DbType = Boolean), @p77='0001-01-01T00:00:00.0000000', @p78=NULL (DbType = DateTime2), @p79=NULL (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3),
+(@p28, @p29, @p30, @p31, @p32, @p33, @p34, 4),
+(@p35, @p36, @p37, @p38, @p39, @p40, @p41, 5),
+(@p42, @p43, @p44, @p45, @p46, @p47, @p48, 6),
+(@p49, @p50, @p51, @p52, @p53, @p54, @p55, 7),
+(@p56, @p57, @p58, @p59, @p60, @p61, @p62, 8),
+(@p63, @p64, @p65, @p66, @p67, @p68, @p69, 9)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbco_SessioniEasyGold] SET [Sse_DataLogin] = @p70, [Sse_DataLogout] = @p71, [Sse_DataLogoutForzato] = @p72, [Sse_IDCliente] = @p73, [Sse_IDUtente] = @p74, [Sse_SesScaduta] = @p75, [Sse_sesForzata] = @p76, [rowcreated_at] = @p77, [rowdeleted_at] = @p78, [rowupdated_at] = @p79
+OUTPUT 1
+WHERE [Sse_IDAuto] = @p80;
+2025-08-01 10:43:46.867 +00:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-01 10:43:46.870 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API) in 351.754ms
+2025-08-01 10:43:46.870 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API)'
+2025-08-01 10:43:46.871 +00:00 [INF] Request finished HTTP/1.1 POST http://15.161.237.148:5000/api/auth/logout - 200 null application/json; charset=utf-8 394.7227ms
+2025-08-01 10:44:35.434 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.html - null null
+2025-08-01 10:44:35.488 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.html - 200 null text/html;charset=utf-8 53.8074ms
+2025-08-01 10:44:35.520 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.js - null null
+2025-08-01 10:44:35.523 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.js - 200 null application/javascript;charset=utf-8 2.9043ms
+2025-08-01 10:44:35.701 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/v1/swagger.json - null null
+2025-08-01 10:44:36.097 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 395.9909ms
+2025-08-01 10:47:28.292 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.html - null null
+2025-08-01 10:47:28.295 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.html - 200 null text/html;charset=utf-8 2.6453ms
+2025-08-01 10:47:28.361 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.css - null null
+2025-08-01 10:47:28.363 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui.css - null null
+2025-08-01 10:47:28.368 +00:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-08-01 10:47:28.368 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.css - 200 202 text/css 7.3319ms
+2025-08-01 10:47:28.374 +00:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-08-01 10:47:28.374 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui.css - 200 152035 text/css 11.5219ms
+2025-08-01 10:47:28.388 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui-bundle.js - null null
+2025-08-01 10:47:28.392 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.js - null null
+2025-08-01 10:47:28.392 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui-standalone-preset.js - null null
+2025-08-01 10:47:28.395 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.js - 200 null application/javascript;charset=utf-8 3.1758ms
+2025-08-01 10:47:28.398 +00:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-08-01 10:47:28.399 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui-standalone-preset.js - 200 230007 text/javascript 6.5988ms
+2025-08-01 10:47:28.403 +00:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-08-01 10:47:28.404 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui-bundle.js - 200 1457477 text/javascript 15.2941ms
+2025-08-01 10:47:28.844 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/v1/swagger.json - null null
+2025-08-01 10:47:28.855 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/favicon-32x32.png - null null
+2025-08-01 10:47:28.856 +00:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-08-01 10:47:28.857 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/favicon-32x32.png - 200 628 image/png 1.6038ms
+2025-08-01 10:47:29.064 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 219.5866ms
+2025-08-01 10:47:35.490 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.html - null null
+2025-08-01 10:47:35.493 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.html - 200 null text/html;charset=utf-8 3.0519ms
+2025-08-01 10:47:35.658 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui.css - null null
+2025-08-01 10:47:35.661 +00:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-08-01 10:47:35.661 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui.css - 200 152035 text/css 2.9318ms
+2025-08-01 10:47:35.827 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.css - null null
+2025-08-01 10:47:35.828 +00:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-08-01 10:47:35.829 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.css - 200 202 text/css 1.7944ms
+2025-08-01 10:47:35.922 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui-bundle.js - null null
+2025-08-01 10:47:35.926 +00:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-08-01 10:47:35.927 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui-bundle.js - 200 1457477 text/javascript 5.6523ms
+2025-08-01 10:47:35.928 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui-standalone-preset.js - null null
+2025-08-01 10:47:35.930 +00:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-08-01 10:47:35.930 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/swagger-ui-standalone-preset.js - 200 230007 text/javascript 2.0685ms
+2025-08-01 10:47:35.932 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.js - null null
+2025-08-01 10:47:35.933 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/index.js - 200 null application/javascript;charset=utf-8 1.0887ms
+2025-08-01 10:47:36.444 +00:00 [INF] Request starting HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/v1/swagger.json - null null
+2025-08-01 10:47:36.611 +00:00 [INF] Request finished HTTP/1.1 GET http://easygoldclienti.ddns.net/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 167.3209ms
+2025-08-01 12:49:45.062 +00:00 [INF] Request starting HTTP/1.0 GET http://15.161.237.148/ - null null
+2025-08-01 12:49:45.072 +00:00 [INF] Request finished HTTP/1.0 GET http://15.161.237.148/ - 404 0 null 14.8815ms
+2025-08-01 12:49:45.075 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://15.161.237.148/, Response status code: 404

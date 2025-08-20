@@ -1,0 +1,1215 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EasyGold.API</name>
+    </assembly>
+    <members>
+        <member name="T:EasyGold.API.Controllers.AllegatoController">
+            <summary>
+            Controller per la gestione degli allegati.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.AllegatoController.GetAllAttachments">
+            <summary>
+            Restituisce tutti gli allegati disponibili.
+            </summary>s
+            <returns>Lista degli allegati</returns>
+            <response code="200">Lista allegati restituita con successo</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.AllegatoController.GetAttachment(System.Int32)">
+            <summary>
+            Restituisce un allegato specifico tramite ID.
+            </summary>
+            <param name="id">ID dell'allegato</param>
+            <returns>Dettagli dell'allegato</returns>
+            <response code="200">Allegato trovato</response>
+            <response code="404">Allegato non trovato</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.AllegatoController.AddAttachment(EasyGold.API.Models.Allegati.AllegatoDTO)">
+            <summary>
+            Aggiunge un nuovo allegato.
+            </summary>
+            <param name="attachmentDto">Dati dell'allegato da creare</param>
+            <returns>Allegato creato</returns>
+            <response code="201">Allegato creato con successo</response>
+            <response code="400">Errore nei dati inviati</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.AllegatoController.DeleteAttachment(System.Int32)">
+            <summary>
+            Elimina un allegato specifico.
+            </summary>
+            <param name="id">ID dell'allegato da eliminare</param>
+            <returns>Conferma eliminazione</returns>
+            <response code="204">Allegato eliminato con successo</response>
+            <response code="404">Allegato non trovato</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.AllegatoController.GetAttachment(System.String)">
+            <summary>
+            Restituisce il file indicato da Path.
+            </summary>
+            <param name="filePath">Percorso del file</param>
+            <returns>File</returns>
+            <response code="404">File non trovato</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.AutenticazioneController.Login(EasyGold.API.Controllers.AutenticazioneController.LoginRequest)">
+            <summary>
+            Esegue il login e restituisce un token JWT.
+            </summary>
+            <param name="request">Credenziali di accesso</param>
+            <returns>Token JWT</returns>
+            <response code="200">Login effettuato con successo</response>
+            <response code="401">Credenziali non valide</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.AutenticazioneController.RefreshToken(EasyGold.API.Controllers.AutenticazioneController.RefreshTokenRequest)">
+            <summary>
+            Endpoint per il refresh del token JWT (quando l'utente clicca "Continua con Easygold").
+            </summary>
+            <returns>Nuovo token JWT</returns>
+            <response code="200">Token rinnovato con successo</response>
+            <response code="401">Utente non autenticato o accesso non consentito</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="T:EasyGold.API.Controllers.CauOrdinamentoController">
+            <summary>
+            Controller per la gestione dell'ordinamento delle causali.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CauOrdinamentoController.GetCauOrdinamentiList(EasyGold.Web2.Models.Cliente.ACL.Filters.CauOrdinamentoListRequest)">
+            <summary>
+            Restituisce una lista di ordinamenti filtrati e paginati.
+            </summary>
+            <param name="filter">Filtri di ricerca ordinamenti</param>
+            <returns>Lista ordinamenti e totale</returns>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CauOrdinamentoController.AddOrUpdateCauOrdinamento(EasyGold.Web2.Models.Comune.ACL.CauOrdinamentoDTO)">
+            <summary>
+            Crea un nuovo ordinamento o aggiorna uno esistente.
+            </summary>
+            <param name="dto">Dati dell'ordinamento</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CauOrdinamentoController.GetCauOrdinamento(System.Int32)">
+            <summary>
+            Restituisce un ordinamento per ID.
+            </summary>
+            <param name="id">ID dell'ordinamento</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CauOrdinamentoController.DeleteCauOrdinamento(System.Int32)">
+            <summary>
+            Elimina un ordinamento specifico.
+            </summary>
+            <param name="id">ID dell'ordinamento da eliminare</param>
+        </member>
+        <member name="T:EasyGold.API.Controllers.CauProgressiviController">
+            <summary>
+            Controller per la gestione dei progressivi delle causali.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CauProgressiviController.GetCauProgressiviList(EasyGold.Web2.Models.Cliente.ACL.Filters.CauProgressiviListRequest)">
+            <summary>
+            Restituisce una lista di progressivi filtrati.
+            </summary>
+            <param name="filter">Filtri di ricerca progressivi</param>
+            <returns>Lista progressivi e totale</returns>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CauProgressiviController.AddOrUpdateCauProgressivo(EasyGold.Web2.Models.Comune.ACL.CauProgressiviDTO)">
+            <summary>
+            Crea o aggiorna un progressivo.
+            </summary>
+            <param name="dto">Dati del progressivo</param>
+            <returns>Progressivo creato o aggiornato</returns>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CauProgressiviController.GetCauProgressivo(System.Int32)">
+            <summary>
+            Restituisce un progressivo specifico per ID.
+            </summary>
+            <param name="id">ID del progressivo</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CauProgressiviController.DeleteCauProgressivo(System.Int32)">
+            <summary>
+            Elimina un progressivo specifico.
+            </summary>
+            <param name="id">ID del progressivo da eliminare</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CauProgressiviController.ExtractLanguageFromToken">
+            <summary>
+            Estrae la lingua dal token di refresh.
+            </summary>
+            <returns>Codice della lingua</returns>
+        </member>
+        <member name="T:EasyGold.API.Controllers.CausaliComuneController">
+            <summary>
+            Controller per la gestione delle causali comuni.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CausaliComuneController.GetCausaliComuneList(EasyGold.Web2.Models.Cliente.ACL.Filters.CausaliComuneListRequest)">
+            <summary>
+            Restituisce una lista di causali comuni filtrate.
+            </summary>
+            <param name="filter">Filtri di ricerca causali</param>
+            <returns>Lista causali e totale</returns>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CausaliComuneController.AddOrUpdateCausaleComune(EasyGold.Web2.Models.Comune.ACL.CausaliComuneDTO)">
+            <summary>
+            Crea o aggiorna una causale comune.
+            </summary>
+            <param name="dto">Dati della causale</param>
+            <returns>Causale creata o aggiornata</returns>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CausaliComuneController.GetCausaleComune(System.Int32)">
+            <summary>
+            Restituisce una causale comune specifica per ID.
+            </summary>
+            <param name="id">ID della causale</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CausaliComuneController.DeleteCausaleComune(System.Int32)">
+            <summary>
+            Elimina una causale comune specifica.
+            </summary>
+            <param name="id">ID della causale da eliminare</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.CausaliComuneController.ExtractLanguageFromToken">
+            <summary>
+            Estrae la lingua dal token di refresh.
+            </summary>
+            <returns>Codice della lingua</returns>
+        </member>
+        <member name="T:EasyGold.API.Controllers.ClienteController">
+            <summary>
+            Controller per la gestione dei clienti.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ClienteController.List(EasyGold.API.Models.Clienti.ClienteListRequest)">
+            <summary>
+            Restituisce una lista di clienti con filtri e paginazione.
+            </summary>
+            <param name="request">Filtri e parametri di paginazione</param>
+            <returns>Lista clienti e totale</returns>
+            <response code="200">Lista clienti restituita</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ClienteController.SaveClient(EasyGold.API.Models.Clienti.ClienteDettaglioDTO)">
+            <summary>
+            Salva un nuovo cliente o aggiorna un cliente esistente con i dettagli forniti.
+            </summary>
+            <param name="clienteDto">Dati del cliente da salvare o aggiornare</param>
+            <returns>Cliente creato o aggiornato</returns>
+            <response code="200">Cliente salvato o aggiornato con successo</response>
+            <response code="400">Errore nei dati inviati</response>
+            <response code="404">Cliente non trovato (solo in caso di aggiornamento)</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ClienteController.GetClient(System.Int32)">
+            <summary>
+            Restituisce i dettagli di un cliente specifico.
+            </summary>
+            <param name="id">ID del cliente</param>
+            <returns>Dettagli del cliente</returns>
+            <response code="200">Dettagli cliente restituiti</response>
+            <response code="404">Cliente non trovato</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ClienteController.DeleteCliente(System.Int32)">
+            <summary>
+            Elimina un Cliente specifico.
+            </summary>
+            <param name="id">ID del cliente da eliminare</param>
+            <returns>Conferma eliminazione</returns>
+            <response code="204">Cliente eliminato con successo</response>
+            <response code="404">Cliente non trovato</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="T:EasyGold.API.Controllers.IdiomiEasyGoldController">
+            <summary>
+            Controller per la gestione degli idiomi EasyGold.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.IdiomiEasyGoldController.GetIdiomiList(EasyGold.Web2.Models.Cliente.ACL.Filters.IdiomiEasyGoldListRequest)">
+            <summary>
+            Restituisce una lista di idiomi filtrati e paginati.
+            </summary>
+            <param name="filter">Filtri di ricerca idiomi</param>
+            <returns>Lista idiomi e totale</returns>
+        </member>
+        <member name="M:EasyGold.API.Controllers.IdiomiEasyGoldController.AddOrUpdateIdioma(EasyGold.Web2.Models.Comune.ACL.IdiomiEasyGoldDTO)">
+            <summary>
+            Crea un nuovo idioma o aggiorna uno esistente.
+            </summary>
+            <param name="dto">Dati dell'idioma</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.IdiomiEasyGoldController.GetIdioma(System.Int32)">
+            <summary>
+            Restituisce un idioma per ID.
+            </summary>
+            <param name="id">ID dell'idioma</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.IdiomiEasyGoldController.DeleteIdioma(System.Int32)">
+            <summary>
+            Elimina un idioma specifico.
+            </summary>
+            <param name="id">ID dell'idioma da eliminare</param>
+        </member>
+        <member name="T:EasyGold.API.Controllers.ACL.IdiomiSceltiController">
+            <summary>
+            Controller per la gestione degli idiomi scelti dai clienti.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.IdiomiSceltiController.GetIdiomiSceltiList(EasyGold.Web2.Models.Cliente.ACL.Filters.IdiomiSceltiListRequest)">
+            <summary>
+            Restituisce una lista di idiomi scelti filtrati e paginati.
+            </summary>
+            <param name="filter">Filtri di ricerca per gli idiomi scelti</param>
+            <returns>Lista di idiomi scelti e totale</returns>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.IdiomiSceltiController.AddOrUpdateIdiomScelto(EasyGold.Web2.Models.Comune.ACL.IdiomiSceltiDTO)">
+            <summary>
+            Crea o aggiorna un idioma scelto.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.IdiomiSceltiController.GetIdiomScelto(System.Int32)">
+            <summary>
+            Restituisce un idioma scelto specifico per ID.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.IdiomiSceltiController.DeleteIdiomScelto(System.Int32)">
+            <summary>
+            Elimina un idioma scelto specifico.
+            </summary>
+        </member>
+        <member name="T:EasyGold.API.Controllers.ACL.IdISONazioniController">
+            <summary>
+            Controller per la gestione delle traduzioni delle nazioni.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.IdISONazioniController.GetIdISONazioniList(EasyGold.Web2.Models.Cliente.ACL.Filters.IdISONazioniListRequest)">
+            <summary>
+            Restituisce una lista di traduzioni delle nazioni.
+            </summary>
+            <param name="filter">Filtri di ricerca traduzioni</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.IdISONazioniController.AddOrUpdateIdISONazione(EasyGold.Web2.Models.Comune.GEO.ACL.IdISONazioniDTO)">
+            <summary>
+            Crea una nuova traduzione di una nazione o aggiorna una esistente.
+            </summary>
+            <param name="dto">Dati della traduzione</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.IdISONazioniController.GetIdISONazione(System.Int32)">
+            <summary>
+            Restituisce una traduzione per ID.
+            </summary>
+            <param name="id">ID della traduzione</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.IdISONazioniController.DeleteIdISONazione(System.Int32)">
+            <summary>
+            Elimina una traduzione specifica.
+            </summary>
+            <param name="id">ID della traduzione da eliminare</param>
+        </member>
+        <member name="T:EasyGold.API.Controllers.ACL.ISONazioniController">
+            <summary>
+            Controller per la gestione delle ISONazioni.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.ISONazioniController.GetISONazioniList(EasyGold.Web2.Models.Cliente.ACL.Filters.ISONazioniListRequest)">
+            <summary>
+            Restituisce una lista di ISONazioni filtrate e paginati.
+            </summary>
+            <param name="filter">Filtri di ricerca ISONazioni</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.ISONazioniController.AddOrUpdateISONazione(EasyGold.Web2.Models.Comune.GEO.ACL.ISONazioniDTO)">
+            <summary>
+            Crea una nuova ISONazione o aggiorna una esistente.
+            </summary>
+            <param name="dto">Dati della ISONazione</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.ISONazioniController.GetISONazione(System.Int32)">
+            <summary>
+            Restituisce una ISONazione per ID.
+            </summary>
+            <param name="id">ID della nazione</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.ISONazioniController.DeleteISONazione(System.Int32)">
+            <summary>
+            Elimina una ISONazione specifica.
+            </summary>
+            <param name="id">ID della nazione da eliminare</param>
+        </member>
+        <member name="T:EasyGold.API.Controllers.ACL.NazioniMondoController">
+            <summary>
+            Controller per la gestione delle nazioni mondo.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.NazioniMondoController.GetNazioniMondoList(EasyGold.Web2.Models.Cliente.ACL.Filters.NazioniMondoListRequest)">
+            <summary>
+            Restituisce una lista di nazioni filtrate.
+            </summary>
+            <param name="filter">Filtri di ricerca nazione mondo</param>
+            <returns>Lista nazioni e totale</returns>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.NazioniMondoController.AddOrUpdateNazione(EasyGold.Web2.Models.Comune.ACL.NazioniMondoDTO)">
+            <summary>
+            Crea o aggiorna una nazione.
+            </summary>
+            <param name="dto">Dati della nazione</param>
+            <returns>Nazione creata o aggiornata</returns>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.NazioniMondoController.GetNazione(System.Int32)">
+            <summary>
+            Restituisce una nazione specifica per ID.
+            </summary>
+            <param name="id">ID della nazione</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.NazioniMondoController.DeleteNazione(System.Int32)">
+            <summary>
+            Elimina una nazione specifica.
+            </summary>
+            <param name="id">ID della nazione da eliminare</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.NazioniMondoController.ExtractLanguageFromToken">
+            <summary>
+            Estrae la lingua dal token di refresh.
+            </summary>
+            <returns>Codice della lingua</returns>
+        </member>
+        <member name="T:EasyGold.API.Controllers.ACL.StatoRegioniController">
+            <summary>
+            Controller per la gestione degli Stati e Regioni.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.StatoRegioniController.GetStatoRegioniList(EasyGold.Web2.Models.Cliente.ACL.Filters.StatoRegioniListRequest)">
+            <summary>
+            Restituisce una lista di Stati o Regioni filtrati e paginati.
+            </summary>
+            <param name="filter">Filtri di ricerca Stati/Regioni</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.StatoRegioniController.AddOrUpdateStatoRegione(EasyGold.Web2.Models.Comune.GEO.ACL.StatoRegioniDTO)">
+            <summary>
+            Crea una nuova Stato/Regione o aggiorna una esistente.
+            </summary>
+            <param name="dto">Dati dello Stato/Regione</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.StatoRegioniController.GetStatoRegione(System.Int32)">
+            <summary>
+            Restituisce uno Stato/Regione per ID.
+            </summary>
+            <param name="id">ID dello Stato/Regione</param>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ACL.StatoRegioniController.DeleteStatoRegione(System.Int32)">
+            <summary>
+            Elimina uno Stato/Regione specifico.
+            </summary>
+            <param name="id">ID dello Stato/Regione da eliminare</param>
+        </member>
+        <member name="T:EasyGold.API.Controllers.ModuliController">
+            <summary>
+            Controller per la gestione dei moduli.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ModuliController.GetModulesList">
+            <summary>
+            Restituisce l'elenco dei moduli per il dropdown.
+            </summary>
+            <returns>Lista di moduli</returns>
+            <response code="200">Moduli restituiti con successo</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="T:EasyGold.API.Controllers.NazioniController">
+            <summary>
+            Controller per la gestione delle Nazioni.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.NazioniController.GetNationsList(EasyGold.API.Models.Nazioni.NazioniListRequest)">
+            <summary>
+            Restituisce l'elenco delle nazioni per il dropdown.
+            </summary>
+            <returns>Lista delle nazioni</returns>
+            <response code="200">Nazioni con successo</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.NazioniController.GetNazione(System.Int32)">
+            <summary>
+            Restituisce i dettagli di una Nazione specifica.
+            </summary>
+            <param name="id">ID della Nazione</param>
+            <returns>Dettagli della Nazione</returns>
+            <response code="200">Dettagli Nazione restituiti</response>
+            <response code="404">Nazione non trovata</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="T:EasyGold.API.Controllers.RuoliController">
+            <summary>
+            Controller per la gestione dei ruoli.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.RuoliController.GetRoles">
+            <summary>
+            Restituisce tutti i ruoli disponibili.
+            </summary>
+            <returns>Lista di ruoli</returns>
+            <response code="200">Ruoli restituiti con successo</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="T:EasyGold.API.Controllers.StatiClienteController">
+            <summary>
+            Controller per la gestione degli Stati Cliente.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.StatiClienteController.GetStatiClienteList(EasyGold.API.Models.StatiCliente.StatoClienteListRequest)">
+            <summary>
+            Restituisce l'elenco degli stati cliente per il dropdown.
+            </summary>
+            <returns>Lista degli stati cliente</returns>
+            <response code="200">Stati cliente con successo</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.StatiClienteController.GetById(System.Int32)">
+            <summary>
+            Restituisce i dettagli di uno Stato Cliente specifico.
+            </summary>
+            <param name="id">ID dello Stato Cliente</param>
+            <returns>Dettagli dello Stato Cliente</returns>
+            <response code="200">Dettagli Stato Cliente restituiti</response>
+            <response code="404">Stato Cliente non trovato</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="T:EasyGold.API.Controllers.UtentiController">
+            <summary>
+            Controller per la gestione degli utenti.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.UtentiController.GetUsersList(EasyGold.API.Models.Utenti.UtentiListRequest)">
+            <summary>
+            Restituisce una lista di utenti filtrati e paginati.
+            </summary>
+            <param name="filter">Filtri di ricerca utenti</param>
+            <returns>Lista utenti e totale</returns>
+            <response code="200">Lista utenti restituita con successo</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.UtentiController.AddOrUpdateUser(EasyGold.API.Models.Utenti.UtenteDTO)">
+            <summary>
+            Crea un nuovo utente o aggiorna un utente esistente nel sistema.
+            </summary>
+            <param name="userDto">Dati dell'utente da creare o aggiornare</param>
+            <returns>Utente creato o aggiornato</returns>
+            <response code="200">Utente creato con successo</response>
+            <response code="200">Utente aggiornato con successo</response>
+            <response code="400">Errore nei dati inviati</response>
+            <response code="404">Utente non trovato (in caso di aggiornamento)</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.UtentiController.ChangePassword(EasyGold.API.Models.Utenti.PasswordDTO)">
+            <summary>
+            Cambia la password di un utente esistente nel sistema.
+            </summary>
+            <param name="passwordDto">Dati della password da cambiare</param>
+            <returns>Utente aggiornato</returns>
+            <response code="200">Utente aggiornato con successo</response>
+            <response code="400">Errore nei dati inviati</response>
+            <response code="404">Utente non trovato (in caso di aggiornamento)</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.UtentiController.GetUser(System.Int32)">
+            <summary>
+            Restituisce un utente per ID.
+            </summary>
+            <param name="id">ID dell'utente</param>
+            <returns>Dettagli dell'utente</returns>
+            <response code="200">Utente trovato</response>
+            <response code="404">Utente non trovato</response>
+            <response code="500">Errore interno</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.UtentiController.DeleteUtente(System.Int32)">
+            <summary>
+            Elimina un Utente specifico.
+            </summary>
+            <param name="id">ID del Utente da eliminare</param>
+            <returns>Conferma eliminazione</returns>
+            <response code="204">Utente eliminato con successo</response>
+            <response code="404">Utente non trovato</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ValoriTabelleController.list(EasyGold.API.Models.Variabili.VariabiliRequestDTO)">
+            <summary>
+            Restituisce una lista di variabili 
+            </summary>
+            <param name="request">Filtro per tipologia di varabile</param>
+            <returns>Lista variabili e totale</returns>
+            <response code="200">Lista variabili restituita</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ValoriTabelleController.Save(EasyGold.API.Models.Variabili.ValoriTabelleDTO)">
+            <summary>
+            Salva una nuova variabile o aggiorna una variabile esistente con i dettagli forniti.
+            </summary>
+            <param name="ValoriTabelleDTO">Dati della variabile da salvare o aggiornare</param>
+            <returns>Variabile creato o aggiornato</returns>
+            <response code="200">Variabile salvato o aggiornato con successo</response>
+            <response code="400">Errore nei dati inviati</response>
+            <response code="404">Variabile non trovato (solo in caso di aggiornamento)</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ValoriTabelleController.Delete(System.Int32)">
+            <summary>
+            Elimina un valore tabella dato il suo ID.
+            </summary>
+        </member>
+        <member name="T:EasyGold.API.Controllers.ValuteController">
+            <summary>
+            Controller per la gestione delle Valute.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ValuteController.GetValuteList(EasyGold.API.Models.Valute.ValuteListRequest)">
+            <summary>
+            Restituisce l'elenco delle valute per il dropdown.
+            </summary>
+            <returns>Lista delle valute</returns>
+            <response code="200">Valute con successo</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="M:EasyGold.API.Controllers.ValuteController.GetById(System.Int32)">
+            <summary>
+            Restituisce i dettagli di una Valuta specifica.
+            </summary>
+            <param name="id">ID della Valuta</param>
+            <returns>Dettagli della Valuta</returns>
+            <response code="200">Dettagli Valuta restituiti</response>
+            <response code="404">Valuta non trovata</response>
+            <response code="500">Errore interno del server</response>
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.NazioniMondoLang">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.IdiomiEasyGold">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.IdiomiScelti">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.ISONazioni">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.IdISONazioni">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.StatoRegioni">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.IdStatoRegioni">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.CausaliClienti">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.CausaliLangClienti">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.CausaliComune">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.CausaliComuneLang">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.CauProgressivi">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.CauOrdinamento">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.CauProgressiviLang">
+            nuovo
+        </member>
+        <member name="P:EasyGold.API.Infrastructure.ApplicationDbContext.AuditLogs">
+            nuovo
+        </member>
+        <member name="T:EasyGold.API.Migrations.CreateDB">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.CreateDB.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.CreateDB.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.CreateDB.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EasyGold.API.Migrations.InitializeTables">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.InitializeTables.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.InitializeTables.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.InitializeTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EasyGold.API.Migrations.NomeMigrazione">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.NomeMigrazione.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.NomeMigrazione.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.NomeMigrazione.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EasyGold.API.Migrations.AggiornamentoDTO">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.AggiornamentoDTO.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.AggiornamentoDTO.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.AggiornamentoDTO.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EasyGold.API.Migrations.PuliziaDb4">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.PuliziaDb4.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.PuliziaDb4.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EasyGold.API.Migrations.PuliziaDb4.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="P:EasyGold.API.Models.Clienti.ClienteDettaglioDTO.Nazione">
+            <summary>
+            Creo 2 oggetti Nazione, per gestirne solo la serializzazione in output
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Configurazioni.ConfigurazioneDTO.Valuta">
+            <summary>
+            Creo 2 oggetti Valuta, per gestirne solo la serializzazione in output
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Configurazioni.ConfigurazioneDTO.StatoCliente">
+            <summary>
+            Creo 2 oggetti StatoCliente, per gestirne solo la serializzazione in output
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_IDAllegato">
+            <summary>
+            ID dell'allegato.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_NomeFile">
+            <summary>
+            Nome del file allegato.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_Estensione">
+            <summary>
+            Estensione del file allegato.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_Dimensione">
+            <summary>
+            Dimensione del file allegato in byte.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_EntitaRiferimento">
+            <summary>
+            Entità di riferimento per l'allegato.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_RecordId">
+            <summary>
+            ID del record a cui l'allegato è associato.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_Note">
+            <summary>
+            Note aggiuntive sull'allegato.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_ImgUrl">
+            <summary>
+            URL dell'immagine allegata (solo lettura).
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbAllegato.All_FileBase64">
+            <summary>
+            Base64 del file allegato (non salvato nel database).
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Models.Entities.DbAllegato.SetImgUrl(System.String)">
+            <summary>
+            Imposta l'URL dell'immagine allegata (solo internamente nel codice).
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_IDClienteAuto">
+            <summary>
+            ID automatico del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_NomeConnessione">
+            <summary>
+            Nome della connessione del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_StringaConnessione">
+            <summary>
+            Stringa di connessione del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_DataAttivazione">
+            <summary>
+            Data di attivazione del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_DataDisattivazione">
+            <summary>
+            Data di disattivazione del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_NegoziAttivabili">
+            <summary>
+            Numero di negozi attivabili per il cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_NegoziVirtuali">
+            <summary>
+            Numero di negozi virtuali per il cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_UtentiAttivi">
+            <summary>
+            Numero di utenti attivi per il cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_Postazioni">
+            <summary>
+            Numero di postazioni per il cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_PercorsoReports">
+            <summary>
+            Percorso dei report per il cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_PercorsoImmagini">
+            <summary>
+            Percorso delle immagini per il cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbCliente.Utw_IdStatoCliente">
+            <summary>
+            Stato del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_IDDatiCliente">
+            <summary>
+            ID del record dei dati cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_IDCliente">
+            <summary>
+            ID del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Gioielleria">
+            <summary>
+            Nome della gioielleria del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_RagioneSociale">
+            <summary>
+            Ragione sociale del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Indirizzo">
+            <summary>
+            Indirizzo del cliente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_CAP">
+            <summary>
+            CAP del cliente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Citta">
+            <summary>
+            Città del cliente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Provincia">
+            <summary>
+            Provincia del cliente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_StatoRegione">
+            <summary>
+            Stato o regione del cliente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Nazione">
+            <summary>
+            Nazione del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_PartitaIVA">
+            <summary>
+            Partita IVA del cliente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_CodiceFiscale">
+            <summary>
+            Codice fiscale del cliente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_REA">
+            <summary>
+            Numero REA del cliente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_CapitaleSociale">
+            <summary>
+            Capitale sociale del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_RagSocialePrincipale">
+            <summary>
+            Indica se la ragione sociale è principale.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Annullato">
+            <summary>
+            Indica se il cliente è annullato.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_PEC">
+            <summary>
+            PEC del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_ReferenteCognome">
+            <summary>
+            Cognome del referente del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_ReferenteNome">
+            <summary>
+            Nome del referente del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_ReferenteTelefono">
+            <summary>
+            Telefono del referente del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_ReferenteCellulare">
+            <summary>
+            Cellulare del referente del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_ReferenteEmail">
+            <summary>
+            Email del referente del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_ReferenteWeb">
+            <summary>
+            Sito web del referente del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_Ranking">
+            <summary>
+            Ranking del cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_IDValuta">
+            <summary>
+            Valuta corrente del cliente
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbDatiCliente.Dtc_NumeroContratto">
+            <summary>
+            Numero Contratto 
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_IDAuto">
+            <summary>
+            ID univoco del record (chiave primaria).
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_IDCliente">
+            <summary>
+            ID del cliente associato al modulo.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_IDModulo">
+            <summary>
+            ID del modulo associato al cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_DataAttivazione">
+            <summary>
+            Data di attivazione del modulo per il cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_DataDisattivazione">
+            <summary>
+            Data di disattivazione del modulo per il cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_BloccoModulo">
+            <summary>
+            Indica se il modulo è bloccato per il cliente.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_DataOraBlocco">
+            <summary>
+            Data e ora del blocco del modulo.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Mdc_Nota">
+            <summary>
+            Note aggiuntive sul modulo per il cliente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Cliente">
+            <summary>
+            Relazione con il Cliente
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloCliente.Modulo">
+            <summary>
+            Relazione con il Modulo
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloEasygold.Mde_CodEcomm">
+            <summary>
+            Nome modulo su e-commerce
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloEasygold.Mde_Descrizione">
+            <summary>
+            Descrizione del modulo
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbModuloEasygold.Mde_DescrizioneEstesa">
+            <summary>
+            Descrizione estesa del modulo
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_RagioneSociale">
+            <summary>
+            Ragione sociale del negozio
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_NomeNegozio">
+            <summary>
+            Nome del negozio
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_DataAttivazione">
+            <summary>
+             Data di attivazione
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_DataDisattivazione">
+            <summary>
+            Data disattivazione del negozio
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_Bloccato">
+            <summary>
+            Negozio è bloccato
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_DataOraBlocco">
+            <summary>
+            Data e ora blocco del negozio
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbNegozi.Neg_Note">
+            <summary>
+            Nota sul negozio
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbStatoCliente.Stc_Descrizione">
+            <summary>
+            Descrizione dello Stato.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbStatoCliente.Stc_Colore">
+            <summary>
+            Colore dello Stato.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Nome">
+            <summary>
+            Stringa nome dell'utente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Cognome">
+            <summary>
+            Stringa cognome dell'utente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_NomeUtente">
+            <summary>
+            Stringa nomeutete 
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_IDRuolo">
+            <summary>
+            Intero  Ruolo dell'utente
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Bloccato">
+            <summary>
+            Indica se l'utente è bloccato.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Nota">
+            <summary>
+            Nota sull'utente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbUtente.Ute_Password">
+            <summary>
+            Passeword dell'utente.
+            </summary>
+            
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbValute.Val_Descrizione">
+            <summary>
+            Nome completo della Valuta.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbValute.Val_Cambio">
+            <summary>
+            Tasso di cambio rispetto all'Euro
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbValute.Val_Simbolo">
+            <summary>
+            Simbolo della Valuta.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbValute.Val_SimboloRegCassa">
+            <summary>
+            Simbolo della Valuta usato dai Registratori Fiscali.
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Entities.DbValute.Val_NumeroDecimali">
+            <summary>
+            Numero di decimali utilizzati per rappresentare gli importi con quella valuta
+            </summary>
+        </member>
+        <member name="P:EasyGold.API.Models.Utenti.UtenteDTO.Ruolo">
+            <summary>
+            Creo 2 oggetti Ruolo, per gestirne solo la serializzazione in output
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.GetAllAsync">
+            <summary>
+            Recupera tutti gli allegati dal database.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.GetByIdAsync(System.Int32)">
+            <summary>
+            Recupera un allegato per ID.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.AddAsync(EasyGold.API.Models.Entities.DbAllegato)">
+            <summary>
+            Aggiunge un nuovo allegato e salva il file su disco.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.UpdateAsync(EasyGold.API.Models.Entities.DbAllegato)">
+            <summary>
+            Aggiorna un allegato esistente e il relativo file.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.UpdateAllAsync(System.Int32,System.String,System.Collections.Generic.List{EasyGold.API.Models.Entities.DbAllegato})">
+            <summary>
+            Aggiorna tutti gli allegati di una entità.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Elimina un allegato e rimuove il file associato.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.GetFileByPathAsync(System.String)">
+            <summary>
+            Legge un file dal disco.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.SaveFileAsync(EasyGold.API.Models.Entities.DbAllegato,System.String)">
+            <summary>
+            Salva il file su disco e restituisce il percorso relativo.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.DeleteFile(System.String)">
+            <summary>
+            Elimina un file dal disco.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.ReadFile(System.String)">
+            <summary>
+            Legge un file dal disco.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.AllegatoRepository.IsValid(System.String)">
+            <summary>
+            Verifica che il percorso ed il tipo di file siano corretti
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.ClienteRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Elimina un allegato e rimuove il file associato.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Repositories.Implementations.UtenteRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Elimina un utente e rimuove il file associato.
+            </summary>
+        </member>
+        <member name="M:EasyGold.API.Services.Implementations.UtenteService.GetTokenExpiryMinutesAsync">
+            <summary>
+            Recupera la durata del token JWT (in minuti) dalla configurazione.
+            Prima cerca in DB, poi in appsettings, infine default 60.
+            </summary>
+        </member>
+    </members>
+</doc>

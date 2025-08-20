@@ -1,0 +1,18 @@
+2025-08-13 08:07:14.990 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-13 08:07:15.199 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-13 08:07:15.208 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-13 08:07:15.210 +00:00 [INF] Hosting environment: Development
+2025-08-13 08:07:15.211 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-13 08:07:19.378 +00:00 [INF] Application is shutting down...
+2025-08-13 10:16:59.327 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-13 10:16:59.480 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-13 10:16:59.485 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-13 10:16:59.487 +00:00 [INF] Hosting environment: Development
+2025-08-13 10:16:59.488 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-13 10:17:02.146 +00:00 [INF] Application is shutting down...
+2025-08-13 10:22:08.550 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-13 10:22:08.691 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-13 10:22:08.696 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-13 10:22:08.697 +00:00 [INF] Hosting environment: Development
+2025-08-13 10:22:08.698 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-13 10:22:10.432 +00:00 [INF] Application is shutting down...

@@ -1,0 +1,865 @@
+2025-08-04 10:39:14.940 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 10:39:15.074 +00:00 [WRN] Overriding address(es) 'http://localhost:5217'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-08-04 10:39:15.099 +00:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://[::]:5000: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (98): Address already in use
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.AnyIPListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.EndpointsStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2025-08-04 10:39:39.573 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 10:39:39.763 +00:00 [WRN] Overriding address(es) 'http://localhost:5217'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-08-04 10:39:39.797 +00:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://[::]:5000: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (98): Address already in use
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.AnyIPListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.EndpointsStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2025-08-04 10:40:38.655 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 10:40:38.864 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-04 10:40:38.877 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 10:40:38.879 +00:00 [INF] Hosting environment: Development
+2025-08-04 10:40:38.880 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-04 10:40:43.178 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/ - null null
+2025-08-04 10:40:43.213 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-04 10:40:43.268 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/ - 404 0 null 91.9001ms
+2025-08-04 10:40:43.277 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/, Response status code: 404
+2025-08-04 10:40:47.616 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger - null null
+2025-08-04 10:40:47.620 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger - 301 0 null 4.3906ms
+2025-08-04 10:40:47.643 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.html - null null
+2025-08-04 10:40:47.709 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.html - 200 null text/html;charset=utf-8 66.1173ms
+2025-08-04 10:40:47.746 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui.css - null null
+2025-08-04 10:40:47.749 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.css - null null
+2025-08-04 10:40:47.760 +00:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-08-04 10:40:47.761 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.css - 200 202 text/css 11.8312ms
+2025-08-04 10:40:47.768 +00:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-08-04 10:40:47.771 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui.css - 200 152035 text/css 24.3684ms
+2025-08-04 10:40:47.819 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-bundle.js - null null
+2025-08-04 10:40:47.822 +00:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-08-04 10:40:47.823 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-bundle.js - 200 1457477 text/javascript 4.1688ms
+2025-08-04 10:40:47.826 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.js - null null
+2025-08-04 10:40:47.830 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.js - 200 null application/javascript;charset=utf-8 3.7431ms
+2025-08-04 10:40:47.854 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-standalone-preset.js - null null
+2025-08-04 10:40:47.856 +00:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-08-04 10:40:47.856 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-standalone-preset.js - 200 230007 text/javascript 2.5569ms
+2025-08-04 10:40:47.972 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/v1/swagger.json - null null
+2025-08-04 10:40:47.985 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/favicon-32x32.png - null null
+2025-08-04 10:40:47.986 +00:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-08-04 10:40:47.987 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/favicon-32x32.png - 200 628 image/png 2.206ms
+2025-08-04 10:40:48.390 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 417.9393ms
+2025-08-04 10:41:06.622 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5217/api/auth/login - application/json 76
+2025-08-04 10:41:06.632 +00:00 [INF] CORS policy execution successful.
+2025-08-04 10:41:06.641 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-04 10:41:06.667 +00:00 [INF] Route matched with {action = "Login", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.Web2.Models.Cliente.ACL.Requests.LoginRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 10:41:07.584 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-04 10:41:07.684 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 10:41:07.685 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 10:41:07.685 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 10:41:07.685 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 10:41:07.686 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 10:41:07.686 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 10:41:07.686 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 10:41:08.174 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-08-04 10:41:08.684 +00:00 [INF] Executed DbCommand (44ms) [Parameters=[@__username_0='Admin' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Ute_IDAuto], [s].[Ute_AbilitaCassa], [s].[Ute_AbilitaEliminaProd], [s].[Ute_AbilitaTuttiNegozi], [s].[Ute_Bloccato], [s].[Ute_Email], [s].[Ute_IDGruppo], [s].[Ute_IDIdioma], [s].[Ute_IDUtente], [s].[Ute_NomeUtente], [s].[Ute_PasswordResetToken], [s].[Ute_ResetTokenExpiry], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [t1].[Utp_IDUtente], [t1].[Utp_PwUtente], [t1].[Utp_TipoPw], [t1].[rowcreated_at], [t1].[rowdeleted_at], [t1].[rowupdated_at], [s].[Grp_Bloccato], [s].[Grp_DesGruppo], [s].[Grp_NomeGruppo], [s].[Grp_SuperAdmin], [s].[rowcreated_at], [s].[rowdeleted_at], [s].[rowupdated_at], [s0].[Utn_IDAuto], [s0].[Utn_Annullato], [s0].[Utn_Default], [s0].[Utn_IDNegozio], [s0].[Utn_IDUtente], [s0].[rowcreated_at], [s0].[rowdeleted_at], [s0].[rowupdated_at], [s0].[Neg_id], [s0].[Neg_Bloccato], [s0].[Neg_DataAttivazione], [s0].[Neg_DataDisattivazione], [s0].[Neg_DataOraBlocco], [s0].[Neg_IDCliente], [s0].[Neg_NomeNegozio], [s0].[Neg_Note], [s0].[Neg_RagioneSociale], [t4].[Id], [t4].[Expires], [t4].[Language], [t4].[StoreId], [t4].[Token], [t4].[UserId], [t4].[rowcreated_at], [t4].[rowdeleted_at], [t4].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry], [t0].[Grp_IDAuto], [t0].[Grp_Bloccato], [t0].[Grp_DesGruppo], [t0].[Grp_NomeGruppo], [t0].[Grp_SuperAdmin], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+    FROM [tbcl_utenti] AS [t]
+    INNER JOIN [tbcl_gruppi] AS [t0] ON [t].[Ute_IDGruppo] = [t0].[Grp_IDAuto]
+    WHERE [t].[Ute_NomeUtente] = @__username_0
+) AS [s]
+LEFT JOIN [tbcl_pwUtenti] AS [t1] ON [s].[Ute_IDAuto] = [t1].[Utp_IDUtente]
+LEFT JOIN (
+    SELECT [t2].[Utn_IDAuto], [t2].[Utn_Annullato], [t2].[Utn_Default], [t2].[Utn_IDNegozio], [t2].[Utn_IDUtente], [t2].[rowcreated_at], [t2].[rowdeleted_at], [t2].[rowupdated_at], [t3].[Neg_id], [t3].[Neg_Bloccato], [t3].[Neg_DataAttivazione], [t3].[Neg_DataDisattivazione], [t3].[Neg_DataOraBlocco], [t3].[Neg_IDCliente], [t3].[Neg_NomeNegozio], [t3].[Neg_Note], [t3].[Neg_RagioneSociale]
+    FROM [tbcl_utenteNegozi] AS [t2]
+    INNER JOIN [tbcl_negozi] AS [t3] ON [t2].[Utn_IDNegozio] = [t3].[Neg_id]
+) AS [s0] ON [s].[Ute_IDAuto] = [s0].[Utn_IDUtente]
+LEFT JOIN [tbcl_refresh_token] AS [t4] ON [s].[Ute_IDAuto] = [t4].[UserId]
+ORDER BY [s].[Ute_IDAuto], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [s0].[Utn_IDAuto], [s0].[Neg_id]
+2025-08-04 10:41:09.506 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType77`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 10:41:09.564 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API) in 2891.5173ms
+2025-08-04 10:41:09.564 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-04 10:41:09.571 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5217/api/auth/login - 200 null application/json; charset=utf-8 2948.6826ms
+2025-08-04 10:42:26.293 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5217/api/Config/list - application/json 105
+2025-08-04 10:42:26.297 +00:00 [INF] CORS policy execution successful.
+2025-08-04 10:42:26.330 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API)'
+2025-08-04 10:42:26.335 +00:00 [INF] Route matched with {action = "GetConfigList", controller = "Config"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetConfigList(EasyGold.Web2.Models.Cliente.ACL.Filters.ConfigListRequest) on controller EasyGold.API.Controllers.ACL.ConfigController (EasyGold.API).
+2025-08-04 10:42:26.337 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API) in 1.8601ms
+2025-08-04 10:42:26.337 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API)'
+2025-08-04 10:42:26.338 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.ACL.IConfigService' while attempting to activate 'EasyGold.API.Controllers.ACL.ConfigController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method629(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-08-04 10:42:26.353 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5217/api/Config/list - 500 null application/json 59.314ms
+2025-08-04 10:42:30.486 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5217/api/Config/list - application/json 105
+2025-08-04 10:42:30.487 +00:00 [INF] CORS policy execution successful.
+2025-08-04 10:42:30.489 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API)'
+2025-08-04 10:42:30.490 +00:00 [INF] Route matched with {action = "GetConfigList", controller = "Config"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetConfigList(EasyGold.Web2.Models.Cliente.ACL.Filters.ConfigListRequest) on controller EasyGold.API.Controllers.ACL.ConfigController (EasyGold.API).
+2025-08-04 10:42:30.490 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API) in 0.2274ms
+2025-08-04 10:42:30.490 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API)'
+2025-08-04 10:42:30.491 +00:00 [ERR] An unhandled exception occurred.
+System.InvalidOperationException: Unable to resolve service for type 'EasyGold.API.Services.Interfaces.ACL.IConfigService' while attempting to activate 'EasyGold.API.Controllers.ACL.ConfigController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method629(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-08-04 10:42:30.492 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5217/api/Config/list - 500 null application/json 5.8276ms
+2025-08-04 11:01:36.635 +00:00 [INF] Application is shutting down...
+2025-08-04 11:02:04.971 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 11:02:05.111 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-04 11:02:05.116 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 11:02:05.118 +00:00 [INF] Hosting environment: Development
+2025-08-04 11:02:05.119 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-04 11:02:47.922 +00:00 [INF] Application is shutting down...
+2025-08-04 13:22:30.939 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 13:22:31.431 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-04 13:22:31.456 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 13:22:31.460 +00:00 [INF] Hosting environment: Development
+2025-08-04 13:22:31.460 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-04 13:22:33.750 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/ - null null
+2025-08-04 13:22:33.816 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-04 13:22:33.940 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/ - 404 0 null 192.2049ms
+2025-08-04 13:22:33.958 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5218/, Response status code: 404
+2025-08-04 13:22:39.682 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger - null null
+2025-08-04 13:22:39.687 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger - 301 0 null 6.3299ms
+2025-08-04 13:22:39.711 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/index.html - null null
+2025-08-04 13:22:39.800 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/index.html - 200 null text/html;charset=utf-8 88.239ms
+2025-08-04 13:22:39.831 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/swagger-ui.css - null null
+2025-08-04 13:22:39.852 +00:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-08-04 13:22:39.854 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/swagger-ui.css - 200 152035 text/css 23.6693ms
+2025-08-04 13:22:39.928 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/swagger-ui-bundle.js - null null
+2025-08-04 13:22:39.941 +00:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-08-04 13:22:39.944 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/swagger-ui-bundle.js - 200 1457477 text/javascript 16.7583ms
+2025-08-04 13:22:39.949 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/index.css - null null
+2025-08-04 13:22:39.949 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/index.js - null null
+2025-08-04 13:22:39.953 +00:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-08-04 13:22:39.954 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/index.css - 200 202 text/css 4.6712ms
+2025-08-04 13:22:39.954 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/index.js - 200 null application/javascript;charset=utf-8 3.8333ms
+2025-08-04 13:22:39.957 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/swagger-ui-standalone-preset.js - null null
+2025-08-04 13:22:39.962 +00:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-08-04 13:22:39.964 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/swagger-ui-standalone-preset.js - 200 230007 text/javascript 6.8825ms
+2025-08-04 13:22:40.086 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/v1/swagger.json - null null
+2025-08-04 13:22:40.096 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/favicon-32x32.png - null null
+2025-08-04 13:22:40.099 +00:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-08-04 13:22:40.100 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/favicon-32x32.png - 200 628 image/png 3.6662ms
+2025-08-04 13:22:40.519 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 435.8693ms
+2025-08-04 13:23:00.681 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/login - application/json 76
+2025-08-04 13:23:00.686 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:23:00.690 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-04 13:23:00.714 +00:00 [INF] Route matched with {action = "Login", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.Web2.Models.Cliente.ACL.Requests.LoginRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:23:01.679 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-04 13:23:01.782 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:23:01.783 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:23:01.783 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:23:01.784 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:23:01.784 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:23:01.784 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:23:01.785 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:23:02.310 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-08-04 13:23:03.176 +00:00 [INF] Executed DbCommand (202ms) [Parameters=[@__username_0='Admin' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Ute_IDAuto], [s].[Ute_AbilitaCassa], [s].[Ute_AbilitaEliminaProd], [s].[Ute_AbilitaTuttiNegozi], [s].[Ute_Bloccato], [s].[Ute_Email], [s].[Ute_IDGruppo], [s].[Ute_IDIdioma], [s].[Ute_IDUtente], [s].[Ute_NomeUtente], [s].[Ute_PasswordResetToken], [s].[Ute_ResetTokenExpiry], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [t1].[Utp_IDUtente], [t1].[Utp_PwUtente], [t1].[Utp_TipoPw], [t1].[rowcreated_at], [t1].[rowdeleted_at], [t1].[rowupdated_at], [s].[Grp_Bloccato], [s].[Grp_DesGruppo], [s].[Grp_NomeGruppo], [s].[Grp_SuperAdmin], [s].[rowcreated_at], [s].[rowdeleted_at], [s].[rowupdated_at], [s0].[Utn_IDAuto], [s0].[Utn_Annullato], [s0].[Utn_Default], [s0].[Utn_IDNegozio], [s0].[Utn_IDUtente], [s0].[rowcreated_at], [s0].[rowdeleted_at], [s0].[rowupdated_at], [s0].[Neg_id], [s0].[Neg_Bloccato], [s0].[Neg_DataAttivazione], [s0].[Neg_DataDisattivazione], [s0].[Neg_DataOraBlocco], [s0].[Neg_IDCliente], [s0].[Neg_NomeNegozio], [s0].[Neg_Note], [s0].[Neg_RagioneSociale], [t4].[Id], [t4].[Expires], [t4].[Language], [t4].[StoreId], [t4].[Token], [t4].[UserId], [t4].[rowcreated_at], [t4].[rowdeleted_at], [t4].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry], [t0].[Grp_IDAuto], [t0].[Grp_Bloccato], [t0].[Grp_DesGruppo], [t0].[Grp_NomeGruppo], [t0].[Grp_SuperAdmin], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+    FROM [tbcl_utenti] AS [t]
+    INNER JOIN [tbcl_gruppi] AS [t0] ON [t].[Ute_IDGruppo] = [t0].[Grp_IDAuto]
+    WHERE [t].[Ute_NomeUtente] = @__username_0
+) AS [s]
+LEFT JOIN [tbcl_pwUtenti] AS [t1] ON [s].[Ute_IDAuto] = [t1].[Utp_IDUtente]
+LEFT JOIN (
+    SELECT [t2].[Utn_IDAuto], [t2].[Utn_Annullato], [t2].[Utn_Default], [t2].[Utn_IDNegozio], [t2].[Utn_IDUtente], [t2].[rowcreated_at], [t2].[rowdeleted_at], [t2].[rowupdated_at], [t3].[Neg_id], [t3].[Neg_Bloccato], [t3].[Neg_DataAttivazione], [t3].[Neg_DataDisattivazione], [t3].[Neg_DataOraBlocco], [t3].[Neg_IDCliente], [t3].[Neg_NomeNegozio], [t3].[Neg_Note], [t3].[Neg_RagioneSociale]
+    FROM [tbcl_utenteNegozi] AS [t2]
+    INNER JOIN [tbcl_negozi] AS [t3] ON [t2].[Utn_IDNegozio] = [t3].[Neg_id]
+) AS [s0] ON [s].[Ute_IDAuto] = [s0].[Utn_IDUtente]
+LEFT JOIN [tbcl_refresh_token] AS [t4] ON [s].[Ute_IDAuto] = [t4].[UserId]
+ORDER BY [s].[Ute_IDAuto], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [s0].[Utn_IDAuto], [s0].[Neg_id]
+2025-08-04 13:23:03.957 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType77`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 13:23:04.014 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API) in 3296.6814ms
+2025-08-04 13:23:04.015 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-04 13:23:04.022 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/login - 200 null application/json; charset=utf-8 3340.7988ms
+2025-08-04 13:23:14.712 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/logout - null 0
+2025-08-04 13:23:14.717 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:23:14.721 +00:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-08-04 13:23:14.724 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-08-04 13:23:14.725 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/logout - 401 0 null 13.14ms
+2025-08-04 13:23:48.572 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/logout - null 0
+2025-08-04 13:23:48.574 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:23:48.607 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API)'
+2025-08-04 13:23:48.620 +00:00 [INF] Route matched with {action = "Logout", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Logout() on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:23:48.630 +00:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 13:23:48.632 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API) in 11.9209ms
+2025-08-04 13:23:48.633 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Logout (EasyGold.API)'
+2025-08-04 13:23:48.634 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/logout - 200 null application/json; charset=utf-8 61.9798ms
+2025-08-04 13:24:17.414 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/change-password - application/json 61
+2025-08-04 13:24:17.415 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:24:17.418 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API)'
+2025-08-04 13:24:17.422 +00:00 [INF] Route matched with {action = "ChangePassword", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ChangePassword(EasyGold.Web2.Models.Cliente.ACL.Requests.ChangePasswordRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:24:17.478 +00:00 [INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='1'], CommandType='"Text"', CommandTimeout='30']
+SELECT [t1].[Ute_IDAuto], [t1].[Ute_AbilitaCassa], [t1].[Ute_AbilitaEliminaProd], [t1].[Ute_AbilitaTuttiNegozi], [t1].[Ute_Bloccato], [t1].[Ute_Email], [t1].[Ute_IDGruppo], [t1].[Ute_IDIdioma], [t1].[Ute_IDUtente], [t1].[Ute_NomeUtente], [t1].[Ute_PasswordResetToken], [t1].[Ute_ResetTokenExpiry], [t0].[Utp_IDAuto], [t0].[Utp_IDUtente], [t0].[Utp_PwUtente], [t0].[Utp_TipoPw], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry]
+    FROM [tbcl_utenti] AS [t]
+    WHERE [t].[Ute_IDAuto] = @__userId_0
+) AS [t1]
+LEFT JOIN [tbcl_pwUtenti] AS [t0] ON [t1].[Ute_IDAuto] = [t0].[Utp_IDUtente]
+ORDER BY [t1].[Ute_IDAuto]
+2025-08-04 13:24:17.481 +00:00 [INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 13:24:17.483 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API) in 60.5214ms
+2025-08-04 13:24:17.483 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API)'
+2025-08-04 13:24:17.484 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/change-password - 400 null application/json; charset=utf-8 69.9042ms
+2025-08-04 13:26:05.163 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/change-password - application/json 61
+2025-08-04 13:26:05.176 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:26:05.195 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API)'
+2025-08-04 13:26:05.214 +00:00 [INF] Route matched with {action = "ChangePassword", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ChangePassword(EasyGold.Web2.Models.Cliente.ACL.Requests.ChangePasswordRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:26:05.437 +00:00 [INF] Executed DbCommand (71ms) [Parameters=[@__userId_0='1'], CommandType='"Text"', CommandTimeout='30']
+SELECT [t1].[Ute_IDAuto], [t1].[Ute_AbilitaCassa], [t1].[Ute_AbilitaEliminaProd], [t1].[Ute_AbilitaTuttiNegozi], [t1].[Ute_Bloccato], [t1].[Ute_Email], [t1].[Ute_IDGruppo], [t1].[Ute_IDIdioma], [t1].[Ute_IDUtente], [t1].[Ute_NomeUtente], [t1].[Ute_PasswordResetToken], [t1].[Ute_ResetTokenExpiry], [t0].[Utp_IDAuto], [t0].[Utp_IDUtente], [t0].[Utp_PwUtente], [t0].[Utp_TipoPw], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry]
+    FROM [tbcl_utenti] AS [t]
+    WHERE [t].[Ute_IDAuto] = @__userId_0
+) AS [t1]
+LEFT JOIN [tbcl_pwUtenti] AS [t0] ON [t1].[Ute_IDAuto] = [t0].[Utp_IDUtente]
+ORDER BY [t1].[Ute_IDAuto]
+2025-08-04 13:26:05.439 +00:00 [INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 13:26:05.442 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API) in 227.2294ms
+2025-08-04 13:26:05.442 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API)'
+2025-08-04 13:26:05.444 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/change-password - 400 null application/json; charset=utf-8 281.4506ms
+2025-08-04 13:28:22.299 +00:00 [INF] Application is shutting down...
+2025-08-04 13:28:42.134 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 13:28:42.653 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-04 13:28:42.665 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 13:28:42.670 +00:00 [INF] Hosting environment: Development
+2025-08-04 13:28:42.674 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-04 13:28:53.877 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/change-password - application/json 61
+2025-08-04 13:28:53.944 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-04 13:28:53.947 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:28:54.077 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API)'
+2025-08-04 13:28:54.118 +00:00 [INF] Route matched with {action = "ChangePassword", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ChangePassword(EasyGold.Web2.Models.Cliente.ACL.Requests.ChangePasswordRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:28:55.207 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-04 13:28:55.304 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:28:55.306 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:28:55.306 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:28:55.307 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:28:55.309 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:28:55.309 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:28:55.310 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:28:56.807 +00:00 [INF] Executed DbCommand (85ms) [Parameters=[@__userId_0='1'], CommandType='"Text"', CommandTimeout='30']
+SELECT [t1].[Ute_IDAuto], [t1].[Ute_AbilitaCassa], [t1].[Ute_AbilitaEliminaProd], [t1].[Ute_AbilitaTuttiNegozi], [t1].[Ute_Bloccato], [t1].[Ute_Email], [t1].[Ute_IDGruppo], [t1].[Ute_IDIdioma], [t1].[Ute_IDUtente], [t1].[Ute_NomeUtente], [t1].[Ute_PasswordResetToken], [t1].[Ute_ResetTokenExpiry], [t0].[Utp_IDAuto], [t0].[Utp_IDUtente], [t0].[Utp_PwUtente], [t0].[Utp_TipoPw], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry]
+    FROM [tbcl_utenti] AS [t]
+    WHERE [t].[Ute_IDAuto] = @__userId_0
+) AS [t1]
+LEFT JOIN [tbcl_pwUtenti] AS [t0] ON [t1].[Ute_IDAuto] = [t0].[Utp_IDUtente]
+ORDER BY [t1].[Ute_IDAuto]
+2025-08-04 13:28:56.839 +00:00 [INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 13:28:56.879 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API) in 2757.1485ms
+2025-08-04 13:28:56.881 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API)'
+2025-08-04 13:28:56.894 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/change-password - 400 null application/json; charset=utf-8 3018.7046ms
+2025-08-04 13:32:20.746 +00:00 [INF] Application is shutting down...
+2025-08-04 13:32:40.426 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 13:32:40.891 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-04 13:32:40.910 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 13:32:40.911 +00:00 [INF] Hosting environment: Development
+2025-08-04 13:32:40.912 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-04 13:35:30.214 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/login - application/json 76
+2025-08-04 13:35:30.335 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-04 13:35:30.343 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:35:30.557 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-04 13:35:30.609 +00:00 [INF] Route matched with {action = "Login", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.Web2.Models.Cliente.ACL.Requests.LoginRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:35:31.681 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-04 13:35:31.771 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:35:31.772 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:35:31.773 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:35:31.773 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:35:31.773 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:35:31.773 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:35:31.774 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:35:32.389 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-08-04 13:35:33.440 +00:00 [INF] Executed DbCommand (83ms) [Parameters=[@__username_0='Admin' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Ute_IDAuto], [s].[Ute_AbilitaCassa], [s].[Ute_AbilitaEliminaProd], [s].[Ute_AbilitaTuttiNegozi], [s].[Ute_Bloccato], [s].[Ute_Email], [s].[Ute_IDGruppo], [s].[Ute_IDIdioma], [s].[Ute_IDUtente], [s].[Ute_NomeUtente], [s].[Ute_PasswordResetToken], [s].[Ute_ResetTokenExpiry], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [t1].[Utp_IDUtente], [t1].[Utp_PwUtente], [t1].[Utp_TipoPw], [t1].[rowcreated_at], [t1].[rowdeleted_at], [t1].[rowupdated_at], [s].[Grp_Bloccato], [s].[Grp_DesGruppo], [s].[Grp_NomeGruppo], [s].[Grp_SuperAdmin], [s].[rowcreated_at], [s].[rowdeleted_at], [s].[rowupdated_at], [s0].[Utn_IDAuto], [s0].[Utn_Annullato], [s0].[Utn_Default], [s0].[Utn_IDNegozio], [s0].[Utn_IDUtente], [s0].[rowcreated_at], [s0].[rowdeleted_at], [s0].[rowupdated_at], [s0].[Neg_id], [s0].[Neg_Bloccato], [s0].[Neg_DataAttivazione], [s0].[Neg_DataDisattivazione], [s0].[Neg_DataOraBlocco], [s0].[Neg_IDCliente], [s0].[Neg_NomeNegozio], [s0].[Neg_Note], [s0].[Neg_RagioneSociale], [t4].[Id], [t4].[Expires], [t4].[Language], [t4].[StoreId], [t4].[Token], [t4].[UserId], [t4].[rowcreated_at], [t4].[rowdeleted_at], [t4].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry], [t0].[Grp_IDAuto], [t0].[Grp_Bloccato], [t0].[Grp_DesGruppo], [t0].[Grp_NomeGruppo], [t0].[Grp_SuperAdmin], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+    FROM [tbcl_utenti] AS [t]
+    INNER JOIN [tbcl_gruppi] AS [t0] ON [t].[Ute_IDGruppo] = [t0].[Grp_IDAuto]
+    WHERE [t].[Ute_NomeUtente] = @__username_0
+) AS [s]
+LEFT JOIN [tbcl_pwUtenti] AS [t1] ON [s].[Ute_IDAuto] = [t1].[Utp_IDUtente]
+LEFT JOIN (
+    SELECT [t2].[Utn_IDAuto], [t2].[Utn_Annullato], [t2].[Utn_Default], [t2].[Utn_IDNegozio], [t2].[Utn_IDUtente], [t2].[rowcreated_at], [t2].[rowdeleted_at], [t2].[rowupdated_at], [t3].[Neg_id], [t3].[Neg_Bloccato], [t3].[Neg_DataAttivazione], [t3].[Neg_DataDisattivazione], [t3].[Neg_DataOraBlocco], [t3].[Neg_IDCliente], [t3].[Neg_NomeNegozio], [t3].[Neg_Note], [t3].[Neg_RagioneSociale]
+    FROM [tbcl_utenteNegozi] AS [t2]
+    INNER JOIN [tbcl_negozi] AS [t3] ON [t2].[Utn_IDNegozio] = [t3].[Neg_id]
+) AS [s0] ON [s].[Ute_IDAuto] = [s0].[Utn_IDUtente]
+LEFT JOIN [tbcl_refresh_token] AS [t4] ON [s].[Ute_IDAuto] = [t4].[UserId]
+ORDER BY [s].[Ute_IDAuto], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [s0].[Utn_IDAuto], [s0].[Neg_id]
+2025-08-04 13:35:34.218 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType77`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 13:35:34.298 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API) in 3685.0123ms
+2025-08-04 13:35:34.300 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-04 13:35:34.313 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/login - 200 null application/json; charset=utf-8 4103.9007ms
+2025-08-04 13:36:09.784 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/change-password - application/json 61
+2025-08-04 13:36:09.795 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:36:09.811 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API)'
+2025-08-04 13:36:09.842 +00:00 [INF] Route matched with {action = "ChangePassword", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ChangePassword(EasyGold.Web2.Models.Cliente.ACL.Requests.ChangePasswordRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:36:10.009 +00:00 [INF] Executed DbCommand (25ms) [Parameters=[@__userId_0='2'], CommandType='"Text"', CommandTimeout='30']
+SELECT [t1].[Ute_IDAuto], [t1].[Ute_AbilitaCassa], [t1].[Ute_AbilitaEliminaProd], [t1].[Ute_AbilitaTuttiNegozi], [t1].[Ute_Bloccato], [t1].[Ute_Email], [t1].[Ute_IDGruppo], [t1].[Ute_IDIdioma], [t1].[Ute_IDUtente], [t1].[Ute_NomeUtente], [t1].[Ute_PasswordResetToken], [t1].[Ute_ResetTokenExpiry], [t0].[Utp_IDAuto], [t0].[Utp_IDUtente], [t0].[Utp_PwUtente], [t0].[Utp_TipoPw], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry]
+    FROM [tbcl_utenti] AS [t]
+    WHERE [t].[Ute_IDAuto] = @__userId_0
+) AS [t1]
+LEFT JOIN [tbcl_pwUtenti] AS [t0] ON [t1].[Ute_IDAuto] = [t0].[Utp_IDUtente]
+ORDER BY [t1].[Ute_IDAuto]
+2025-08-04 13:36:11.271 +00:00 [INF] Executed DbCommand (124ms) [Parameters=[@p0='2025-08-04T13:36:11.0312365Z', @p1='Utp_PwUtente' (Nullable = false) (Size = 4000), @p2='$2a$11$AxKzfYA2F3sSPyileTdjmeXI31HXw0YzGeMUCjIqIEGoVYB1wcE3W' (Size = 4000), @p3='$2a$11$e/oW2ItjSkvoDxXNeEwF0.erLLNQ0fVsP46lGOua.MjTL2rOcXkEa' (Size = 4000), @p4='4' (Nullable = false) (Size = 4000), @p5='DbPwUtenti' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p8='4', @p7='$2a$11$AxKzfYA2F3sSPyileTdjmeXI31HXw0YzGeMUCjIqIEGoVYB1wcE3W' (Nullable = false) (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AuditLogs] ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+OUTPUT INSERTED.[Log_Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+UPDATE [tbcl_pwUtenti] SET [Utp_PwUtente] = @p7
+OUTPUT 1
+WHERE [Utp_IDAuto] = @p8;
+2025-08-04 13:36:11.320 +00:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 13:36:11.323 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API) in 1481.3274ms
+2025-08-04 13:36:11.325 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.ChangePassword (EasyGold.API)'
+2025-08-04 13:36:11.326 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/change-password - 200 null application/json; charset=utf-8 1541.1012ms
+2025-08-04 13:36:32.380 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/forgot-password - application/json 42
+2025-08-04 13:36:32.384 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:36:32.392 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.ForgotPassword (EasyGold.API)'
+2025-08-04 13:36:32.399 +00:00 [INF] Route matched with {action = "ForgotPassword", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ForgotPassword(EasyGold.Web2.Models.Cliente.ACL.Requests.ForgotPasswordRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:36:32.522 +00:00 [INF] Executed DbCommand (24ms) [Parameters=[@__email_0='giampaolo@tomorrowsrl.com' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry]
+FROM [tbcl_utenti] AS [t]
+WHERE [t].[Ute_Email] = @__email_0
+2025-08-04 13:36:32.570 +00:00 [INF] Executed DbCommand (35ms) [Parameters=[@p0='2025-08-04T13:36:32.5246410Z', @p1='Ute_PasswordResetToken' (Nullable = false) (Size = 4000), @p2='11670b99d8dde25d4cb4f3d4aa72fa53396d81136c0b396dc281098a9608209e' (Size = 4000), @p3='9de1ae5296a10cddceadfb0e54d1c7168b79e48b58092ae8350b0b836882715c' (Size = 4000), @p4='2' (Nullable = false) (Size = 4000), @p5='DbUtente' (Nullable = false) (Size = 4000), @p6='Sistema' (Nullable = false) (Size = 4000), @p7='2025-08-04T13:36:32.5246410Z', @p8='Ute_ResetTokenExpiry' (Nullable = false) (Size = 4000), @p9='08/04/2025 14:36:32' (Size = 4000), @p10='08/04/2025 09:22:57' (Size = 4000), @p11='2' (Nullable = false) (Size = 4000), @p12='DbUtente' (Nullable = false) (Size = 4000), @p13='Sistema' (Nullable = false) (Size = 4000), @p16='2', @p14='11670b99d8dde25d4cb4f3d4aa72fa53396d81136c0b396dc281098a9608209e' (Size = 4000), @p15='2025-08-04T14:36:32.5242092Z' (Nullable = true)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+MERGE [AuditLogs] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1)) AS i ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Log_ChangeDate], [Log_ColumnName], [Log_NewValue], [Log_OldValue], [Log_RecordId], [Log_TableName], [Log_User])
+VALUES (i.[Log_ChangeDate], i.[Log_ColumnName], i.[Log_NewValue], i.[Log_OldValue], i.[Log_RecordId], i.[Log_TableName], i.[Log_User])
+OUTPUT INSERTED.[Log_Id], i._Position;
+UPDATE [tbcl_utenti] SET [Ute_PasswordResetToken] = @p14, [Ute_ResetTokenExpiry] = @p15
+OUTPUT 1
+WHERE [Ute_IDAuto] = @p16;
+2025-08-04 13:38:12.690 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.ForgotPassword (EasyGold.API) in 100289.5805ms
+2025-08-04 13:38:12.697 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.ForgotPassword (EasyGold.API)'
+2025-08-04 13:38:12.702 +00:00 [ERR] An unhandled exception occurred.
+System.Net.Mail.SmtpException: The operation has timed out.
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at EasyGold.API.Utility.EmailUtility.SendPasswordResetEmail(String recipientEmail, String resetLink) in /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API/Utility/EmailUtility.cs:line 42
+   at EasyGold.API.Services.Implementations.ACL.AutenticazioneService.ForgotPasswordAsync(String email) in /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API/Services/Implementations/ACL/AutenticazioneService.cs:line 150
+   at EasyGold.API.Controllers.ACL.AutenticazioneController.ForgotPassword(ForgotPasswordRequest request) in /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API/Controllers/ACL/AutenticazioneController.cs:line 149
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EasyGold.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API/Middleware/ErrorHandlingMiddleware.cs:line 22
+2025-08-04 13:38:12.789 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/forgot-password - 500 null application/json 100408.2268ms
+2025-08-04 13:42:57.975 +00:00 [INF] Application is shutting down...
+ '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 13:42:46.490 +00:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5217: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (98): Address already in use
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2025-08-04 13:43:59.879 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 13:44:00.247 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-04 13:44:00.258 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 13:44:00.260 +00:00 [INF] Hosting environment: Development
+2025-08-04 13:44:00.261 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-04 13:44:06.195 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/set-language - application/json 22
+2025-08-04 13:44:06.234 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-04 13:44:06.238 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:44:06.343 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.SetLanguage (EasyGold.API)'
+2025-08-04 13:44:06.371 +00:00 [INF] Route matched with {action = "SetLanguage", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SetLanguage(EasyGold.Web2.Models.Cliente.ACL.Requests.LanguageRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:44:06.612 +00:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 13:44:06.642 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.SetLanguage (EasyGold.API) in 267.3448ms
+2025-08-04 13:44:06.646 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.SetLanguage (EasyGold.API)'
+2025-08-04 13:44:06.650 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/set-language - 200 null application/json; charset=utf-8 456.8847ms
+2025-08-04 13:45:07.621 +00:00 [INF] Application is shutting down...
+2025-08-04 13:45:26.118 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 13:45:26.422 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-04 13:45:26.433 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 13:45:26.441 +00:00 [INF] Hosting environment: Development
+2025-08-04 13:45:26.443 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-04 13:45:28.039 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/index.html - null null
+2025-08-04 13:45:28.094 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-04 13:45:28.287 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/index.html - 200 null text/html;charset=utf-8 249.6711ms
+2025-08-04 13:45:28.417 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/index.js - null null
+2025-08-04 13:45:28.433 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/index.js - 200 null application/javascript;charset=utf-8 15.5952ms
+2025-08-04 13:45:28.485 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/v1/swagger.json - null null
+2025-08-04 13:45:29.131 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 646.7927ms
+2025-08-04 13:45:50.139 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/login - application/json 77
+2025-08-04 13:45:50.145 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:45:50.151 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-04 13:45:50.176 +00:00 [INF] Route matched with {action = "Login", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.Web2.Models.Cliente.ACL.Requests.LoginRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:45:51.123 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-04 13:45:51.215 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:45:51.216 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:45:51.216 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:45:51.216 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:45:51.217 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:45:51.217 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:45:51.218 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 13:45:51.748 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-08-04 13:45:52.384 +00:00 [INF] Executed DbCommand (107ms) [Parameters=[@__username_0='Admin' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Ute_IDAuto], [s].[Ute_AbilitaCassa], [s].[Ute_AbilitaEliminaProd], [s].[Ute_AbilitaTuttiNegozi], [s].[Ute_Bloccato], [s].[Ute_Email], [s].[Ute_IDGruppo], [s].[Ute_IDIdioma], [s].[Ute_IDUtente], [s].[Ute_NomeUtente], [s].[Ute_PasswordResetToken], [s].[Ute_ResetTokenExpiry], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [t1].[Utp_IDUtente], [t1].[Utp_PwUtente], [t1].[Utp_TipoPw], [t1].[rowcreated_at], [t1].[rowdeleted_at], [t1].[rowupdated_at], [s].[Grp_Bloccato], [s].[Grp_DesGruppo], [s].[Grp_NomeGruppo], [s].[Grp_SuperAdmin], [s].[rowcreated_at], [s].[rowdeleted_at], [s].[rowupdated_at], [s0].[Utn_IDAuto], [s0].[Utn_Annullato], [s0].[Utn_Default], [s0].[Utn_IDNegozio], [s0].[Utn_IDUtente], [s0].[rowcreated_at], [s0].[rowdeleted_at], [s0].[rowupdated_at], [s0].[Neg_id], [s0].[Neg_Bloccato], [s0].[Neg_DataAttivazione], [s0].[Neg_DataDisattivazione], [s0].[Neg_DataOraBlocco], [s0].[Neg_IDCliente], [s0].[Neg_NomeNegozio], [s0].[Neg_Note], [s0].[Neg_RagioneSociale], [t4].[Id], [t4].[Expires], [t4].[Language], [t4].[StoreId], [t4].[Token], [t4].[UserId], [t4].[rowcreated_at], [t4].[rowdeleted_at], [t4].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry], [t0].[Grp_IDAuto], [t0].[Grp_Bloccato], [t0].[Grp_DesGruppo], [t0].[Grp_NomeGruppo], [t0].[Grp_SuperAdmin], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+    FROM [tbcl_utenti] AS [t]
+    INNER JOIN [tbcl_gruppi] AS [t0] ON [t].[Ute_IDGruppo] = [t0].[Grp_IDAuto]
+    WHERE [t].[Ute_NomeUtente] = @__username_0
+) AS [s]
+LEFT JOIN [tbcl_pwUtenti] AS [t1] ON [s].[Ute_IDAuto] = [t1].[Utp_IDUtente]
+LEFT JOIN (
+    SELECT [t2].[Utn_IDAuto], [t2].[Utn_Annullato], [t2].[Utn_Default], [t2].[Utn_IDNegozio], [t2].[Utn_IDUtente], [t2].[rowcreated_at], [t2].[rowdeleted_at], [t2].[rowupdated_at], [t3].[Neg_id], [t3].[Neg_Bloccato], [t3].[Neg_DataAttivazione], [t3].[Neg_DataDisattivazione], [t3].[Neg_DataOraBlocco], [t3].[Neg_IDCliente], [t3].[Neg_NomeNegozio], [t3].[Neg_Note], [t3].[Neg_RagioneSociale]
+    FROM [tbcl_utenteNegozi] AS [t2]
+    INNER JOIN [tbcl_negozi] AS [t3] ON [t2].[Utn_IDNegozio] = [t3].[Neg_id]
+) AS [s0] ON [s].[Ute_IDAuto] = [s0].[Utn_IDUtente]
+LEFT JOIN [tbcl_refresh_token] AS [t4] ON [s].[Ute_IDAuto] = [t4].[UserId]
+ORDER BY [s].[Ute_IDAuto], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [s0].[Utn_IDAuto], [s0].[Neg_id]
+2025-08-04 13:45:53.152 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType77`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 13:45:53.214 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API) in 3033.8498ms
+2025-08-04 13:45:53.215 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-04 13:45:53.224 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/login - 200 null application/json; charset=utf-8 3084.7827ms
+2025-08-04 13:46:23.151 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/set-language - application/json 22
+2025-08-04 13:46:23.157 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:46:23.170 +00:00 [INF] Failed to validate the token.
+System.ArgumentException: IDX12729: Unable to decode the header '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]' as Base64Url encoded string.
+ ---> System.Text.Json.JsonReaderException: '0xC8' is an invalid start of a value. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.ConsumeValue(Byte marker)
+   at System.Text.Json.Utf8JsonReader.ReadFirstToken(Byte first)
+   at System.Text.Json.Utf8JsonReader.ReadSingleSegment()
+   at System.Text.Json.Utf8JsonReader.Read()
+   at Microsoft.IdentityModel.Tokens.Json.JsonSerializerPrimitives.IsReaderAtTokenType(Utf8JsonReader& reader, JsonTokenType tokenType, Boolean advanceReader)
+   at System.IdentityModel.Tokens.Jwt.JwtHeader..ctor(String json)
+   at System.IdentityModel.Tokens.Jwt.JwtHeader.Base64UrlDeserialize(String base64UrlEncodedJsonString)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityToken.Decode(String[] tokenParts, String rawData)
+   --- End of inner exception stack trace ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityToken.Decode(String[] tokenParts, String rawData)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ReadJwtToken(String token)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.GetJwtSecurityTokenFromToken(String token, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
+--- End of stack trace from previous location ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2025-08-04 13:46:23.181 +00:00 [INF] Bearer was not authenticated. Failure message: IDX12729: Unable to decode the header '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]' as Base64Url encoded string.
+2025-08-04 13:46:23.187 +00:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-08-04 13:46:23.192 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-08-04 13:46:23.193 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/set-language - 401 0 null 41.6862ms
+2025-08-04 13:46:27.710 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/set-language - application/json 22
+2025-08-04 13:46:27.712 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:46:27.713 +00:00 [INF] Failed to validate the token.
+System.ArgumentException: IDX12729: Unable to decode the header '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]' as Base64Url encoded string.
+ ---> System.Text.Json.JsonReaderException: '0xC8' is an invalid start of a value. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.ConsumeValue(Byte marker)
+   at System.Text.Json.Utf8JsonReader.ReadFirstToken(Byte first)
+   at System.Text.Json.Utf8JsonReader.ReadSingleSegment()
+   at System.Text.Json.Utf8JsonReader.Read()
+   at Microsoft.IdentityModel.Tokens.Json.JsonSerializerPrimitives.IsReaderAtTokenType(Utf8JsonReader& reader, JsonTokenType tokenType, Boolean advanceReader)
+   at System.IdentityModel.Tokens.Jwt.JwtHeader..ctor(String json)
+   at System.IdentityModel.Tokens.Jwt.JwtHeader.Base64UrlDeserialize(String base64UrlEncodedJsonString)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityToken.Decode(String[] tokenParts, String rawData)
+   --- End of inner exception stack trace ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityToken.Decode(String[] tokenParts, String rawData)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ReadJwtToken(String token)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.GetJwtSecurityTokenFromToken(String token, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
+--- End of stack trace from previous location ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2025-08-04 13:46:27.715 +00:00 [INF] Bearer was not authenticated. Failure message: IDX12729: Unable to decode the header '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]' as Base64Url encoded string.
+2025-08-04 13:46:27.717 +00:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-08-04 13:46:27.717 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-08-04 13:46:27.718 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/set-language - 401 0 null 7.1446ms
+2025-08-04 13:46:29.145 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/set-language - application/json 22
+2025-08-04 13:46:29.146 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:46:29.146 +00:00 [INF] Failed to validate the token.
+System.ArgumentException: IDX12729: Unable to decode the header '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]' as Base64Url encoded string.
+ ---> System.Text.Json.JsonReaderException: '0xC8' is an invalid start of a value. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.ConsumeValue(Byte marker)
+   at System.Text.Json.Utf8JsonReader.ReadFirstToken(Byte first)
+   at System.Text.Json.Utf8JsonReader.ReadSingleSegment()
+   at System.Text.Json.Utf8JsonReader.Read()
+   at Microsoft.IdentityModel.Tokens.Json.JsonSerializerPrimitives.IsReaderAtTokenType(Utf8JsonReader& reader, JsonTokenType tokenType, Boolean advanceReader)
+   at System.IdentityModel.Tokens.Jwt.JwtHeader..ctor(String json)
+   at System.IdentityModel.Tokens.Jwt.JwtHeader.Base64UrlDeserialize(String base64UrlEncodedJsonString)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityToken.Decode(String[] tokenParts, String rawData)
+   --- End of inner exception stack trace ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityToken.Decode(String[] tokenParts, String rawData)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ReadJwtToken(String token)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.GetJwtSecurityTokenFromToken(String token, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateJWS(String token, TokenValidationParameters validationParameters, BaseConfiguration currentConfiguration, SecurityToken& signatureValidatedToken, ExceptionDispatchInfo& exceptionThrown)
+--- End of stack trace from previous location ---
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, JwtSecurityToken outerToken, TokenValidationParameters validationParameters, SecurityToken& signatureValidatedToken)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+2025-08-04 13:46:29.148 +00:00 [INF] Bearer was not authenticated. Failure message: IDX12729: Unable to decode the header '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]' as Base64Url encoded string.
+2025-08-04 13:46:29.150 +00:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-08-04 13:46:29.150 +00:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-08-04 13:46:29.151 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/set-language - 401 0 null 5.1036ms
+2025-08-04 13:46:52.367 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/set-language - application/json 22
+2025-08-04 13:46:52.368 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:46:52.391 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.SetLanguage (EasyGold.API)'
+2025-08-04 13:46:52.397 +00:00 [INF] Route matched with {action = "SetLanguage", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SetLanguage(EasyGold.Web2.Models.Cliente.ACL.Requests.LanguageRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:46:52.414 +00:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 13:46:52.416 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.SetLanguage (EasyGold.API) in 18.9531ms
+2025-08-04 13:46:52.417 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.SetLanguage (EasyGold.API)'
+2025-08-04 13:46:52.418 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/set-language - 200 null application/json; charset=utf-8 50.6927ms
+2025-08-04 13:47:03.496 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/set-store - application/json 17
+2025-08-04 13:47:03.497 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:47:03.500 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.SetStore (EasyGold.API)'
+2025-08-04 13:47:03.506 +00:00 [INF] Route matched with {action = "SetStore", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SetStore(EasyGold.Web2.Models.Cliente.ACL.Requests.StoreRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:47:03.519 +00:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 13:47:03.520 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.SetStore (EasyGold.API) in 12.1638ms
+2025-08-04 13:47:03.521 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.SetStore (EasyGold.API)'
+2025-08-04 13:47:03.521 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/set-store - 200 null application/json; charset=utf-8 25.1354ms
+2025-08-04 13:47:12.706 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/refresh - null 0
+2025-08-04 13:47:12.708 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:47:12.709 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API)'
+2025-08-04 13:47:12.714 +00:00 [INF] Route matched with {action = "RefreshToken", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RefreshToken() on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:47:12.719 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType78`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 13:47:12.722 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API) in 6.641ms
+2025-08-04 13:47:12.723 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API)'
+2025-08-04 13:47:12.724 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/refresh - 200 null application/json; charset=utf-8 17.6372ms
+2025-08-04 13:49:48.998 +00:00 [INF] Application is shutting down...
+ '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 13:48:33.622 +00:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5217: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (98): Address already in use
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2025-08-04 13:49:53.061 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 13:49:53.208 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-04 13:49:53.216 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 13:49:53.217 +00:00 [INF] Hosting environment: Development
+2025-08-04 13:49:53.218 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-04 13:50:05.441 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/refresh - null 0
+2025-08-04 13:50:05.484 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-04 13:50:05.489 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:50:05.584 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API)'
+2025-08-04 13:50:05.603 +00:00 [INF] Route matched with {action = "RefreshToken", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RefreshToken() on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:50:05.757 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType4`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 13:50:05.809 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API) in 202.5597ms
+2025-08-04 13:50:05.813 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API)'
+2025-08-04 13:50:05.817 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/refresh - 200 null application/json; charset=utf-8 377.7972ms
+2025-08-04 13:50:07.489 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5218/api/auth/refresh - null 0
+2025-08-04 13:50:07.495 +00:00 [INF] CORS policy execution successful.
+2025-08-04 13:50:07.500 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API)'
+2025-08-04 13:50:07.500 +00:00 [INF] Route matched with {action = "RefreshToken", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RefreshToken() on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 13:50:07.511 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType4`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-08-04 13:50:07.512 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API) in 10.818ms
+2025-08-04 13:50:07.512 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.RefreshToken (EasyGold.API)'
+2025-08-04 13:50:07.513 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5218/api/auth/refresh - 200 null application/json; charset=utf-8 24.064ms
+2025-08-04 13:51:30.212 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/index.html - null null
+2025-08-04 13:51:30.276 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/index.html - 200 null text/html;charset=utf-8 64.02ms
+2025-08-04 13:51:30.307 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/index.js - null null
+2025-08-04 13:51:30.310 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/index.js - 200 null application/javascript;charset=utf-8 3.6378ms
+2025-08-04 13:51:30.443 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5218/swagger/v1/swagger.json - null null
+2025-08-04 13:51:30.844 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5218/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 400.6609ms
+2025-08-04 13:52:05.236 +00:00 [INF] Application is shutting down...
+2025-08-04 14:03:25.894 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 14:03:26.040 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-04 14:03:26.045 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 14:03:26.048 +00:00 [INF] Hosting environment: Development
+2025-08-04 14:03:26.048 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-04 14:03:35.075 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/ - null null
+2025-08-04 14:03:35.112 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-04 14:03:35.181 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/ - 404 0 null 106.8634ms
+2025-08-04 14:03:35.189 +00:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5217/, Response status code: 404
+2025-08-04 14:03:38.488 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger - null null
+2025-08-04 14:03:38.493 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger - 301 0 null 5.7649ms
+2025-08-04 14:03:38.553 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.html - null null
+2025-08-04 14:03:38.625 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.html - 200 null text/html;charset=utf-8 71.8164ms
+2025-08-04 14:03:38.665 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui.css - null null
+2025-08-04 14:03:38.692 +00:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-08-04 14:03:38.694 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui.css - 200 152035 text/css 29.0805ms
+2025-08-04 14:03:38.796 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-bundle.js - null null
+2025-08-04 14:03:38.796 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.css - null null
+2025-08-04 14:03:38.796 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-standalone-preset.js - null null
+2025-08-04 14:03:38.798 +00:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-08-04 14:03:38.797 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/index.js - null null
+2025-08-04 14:03:38.799 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.js - 200 null application/javascript;charset=utf-8 2.1592ms
+2025-08-04 14:03:38.801 +00:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-08-04 14:03:38.801 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/index.css - 200 202 text/css 4.9905ms
+2025-08-04 14:03:38.803 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-standalone-preset.js - 200 230007 text/javascript 6.7484ms
+2025-08-04 14:03:38.811 +00:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-08-04 14:03:38.812 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/swagger-ui-bundle.js - 200 1457477 text/javascript 15.6845ms
+2025-08-04 14:03:38.965 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/v1/swagger.json - null null
+2025-08-04 14:03:38.976 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:5217/swagger/favicon-32x32.png - null null
+2025-08-04 14:03:38.977 +00:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-08-04 14:03:38.978 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/favicon-32x32.png - 200 628 image/png 2.0954ms
+2025-08-04 14:03:39.402 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:5217/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 436.4913ms
+2025-08-04 14:23:08.235 +00:00 [INF] Application is shutting down...
+2025-08-04 14:23:35.168 +00:00 [INF] User profile is available. Using '/home/ubuntu/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-08-04 14:23:35.303 +00:00 [INF] Now listening on: http://localhost:5217
+2025-08-04 14:23:35.308 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-04 14:23:35.310 +00:00 [INF] Hosting environment: Development
+2025-08-04 14:23:35.310 +00:00 [INF] Content root path: /home/ubuntu/workspace/mew_easygold_debug/Easygold2BE/easygoldprov2/EasyGold.API
+2025-08-04 14:25:00.810 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5217/api/auth/login - application/json 77
+2025-08-04 14:25:00.850 +00:00 [WRN] Failed to determine the https port for redirect.
+2025-08-04 14:25:00.854 +00:00 [INF] CORS policy execution successful.
+2025-08-04 14:25:00.903 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-04 14:25:00.924 +00:00 [INF] Route matched with {action = "Login", controller = "Autenticazione"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EasyGold.Web2.Models.Cliente.ACL.Requests.LoginRequest) on controller EasyGold.API.Controllers.ACL.AutenticazioneController (EasyGold.API).
+2025-08-04 14:25:01.877 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-08-04 14:25:01.962 +00:00 [WRN] No store type was specified for the decimal property 'Iva_Aliquota' on entity type 'DbAliQuoteIVA'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 14:25:01.964 +00:00 [WRN] No store type was specified for the decimal property 'Lis_Arrotondamento' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 14:25:01.965 +00:00 [WRN] No store type was specified for the decimal property 'Lis_PercSconto' on entity type 'DbListiniProdotto'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 14:25:01.965 +00:00 [WRN] No store type was specified for the decimal property 'Lst_MoltipManifattura' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 14:25:01.966 +00:00 [WRN] No store type was specified for the decimal property 'Lst_Moltiplicatore' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 14:25:01.966 +00:00 [WRN] No store type was specified for the decimal property 'Lst_PrezzoGrammo' on entity type 'DbListiniTabella'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 14:25:01.966 +00:00 [WRN] No store type was specified for the decimal property 'Val_Cambio' on entity type 'DbValute'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-08-04 14:25:02.498 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-08-04 14:25:03.029 +00:00 [INF] Executed DbCommand (46ms) [Parameters=[@__username_0='Admin' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Ute_IDAuto], [s].[Ute_AbilitaCassa], [s].[Ute_AbilitaEliminaProd], [s].[Ute_AbilitaTuttiNegozi], [s].[Ute_Bloccato], [s].[Ute_Email], [s].[Ute_IDGruppo], [s].[Ute_IDIdioma], [s].[Ute_IDUtente], [s].[Ute_NomeUtente], [s].[Ute_PasswordResetToken], [s].[Ute_ResetTokenExpiry], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [t1].[Utp_IDUtente], [t1].[Utp_PwUtente], [t1].[Utp_TipoPw], [t1].[rowcreated_at], [t1].[rowdeleted_at], [t1].[rowupdated_at], [s].[Grp_Bloccato], [s].[Grp_DesGruppo], [s].[Grp_NomeGruppo], [s].[Grp_SuperAdmin], [s].[rowcreated_at], [s].[rowdeleted_at], [s].[rowupdated_at], [s0].[Utn_IDAuto], [s0].[Utn_Annullato], [s0].[Utn_Default], [s0].[Utn_IDNegozio], [s0].[Utn_IDUtente], [s0].[rowcreated_at], [s0].[rowdeleted_at], [s0].[rowupdated_at], [s0].[Neg_id], [s0].[Neg_Bloccato], [s0].[Neg_DataAttivazione], [s0].[Neg_DataDisattivazione], [s0].[Neg_DataOraBlocco], [s0].[Neg_IDCliente], [s0].[Neg_NomeNegozio], [s0].[Neg_Note], [s0].[Neg_RagioneSociale], [t4].[Id], [t4].[Expires], [t4].[Language], [t4].[StoreId], [t4].[Token], [t4].[UserId], [t4].[rowcreated_at], [t4].[rowdeleted_at], [t4].[rowupdated_at]
+FROM (
+    SELECT TOP(1) [t].[Ute_IDAuto], [t].[Ute_AbilitaCassa], [t].[Ute_AbilitaEliminaProd], [t].[Ute_AbilitaTuttiNegozi], [t].[Ute_Bloccato], [t].[Ute_Email], [t].[Ute_IDGruppo], [t].[Ute_IDIdioma], [t].[Ute_IDUtente], [t].[Ute_NomeUtente], [t].[Ute_PasswordResetToken], [t].[Ute_ResetTokenExpiry], [t0].[Grp_IDAuto], [t0].[Grp_Bloccato], [t0].[Grp_DesGruppo], [t0].[Grp_NomeGruppo], [t0].[Grp_SuperAdmin], [t0].[rowcreated_at], [t0].[rowdeleted_at], [t0].[rowupdated_at]
+    FROM [tbcl_utenti] AS [t]
+    INNER JOIN [tbcl_gruppi] AS [t0] ON [t].[Ute_IDGruppo] = [t0].[Grp_IDAuto]
+    WHERE [t].[Ute_NomeUtente] = @__username_0
+) AS [s]
+LEFT JOIN [tbcl_pwUtenti] AS [t1] ON [s].[Ute_IDAuto] = [t1].[Utp_IDUtente]
+LEFT JOIN (
+    SELECT [t2].[Utn_IDAuto], [t2].[Utn_Annullato], [t2].[Utn_Default], [t2].[Utn_IDNegozio], [t2].[Utn_IDUtente], [t2].[rowcreated_at], [t2].[rowdeleted_at], [t2].[rowupdated_at], [t3].[Neg_id], [t3].[Neg_Bloccato], [t3].[Neg_DataAttivazione], [t3].[Neg_DataDisattivazione], [t3].[Neg_DataOraBlocco], [t3].[Neg_IDCliente], [t3].[Neg_NomeNegozio], [t3].[Neg_Note], [t3].[Neg_RagioneSociale]
+    FROM [tbcl_utenteNegozi] AS [t2]
+    INNER JOIN [tbcl_negozi] AS [t3] ON [t2].[Utn_IDNegozio] = [t3].[Neg_id]
+) AS [s0] ON [s].[Ute_IDAuto] = [s0].[Utn_IDUtente]
+LEFT JOIN [tbcl_refresh_token] AS [t4] ON [s].[Ute_IDAuto] = [t4].[UserId]
+ORDER BY [s].[Ute_IDAuto], [s].[Grp_IDAuto], [t1].[Utp_IDAuto], [s0].[Utn_IDAuto], [s0].[Neg_id]
+2025-08-04 14:25:03.856 +00:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType77`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[EasyGold.Web2.Models.Cliente.Entities.ACL.DbUtente, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 14:25:03.964 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API) in 3034.4091ms
+2025-08-04 14:25:03.967 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AutenticazioneController.Login (EasyGold.API)'
+2025-08-04 14:25:03.977 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5217/api/auth/login - 200 null application/json; charset=utf-8 3168.4109ms
+2025-08-04 14:25:27.095 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5217/api/Config/list - application/json 176
+2025-08-04 14:25:27.099 +00:00 [INF] CORS policy execution successful.
+2025-08-04 14:25:27.136 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API)'
+2025-08-04 14:25:27.141 +00:00 [INF] Route matched with {action = "GetConfigList", controller = "Config"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetConfigList(EasyGold.Web2.Models.Cliente.ACL.Filters.ConfigListRequest) on controller EasyGold.API.Controllers.ACL.ConfigController (EasyGold.API).
+2025-08-04 14:25:27.237 +00:00 [INF] Executed DbCommand (14ms) [Parameters=[@__language_0='en' (Size = 11) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [syscl_config] AS [s]
+WHERE EXISTS (
+    SELECT 1
+    FROM [syscl_config_lag] AS [s0]
+    WHERE [s].[Sys_IDAuto] = [s0].[Sysid_ID] AND CONVERT(varchar(11), [s0].[Sysid_ISONum]) = @__language_0)
+2025-08-04 14:25:27.247 +00:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-08-04 14:25:27.248 +00:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-08-04 14:25:27.274 +00:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s2].[Sys_IDAuto], [s2].[Sys_Lunghezza], [s2].[Sys_Nazione], [s2].[Sys_NomeCampo], [s2].[Sys_Sezione], [s2].[Sys_TipoCampo], [s2].[Sys_Valore], [s1].[Sysid_ISONum], [s1].[Sysid_ID], [s1].[Sysid_NomeCampo]
+FROM (
+    SELECT [s].[Sys_IDAuto], [s].[Sys_Lunghezza], [s].[Sys_Nazione], [s].[Sys_NomeCampo], [s].[Sys_Sezione], [s].[Sys_TipoCampo], [s].[Sys_Valore]
+    FROM [syscl_config] AS [s]
+    WHERE 0 = 1
+) AS [s2]
+LEFT JOIN [syscl_config_lag] AS [s1] ON [s2].[Sys_IDAuto] = [s1].[Sysid_ID]
+ORDER BY [s2].[Sys_IDAuto]
+2025-08-04 14:25:27.278 +00:00 [INF] Executing OkObjectResult, writing value of type 'EasyGold.Web2.Models.BaseListResponse`1[[EasyGold.Web2.Models.Cliente.ACL.ConfigDTO, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 14:25:27.283 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API) in 141.0092ms
+2025-08-04 14:25:27.283 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API)'
+2025-08-04 14:25:27.284 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5217/api/Config/list - 200 null application/json; charset=utf-8 188.5271ms
+2025-08-04 14:25:35.775 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5217/api/Config/list - application/json 109
+2025-08-04 14:25:35.777 +00:00 [INF] CORS policy execution successful.
+2025-08-04 14:25:35.782 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API)'
+2025-08-04 14:25:35.782 +00:00 [INF] Route matched with {action = "GetConfigList", controller = "Config"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetConfigList(EasyGold.Web2.Models.Cliente.ACL.Filters.ConfigListRequest) on controller EasyGold.API.Controllers.ACL.ConfigController (EasyGold.API).
+2025-08-04 14:25:35.847 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[@__language_0='en' (Size = 11) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [syscl_config] AS [s]
+WHERE EXISTS (
+    SELECT 1
+    FROM [syscl_config_lag] AS [s0]
+    WHERE [s].[Sys_IDAuto] = [s0].[Sysid_ID] AND CONVERT(varchar(11), [s0].[Sysid_ISONum]) = @__language_0)
+2025-08-04 14:25:35.850 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s2].[Sys_IDAuto], [s2].[Sys_Lunghezza], [s2].[Sys_Nazione], [s2].[Sys_NomeCampo], [s2].[Sys_Sezione], [s2].[Sys_TipoCampo], [s2].[Sys_Valore], [s1].[Sysid_ISONum], [s1].[Sysid_ID], [s1].[Sysid_NomeCampo]
+FROM (
+    SELECT [s].[Sys_IDAuto], [s].[Sys_Lunghezza], [s].[Sys_Nazione], [s].[Sys_NomeCampo], [s].[Sys_Sezione], [s].[Sys_TipoCampo], [s].[Sys_Valore]
+    FROM [syscl_config] AS [s]
+    WHERE 0 = 1
+) AS [s2]
+LEFT JOIN [syscl_config_lag] AS [s1] ON [s2].[Sys_IDAuto] = [s1].[Sysid_ID]
+ORDER BY [s2].[Sys_IDAuto]
+2025-08-04 14:25:35.851 +00:00 [INF] Executing OkObjectResult, writing value of type 'EasyGold.Web2.Models.BaseListResponse`1[[EasyGold.Web2.Models.Cliente.ACL.ConfigDTO, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 14:25:35.853 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API) in 70.4883ms
+2025-08-04 14:25:35.854 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.ConfigController.GetConfigList (EasyGold.API)'
+2025-08-04 14:25:35.855 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5217/api/Config/list - 200 null application/json; charset=utf-8 79.8455ms
+2025-08-04 14:26:01.855 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5217/api/AliQuoteIVA/list - application/json 109
+2025-08-04 14:26:01.856 +00:00 [INF] CORS policy execution successful.
+2025-08-04 14:26:01.859 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.AliQuoteIVAController.GetAliQuoteIVAList (EasyGold.API)'
+2025-08-04 14:26:01.865 +00:00 [INF] Route matched with {action = "GetAliQuoteIVAList", controller = "AliQuoteIVA"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAliQuoteIVAList(EasyGold.Web2.Models.Cliente.ACL.Filters.AliQuoteIVAListRequest) on controller EasyGold.API.Controllers.ACL.AliQuoteIVAController (EasyGold.API).
+2025-08-04 14:26:01.890 +00:00 [INF] Executed DbCommand (8ms) [Parameters=[@__language_0='en' (Size = 11) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [tbcl_aliquoteIVA] AS [t]
+WHERE EXISTS (
+    SELECT 1
+    FROM [tbcl_aliquoteIVA_lang] AS [t0]
+    WHERE [t].[Iva_IDAuto] = [t0].[Ivaid_ID] AND CONVERT(varchar(11), [t0].[Ivaid_ISONum]) = @__language_0)
+2025-08-04 14:26:01.894 +00:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-08-04 14:26:01.894 +00:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-08-04 14:26:01.914 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t2].[Iva_IDAuto], [t2].[Iva_Aliquota], [t2].[Iva_Annullato], [t2].[Iva_Descrizione], [t2].[Iva_Esenzione], [t2].[Iva_Estero], [t2].[Iva_NaturaFE], [t2].[Iva_NaturaSC], [t2].[Iva_Scorporata], [t1].[Ivaid_ISONum], [t1].[Ivaid_ID], [t1].[Ivaid_Descrizione]
+FROM (
+    SELECT [t].[Iva_IDAuto], [t].[Iva_Aliquota], [t].[Iva_Annullato], [t].[Iva_Descrizione], [t].[Iva_Esenzione], [t].[Iva_Estero], [t].[Iva_NaturaFE], [t].[Iva_NaturaSC], [t].[Iva_Scorporata]
+    FROM [tbcl_aliquoteIVA] AS [t]
+    WHERE 0 = 1
+) AS [t2]
+LEFT JOIN [tbcl_aliquoteIVA_lang] AS [t1] ON [t2].[Iva_IDAuto] = [t1].[Ivaid_ID]
+ORDER BY [t2].[Iva_IDAuto], [t1].[Ivaid_ISONum]
+2025-08-04 14:26:01.915 +00:00 [INF] Executing OkObjectResult, writing value of type 'EasyGold.Web2.Models.BaseListResponse`1[[EasyGold.Web2.Models.Cliente.ACL.AliQuoteIVADTO, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 14:26:01.922 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.AliQuoteIVAController.GetAliQuoteIVAList (EasyGold.API) in 56.7772ms
+2025-08-04 14:26:01.923 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.AliQuoteIVAController.GetAliQuoteIVAList (EasyGold.API)'
+2025-08-04 14:26:01.923 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5217/api/AliQuoteIVA/list - 200 null application/json; charset=utf-8 68.6382ms
+2025-08-04 14:26:27.838 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5217/api/IdiomiScelti/list - application/json 109
+2025-08-04 14:26:27.839 +00:00 [INF] CORS policy execution successful.
+2025-08-04 14:26:27.840 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.IdiomiSceltiController.GetIdiomiSceltiList (EasyGold.API)'
+2025-08-04 14:26:27.847 +00:00 [INF] Route matched with {action = "GetIdiomiSceltiList", controller = "IdiomiScelti"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetIdiomiSceltiList(EasyGold.Web2.Models.Cliente.ACL.Filters.IdiomiSceltiListRequest) on controller EasyGold.API.Controllers.ACL.IdiomiSceltiController (EasyGold.API).
+2025-08-04 14:26:27.867 +00:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [tbcl_idiomiScelti] AS [t]
+2025-08-04 14:26:27.869 +00:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-08-04 14:26:27.869 +00:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-08-04 14:26:27.877 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Idm_IDAuto], [t].[Idm_IDCliente], [t].[Idm_IDIdioma], [t].[rowcreated_at], [t].[rowdeleted_at], [t].[rowupdated_at]
+FROM [tbcl_idiomiScelti] AS [t]
+WHERE 0 = 1
+2025-08-04 14:26:27.879 +00:00 [INF] Executing OkObjectResult, writing value of type 'EasyGold.Web2.Models.BaseListResponse`1[[EasyGold.Web2.Models.Cliente.ACL.IdiomiSceltiDTO, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 14:26:27.881 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.IdiomiSceltiController.GetIdiomiSceltiList (EasyGold.API) in 32.0298ms
+2025-08-04 14:26:27.881 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.IdiomiSceltiController.GetIdiomiSceltiList (EasyGold.API)'
+2025-08-04 14:26:27.882 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5217/api/IdiomiScelti/list - 200 null application/json; charset=utf-8 44.4441ms
+2025-08-04 14:26:34.040 +00:00 [INF] Request starting HTTP/1.1 POST http://localhost:5217/api/IdiomiScelti/list - application/json 110
+2025-08-04 14:26:34.041 +00:00 [INF] CORS policy execution successful.
+2025-08-04 14:26:34.043 +00:00 [INF] Executing endpoint 'EasyGold.API.Controllers.ACL.IdiomiSceltiController.GetIdiomiSceltiList (EasyGold.API)'
+2025-08-04 14:26:34.044 +00:00 [INF] Route matched with {action = "GetIdiomiSceltiList", controller = "IdiomiScelti"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetIdiomiSceltiList(EasyGold.Web2.Models.Cliente.ACL.Filters.IdiomiSceltiListRequest) on controller EasyGold.API.Controllers.ACL.IdiomiSceltiController (EasyGold.API).
+2025-08-04 14:26:34.050 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [tbcl_idiomiScelti] AS [t]
+2025-08-04 14:26:34.051 +00:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-08-04 14:26:34.052 +00:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-08-04 14:26:34.063 +00:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='0', @__p_1='10'], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Idm_IDAuto], [t].[Idm_IDCliente], [t].[Idm_IDIdioma], [t].[rowcreated_at], [t].[rowdeleted_at], [t].[rowupdated_at]
+FROM [tbcl_idiomiScelti] AS [t]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-08-04 14:26:34.074 +00:00 [INF] Executing OkObjectResult, writing value of type 'EasyGold.Web2.Models.BaseListResponse`1[[EasyGold.Web2.Models.Cliente.ACL.IdiomiSceltiDTO, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-08-04 14:26:34.075 +00:00 [INF] Executed action EasyGold.API.Controllers.ACL.IdiomiSceltiController.GetIdiomiSceltiList (EasyGold.API) in 29.9954ms
+2025-08-04 14:26:34.075 +00:00 [INF] Executed endpoint 'EasyGold.API.Controllers.ACL.IdiomiSceltiController.GetIdiomiSceltiList (EasyGold.API)'
+2025-08-04 14:26:34.076 +00:00 [INF] Request finished HTTP/1.1 POST http://localhost:5217/api/IdiomiScelti/list - 200 null application/json; charset=utf-8 35.6252ms
+2025-08-04 14:26:46.543 +00:00 [INF] Application is shutting down...

@@ -1,0 +1,24 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EasyGold.Web2.Models.Cliente.ACL;
+using EasyGold.Web2.Models;
+using EasyGold.Web2.Models.Cliente.ACL.Filters;
+using EasyGold.Web2.Models.Cliente.Entities.ACL;
+using EasyGold.Web2.Models.Comune.ACL;
+using EasyGold.Web2.Models.Comune.Entities;
+using EasyGold.Web2.Models.Comune.Entities.ACL;
+using EasyGold.Web2.Models.Comune.GEO.ACL;
+using EasyGold.Web2.Models.Comune.GEO.Entities.ACL;
+using EasyGold.Web2.Models.Comune.GEO.Entities;
+
+namespace EasyGold.API.Services.Interfaces
+{
+    public interface IModuliStampeService
+    {
+        Task<BaseListResponse<ModuliStampeDTO>> GetAllAsync(ModuliStampeListRequest filter);
+        Task<ModuliStampeDTO> GetByIdAsync(int id);
+        Task<ModuliStampeDTO> AddAsync(ModuliStampeDTO dto);
+        Task<ModuliStampeDTO> UpdateAsync(ModuliStampeDTO dto);
+        Task DeleteAsync(int id);
+    }
+}
